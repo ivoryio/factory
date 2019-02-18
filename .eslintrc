@@ -1,0 +1,67 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "react-app",
+    "eslint:recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "forOf": true,
+      "spread": true,
+      "classes": true,
+      "generators": true,
+      "destructuring": true,
+      "defaultParams": true,
+      "arrowFunctions": true,
+      "templateStrings": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": [
+    "react",
+    "babel",
+    "jsx-a11y"
+  ],
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "globals": {
+    "document": false
+  },
+  "rules": {
+    "strict": [
+      "error",
+      "global"
+    ],
+    "arrow-spacing": "warn",
+    "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
+    "new-cap": "off",
+    "semi": ["error", "never"],
+    "space-before-function-paren": "error",
+    "eqeqeq": "warn",
+    "block-scoped-var": "error",
+    "no-return-await": "error",
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
+    "no-unused-vars": "error",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-extra-boolean-cast": "error",
+    "no-dupe-keys": "error",
+    "no-dupe-args": "error",
+    "no-extra-bind": "error",
+    "no-extra-semi": "warn",
+    "no-unreachable": "error",
+    "no-duplicate-case": "error",
+    "no-invalid-regexp": "error",
+    "prefer-template": "warn",
+    "react/no-deprecated": 1,
+    "react/prefer-es6-class": ["error", "always"],
+    "react/jsx-no-duplicate-props": "error",
+    "react/no-direct-mutation-state": ["error", "always"]
+  }
+}

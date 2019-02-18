@@ -1,0 +1,44 @@
+{
+  "name": "factory",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "node_modules/.bin/eslint ./",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-scripts": "2.1.5",
+    "standard": "^12.0.1",
+    "styled-components": "^4.1.3"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "2.1.0",
+    "eslint-config-react-app": "^3.0.7",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-flowtype": "^3.4.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "husky": "^1.3.1"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
