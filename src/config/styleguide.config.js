@@ -6,7 +6,6 @@ module.exports = {
     favicon: `/public/favicon.ico`
   },
   skipComponentsWithoutExample: true,
-  propsParser: require('react-docgen').parse,
   webpackConfig: require('react-scripts/config/webpack.config'),
   getComponentPathLine (componentPath) {
     const name = path.basename(componentPath, '.js')
