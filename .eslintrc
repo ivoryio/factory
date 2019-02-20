@@ -40,7 +40,7 @@
       "global"
     ],
     "arrow-spacing": "warn",
-    "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
+    "arrow-body-style": ["error", "as-needed"],
     "new-cap": "off",
     "semi": ["error", "never"],
     "space-before-function-paren": "error",

@@ -1,20 +1,30 @@
 const path = require('path')
 const root = process.env.PWD
+
 module.exports = {
+  // #region preferences
   title: 'Ivory UI Factory',
   template: {
     favicon: `/public/favicon.ico`
   },
   skipComponentsWithoutExample: true,
-  webpackConfig: require('react-scripts/config/webpack.config'),
-  getComponentPathLine (componentPath) {
-    const name = path.basename(componentPath, '.js')
-    const dir = path.dirname(componentPath).split('ui/')[1]
-    return `import ${name} from @ivoryio/${dir}`
-  },
   getExampleFilename (componentPath) {
     return componentPath.replace(/\.jsx?$/, '.examples.md')
   },
+  getComponentPathLine (componentPath) {
+    const name = path.basename(componentPath, '.js')
+    const dir = path.dirname(componentPath).split('ui/')[1]
+    return `import ${name} from @ivoryio/ui/${dir}`
+  },
+
+  // #endregion
+  // #region config
+  compilerConfig: {
+    transforms: {
+      dangerousTaggedTemplateString: true // Set this to use styled-components in mocks
+    }
+  },
+  webpackConfig: require('react-scripts/config/webpack.config'),
   handlers: componentPath =>
     require('react-docgen').defaultHandlers.concat(
       (documentation, path) => {
@@ -44,12 +54,11 @@ module.exports = {
   propsParser (filePath, source, resolver, handlers) {
     return require('react-docgen').parse(source, resolver, handlers)
   },
-  // ribbon: {
-  //   // Link to open on the ribbon click (required)
-  //   url: 'https://github.com/ivoryio/factory',
-  //   // Text to show on the ribbon (optional)
-  //   text: 'Fork me on GitHub'
-  // },
+  styleguideComponents: {
+    Wrapper: path.join(root, 'src/ui/components/Wrapper')
+  },
+  // #endregion
+  // #region sidemenu
   sections: [
     {
       name: 'Introduction',
@@ -93,4 +102,5 @@ module.exports = {
       usageMode: 'collapse' // 'hide' | 'collapse' | 'expand'
     }
   ]
+  // #endregion
 }
