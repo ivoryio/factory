@@ -14,7 +14,7 @@
     color='#fff'
     onClick={simulateClick}
     fontSize={[14, 16]}
-    size={[120, 40]}
+    width={[120, 110, 100]}
     title='Submit'
   />
 ```
@@ -34,7 +34,7 @@ const simulateClick = () => {
   fontSize={[14, 16]}
   onClick={simulateClick}
   title='Delete'
-  size={[120, 40]}
+  width={[120, 110, 100]}
 />
 ```
 
@@ -54,7 +54,7 @@ const simulateClick = () => {
     color='#fff'
     onClick={simulateClick}
     fontSize={[14, 16]}
-    size={[120, 40]}
+    width={[120, 110, 100]}
     isLoading
     title='Submit'
   />

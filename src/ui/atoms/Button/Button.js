@@ -23,7 +23,8 @@ import {
   opacity,
   size,
   textAlign,
-  space
+  space,
+  width
 } from 'styled-system'
 
 import theme from 'assets/theme'
@@ -56,6 +57,7 @@ const Button = ({
 )
 
 const StyledBtn = styled.button`
+  block-size: ${props => props.blockSize};
   ${alignItems};
   ${borderColor};
   ${borderRadius};
@@ -78,7 +80,7 @@ const StyledBtn = styled.button`
   ${size};
   ${textAlign};
   ${space};
-  block-size: ${props => props.blockSize};
+  ${width};
 
   :active {
     transform: scale(0.965);

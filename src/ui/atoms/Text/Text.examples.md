@@ -15,4 +15,3 @@ const message = 'The quick brown fox jumps over the lazy dog.';
 const message = 'How razorback-jumping frogs can level six piqued gymnasts!';
 <Text message={message} type='h2' color='#484848' opacity={.75} />
 ```
-
