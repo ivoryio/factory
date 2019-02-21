@@ -1,3 +1,5 @@
 ```js
-  <Spinner />
+  <Spinner
+    size={[30, 30]}
+  />
 ```

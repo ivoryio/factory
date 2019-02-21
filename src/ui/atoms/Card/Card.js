@@ -23,7 +23,9 @@ import {
   justifyItems,
   justifySelf,
   left,
+  maxHeight,
   maxWidth,
+  minHeight,
   minWidth,
   opacity,
   order,
@@ -46,6 +48,7 @@ const Card = ({ children, ...rest }) => (
 )
 
 const StyledCard = styled.div`
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.08);
   ${alignContent}
   ${alignItems}
   ${alignSelf}
@@ -68,7 +71,9 @@ const StyledCard = styled.div`
   ${justifyItems}
   ${justifySelf}
   ${left}
+  ${maxHeight}
   ${maxWidth}
+  ${minHeight}
   ${minWidth}
   ${opacity}
   ${order}

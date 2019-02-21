@@ -15,7 +15,7 @@ import {
   themeGet
 } from 'styled-system'
 
-const Text = ({ className, color, cursor, message, type, ...rest }) => (
+const Text = ({ className, cursor, message, type, ...rest }) => (
   <StyledText className={className} cursor={cursor} type={type} {...rest}>
     {message}
   </StyledText>
@@ -42,9 +42,9 @@ const withType = css`
 `
 
 /** @component */
-const StyledText = styled.p`
-  font-family: ${themeGet('fonts.sansSerif')};
+const StyledText = styled.div`
   color: ${themeGet('colors.text')};
+  font-family: ${themeGet('fonts.sansSerif')};
   ${withType}
   ${color}
   ${fontFamily}

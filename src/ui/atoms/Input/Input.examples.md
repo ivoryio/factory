@@ -1,30 +1,49 @@
 #### Simple Input
 ```js
-function onChange(e) {
+function handleChange(e) {
   console.log('Input Value Changed:', e.target.value)
 }
 
 <Input
-  borderRadius={2}
-  border='2px solid'
-  onChange={onChange}
-  p={1}
-  type='text'
+  placeholder='email'
+  mt={12}
+  borderRadius={6}
+  onChange={handleChange}
+  width={[1/3]}
 />
 ```
 
-#### Input with errors
+#### Input with error
 ```js
-function onChange(e) {
-  console.log('Input Value Changed:', e.target.value)
-}
+const React = require('react')
+const { useState, useEffect } = React
 
-<Input
-  onChange={onChange}
-  borderRadius={2}
-  border='2px solid red'
-  error
-  p={1}
-  type='text'
-/>
+const InputSimulator = () => {
+  const [inputVal, setInputVal] = useState('')
+  const [error, setError] = useState(null)
+  const handleValueChange = ev => {
+    setInputVal(ev.target.value);
+  }
+
+  const validateInput = () => {
+    const textRegex = /^[a-zA-Z ]*$/
+    if (!textRegex.test(inputVal)) {
+      setError('Invalid input type')
+    } else {
+      setError(null)
+    }
+  }
+  useEffect(() => {
+    validateInput()
+  }, [inputVal])
+  return (
+    <Input
+      onChange={handleValueChange}
+      width={[1/3]}
+      value={inputVal}
+      error={error}
+    />
+  )
+};
+<InputSimulator />
 ```
