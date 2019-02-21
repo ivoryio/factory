@@ -14,10 +14,9 @@ import {
   space,
 } from 'styled-system'
 
-const Icon = ({ alt, cursor, dataTest, onClick, src, ...rest }) => (
+const Icon = ({ alt, dataTest, onClick, src, ...rest }) => (
   <StyledIcon
     alt={alt}
-    cursor={cursor}
     data-testid={dataTest}
     onClick={onClick}
     src={src}
