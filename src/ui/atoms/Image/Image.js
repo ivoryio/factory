@@ -2,61 +2,62 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const Image = ({
-  alt,
+import {
   borderRadius,
-  dataTest,
   height,
-  marginInlineEnd,
-  marginInlineStart,
-  paddingInlineEnd,
-  paddingInlineStart,
-  src,
-  width,
-}) => (
-  <StyledImage
-    alt={alt}
-    borderRadius={borderRadius}
-    data-testid={dataTest}
-    height={height}
-    marginInlineEnd={marginInlineEnd}
-    marginInlineStart={marginInlineStart}
-    paddingInlineEnd={paddingInlineEnd}
-    paddingInlineStart={paddingInlineStart}
-    src={src}
-    width={width}
-  />
+  maxHeight,
+  maxWidth,
+  minHeight,
+  minWidth,
+  position,
+  size,
+  space,
+  width
+} from 'styled-system'
+
+const Image = ({ alt, dataTest, src, ...rest }) => (
+  <StyledImage alt={alt} data-testid={dataTest} src={src} {...rest} />
 )
 
 const StyledImage = styled.img`
-  border-radius: ${props => props.borderRadius}px;
-  height: ${props => props.height}px;
-  margin-inline-end: ${props => props.marginInlineEnd}px;
-  margin-inline-start: ${props => props.marginInlineStart}px;
-  padding-inline-end: ${props => props.paddingInlineEnd}px;
-  padding-inline-start: ${props => props.paddingInlineStart}px;
-  width: ${props => props.width}px;
+  ${borderRadius}
+  ${height}
+  ${maxHeight}
+  ${maxWidth}
+  ${minHeight}
+  ${minWidth}
+  ${position}
+  ${size}
+  ${space}
+  ${width}
+  object-fit: contain;
 `
 
 Image.propTypes = {
-  alt: PropTypes.string.isRequired,
+  ...borderRadius.propTypes,
+  ...height.propTypes,
+  ...maxHeight.propTypes,
+  ...maxWidth.propTypes,
+  ...minHeight.propTypes,
+  ...minWidth.propTypes,
+  ...position.propTypes,
+  ...size.propTypes,
+  ...space.propTypes,
+  ...width.propTypes,
   borderRadius: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  marginInlineEnd: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  marginInlineStart: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  paddingInlineEnd: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  paddingInlineStart: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  src: PropTypes.string.isRequired,
-  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-}
-
-Image.defaultProps = {
-  height: 80,
-  marginInlineEnd: 0,
-  marginInlineStart: 0,
-  paddingInlineEnd: 24,
-  paddingInlineStart: 24,
-  width: 80
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  m: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  mx: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  my: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  p: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  px: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  py: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
+  position: PropTypes.string,
+  size: PropTypes.arrayOf(PropTypes.number),
+  alt: PropTypes.string.isRequired,
+  dataTest: PropTypes.string,
+  src: PropTypes.string.isRequired
 }
 
 export default Image

@@ -4,13 +4,16 @@ import styled from 'styled-components'
 import {
   borders,
   borderRadius,
+  fontSize,
+  height,
   minHeight,
   maxHeight,
   minWidth,
   maxWidth,
   position,
   size,
-  space
+  space,
+  width
 } from 'styled-system'
 
 import theme from 'assets/theme'
@@ -36,13 +39,11 @@ const Input = ({
     data-testid={dataTest}
     disabled={disabled}
     error={error}
-    blockSize={blockSize}
     onChange={onChange}
     placeholder={placeholder}
     required={required}
     type={type}
     value={value}
-    inlineSize={inlineSize}
     theme={theme}
     {...rest}
   />
@@ -51,6 +52,8 @@ const Input = ({
 const StyledInput = styled.input`
   ${borderRadius};
   ${borders};
+  ${fontSize};
+  ${height};
   ${minHeight};
   ${maxHeight};
   ${minWidth};
@@ -58,8 +61,7 @@ const StyledInput = styled.input`
   ${position};
   ${size};
   ${space};
-  block-size: ${props => props.blockSize};
-  inline-size: ${props => props.inlineSize};
+  ${width};
   :focus {
     outline-style: none;
     outline-color: transparent;
@@ -83,12 +85,18 @@ Input.propTypes = {
   PropTypes.number,
   PropTypes.object,
   ]),
-  ...minHeight.propTypes,
+  ...borderRadius.propTypes,
+  ...borders.propTypes,
+  ...fontSize.propTypes,
+  ...height.propTypes,
   ...maxHeight.propTypes,
-  ...minWidth.propTypes,
   ...maxWidth.propTypes,
+  ...minHeight.propTypes,
+  ...minWidth.propTypes,
+  ...position.propTypes,
+  ...size.propTypes,
   ...space.propTypes,
-  ...size.propTypes
+  ...width.propTypes
 }
 
 Input.defaultProps = {
@@ -96,7 +104,7 @@ Input.defaultProps = {
   placeholder: 'type...',
   required: false,
   type: 'text',
-  theme
+  theme,
 }
 
 export default Input
