@@ -10,7 +10,6 @@
   }
   <Button
     bg='#2ecc71'
-    border={0}
     borderRadius={2}
     color='#fff'
     fontSize={[14, 16]}
@@ -25,10 +24,8 @@
 ```js
 const { default: styled } = require('styled-components');
 const StyledButton = styled(Button)`
-  background-color: #e74c3c;
   height: 40px;
   border-radius: 4px;
-  border: 0;
   color: #fff;
 `;
 const simulateClick = () => {
@@ -37,6 +34,7 @@ const simulateClick = () => {
 <StyledButton
   fontSize={[14, 16]}
   onClick={simulateClick}
+  bg='#e74c3c'
   title='Delete'
   width={[120, 110, 100]}
 />
@@ -59,6 +57,7 @@ const simulateClick = () => {
     fontSize={[14, 16]}
     height={42}
     isLoading
+    disabled
     onClick={simulateClick}
     title='Submit'
     width={[120, 110, 100]}

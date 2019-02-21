@@ -1,16 +1,22 @@
 #### Simple Input
 ```js
-function handleChange(e) {
-  console.log('Input Value Changed:', e.target.value)
-}
-
-<Input
-  placeholder='email'
-  mt={12}
-  borderRadius={6}
-  onChange={handleChange}
-  width={[1/3]}
-/>
+const React = require('react')
+const { useState } = React
+const InputExample1 = () => {
+const [inputVal, setInputVal] = useState('')
+const handleValueChange = ev => setInputVal(ev.target.value)
+  return (
+    <Input
+      placeholder='email'
+      mt={12}
+      borderRadius={6}
+      onChange={handleValueChange}
+      value={inputVal}
+      width={[1/3]}
+    />
+  )
+};
+<InputExample1 />
 ```
 
 #### Input with error
