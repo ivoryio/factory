@@ -15,7 +15,7 @@ import {
   themeGet
 } from 'styled-system'
 
-const Text = ({ className, color, cursor, message, type, ...rest }) => (
+const Text = ({ className, cursor, message, type, ...rest }) => (
   <StyledText className={className} cursor={cursor} type={type} {...rest}>
     {message}
   </StyledText>
@@ -23,7 +23,7 @@ const Text = ({ className, color, cursor, message, type, ...rest }) => (
 
 const withType = css`
   font-size: 14px;
-  font-weight: regular;
+  font-weight: normal;
   ${props =>
     props.type === 'h1' &&
     `
@@ -32,29 +32,31 @@ const withType = css`
   ${props =>
     props.type === 'h2' &&
     `
-  font-size: 20px; font-weight: regular;
+  font-size: 20px; font-weight: normal;
   `};
   ${props =>
     props.type === 'h3' &&
     `
-  font-size: 18px; font-weight: regular;
+  font-size: 18px; font-weight: normal;
   `};
 `
 
-const StyledText = styled.p`
+/** @component */
+const StyledText = styled.div`
+  color: ${themeGet('colors.text')};
   font-family: ${themeGet('fonts.sansSerif')};
-  ${withType};
-  ${color};
-  ${fontFamily};
-  ${fontSize};
-  ${fontWeight};
-  ${fontStyle};
-  ${letterSpacing};
-  ${lineHeight};
-  ${opacity};
-  ${size};
-  ${space};
-  ${textAlign};
+  ${withType}
+  ${color}
+  ${fontFamily}
+  ${fontSize}
+  ${fontWeight}
+  ${fontStyle}
+  ${letterSpacing}
+  ${lineHeight}
+  ${opacity}
+  ${size}
+  ${space}
+  ${textAlign}
 `
 
 export default Text

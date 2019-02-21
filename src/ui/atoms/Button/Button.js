@@ -6,6 +6,7 @@ import {
   borderColor,
   borderRadius,
   borders,
+  bottom,
   boxShadow,
   color,
   display,
@@ -14,21 +15,23 @@ import {
   fontWeight,
   justifyContent,
   height,
+  left,
   letterSpacing,
   minHeight,
   maxHeight,
   minWidth,
   maxWidth,
   position,
+  right,
   opacity,
   size,
   textAlign,
+  top,
   space,
   width
 } from 'styled-system'
-
 import theme from 'assets/theme'
-
+/** For a better understanding of available props, check styled-system (https://github.com/jxnblk/styled-system/blob/master/docs/table.md)  */
 const Button = ({
   alignSelf,
   dataTest,
@@ -38,7 +41,6 @@ const Button = ({
   isLoading,
   justifyContent,
   onClick,
-  theme,
   title,
   ...rest
 }) => (
@@ -49,38 +51,41 @@ const Button = ({
     blockSize={blockSize}
     justifyContent={justifyContent}
     onClick={onClick}
-    theme={theme}
     {...rest}
   >
     {!isLoading ? title : 'Loading...'}
   </StyledBtn>
 )
 
+/** @component */
 const StyledBtn = styled.button`
-  block-size: ${props => props.blockSize};
-  ${alignItems};
-  ${borderColor};
-  ${borderRadius};
-  ${borders};
-  ${boxShadow};
-  ${color};
-  ${display};
-  ${fontSize};
-  ${fontFamily};
-  ${fontWeight};
-  ${justifyContent};
-  ${height};
-  ${letterSpacing};
-  ${minHeight};
-  ${maxHeight};
-  ${minWidth};
-  ${maxWidth};
-  ${position};
-  ${opacity};
-  ${size};
-  ${textAlign};
-  ${space};
-  ${width};
+  ${alignItems}
+  ${borderColor}
+  ${borderRadius}
+  ${borders}
+  ${bottom}
+  ${boxShadow}
+  ${color}
+  ${display}
+  ${fontSize}
+  ${fontFamily}
+  ${fontWeight}
+  ${justifyContent}
+  ${height}
+  ${left}
+  ${letterSpacing}
+  ${minHeight}
+  ${maxHeight}
+  ${minWidth}
+  ${maxWidth}
+  ${position}
+  ${opacity}
+  ${right}
+  ${size}
+  ${textAlign}
+  ${space}
+  ${top}
+  ${width}
 
   :active {
     transform: scale(0.965);
@@ -96,21 +101,24 @@ const StyledBtn = styled.button`
     cursor: not-allowed;
   }
 `
-
 Button.propTypes = {
+  ...color.propTypes,
+  ...space.propTypes,
+  ...height.propTypes,
+  bg: PropTypes.string,
+  color: PropTypes.string,
+  dataTest: PropTypes.string,
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
-  title: PropTypes.string,
-  dataTest: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  blockSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  ...space.propTypes,
-  ...fontSize.propTypes
+  theme: PropTypes.object,
+  title: PropTypes.string.isRequired
 }
 
 Button.defaultProps = {
-  blockSize: '40px',
-  theme
+  theme,
+  isLoading: false,
+  disabled: false
 }
 
 export default Button
