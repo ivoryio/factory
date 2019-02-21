@@ -16,8 +16,6 @@ import {
   width
 } from 'styled-system'
 
-import theme from 'assets/theme'
-
 const Input = ({
   autoComplete,
   dataTest,
@@ -30,7 +28,6 @@ const Input = ({
   required,
   type,
   value,
-  theme,
   ...rest
 }) => (
   <StyledInput
@@ -44,7 +41,6 @@ const Input = ({
     required={required}
     type={type}
     value={value}
-    theme={theme}
     {...rest}
   />
 )
@@ -104,7 +100,6 @@ Input.defaultProps = {
   placeholder: 'type...',
   required: false,
   type: 'text',
-  theme,
 }
 
 export default Input
