@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import {
   alignSelf,
+  justifySelf,
   maxHeight,
   maxWidth,
   minHeight,
@@ -26,6 +27,7 @@ const Icon = ({ alt, cursor, dataTest, onClick, src, ...rest }) => (
 
 const StyledIcon = styled.img`
   ${alignSelf}
+  ${justifySelf}
   ${maxHeight}
   ${maxWidth}
   ${minHeight}
@@ -41,6 +43,7 @@ const StyledIcon = styled.img`
 
 Icon.propTypes = {
   ...alignSelf.propTypes,
+  ...justifySelf.propTypes,
   ...maxHeight.propTypes,
   ...maxWidth.propTypes,
   ...minHeight.propTypes,
