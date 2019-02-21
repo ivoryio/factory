@@ -12,8 +12,8 @@ import {
   width
 } from 'styled-system'
 
-const Spinner = ({...rest}) => (
-  <StyledSpinner {...rest} />
+const Spinner = props => (
+  <StyledSpinner {...props} />
 )
 
 const StyledSpinner = styled.div`
