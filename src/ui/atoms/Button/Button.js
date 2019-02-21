@@ -31,9 +31,11 @@ import {
   width
 } from 'styled-system'
 import theme from 'assets/theme'
+import Spinner from '../Spinner/Spinner'
 /** For a better understanding of available props, check styled-system (https://github.com/jxnblk/styled-system/blob/master/docs/table.md)  */
 const Button = ({
   alignSelf,
+  bg,
   dataTest,
   display,
   disabled,
@@ -45,20 +47,36 @@ const Button = ({
   ...rest
 }) => (
   <StyledBtn
+    bg={bg}
     data-test={dataTest}
-    disabled={disabled || isLoading}
+    disabled={disabled}
     display={display}
     blockSize={blockSize}
     justifyContent={justifyContent}
     onClick={onClick}
     {...rest}
   >
-    {!isLoading ? title : 'Loading...'}
+    {!isLoading ? title : <Spinner bg={bg} />}
   </StyledBtn>
 )
 
 /** @component */
 const StyledBtn = styled.button`
+  border: none;
+  :active {
+    transform: scale(0.965);
+  }
+  :focus {
+    outline-style: none;
+    outline-color: transparent;
+  }
+
+  :disabled {
+    opacity: 0.5;
+    filter: grayscale(50%);
+    transform: scale(1);
+    cursor: not-allowed;
+  }
   ${alignItems}
   ${borderColor}
   ${borderRadius}
@@ -86,20 +104,6 @@ const StyledBtn = styled.button`
   ${space}
   ${top}
   ${width}
-
-  :active {
-    transform: scale(0.965);
-  }
-  :focus {
-    outline-style: none;
-    outline-color: transparent;
-  }
-
-  :disabled {
-    opacity: 0.5;
-    filter: grayscale(50%);
-    cursor: not-allowed;
-  }
 `
 Button.propTypes = {
   ...color.propTypes,
