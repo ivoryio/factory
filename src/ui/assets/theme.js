@@ -14,21 +14,16 @@ export default {
     '16px solid',
     '32px solid'
   ],
-  colorStyles: {
-    warning: {
-      color: '#000',
-      backgroundColor: 'orange'
-    },
-    error: {
-      color: '#fff',
-      backgroundColor: '#e74c3c'
-    },
+  colors: {
     accent: '#2980b9',
     background: '#ecf0f1',
     black: '#191919',
+    confirm: '##2ecc71',
+    error: '#e74c3c',
     highlight: '#3498db',
     placeholder: '#bdc3c7',
-    text: '#7f8c8d',
+    text: '#484848',
+    warning: '#e67e22',
     white: '#fff'
   },
   fonts: {
@@ -55,5 +50,5 @@ export default {
     small: '@media (max-width: 600px)'
   },
   radii: [0, 2, 4, 16, 9999, '100%'],
-  width: [16, 32, 64, 128, 256],
+  width: [16, 32, 64, 128, 256]
 }

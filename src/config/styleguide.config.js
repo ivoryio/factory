@@ -1,6 +1,7 @@
 const path = require('path')
 const root = process.env.PWD
-
+const docgen = require('react-docgen')
+const docgenDisplayNameHandler = require('react-docgen-displayname-handler')
 module.exports = {
   // #region preferences
   title: 'Ivory UI Factory',
@@ -26,7 +27,7 @@ module.exports = {
   },
   webpackConfig: require('react-scripts/config/webpack.config'),
   handlers: componentPath =>
-    require('react-docgen').defaultHandlers.concat(
+    docgen.defaultHandlers.concat(
       (documentation, path) => {
         // Calculate a display name for components based upon the declared class name.
         if (
@@ -46,13 +47,11 @@ module.exports = {
           documentation.set('path', 'default')
         }
       },
-
-      require('react-docgen-displayname-handler').createDisplayNameHandler(
-        componentPath
-      )
+      require('react-docgen-displayname-handler').createDisplayNameHandler(componentPath),
+      docgenDisplayNameHandler.createDisplayNameHandler(componentPath)
     ),
   propsParser (filePath, source, resolver, handlers) {
-    return require('react-docgen').parse(source, resolver, handlers)
+    return docgen.parse(source, resolver, handlers)
   },
   styleguideComponents: {
     Wrapper: path.join(root, 'src/ui/components/Wrapper')

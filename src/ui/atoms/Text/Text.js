@@ -23,7 +23,7 @@ const Text = ({ className, color, cursor, message, type, ...rest }) => (
 
 const withType = css`
   font-size: 14px;
-  font-weight: regular;
+  font-weight: normal;
   ${props =>
     props.type === 'h1' &&
     `
@@ -32,29 +32,31 @@ const withType = css`
   ${props =>
     props.type === 'h2' &&
     `
-  font-size: 20px; font-weight: regular;
+  font-size: 20px; font-weight: normal;
   `};
   ${props =>
     props.type === 'h3' &&
     `
-  font-size: 18px; font-weight: regular;
+  font-size: 18px; font-weight: normal;
   `};
 `
 
+/** @component */
 const StyledText = styled.p`
   font-family: ${themeGet('fonts.sansSerif')};
-  ${withType};
-  ${color};
-  ${fontFamily};
-  ${fontSize};
-  ${fontWeight};
-  ${fontStyle};
-  ${letterSpacing};
-  ${lineHeight};
-  ${opacity};
-  ${size};
-  ${space};
-  ${textAlign};
+  color: ${themeGet('colors.text')};
+  ${withType}
+  ${color}
+  ${fontFamily}
+  ${fontSize}
+  ${fontWeight}
+  ${fontStyle}
+  ${letterSpacing}
+  ${lineHeight}
+  ${opacity}
+  ${size}
+  ${space}
+  ${textAlign}
 `
 
 export default Text
