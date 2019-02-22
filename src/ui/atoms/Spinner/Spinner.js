@@ -1,30 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
-
 import {
-  borderRadius,
+  alignSelf,
   color,
-  fontSize,
-  height,
+  display,
+  justifyContent,
   position,
   size,
-  space,
-  width
+  space
 } from 'styled-system'
+import 'assets/animations.css'
 
-const Spinner = props => (
-  <StyledSpinner {...props} />
-)
+const Spinner = props => <StyledSpinner {...props} />
 
 const StyledSpinner = styled.div`
-  ${borderRadius}
-  ${color}
-  ${fontSize}
-  ${height}
-  ${position}
-  ${size}
-  ${space}
-  ${width}
+  font-size: 10px;
+  margin: 6px auto;
+  text-indent: -9999em;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: #4dace9;
   background: -moz-linear-gradient(
     left,
     #4dace9 10%,
@@ -74,28 +70,20 @@ const StyledSpinner = styled.div`
     left: 0;
     bottom: 0;
     right: 0;
+    ${color}
   }
+  ${alignSelf}
+  ${display}
+  ${justifyContent}
+  ${position}
+  ${size}
+  ${space}
 `
 
 Spinner.propTypes = {
-  ...borderRadius.propTypes,
-  ...color.propTypes,
-  ...fontSize.propTypes,
-  ...height.propTypes,
   ...position.propTypes,
   ...size.propTypes,
-  ...space.propTypes,
-  ...width.propTypes
-}
-
-Spinner.defaultProps = {
-  borderRadius: 15,
-  bg: '#4dace9',
-  fontSize: 10,
-  height: '2em',
-  mx: 'auto',
-  my: 6,
-  width: '2em',
+  ...space.propTypes
 }
 
 export default Spinner

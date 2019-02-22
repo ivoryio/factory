@@ -6,6 +6,7 @@ import {
   borderColor,
   borderRadius,
   borders,
+  bottom,
   boxShadow,
   color,
   display,
@@ -14,23 +15,28 @@ import {
   fontWeight,
   justifyContent,
   height,
+  left,
   letterSpacing,
   minHeight,
   maxHeight,
   minWidth,
   maxWidth,
   position,
+  right,
   opacity,
   size,
   textAlign,
+  top,
   space,
   width
 } from 'styled-system'
-
 import theme from 'assets/theme'
-
+import Spinner from '../Spinner/Spinner'
+/** For a better understanding of available props, check styled-system (https://github.com/jxnblk/styled-system/blob/master/docs/table.md)  */
 const Button = ({
   alignSelf,
+  bg,
+  className,
   dataTest,
   display,
   disabled,
@@ -38,49 +44,33 @@ const Button = ({
   isLoading,
   justifyContent,
   onClick,
-  theme,
   title,
   ...rest
 }) => (
   <StyledBtn
+    bg={bg}
     data-test={dataTest}
-    disabled={disabled || isLoading}
+    className={className}
+    disabled={disabled}
     display={display}
     blockSize={blockSize}
     justifyContent={justifyContent}
     onClick={onClick}
-    theme={theme}
     {...rest}
   >
-    {!isLoading ? title : 'Loading...'}
+    {!isLoading ? title : <Spinner bg={bg} />}
   </StyledBtn>
 )
 
+/** @component */
 const StyledBtn = styled.button`
-  block-size: ${props => props.blockSize};
-  ${alignItems};
-  ${borderColor};
-  ${borderRadius};
-  ${borders};
-  ${boxShadow};
-  ${color};
-  ${display};
-  ${fontSize};
-  ${fontFamily};
-  ${fontWeight};
-  ${justifyContent};
-  ${height};
-  ${letterSpacing};
-  ${minHeight};
-  ${maxHeight};
-  ${minWidth};
-  ${maxWidth};
-  ${position};
-  ${opacity};
-  ${size};
-  ${textAlign};
-  ${space};
-  ${width};
+  border: 1px solid #d3d3d3;
+  background-color: #eee;
+  border-radius: 4px;
+  color: #484848;
+  font-size: 14px;
+  height: 42px;
+  width: 120px;
 
   :active {
     transform: scale(0.965);
@@ -93,24 +83,55 @@ const StyledBtn = styled.button`
   :disabled {
     opacity: 0.5;
     filter: grayscale(50%);
+    transform: scale(1);
     cursor: not-allowed;
   }
+  ${alignItems}
+  ${borderColor}
+  ${borderRadius}
+  ${borders}
+  ${bottom}
+  ${boxShadow}
+  ${color}
+  ${display}
+  ${fontSize}
+  ${fontFamily}
+  ${fontWeight}
+  ${justifyContent}
+  ${height}
+  ${left}
+  ${letterSpacing}
+  ${minHeight}
+  ${maxHeight}
+  ${minWidth}
+  ${maxWidth}
+  ${position}
+  ${opacity}
+  ${right}
+  ${size}
+  ${textAlign}
+  ${space}
+  ${top}
+  ${width}
 `
-
 Button.propTypes = {
+  ...color.propTypes,
+  ...space.propTypes,
+  ...height.propTypes,
+  bg: PropTypes.string,
+  color: PropTypes.string,
+  dataTest: PropTypes.string,
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
-  title: PropTypes.string,
-  dataTest: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  blockSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  ...space.propTypes,
-  ...fontSize.propTypes
+  theme: PropTypes.object,
+  title: PropTypes.string.isRequired
 }
 
 Button.defaultProps = {
-  blockSize: '40px',
-  theme
+  theme,
+  isLoading: false,
+  disabled: false
 }
 
 export default Button
