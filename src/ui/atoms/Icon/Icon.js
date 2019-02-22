@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
+import icons from 'assets/icons'
+
 import {
   alignSelf,
   justifySelf,
@@ -14,12 +16,13 @@ import {
   space,
 } from 'styled-system'
 
-const Icon = ({ alt, dataTest, onClick, src, ...rest }) => (
+const Icon = ({ alt, className, dataTest, onClick, src, ...rest }) => (
   <StyledIcon
     alt={alt}
+    className={className}
     data-testid={dataTest}
     onClick={onClick}
-    src={src || 'https://cdn3.iconfinder.com/data/icons/basic-ui-6/40/Asset_12-512.png'}
+    src={src || icons.iconPlaceholder}
     {...rest}
   />
 )
