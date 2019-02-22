@@ -54,9 +54,10 @@ Icon.propTypes = {
   ...size.propTypes,
   ...space.propTypes,
   alt: PropTypes.string.isRequired,
+  className: PropTypes.string,
   dataTest: PropTypes.string,
   onClick: PropTypes.func,
-  src: PropTypes.string.isRequired
+  src: PropTypes.string
 }
 
 Icon.defaultProps = {

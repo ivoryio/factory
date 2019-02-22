@@ -17,31 +17,11 @@ import {
   space
 } from 'styled-system'
 
-const Header = ({
-  left,
-  middle,
-  right,
-  ...rest
-}) => (
-  <StyledHeader {...rest}>
-    { left ? 
-      <LeftSection>
-        {left}
-      </LeftSection>
-        : <LeftSection />
-    }
-    { middle ? 
-      <MiddleSection>
-        {middle}
-      </MiddleSection>
-        : <MiddleSection />
-    }
-    { right ? 
-      <RightSection>
-        {right}
-      </RightSection>
-        : <RightSection />
-    }
+const Header = ({ className, left, middle, right, ...rest }) => (
+  <StyledHeader className={className} {...rest}>
+    {<LeftSection {...rest}>{left || null}</LeftSection>}
+    {<MiddleSection {...rest}>{middle || null}</MiddleSection>}
+    {<RightSection {...rest}>{right || null}</RightSection>}
   </StyledHeader>
 )
 
@@ -54,7 +34,6 @@ const StyledHeader = styled.div`
   ${alignContent}
   ${alignItems}
   ${alignSelf}
-  ${color}
   ${height}
   ${justifyContent}
   ${maxHeight}
@@ -68,23 +47,26 @@ const StyledHeader = styled.div`
 const LeftSection = styled.div`
   display: flex;
   flex: 1;
-  justify-content: center;
-  align-content: center;
+  flex-direction: row;
   flex-wrap: wrap;
+  ${color};
 `
 const MiddleSection = styled.div`
+  align-self: center;
   display: flex;
   flex: 1;
-  justify-content: center;
-  align-self: center;
+  flex-direction: row;
   flex-wrap: wrap;
+  margin-left: 2px;
+  margin-right: 2px;
+  ${color};
 `
 const RightSection = styled.div`
   display: flex;
   flex: 1;
-  justify-content: center;
-  align-content: center;
+  flex-direction: row;
   flex-wrap: wrap;
+  ${color};
 `
 
 Header.propTypes = {
@@ -100,6 +82,7 @@ Header.propTypes = {
   ...minWidth.propTypes,
   ...position.propTypes,
   ...space.propTypes,
+  className: PropTypes.string,
   left: PropTypes.node,
   middle: PropTypes.node,
   right: PropTypes.node

@@ -1,13 +1,19 @@
 #### Basic Header
 ```js
 const React = require('react')
+const { default: styled } = require('styled-components')
+
+const Text = styled.p`
+  flex: 1;
+  text-align: center;
+`
 
 const HeaderExample = () => {
   return <Header
-    left={<p>Left</p>}
-    middle={<p>Middle</p>}
-    right={<p>Right</p>}
     bg='lightgrey'
+    left={<Text>Left</Text>}
+    middle={<Text>Middle</Text>}
+    right={<Text>Right</Text>}
     p={1}
     position='relative'
   />
@@ -23,6 +29,7 @@ const { default: logoAnimation } = require('assets/logoAnimation.css')
 const { default: icons } = require('assets/icons')
 
 const Logo = styled.img`
+  align-self: center;
   animation: logo-scale infinite 3s ease;
   width: 80px;
   height: 80px;
@@ -40,10 +47,12 @@ const LogoutIcon = styled.img`
 `
 const MiddleSection = styled.div`
   display: flex;
-  justify-content: center;
+  flex: 1;
   flex-direction: column;
+  align-self: center;
 `
 const Title = styled.h3`
+  align-self: center;
   margin-block-start: 0;
   margin-block-end: 0;
   color: #51afe7;
