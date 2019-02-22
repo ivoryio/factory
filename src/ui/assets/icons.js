@@ -1,6 +1,8 @@
-import { close, ivoryLogo } from './images'
+import { close, iconPlaceholder, ivoryLogo, logout } from './images'
 
 export default {
   close,
-  ivoryLogo
+  iconPlaceholder,
+  ivoryLogo,
+  logout
 }
