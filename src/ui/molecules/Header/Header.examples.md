@@ -4,14 +4,14 @@ const React = require('react')
 const textCmp = text => <p>{text}</p>
 
 const HeaderExample = () => {
-  return (<Header
+  return <Header
     left={textCmp('Left')}
     middle={textCmp('Middle')}
     right={textCmp('Right')}
     bg='lightgrey'
     p={1}
     position='relative'
-  />)
+  />
 }
   <HeaderExample />
 ```
@@ -22,7 +22,7 @@ const React = require('react')
 const textCmp = text => <p>{text}</p>
 
 const HeaderExample = () => {
-  return (<Header
+  return <Header
     left={[textCmp('Left1'), textCmp('Left2')]}
     middle={[textCmp('Middle1'), textCmp('Middle2')]}
     right={[textCmp('Right1'), textCmp('Right2')]}
@@ -38,7 +38,7 @@ const HeaderExample = () => {
     bg='lightgrey'
     p={1}
     position='relative'
-  />)
+  />
 }
   <HeaderExample />
 ```
