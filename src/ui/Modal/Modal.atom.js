@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ReactDOM from 'react-dom'
-import Button from '../Button/Button'
+import { Button } from '../Button'
 import icons from 'assets/icons'
 
 class Modal extends PureComponent {
