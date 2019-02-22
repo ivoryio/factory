@@ -1,5 +1,6 @@
-import { close } from './images'
+import { close, ivoryLogo } from './images'
 
 export default {
-  close
+  close,
+  ivoryLogo
 }

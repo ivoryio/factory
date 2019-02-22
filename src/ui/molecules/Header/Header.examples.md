@@ -19,37 +19,41 @@ const HeaderExample = () => {
 #### Ivory Header
 ```js
 const React = require('react')
-const styled = require('styled-components')
-const logoAnimation = require('assets/logoAnimation.css')
-const Icon = require('../../atoms/Icon/Icon.js')
+const { default: styled } = require('styled-components')
+const { default: logoAnimation } = require('assets/logoAnimation.css')
+const { default: icons } = require('assets/icons')
 
-const IvoryHeader = () => {
-  return <Header
-    middle={
-    <MiddleSection>
-      <Logo src='https://www.thinslices.com/hubfs/TS%20Logo%20no%20bg-03.png' />
-      <Title> Ivory </Title>
-    </MiddleSection>
-    }
-    bg='lightgrey'
-    p={1}
-    position='relative'
-  />
-
-  const MiddleSection = styled.div`
-
-  `
-  const Title = styled.h3`
-    margin-block-start: 0;
-    margin-block-end: 0;
-    color: #51afe7;
-    font-size: 25px;
-  `
-  const Logo = styled.img`
+const Logo = styled.img`
   animation: logo-scale infinite 3s ease;
   width: 80px;
   height: 80px;
 `
+const MiddleSection = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`
+const Title = styled.h3`
+  margin-block-start: 0;
+  margin-block-end: 0;
+  color: #51afe7;
+  font-size: 25px;
+  text-align: center;
+`
+
+const Middle = () => (<MiddleSection>
+      <Logo src={icons.ivoryLogo} />
+      <Title> Ivory </Title>
+    </MiddleSection>
+  )
+
+const IvoryHeader = () => {
+  return <Header
+    middle={<Middle />}
+    bg='lightgrey'
+    p={1}
+    position='relative'
+  />
 }
   <IvoryHeader />
 ```
