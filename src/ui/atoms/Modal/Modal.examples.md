@@ -23,34 +23,6 @@ const confirmAction = () => {
             This is a mocked message inside your modal. <br />
             Are you sure you wish to close this modal?
           </div>
-          <div>
-            This is a mocked message inside your modal. <br />
-            Are you sure you wish to close this modal?
-          </div>
-          <div>
-            This is a mocked message inside your modal. <br />
-            Are you sure you wish to close this modal?
-          </div>
-          <div>
-            This is a mocked message inside your modal. <br />
-            Are you sure you wish to close this modal?
-          </div>
-          <div>
-            This is a mocked message inside your modal. <br />
-            Are you sure you wish to close this modal?
-          </div>
-          <div>
-            This is a mocked message inside your modal. <br />
-            Are you sure you wish to close this modal?
-          </div>
-          <div>
-            This is a mocked message inside your modal. <br />
-            Are you sure you wish to close this modal?
-          </div>
-          <div>
-            This is a mocked message inside your modal. <br />
-            Are you sure you wish to close this modal?
-          </div>
         </Modal>
       )}
     </Fragment>

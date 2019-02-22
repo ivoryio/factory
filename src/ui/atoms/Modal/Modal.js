@@ -71,7 +71,7 @@ class Modal extends PureComponent {
           )}
           <Content>{children}</Content>
           {!CustomFooter ? (
-            <Row pBlockEnd='10px' pBlockStart='10px' borderBlockStart='1px solid #e5e5e5'>
+            <Row p='18px 12px 12px' borderBlockStart='1px solid #e5e5e5'>
               <Footer>
                 <CancelButton title='Cancel' onClick={hideModal} />
                 <ConfirmButton
@@ -130,6 +130,7 @@ const Row = styled.div`
   padding-inline-end: ${props => props.pInlineEnd || '10px'};
   padding-block-end: ${props => props.pBlockEnd || '15px'};
   padding-inline-start: ${props => props.pInlineStart || '10px'};
+  padding: ${props => props.p};
   border-block-start ${props => props.borderBlockStart};
   border-block-end: ${props => props.borderBlockEnd};
 `

@@ -29,8 +29,9 @@ const styleWithType = () => props => {
       return 'font-size: 20px; font-weight: normal;'
     case 'h3':
       return 'font-size: 18px; font-weight: normal;'
+    case 'error':
     default:
-      return 'font-size: 14px; font-weight: normal;'
+      break
   }
 }
 
@@ -39,10 +40,13 @@ const withType = css`
   font-weight: normal;
   ${styleWithType()};
 `
-
+const isError = type => type && type.includes('error')
 /** @component */
 const StyledText = styled.div`
-  color: ${themeGet('colors.text', '#484848')};
+  color: ${props =>
+    isError(props.type)
+      ? themeGet('colors.error', 'red')
+      : themeGet('colors.text', '#484848')};
   font-family: ${themeGet('fonts.sansSerif', 'Verdana')};
   ${withType}
   ${color}
