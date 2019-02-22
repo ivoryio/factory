@@ -10,12 +10,14 @@
   }
   <Button
     bg='#2ecc71'
+    border='none'
     borderRadius={2}
     color='#fff'
-    onClick={simulateClick}
     fontSize={[14, 16]}
-    width={[120, 110, 100]}
+    height={42}
+    onClick={simulateClick}
     title='Submit'
+    width={[120, 110, 100]}
   />
 ```
 
@@ -23,16 +25,18 @@
 ```js
 const { default: styled } = require('styled-components');
 const StyledButton = styled(Button)`
-  background-color: #e74c3c;
+  height: 40px;
+  border-radius: 4px;
+  color: #fff;
+  border: none;
 `;
 const simulateClick = () => {
   console.log('Hey, I am styled!')
 }
 <StyledButton
-  borderRadius={2}
-  color='#fff'
   fontSize={[14, 16]}
   onClick={simulateClick}
+  bg='#e74c3c'
   title='Delete'
   width={[120, 110, 100]}
 />
@@ -40,22 +44,31 @@ const simulateClick = () => {
 
 #### LoadingButton
 ```js
-  let counter = 0
-  const simulateClick = () => {
+const React = require('react')
+const { useState } = React
+const ButtonExample3 = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const toggleLoading = () => {
+    setIsLoading(true)
     setTimeout(() => {
-      counter = 0
-    }, 2000)
-    counter += 1
-    console.log(`I clicked ${counter} times!`)
+      setIsLoading(false)
+    }, 3000)
   }
-  <Button
-    bg='#2980b9'
-    borderRadius={2}
-    color='#fff'
-    onClick={simulateClick}
-    fontSize={[14, 16]}
-    width={[120, 110, 100]}
-    isLoading
-    title='Submit'
-  />
+  return (
+    <Button
+      bg='#2980b9'
+      border='none'
+      borderRadius={2}
+      color='#fff'
+      fontSize={[14, 16]}
+      height={42}
+      isLoading={isLoading}
+      disabled={isLoading}
+      onClick={toggleLoading}
+      title='Submit'
+      width={[120, 110, 100]}
+    />
+  )
+};
+<ButtonExample3 />
 ```
