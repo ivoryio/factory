@@ -1,6 +1,6 @@
 #### Custom Icon
 ```js
-const icons = require('assets/icons').default
+const { default: icons } = require('assets/icons')
 
 function onClick () {
   console.log('Custom Icon clicked')
