@@ -1,1 +1,2 @@
-export { default as Input } from './Input.atom'
+import Input from './Input.atom'
+export default Input

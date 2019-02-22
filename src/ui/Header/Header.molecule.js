@@ -18,13 +18,14 @@ import {
 
 import 'assets/animations.css'
 
-const Header = ({ className, left, middle, right, ...rest }) => (
+const Header = ({ className, left, center, right, ...rest }) => (
   <StyledHeader className={className} {...rest}>
-    {<LeftSection {...rest}>{left}</LeftSection>}
-    {<MiddleSection {...rest}>{middle}</MiddleSection>}
-    {<RightSection {...rest}>{right}</RightSection>}
+    {<LeftSection>{left}</LeftSection>}
+    {<MiddleSection>{center}</MiddleSection>}
+    {<RightSection>{right}</RightSection>}
   </StyledHeader>
 )
+
 
 const StyledHeader = styled.div`
   width: 100%;

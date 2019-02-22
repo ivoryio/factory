@@ -31,7 +31,7 @@ import {
   width
 } from 'styled-system'
 import theme from 'assets/theme'
-import { Spinner } from '../Spinner'
+import Spinner from '../Spinner'
 /** For a better understanding of available props, check styled-system (https://github.com/jxnblk/styled-system/blob/master/docs/table.md)  */
 const Button = ({
   alignSelf,

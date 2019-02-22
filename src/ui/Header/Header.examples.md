@@ -17,7 +17,7 @@
       <Header
         bg='#eee'
         left={TextComponent('Left')}
-        middle={TextComponent('Middle')}
+        center={TextComponent('Center')}
         right={TextComponent('Right')}
         position='relative'
       />
@@ -42,17 +42,16 @@
 
   const LogoutIcon = styled.img`
     cursor: pointer;
-    height: 30px;
-    margin-top: 10px;
+    height: 20px;
     position: absolute;
-    right: 10px;
-    width: 30px;
+    right: 12px;
+    width: 20px;
     :active {
       transform: scale(0.965);
     }
   `
 
-  const MiddleSection = styled.div`
+  const CenterSection = styled.div`
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -69,15 +68,15 @@
   `
 
   const LogoWrapper = () => (
-    <MiddleSection>
+    <CenterSection>
       <Logo src={icons.ivoryLogo} />
       <Title> Ivory </Title>
-    </MiddleSection>
+    </CenterSection>
   )
 
   return (
     <Header
-      middle={<LogoWrapper />}
+      center={<LogoWrapper />}
       right={<LogoutIcon src={icons.logout} />}
       bg='white'
       p={1}

@@ -1,1 +1,2 @@
-export { default as Spinner } from './Spinner.atom'
+import Spinner from './Spinner.atom'
+export default Spinner

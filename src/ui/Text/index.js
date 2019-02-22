@@ -1,1 +1,2 @@
-export { default as Text } from './Text.atom'
+import Text from './Text.atom'
+export default Text
