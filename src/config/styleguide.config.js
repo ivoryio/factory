@@ -11,7 +11,7 @@ module.exports = {
   assetsDir: `${root}/public`,
   skipComponentsWithoutExample: true,
   getExampleFilename (componentPath) {
-    return componentPath.replace(/\.jsx?$/, '.examples.md')
+    return componentPath.replace(/\.[a-zA-Z]*.jsx?$/, '.examples.md')
   },
   getComponentPathLine (componentPath) {
     const name = path.basename(componentPath, '.js')
@@ -87,17 +87,17 @@ module.exports = {
         {
           name: 'Atoms',
           content: `${root}/docs/atomic_design.md`,
-          components: `${root}/src/ui/atoms/*/*.js`
+          components: `${root}/src/ui/*/+([a-zA-Z])*.+(atom).{js,jsx}`
         },
         {
           name: 'Molecules',
           content: `${root}/docs/atomic_design.md`,
-          components: `${root}/src/ui/molecules/*/*.js`
+          components: `${root}/src/ui/*/+([a-zA-Z])*.+(molecule).{js,jsx}`
         },
         {
           name: 'Organisms',
           content: `${root}/docs/atomic_design.md`,
-          components: `${root}/src/ui/organisms/*/*.js`
+          components: `${root}/src/ui/*/+([a-zA-Z])*.+(organism).{js,jsx}`
         }
       ],
       exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'

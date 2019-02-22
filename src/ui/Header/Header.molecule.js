@@ -20,9 +20,9 @@ import 'assets/animations.css'
 
 const Header = ({ className, left, middle, right, ...rest }) => (
   <StyledHeader className={className} {...rest}>
-    {<LeftSection {...rest}>{left || null}</LeftSection>}
-    {<MiddleSection {...rest}>{middle || null}</MiddleSection>}
-    {<RightSection {...rest}>{right || null}</RightSection>}
+    {<LeftSection {...rest}>{left}</LeftSection>}
+    {<MiddleSection {...rest}>{middle}</MiddleSection>}
+    {<RightSection {...rest}>{right}</RightSection>}
   </StyledHeader>
 )
 
