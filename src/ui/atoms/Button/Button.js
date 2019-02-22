@@ -36,6 +36,7 @@ import Spinner from '../Spinner/Spinner'
 const Button = ({
   alignSelf,
   bg,
+  className,
   dataTest,
   display,
   disabled,
@@ -49,6 +50,7 @@ const Button = ({
   <StyledBtn
     bg={bg}
     data-test={dataTest}
+    className={className}
     disabled={disabled}
     display={display}
     blockSize={blockSize}
@@ -62,7 +64,14 @@ const Button = ({
 
 /** @component */
 const StyledBtn = styled.button`
-  border: none;
+  border: 1px solid #d3d3d3;
+  background-color: #eee;
+  border-radius: 4px;
+  color: #484848;
+  font-size: 14px;
+  height: 42px;
+  width: 120px;
+
   :active {
     transform: scale(0.965);
   }

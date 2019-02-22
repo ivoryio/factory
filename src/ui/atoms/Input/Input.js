@@ -35,21 +35,26 @@ import {
   right,
   size,
   space,
+  themeGet,
   textAlign,
   top,
   width,
   zIndex
 } from 'styled-system'
+
 import Text from '../Text/Text'
+import theme from 'assets/theme'
 
 const Input = ({
   autoComplete,
   dataTest,
+  className,
   disabled,
   error,
   blockSize,
   inlineSize,
   label,
+  name,
   onChange,
   placeholder,
   placeholderTextColor,
@@ -63,10 +68,12 @@ const Input = ({
     <StyledInput
       autoComplete={autoComplete}
       borderRadius={borderRadius}
+      className={className}
       data-testid={dataTest}
       disabled={disabled}
       error={error}
       hasLabel={label}
+      name={name}
       onChange={onChange}
       placeholder={placeholder}
       placeholderTextColor={placeholderTextColor}
@@ -76,7 +83,7 @@ const Input = ({
       {...rest}
     />
     {error ? (
-      <Text message={error} fontSize={10} mt='5px' ml='3px' color='red' />
+      <Text message={error} fontSize={10} mt='5px' ml='3px' type='error' />
     ) : null}
   </InputWrapper>
 )
@@ -94,7 +101,7 @@ const StyledInput = styled.input`
   max-width: 100%;
   border-radius: 6px;
   margin-block-start: 5px;
-  border-color: ${props => props.error && 'red'};
+  border-color: ${props => props.error && themeGet('colors.error')};
   ::placeholder {
     color: ${props => props.error && 'red'};
   }
@@ -102,6 +109,12 @@ const StyledInput = styled.input`
     outline: none;
     outline-style: none;
     outline-color: transparent;
+    border: 1px solid ${props =>
+    props.error ? themeGet('colors.error') : '#484848'};
+    ::placeholder {
+      color: ${props => (props.error ? themeGet('colors.error') : '#484848')};
+    }
+    color: ${props => (props.error ? themeGet('colors.error') : '#484848')};
   }
 
   ${alignContent}
@@ -176,7 +189,8 @@ Input.defaultProps = {
   placeholder: 'search...',
   required: false,
   type: 'text',
-  value: ''
+  value: '',
+  theme
 }
 
 export default Input

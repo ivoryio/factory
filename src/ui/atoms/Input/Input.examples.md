@@ -7,10 +7,11 @@ const [inputVal, setInputVal] = useState('')
 const handleValueChange = ev => setInputVal(ev.target.value)
   return (
     <Input
-      placeholder='email'
+      placeholder='Email'
       mt={12}
       borderRadius={6}
       onChange={handleValueChange}
+      name='email'
       value={inputVal}
       width={[1/3]}
     />
@@ -46,6 +47,7 @@ const InputSimulator = () => {
     <Input
       onChange={handleValueChange}
       width={[1/3]}
+      name='fancy-input'
       value={inputVal}
       error={error}
     />
