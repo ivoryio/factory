@@ -1,13 +1,12 @@
 #### Basic Header
 ```js
 const React = require('react')
-const textCmp = text => <p>{text}</p>
 
 const HeaderExample = () => {
   return <Header
-    left={textCmp('Left')}
-    middle={textCmp('Middle')}
-    right={textCmp('Right')}
+    left={<p>Left</p>}
+    middle={<p>Middle</p>}
+    right={<p>Right</p>}
     bg='lightgrey'
     p={1}
     position='relative'
@@ -27,6 +26,17 @@ const Logo = styled.img`
   animation: logo-scale infinite 3s ease;
   width: 80px;
   height: 80px;
+`
+const LogoutIcon = styled.img`
+  cursor: pointer;
+  height: 30px;
+  margin-top: 10px;
+  position: absolute;
+  right: 10px;
+  width: 30px;
+  :active {
+    transform: scale(0.965);
+  }
 `
 const MiddleSection = styled.div`
   display: flex;
@@ -50,7 +60,8 @@ const Middle = () => (<MiddleSection>
 const IvoryHeader = () => {
   return <Header
     middle={<Middle />}
-    bg='lightgrey'
+    right={<LogoutIcon src={icons.logout} />}
+    bg='white'
     p={1}
     position='relative'
   />
