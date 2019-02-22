@@ -42,7 +42,7 @@ import {
   zIndex
 } from 'styled-system'
 
-import { Text } from '../Text'
+import Text from '../Text'
 import theme from 'assets/theme'
 
 const Input = ({

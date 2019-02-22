@@ -1,1 +1,2 @@
-export { default as Card } from './Card.atom'
+import Card from './Card.atom'
+export default Card
