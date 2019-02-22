@@ -21,44 +21,23 @@ const Header = ({
   left,
   middle,
   right,
-  justifyLeft,
-  justifyMiddle,
-  justifyRight,
-  flexDirectionLeft,
-  flexDirectionMiddle,
-  flexDirectionRight,
-  alignItemsLeft,
-  alignItemsMiddle,
-  alignItemsRight,
   ...rest
 }) => (
   <StyledHeader {...rest}>
     { left ? 
-      <LeftSection
-        justifyLeft={justifyLeft}
-        flexDirectionLeft={flexDirectionLeft}
-        alignItemsLeft={alignItemsLeft}
-      >
+      <LeftSection>
         {left}
       </LeftSection>
         : <LeftSection />
     }
     { middle ? 
-      <MiddleSection
-        justifyMiddle={justifyMiddle}
-        flexDirectionMiddle={flexDirectionMiddle}
-        alignItemsMiddle={alignItemsMiddle}
-      >
+      <MiddleSection>
         {middle}
       </MiddleSection>
         : <MiddleSection />
     }
     { right ? 
-      <RightSection
-        justifyRight={justifyRight}
-        flexDirectionRight={flexDirectionRight}
-        alignItemsRight
-      >
+      <RightSection>
         {right}
       </RightSection>
         : <RightSection />
@@ -89,28 +68,22 @@ const StyledHeader = styled.div`
 const LeftSection = styled.div`
   display: flex;
   flex: 1;
-  justify-content: ${props =>
-    props.justifyLeft ? props.justifyLeft : 'center'};
-  flex-direction: ${props => props.flexDirectionLeft ? props.flexDirectionLeft : 'row'};
-  align-items: ${props => props.alignItemsLeft ? props.alignItemsLeft : 'center'};
+  justify-content: center;
   align-content: center;
   flex-wrap: wrap;
 `
 const MiddleSection = styled.div`
   display: flex;
   flex: 1;
-  justify-content: ${props => props.justifyMiddle ? props.justifyMiddle : 'center'};
-  flex-direction: ${props => props.flexDirectionMiddle ? props.flexDirectionMiddle : 'row'};
-  align-items: ${props => props.alignItemsMiddle ? props.alignItemsMiddle : 'center'};
+  justify-content: center;
   align-self: center;
   flex-wrap: wrap;
 `
 const RightSection = styled.div`
   display: flex;
   flex: 1;
-  justify-content: ${props => props.justifyRight ? props.justifyRight : 'center'};
-  flex-direction: ${props => props.flexDirectionRight ? props.flexDirectionRight : 'row'};
-  align-items: ${props => props.alignItemsRight ? props.alignItemsRight : 'center'};
+  justify-content: center;
+  align-content: center;
   flex-wrap: wrap;
 `
 
@@ -127,27 +100,9 @@ Header.propTypes = {
   ...minWidth.propTypes,
   ...position.propTypes,
   ...space.propTypes,
-  left: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]),
-  middle: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]),
-  right: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]),
-  justifyLeft: PropTypes.string,
-  justifyMiddle: PropTypes.string,
-  justifyRight: PropTypes.string,
-  flexDirectionLeft: PropTypes.string,
-  flexDirectionMiddle: PropTypes.string,
-  flexDirectionRight: PropTypes.string,
-  alignItemsLeft: PropTypes.string,
-  alignItemsMiddle: PropTypes.string,
-  alignItemsRight: PropTypes.string
+  left: PropTypes.node,
+  middle: PropTypes.node,
+  right: PropTypes.node
 }
 
 export default Header
