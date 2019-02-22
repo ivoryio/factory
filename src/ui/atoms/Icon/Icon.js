@@ -19,7 +19,7 @@ const Icon = ({ alt, dataTest, onClick, src, ...rest }) => (
     alt={alt}
     data-testid={dataTest}
     onClick={onClick}
-    src={src}
+    src={src || 'https://cdn3.iconfinder.com/data/icons/basic-ui-6/40/Asset_12-512.png'}
     {...rest}
   />
 )
