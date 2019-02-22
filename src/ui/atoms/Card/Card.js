@@ -43,8 +43,10 @@ import {
 } from 'styled-system'
 import PropTypes from 'prop-types'
 
-const Card = ({ children, ...rest }) => (
-  <StyledCard {...rest}>{children}</StyledCard>
+const Card = ({ className, children, ...rest }) => (
+  <StyledCard className={className} {...rest}>
+    {children}
+  </StyledCard>
 )
 
 const StyledCard = styled.div`

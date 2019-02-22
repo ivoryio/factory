@@ -10,6 +10,7 @@
   }
   <Button
     bg='#2ecc71'
+    border='none'
     borderRadius={2}
     color='#fff'
     fontSize={[14, 16]}
@@ -27,6 +28,7 @@ const StyledButton = styled(Button)`
   height: 40px;
   border-radius: 4px;
   color: #fff;
+  border: none;
 `;
 const simulateClick = () => {
   console.log('Hey, I am styled!')
@@ -42,24 +44,31 @@ const simulateClick = () => {
 
 #### LoadingButton
 ```js
-  let counter = 0
-  const simulateClick = () => {
+const React = require('react')
+const { useState } = React
+const ButtonExample3 = () => {
+  const [isLoading, setIsLoading] = useState(false)
+  const toggleLoading = () => {
+    setIsLoading(true)
     setTimeout(() => {
-      counter = 0
-    }, 2000)
-    counter += 1
-    console.log(`I clicked ${counter} times!`)
+      setIsLoading(false)
+    }, 3000)
   }
-  <Button
-    bg='#2980b9'
-    borderRadius={2}
-    color='#fff'
-    fontSize={[14, 16]}
-    height={42}
-    isLoading
-    disabled
-    onClick={simulateClick}
-    title='Submit'
-    width={[120, 110, 100]}
-  />
+  return (
+    <Button
+      bg='#2980b9'
+      border='none'
+      borderRadius={2}
+      color='#fff'
+      fontSize={[14, 16]}
+      height={42}
+      isLoading={isLoading}
+      disabled={isLoading}
+      onClick={toggleLoading}
+      title='Submit'
+      width={[120, 110, 100]}
+    />
+  )
+};
+<ButtonExample3 />
 ```

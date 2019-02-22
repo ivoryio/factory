@@ -21,30 +21,29 @@ const Text = ({ className, cursor, message, type, ...rest }) => (
   </StyledText>
 )
 
+const styleWithType = () => props => {
+  switch (props.type) {
+    case 'h1':
+      return 'font-size: 24px; font-weight: bold;'
+    case 'h2':
+      return 'font-size: 20px; font-weight: normal;'
+    case 'h3':
+      return 'font-size: 18px; font-weight: normal;'
+    default:
+      return 'font-size: 14px; font-weight: normal;'
+  }
+}
+
 const withType = css`
   font-size: 14px;
   font-weight: normal;
-  ${props =>
-    props.type === 'h1' &&
-    `
-    font-size: 24px; font-weight: bold;
-  `};
-  ${props =>
-    props.type === 'h2' &&
-    `
-  font-size: 20px; font-weight: normal;
-  `};
-  ${props =>
-    props.type === 'h3' &&
-    `
-  font-size: 18px; font-weight: normal;
-  `};
+  ${styleWithType()};
 `
 
 /** @component */
 const StyledText = styled.div`
-  color: ${themeGet('colors.text')};
-  font-family: ${themeGet('fonts.sansSerif')};
+  color: ${themeGet('colors.text', '#484848')};
+  font-family: ${themeGet('fonts.sansSerif', 'Verdana')};
   ${withType}
   ${color}
   ${fontFamily}

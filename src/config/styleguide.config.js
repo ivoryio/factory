@@ -6,8 +6,9 @@ module.exports = {
   // #region preferences
   title: 'Ivory UI Factory',
   template: {
-    favicon: `/public/favicon.ico`
+    favicon: 'favicon.ico'
   },
+  assetsDir: `${root}/public`,
   skipComponentsWithoutExample: true,
   getExampleFilename (componentPath) {
     return componentPath.replace(/\.jsx?$/, '.examples.md')
@@ -47,7 +48,9 @@ module.exports = {
           documentation.set('path', 'default')
         }
       },
-      require('react-docgen-displayname-handler').createDisplayNameHandler(componentPath),
+      require('react-docgen-displayname-handler').createDisplayNameHandler(
+        componentPath
+      ),
       docgenDisplayNameHandler.createDisplayNameHandler(componentPath)
     ),
   propsParser (filePath, source, resolver, handlers) {

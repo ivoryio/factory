@@ -37,27 +37,32 @@
       message='Sign Up'
       type='h3'
     />
-    <Input
-      placeholder='email'
-      label='Username'
-      mt={12}
-      onChange={ev => console.log(ev.target.value)}
-      type='email'
-      borderRadius={6}
-    />
-    <Input
-      placeholder='password'
-      label='Password'
-      onChange={ev => console.log(ev.target.value)}
-      type='password'
-      mt={12}
-    />
-    <Input
-      placeholder='full name'
-      label='Full Name'
-      onChange={ev => console.log(ev.target.value)}
-      mt={12}
+    <form style={{ width: '100%' }}>
+      <Input
+        placeholder='Email'
+        label='Username'
+        mt={12}
+        name='email'
+        onChange={ev => console.log(ev.target.value)}
+        type='email'
+        borderRadius={6}
       />
+      <Input
+        placeholder='Password'
+        label='Password'
+        name='password'
+        onChange={ev => console.log(ev.target.value)}
+        type='password'
+        mt={12}
+      />
+      <Input
+        placeholder='Full name'
+        label='Full Name'
+        name='full-name'
+        onChange={ev => console.log(ev.target.value)}
+        mt={12}
+        />
+      </form>
     <Button
       bg='#2ecc71'
       border='1px solid transparent'

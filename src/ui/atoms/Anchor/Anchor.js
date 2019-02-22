@@ -27,19 +27,26 @@ import {
   right,
   space,
   textAlign,
+  themeGet,
   top,
   verticalAlign,
   zIndex
 } from 'styled-system'
 
-const Anchor = ({ children, href, target, rel, ...rest }) => (
-  <StyledAnchor href={href} target={target} rel={rel} {...rest}>
+const Anchor = ({ className, children, href, target, rel, ...rest }) => (
+  <StyledAnchor
+    className={className}
+    href={href}
+    target={target}
+    rel={rel}
+    {...rest}
+  >
     {children}
   </StyledAnchor>
 )
 
 const StyledAnchor = styled.a`
-  box-shadow: 0 1px 0 #3498db;
+  box-shadow: 0 1px 0 ${themeGet('colors.highlight', '#3498db')};
   color: white;
   text-decoration: none;
   text-transform: uppercase;
