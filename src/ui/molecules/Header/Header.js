@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-
 import {
   alignContent,
   alignItems,
@@ -16,6 +15,8 @@ import {
   position,
   space
 } from 'styled-system'
+
+import 'assets/animations.css'
 
 const Header = ({ className, left, middle, right, ...rest }) => (
   <StyledHeader className={className} {...rest}>
