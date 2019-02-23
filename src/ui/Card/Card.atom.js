@@ -93,11 +93,8 @@ const StyledCard = styled.div`
 `
 
 Card.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.string,
-    PropTypes.node
-  ])
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+  className: PropTypes.string
 }
 
 export default Card

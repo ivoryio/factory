@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import {
   color,
@@ -61,5 +62,12 @@ const StyledText = styled.div`
   ${space}
   ${textAlign}
 `
+
+Text.propTypes = {
+  className: PropTypes.string,
+  cursor: PropTypes.string,
+  message: PropTypes.string.isRequired,
+  type: PropTypes.string
+}
 
 export default Text

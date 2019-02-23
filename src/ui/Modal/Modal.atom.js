@@ -191,6 +191,9 @@ Modal.propTypes = {
     PropTypes.object,
     PropTypes.node
   ]),
+  className: PropTypes.string,
+  CustomHeader: PropTypes.element,
+  CustomFooter: PropTypes.element,
   dataTest: PropTypes.string,
   headerLabel: PropTypes.string,
   confirmBtnLabel: PropTypes.string,

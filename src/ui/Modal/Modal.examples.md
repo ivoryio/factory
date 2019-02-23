@@ -1,7 +1,7 @@
 #### Modal with content
 ```js
 const React = require('react')
-const { useState, Fragment } = React
+const { useState } = React
 const ModalExample1 = () => {
 const [isModalShown, setModalShown] = useState(false)
 const toggleModal = () => setModalShown(!isModalShown)
@@ -10,7 +10,7 @@ const confirmAction = () => {
   console.log('Success!')
 }
   return (
-    <Fragment>
+    <>
     <Button title='Show modal' border='1px solid #d3d3d3' onClick={toggleModal} />
       {isModalShown && (
         <Modal
@@ -25,7 +25,7 @@ const confirmAction = () => {
           </div>
         </Modal>
       )}
-    </Fragment>
+    </>
   )
 }
 <ModalExample1 />
@@ -36,7 +36,7 @@ const confirmAction = () => {
 const React = require('react')
 const { default: styled } = require('styled-components')
 
-const { useState, Fragment } = React
+const { useState } = React
 const ModalExample2 = () => {
 const [isModalShown, setModalShown] = useState(false)
 const toggleModal = () => setModalShown(!isModalShown)
@@ -63,7 +63,7 @@ const StyledFooter = styled.div`
 const CustomHeader = () => <StyledHeader>Hi, this is my custom header</StyledHeader>
 const CustomFooter = () => <StyledFooter>Goodbye from the custom footer.</StyledFooter>
   return (
-    <Fragment>
+    <>
     <Button title='Show modal' border='1px solid #d3d3d3' onClick={toggleModal} />
       {isModalShown && (
         <Modal
@@ -80,7 +80,7 @@ const CustomFooter = () => <StyledFooter>Goodbye from the custom footer.</Styled
           </div>
         </Modal>
       )}
-    </Fragment>
+    </>
   )
 };
 <ModalExample2 />

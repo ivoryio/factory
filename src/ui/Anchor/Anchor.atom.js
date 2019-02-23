@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   alignContent,
@@ -85,5 +86,13 @@ const StyledAnchor = styled.a`
     font-weight: 500;
   }
 `
+
+Anchor.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
+  href: PropTypes.string.isRequired,
+  target: PropTypes.string,
+  rel: PropTypes.string
+}
 
 export default Anchor

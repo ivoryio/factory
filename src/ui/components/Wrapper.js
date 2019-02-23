@@ -1,6 +1,6 @@
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
-import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import styled, { ThemeProvider } from 'styled-components'
 
 import theme from 'assets/theme'
 
@@ -14,5 +14,9 @@ const Container = styled.div`
   position: relative;
   inline-size: 100%;
 `
+
+Wrapper.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node])
+}
 
 export default Wrapper
