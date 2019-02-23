@@ -1,2 +1,1 @@
-import Anchor from './Anchor.atom'
-export default Anchor
+export { default } from './Anchor.atom'

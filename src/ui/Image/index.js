@@ -1,2 +1,1 @@
-import Image from './Image.atom'
-export default Image
+export { default } from './Image.atom'

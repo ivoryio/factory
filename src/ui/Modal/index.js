@@ -1,2 +1,1 @@
-import Modal from './Modal.atom'
-export default Modal
+export { default } from './Modal.atom'

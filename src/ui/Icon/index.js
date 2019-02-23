@@ -1,2 +1,1 @@
-import Icon from './Icon.atom'
-export default Icon
+export { default } from './Icon.atom'

@@ -1,23 +1,10 @@
-import Anchor from './Anchor'
-import Button from './Button'
-import Card from './Card'
-import Header from './Header'
-import Icon from './Icon'
-import Image from './Image'
-import Input from './Input'
-import Modal from './Modal'
-import Spinner from './Spinner'
-import Text from './Text'
-
-export {
-  Anchor,
-  Button,
-  Card,
-  Header,
-  Icon,
-  Image,
-  Input,
-  Modal,
-  Spinner,
-  Text
-}
+export { default as Anchor } from './Anchor'
+export { default as Button } from './Button'
+export { default as Card } from './Card'
+export { default as Header } from './Header'
+export { default as Icon } from './Icon'
+export { default as Image } from './Image'
+export { default as Input } from './Input'
+export { default as Modal } from './Modal'
+export { default as Spinner } from './Spinner'
+export { default as Text } from './Text'

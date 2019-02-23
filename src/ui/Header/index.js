@@ -1,3 +1,1 @@
-import Header from './Header.molecule'
-export default Header
-
+export { default } from './Header.molecule'

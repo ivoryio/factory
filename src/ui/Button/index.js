@@ -1,2 +1,1 @@
-import Button from './Button.atom'
-export default Button
+export { default } from './Button.atom'
