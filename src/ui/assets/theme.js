@@ -28,8 +28,24 @@ export default {
   },
   fonts: {
     serif: 'athelas, georgia, times, serif',
-    sansSerif:
-      '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+    sansSerif: '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+  },
+  textStyles: {
+    h1: {
+      fontSize: ['2.8rem', '2.7rem'][0],
+      fontFamily: 'Roboto',
+      lineHeight: 1.83
+    },
+    h2: {
+      fontSize: ['2.5rem', '2.4rem'][0],
+      fontFamily: 'Roboto',
+      lineHeight: 1.43
+    },
+    h3: {
+      fontSize: ['2rem', '1.9rem'][0],
+      fontFamily: 'Roboto',
+      lineHeight: 1.61
+    }
   },
   fontSizes: [12, 14, 16, 20, 24, 36, 48, 80, 96],
   fontWeights: [100, 200, 300, 400, 500, 600, 700, 800, 900],

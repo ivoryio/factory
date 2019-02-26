@@ -25,11 +25,11 @@ const Text = ({ className, cursor, message, type, ...rest }) => (
 const styleWithType = () => props => {
   switch (props.type) {
     case 'h1':
-      return 'font-size: 24px; font-weight: bold;'
+      return themeGet('textStyles.h1')
     case 'h2':
-      return 'font-size: 20px; font-weight: normal;'
+      return themeGet('textStyles.h2')
     case 'h3':
-      return 'font-size: 18px; font-weight: normal;'
+      return themeGet('textStyles.h3')
     case 'error':
     default:
       break
@@ -37,8 +37,6 @@ const styleWithType = () => props => {
 }
 
 const withType = css`
-  font-size: 14px;
-  font-weight: normal;
   ${styleWithType()};
 `
 const isError = type => type && type.includes('error')
