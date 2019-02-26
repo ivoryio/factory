@@ -73,9 +73,8 @@
     margin-block-start: 0;
     margin-block-end: 0;
     color: #51afe7;
-    font-size: 25px;
+    font-size: 2.5rem;
     text-align: center;
-    font-family: Verdana;
   `
 
   const LogoWrapper = () => (

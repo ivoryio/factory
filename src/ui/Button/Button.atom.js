@@ -8,6 +8,7 @@ import {
   borders,
   bottom,
   boxShadow,
+  buttonStyle,
   color,
   display,
   fontSize,
@@ -31,11 +32,10 @@ import {
   width
 } from 'styled-system'
 import theme from 'assets/theme'
-import Spinner from '../Spinner'
+import { Text } from '../'
 /** For a better understanding of available props, check styled-system (https://github.com/jxnblk/styled-system/blob/master/docs/table.md)  */
 const Button = ({
   alignSelf,
-  bg,
   className,
   dataTest,
   display,
@@ -45,10 +45,10 @@ const Button = ({
   justifyContent,
   onClick,
   title,
+  variant,
   ...rest
 }) => (
   <StyledBtn
-    bg={bg}
     data-test={dataTest}
     className={className}
     disabled={disabled}
@@ -56,42 +56,34 @@ const Button = ({
     blockSize={blockSize}
     justifyContent={justifyContent}
     onClick={onClick}
+    variant={variant}
     {...rest}
   >
-    {!isLoading ? title : <Spinner bg={bg} />}
+    {!isLoading ? title : <Text message='loading...' />}
   </StyledBtn>
 )
 
 /** @component */
 const StyledBtn = styled.button`
-  border: 1px solid #d3d3d3;
-  background-color: #eee;
-  border-radius: 4px;
-  color: #484848;
-  font-size: 14px;
-  height: 42px;
-  width: 120px;
-
-  :active {
-    transform: scale(0.965);
-  }
-  :focus {
-    outline-style: none;
-    outline-color: transparent;
-  }
-
-  :disabled {
-    opacity: 0.5;
-    filter: grayscale(50%);
-    transform: scale(1);
-    cursor: not-allowed;
-  }
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI;
+  font-weight: 900;
+  font-style: normal;
+  letter-spacing: normal;
+  height: 36px;
+  line-height: 1.93;
+  text-transform: uppercase;
+  width: 160px;
+  
   ${alignItems}
   ${borderColor}
   ${borderRadius}
   ${borders}
   ${bottom}
   ${boxShadow}
+  ${buttonStyle}
   ${color}
   ${display}
   ${fontSize}
@@ -131,7 +123,8 @@ Button.propTypes = {
 Button.defaultProps = {
   theme,
   isLoading: false,
-  disabled: false
+  disabled: false,
+  variant: 'primary'
 }
 
 export default Button

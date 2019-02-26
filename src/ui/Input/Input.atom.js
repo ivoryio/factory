@@ -64,7 +64,7 @@ const Input = ({
   ...rest
 }) => (
   <InputWrapper hasLabel={label} {...rest}>
-    {label ? <Text message={label} fontSize={12} /> : null}
+    {label ? <Text message={label} fontSize='1.2rem' /> : null}
     <StyledInput
       autoComplete={autoComplete}
       borderRadius={borderRadius}
@@ -83,7 +83,7 @@ const Input = ({
       {...rest}
     />
     {error ? (
-      <Text message={error} fontSize={10} mt='5px' ml='3px' type='error' />
+      <Text message={error} fontSize='1rem' mt='5px' ml='3px' type='error' />
     ) : null}
   </InputWrapper>
 )

@@ -73,11 +73,13 @@ class Modal extends PureComponent {
           {!CustomFooter ? (
             <Row p='18px 12px 12px' borderBlockStart='1px solid #e5e5e5'>
               <Footer>
-                <CancelButton title='Cancel' onClick={hideModal} />
-                <ConfirmButton
+                <Button title='Cancel' variant='outlined' onClick={hideModal} />
+                <Button
                   data-testid={confirmBtnDataTest}
                   title={confirmBtnLabel}
                   onClick={confirmActionFn}
+                  variant='error'
+                  ml='5px'
                   confirmButtonColour={this._pickConfirmButtonLabel()}
                 />
               </Footer>
@@ -105,7 +107,7 @@ const Body = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `
 
@@ -136,7 +138,7 @@ const Row = styled.div`
 `
 
 const Header = styled.div`
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 500;
   color: #484848;
 `
@@ -164,24 +166,6 @@ const Footer = styled.div`
   align-items: center;
   width: 100%;
   padding-block-end: 10px;
-`
-
-const ModalButton = styled(Button)`
-  height: 40px;
-  background-color: transparent;
-  border-radius: 5px;
-  min-width: 100px;
-  max-width: 200px;
-  font-size: 15px;
-  color: #484848;
-`
-
-const CancelButton = styled(ModalButton)``
-
-const ConfirmButton = styled(ModalButton)`
-  margin-inline-start: 5px;
-  background-color: ${props => props.confirmButtonColour};
-  color: #fff;
 `
 
 Modal.propTypes = {

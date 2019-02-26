@@ -1,4 +1,4 @@
-#### Propped button
+#### Primary button
 ```js
   let counter = 0
   const simulateClick = () => {
@@ -8,67 +8,143 @@
     counter += 1
     console.log(`I clicked ${counter} times!`)
   }
-  <Button
-    bg='#2ecc71'
-    border='none'
-    borderRadius={2}
-    color='#fff'
-    fontSize={[14, 16]}
-    height={42}
-    onClick={simulateClick}
-    title='Submit'
-    width={[120, 110, 100]}
-  />
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'column'
+  };
+  <div style={containerStyle}>
+    <Button
+      fontSize={['1.4rem', '1.6rem']}
+      onClick={simulateClick}
+      variant='primary'
+      title='Button Label'
+      width={[160, 140, 120]}
+    />
+    <Button
+      fontSize={['1.4rem', '1.6rem']}
+      onClick={simulateClick}
+      variant='primary'
+      title='Button Label'
+      disabled
+      mt='5px'
+      width={[160, 140, 120]}
+    />
+  </div>
 ```
 
-#### Button with extended style
+#### Outlined button
 ```js
-const { default: styled } = require('styled-components');
-const StyledButton = styled(Button)`
-  height: 40px;
-  border-radius: 4px;
-  color: #fff;
-  border: none;
-`;
-const simulateClick = () => {
-  console.log('Hey, I am styled!')
-}
-<StyledButton
-  fontSize={[14, 16]}
-  onClick={simulateClick}
-  bg='#e74c3c'
-  title='Delete'
-  width={[120, 110, 100]}
-/>
+  const simulateClick = () => {
+    console.log('Hey, I just clicked!')
+  }
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'column'
+  };
+  <div style={containerStyle}>
+    <Button
+      fontSize={['1.4rem', '1.6rem']}
+      onClick={simulateClick}
+      title='Button Label'
+      variant='outlined'
+      width={[160, 140, 120]}
+    />
+     <Button
+      fontSize={['1.4rem', '1.6rem']}
+      onClick={simulateClick}
+      title='Button Label'
+      variant='outlined'
+      mt='5px'
+      disabled
+      width={[160, 140, 120]}
+    />
+  </div>
+```
+
+#### Success button
+```js
+  const simulateClick = () => {
+    console.log('Hey, I just clicked!')
+  }
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'column'
+  };
+  <div style={containerStyle}>
+    <Button
+      fontSize={['1.4rem', '1.6rem']}
+      onClick={simulateClick}
+      title='Button Label'
+      variant='success'
+      mt='5px'
+      width={[160, 140, 120]}
+    />
+    <Button
+      fontSize={['1.4rem', '1.6rem']}
+      onClick={simulateClick}
+      title='Button Label'
+      variant='success'
+      mt='5px'
+      disabled
+      width={[160, 140, 120]}
+    />
+  </div>
+```
+
+#### Destructive button
+```js
+  const simulateClick = () => {
+    console.log('Hey, I just clicked!')
+  }
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: 'column'
+  };
+  <div style={containerStyle}>
+    <Button
+      fontSize={['1.4rem', '1.6rem']}
+      onClick={simulateClick}
+      title='Button Label'
+      variant='error'
+      mt='5px'
+      width={[160, 140, 120]}
+    />
+    <Button
+      border='solid 1px #699100'
+      fontSize={['1.4rem', '1.6rem']}
+      onClick={simulateClick}
+      title='Button Label'
+      variant='error'
+      mt='5px'
+      disabled
+      width={[160, 140, 120]}
+    />
+  </div>
 ```
 
 #### LoadingButton
 ```js
-const React = require('react')
-const { useState } = React
-const ButtonExample3 = () => {
-  const [isLoading, setIsLoading] = useState(false)
-  const toggleLoading = () => {
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
-  }
-  return (
-    <Button
-      bg='#2980b9'
-      border='none'
-      borderRadius={2}
-      color='#fff'
-      fontSize={[14, 16]}
-      height={42}
-      isLoading={isLoading}
-      disabled={isLoading}
-      onClick={toggleLoading}
-      title='Submit'
-      width={[120, 110, 100]}
-    />
-  )
-};
-<ButtonExample3 />
+  const React = require('react')
+  const { useState } = React
+  const ButtonExample = () => {
+    const [isLoading, setIsLoading] = useState(false)
+    const toggleLoading = () => {
+      setIsLoading(true)
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 3000)
+    }
+    return (
+      <Button
+        fontSize={['1.4rem', '1.6rem']}
+        isLoading={isLoading}
+        disabled={isLoading}
+        onClick={toggleLoading}
+        variant='primary'
+        title='Submit'
+        width={[160, 140, 120]}
+      />
+    )
+  };
+  <ButtonExample />
 ```
