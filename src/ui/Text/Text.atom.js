@@ -17,8 +17,14 @@ import {
   textStyle
 } from 'styled-system'
 
-const Text = ({ className, cursor, message, type, ...rest }) => (
-  <StyledText className={className} cursor={cursor} type={type} {...rest}>
+const Text = ({ className, cursor, message, textStyle, type, ...rest }) => (
+  <StyledText
+    className={className}
+    cursor={cursor}
+    textStyle={textStyle}
+    type={type}
+    {...rest}
+  >
     {message}
   </StyledText>
 )
@@ -44,7 +50,12 @@ Text.propTypes = {
   className: PropTypes.string,
   cursor: PropTypes.string,
   message: PropTypes.string.isRequired,
+  textStyle: PropTypes.string,
   type: PropTypes.string
+}
+
+Text.defaultProps = {
+  textStyle: 'default'
 }
 
 export default Text

@@ -220,6 +220,11 @@ export default {
       fontSize: ['2rem', '1.9rem'][0],
       fontFamily: 'Roboto',
       lineHeight: 1.61
+    },
+    default: {
+      fontSize: '1.4rem',
+      fontFamily: 'Roboto',
+      lineHeight: 1.6
     }
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
