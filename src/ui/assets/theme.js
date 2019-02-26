@@ -28,10 +28,58 @@ export default {
     warning: '#e67e22',
     white: '#fff'
   },
+  colorStyles: {
+    accent: {
+      color: '#2980b9'
+    },
+    background: {
+      color:'#ecf0f1'
+    },
+    black: {
+      color: '#191919'
+    },
+    confirm: {
+      color: '##2ecc71'
+    },
+    error: {
+      color: '#e74c3c'
+    },
+    highlight: {
+      color: '#3498db'
+    },
+    placeholder: {
+      color: '#bdc3c7'
+    },
+    text: {
+      color: '#484848'
+    },
+    warning: {
+      color: '#e67e22'
+    },
+    white: {
+      color: '#fff'
+    }
+  },
   fonts: {
     serif: 'athelas, georgia, times, serif',
-    sansSerif:
-      '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+    sansSerif: '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+  },
+  textStyles: {
+    h1: {
+      fontSize: ['2.8rem', '2.7rem'][0],
+      fontFamily: 'Roboto',
+      lineHeight: 1.83
+    },
+    h2: {
+      fontSize: ['2.5rem', '2.4rem'][0],
+      fontFamily: 'Roboto',
+      lineHeight: 1.43
+    },
+    h3: {
+      fontSize: ['2rem', '1.9rem'][0],
+      fontFamily: 'Roboto',
+      lineHeight: 1.61
+    }
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
   fontWeights: [100, 200, 300, 400, 500, 600, 700, 800, 900],

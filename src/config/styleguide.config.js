@@ -8,6 +8,11 @@ module.exports = {
   template: {
     favicon: 'favicon.ico'
   },
+  require: [
+    'babel-polyfill',
+    path.resolve(root, 'src/ui/assets/fonts/fonts.css'),
+    path.resolve(root, 'public/style.css')
+  ],
   assetsDir: `${root}/public`,
   skipComponentsWithoutExample: true,
   getExampleFilename (componentPath) {
@@ -22,7 +27,6 @@ module.exports = {
       : `${trimmedName}`
     return `import ${fileName} from @ivoryio/ui/${dir}`
   },
-
   // #endregion
   // #region config
   compilerConfig: {
