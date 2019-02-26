@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import {
   color,
   fontFamily,
@@ -13,6 +13,7 @@ import {
   size,
   space,
   textAlign,
+  textStyle,
   themeGet
 } from 'styled-system'
 
@@ -22,23 +23,6 @@ const Text = ({ className, cursor, message, type, ...rest }) => (
   </StyledText>
 )
 
-const styleWithType = () => props => {
-  switch (props.type) {
-    case 'h1':
-      return themeGet('textStyles.h1')
-    case 'h2':
-      return themeGet('textStyles.h2')
-    case 'h3':
-      return themeGet('textStyles.h3')
-    case 'error':
-    default:
-      break
-  }
-}
-
-const withType = css`
-  ${styleWithType()};
-`
 const isError = type => type && type.includes('error')
 /** @component */
 const StyledText = styled.div`
@@ -47,7 +31,6 @@ const StyledText = styled.div`
       ? themeGet('colors.error', 'red')
       : themeGet('colors.text', '#484848')};
   font-family: ${themeGet('fonts.sansSerif', 'Verdana')};
-  ${withType}
   ${color}
   ${fontFamily}
   ${fontSize}
@@ -59,6 +42,7 @@ const StyledText = styled.div`
   ${size}
   ${space}
   ${textAlign}
+  ${textStyle}
 `
 
 Text.propTypes = {

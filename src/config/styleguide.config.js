@@ -65,13 +65,6 @@ module.exports = {
   },
   // #endregion
   // #region sidemenu
-  styles: {
-		StyleGuide: {
-			'html': {
-				'font-size': '10px',
-			},
-		},
-	},
   sections: [
     {
       name: 'Introduction',
