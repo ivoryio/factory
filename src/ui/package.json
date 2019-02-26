@@ -1,7 +1,25 @@
 {
   "name": "@ivoryio/ui",
   "version": "0.0.1",
-  "description": "Ivory UI Factory",
-  "author": "Ivoryio",
-  "license": "ISC"
+  "description": "Ivory Design System",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivoryio/factory.git"
+  },
+  "keywords": [
+    "ivory",
+    "design",
+    "system",
+    "ui",
+    "components",
+    "reusable",
+    "responsive"
+  ],
+  "author": "Ivory",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivoryio/factory/issues"
+  },
+  "homepage": "https://github.com/ivoryio/factory#readme"
 }
