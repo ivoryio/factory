@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import {
   alignSelf,
   color,
@@ -9,10 +9,19 @@ import {
   size,
   space
 } from 'styled-system'
-import 'assets/animations.css'
 
 const Spinner = props => <StyledSpinner {...props} />
 
+const spin = keyframes`
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+`
 const StyledSpinner = styled.div`
   font-size: 10px;
   margin: 6px auto;
@@ -43,8 +52,8 @@ const StyledSpinner = styled.div`
     rgba(255, 255, 255, 0) 42%
   );
   position: relative;
-  -webkit-animation: spin 1.4s infinite linear;
-  animation: spin 1.4s infinite linear;
+  -webkit-animation: ${spin} 1.4s infinite linear;
+  animation: ${spin} 1.4s infinite linear;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);

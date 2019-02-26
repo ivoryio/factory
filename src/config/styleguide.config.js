@@ -11,12 +11,16 @@ module.exports = {
   assetsDir: `${root}/public`,
   skipComponentsWithoutExample: true,
   getExampleFilename (componentPath) {
-    return componentPath.replace(/\.[a-zA-Z]*.jsx?$/, '.examples.md')
+    return componentPath.replace(/(\.[a-zA-Z]+)?(.jsx|.js)$/, '.examples.md')
   },
   getComponentPathLine (componentPath) {
     const name = path.basename(componentPath, '.js')
     const dir = path.dirname(componentPath).split('ui/')[1]
-    return `import ${name} from @ivoryio/ui/${dir}`
+    const trimmedName = name.split('.')[0]
+    const fileName = dir.includes('Responsive')
+      ? `{ ${name} }`
+      : `${trimmedName}`
+    return `import ${fileName} from @ivoryio/ui/${dir}`
   },
 
   // #endregion
@@ -98,6 +102,11 @@ module.exports = {
           name: 'Organisms',
           content: `${root}/docs/atomic_design.md`,
           components: `${root}/src/ui/*/+([a-zA-Z])*.+(organism).{js,jsx}`
+        },
+        {
+          name: 'Responsive',
+          content: `${root}/docs/atomic_design.md`,
+          components: `${root}/src/ui/Responsive/+([a-zA-Z])*.{js,jsx}`
         }
       ],
       exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'

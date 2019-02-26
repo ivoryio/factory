@@ -45,7 +45,6 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --fix",
-      "yarn test",
       "git add ."
     ]
   },

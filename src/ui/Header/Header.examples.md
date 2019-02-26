@@ -29,13 +29,23 @@
 #### Ivory Header
 ```js
   const React = require('react')
-  const { default: styled } = require('styled-components')
+  const { default: styled, keyframes } = require('styled-components')
   const { default: icons } = require('assets/icons')
-
+  const scaleLogo = keyframes`
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(1);
+    }
+  `
   const IvoryHeader = () => {
   const Logo = styled.img`
     align-self: center;
-    animation: logo-scale infinite 3s ease;
+    animation: ${scaleLogo} infinite 3s ease;
     width: 80px;
     height: 80px;
   `
@@ -65,6 +75,7 @@
     color: #51afe7;
     font-size: 25px;
     text-align: center;
+    font-family: Verdana;
   `
 
   const LogoWrapper = () => (

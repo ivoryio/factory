@@ -16,8 +16,6 @@ import {
   space
 } from 'styled-system'
 
-import 'assets/animations.css'
-
 const Header = ({ className, left, center, right, ...rest }) => (
   <StyledHeader className={className} {...rest}>
     {<LeftSection>{left}</LeftSection>}
@@ -25,7 +23,6 @@ const Header = ({ className, left, center, right, ...rest }) => (
     {<RightSection>{right}</RightSection>}
   </StyledHeader>
 )
-
 
 const StyledHeader = styled.div`
   width: 100%;

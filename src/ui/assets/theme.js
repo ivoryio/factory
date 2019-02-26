@@ -1,9 +1,11 @@
 export default {
-  gutter: 10,
+  gutter: '1em',
   breakpoints: {
-    sm: 0, // zero represents the default (for mobile-first approach)
+    xs: '20em',
+    sm: '30em',
     md: '48em',
-    lg: '80em'
+    lg: '80em',
+    xlg: '120em'
   },
   borders: [
     0,
@@ -31,9 +33,8 @@ export default {
     sansSerif:
       '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
   },
-  fontSizes: [12, 14, 16, 20, 24, 36, 48, 80, 96],
+  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
   fontWeights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-  heights: [16, 32, 64, 128, 256],
   lineHeights: {
     solid: 1,
     title: 1.25,
@@ -45,10 +46,10 @@ export default {
     tight: '-0.05em',
     mega: '0.25em'
   },
-  maxWidths: [16, 32, 64, 128, 256, 512, 768, 1024, 1536],
-  mq: {
-    small: '@media (max-width: 600px)'
-  },
   radii: [0, 2, 4, 16, 9999, '100%'],
-  width: [16, 32, 64, 128, 256]
+  shadows: {
+    small: '0 0 4px rgba(0, 0, 0, .125)',
+    large: '0 0 24px rgba(0, 0, 0, .125)'
+  },
+  space: [0, 4, 8, 16, 32, 64, 128, 256]
 }
