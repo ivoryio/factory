@@ -14,8 +14,7 @@ import {
   size,
   space,
   textAlign,
-  textStyle,
-  themeGet
+  textStyle
 } from 'styled-system'
 
 const Text = ({ className, cursor, message, type, ...rest }) => (
@@ -26,7 +25,6 @@ const Text = ({ className, cursor, message, type, ...rest }) => (
 
 /** @component */
 const StyledText = styled.div`
-  font-family: ${themeGet('fonts.sansSerif', 'Verdana')};
   ${color}
   ${colorStyle}
   ${fontFamily}
