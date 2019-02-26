@@ -26,6 +26,38 @@ export default {
     warning: '#e67e22',
     white: '#fff'
   },
+  colorStyles: {
+    accent: {
+      color: '#2980b9'
+    },
+    background: {
+      color:'#ecf0f1'
+    },
+    black: {
+      color: '#191919'
+    },
+    confirm: {
+      color: '##2ecc71'
+    },
+    error: {
+      color: '#e74c3c'
+    },
+    highlight: {
+      color: '#3498db'
+    },
+    placeholder: {
+      color: '#bdc3c7'
+    },
+    text: {
+      color: '#484848'
+    },
+    warning: {
+      color: '#e67e22'
+    },
+    white: {
+      color: '#fff'
+    }
+  },
   fonts: {
     serif: 'athelas, georgia, times, serif',
     sansSerif: '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif'

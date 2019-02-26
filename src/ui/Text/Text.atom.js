@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   color,
+  colorStyle,
   fontFamily,
   fontSize,
   fontWeight,
@@ -23,15 +24,11 @@ const Text = ({ className, cursor, message, type, ...rest }) => (
   </StyledText>
 )
 
-const isError = type => type && type.includes('error')
 /** @component */
 const StyledText = styled.div`
-  color: ${props =>
-    isError(props.type)
-      ? themeGet('colors.error', 'red')
-      : themeGet('colors.text', '#484848')};
   font-family: ${themeGet('fonts.sansSerif', 'Verdana')};
   ${color}
+  ${colorStyle}
   ${fontFamily}
   ${fontSize}
   ${fontWeight}
