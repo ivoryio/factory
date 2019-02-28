@@ -112,22 +112,22 @@ export default {
   inputs,
   textStyles: {
     h1: {
-      fontSize: ['2.8rem', '2.7rem'][0],
+      fontSize: ['1.9rem', '1.8rem'][0],
       fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.83
     },
     h2: {
-      fontSize: ['2.5rem', '2.4rem'][0],
+      fontSize: ['1.6rem', '1.5rem'][0],
       fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.43
     },
     h3: {
-      fontSize: ['2rem', '1.9rem'][0],
+      fontSize: ['1.3', '1.2rem'][0],
       fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.61
     },
     default: {
-      fontSize: '1.4rem',
+      fontSize: '1rem',
       fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.6
     }

@@ -62,7 +62,7 @@ const InputExample3 = () => {
     <Input
       placeholder='Disabled'
       mt={12}
-      name='email'
+      name='disabled-input'
       onChange={() => console.log('onChange disabled input')}
       value=''
       variant='disabled'

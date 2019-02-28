@@ -67,7 +67,7 @@ const Button = ({
 const StyledBtn = styled.button`
   border-radius: 2px;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 0.9rem;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI;
   font-weight: 900;
   font-style: normal;

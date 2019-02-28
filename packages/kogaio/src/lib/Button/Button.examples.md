@@ -14,14 +14,14 @@
   };
   <div style={containerStyle}>
     <Button
-      fontSize={['1.4rem', '1.6rem']}
+      fontSize={['0.9rem', '1rem']}
       onClick={simulateClick}
       variant='primary'
       title='Button Label'
       width={[160, 140, 120]}
     />
     <Button
-      fontSize={['1.4rem', '1.6rem']}
+      fontSize={['0.9rem', '1rem']}
       onClick={simulateClick}
       variant='primary'
       title='Button Label'
@@ -43,14 +43,14 @@
   };
   <div style={containerStyle}>
     <Button
-      fontSize={['1.4rem', '1.6rem']}
+      fontSize={['0.9rem', '1rem']}
       onClick={simulateClick}
       title='Button Label'
       variant='outlined'
       width={[160, 140, 120]}
     />
      <Button
-      fontSize={['1.4rem', '1.6rem']}
+      fontSize={['0.9rem', '1rem']}
       onClick={simulateClick}
       title='Button Label'
       variant='outlined'
@@ -72,7 +72,7 @@
   };
   <div style={containerStyle}>
     <Button
-      fontSize={['1.4rem', '1.6rem']}
+      fontSize={['0.9rem', '1rem']}
       onClick={simulateClick}
       title='Button Label'
       variant='success'
@@ -80,7 +80,7 @@
       width={[160, 140, 120]}
     />
     <Button
-      fontSize={['1.4rem', '1.6rem']}
+      fontSize={['0.9rem', '1rem']}
       onClick={simulateClick}
       title='Button Label'
       variant='success'
@@ -102,7 +102,7 @@
   };
   <div style={containerStyle}>
     <Button
-      fontSize={['1.4rem', '1.6rem']}
+      fontSize={['0.9rem', '1rem']}
       onClick={simulateClick}
       title='Button Label'
       variant='error'
@@ -111,7 +111,7 @@
     />
     <Button
       border='solid 1px #699100'
-      fontSize={['1.4rem', '1.6rem']}
+      fontSize={['0.9rem', '1rem']}
       onClick={simulateClick}
       title='Button Label'
       variant='error'
@@ -136,7 +136,7 @@
     }
     return (
       <Button
-        fontSize={['1.4rem', '1.6rem']}
+        fontSize={['0.9rem', '1rem']}
         isLoading={isLoading}
         disabled={isLoading}
         onClick={toggleLoading}

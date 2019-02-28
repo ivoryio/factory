@@ -15,6 +15,8 @@ import {
   width
 } from 'styled-system'
 
+import icons from 'assets/icons'
+
 const Image = ({ alt, className, dataTest, objectFit, src, ...rest }) => (
   <StyledImage
     alt={alt}
@@ -101,9 +103,8 @@ Image.propTypes = {
 
 Image.defaultProps = {
   alt: 'image',
-  borderRadius: '50%',
-  size: [120, 120],
-  src: 'https://ctvalleybrewing.com/wp-content/uploads/2017/04/avatar-placeholder.png'
+  size: [80, 80],
+  src: icons.userPlaceholder
 }
 
 export default Image

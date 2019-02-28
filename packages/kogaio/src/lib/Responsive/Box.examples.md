@@ -3,7 +3,7 @@
     alignSelf='center'
     mx='auto'
     p={5}
-    fontSize='1.6rem'
+    fontSize='1rem'
     fontFamily='Verdana'
     width={{ xs: 1, md: 1/2 }}
     color='white'

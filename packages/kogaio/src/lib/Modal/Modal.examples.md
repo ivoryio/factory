@@ -10,7 +10,7 @@ const confirmAction = () => {
   console.log('Success!')
 }
 const modalContent = {
-  fontSize: '1.5rem'
+  fontSize: '1rem'
 }
   return (
     <>
@@ -48,11 +48,11 @@ const confirmAction = () => {
   console.log('Success!')
 }
 const modalContent = {
-  fontSize: '16px'
+  fontSize: '1rem'
 }
 const StyledHeader = styled.div`
   display: flex;
-  font-size: 2rem;
+  font-size: 1.2rem;
   justify-content: space-between;
   padding: 15px 10px;
   border-block-end: 1px solid #e5e5e5;
