@@ -12,7 +12,7 @@
 	"homepage": "https://github.com/ivoryio/factory#readme",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/ivoryio/factory.git"
+		"url": "git+https://github.com/ivoryio/factory/tree/master/packages/hermes"
 	},
 	"bugs": {
 		"url": "https://github.com/ivoryio/factory/issues"

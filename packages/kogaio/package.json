@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.1.61",
+  "version": "0.1.99",
   "author": "Ivory",
   "description": "Ivory Component Library",
   "main": "build/index.js",
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/ivoryio/factory#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ivoryio/factory.git"
+    "url": "git+https://github.com/ivoryio/factory/tree/master/packages/kogaio"
   },
   "bugs": {
     "url": "https://github.com/ivoryio/factory/issues"
@@ -20,10 +20,10 @@
   "scripts": {
     "start": "react-scripts start",
     "styleg": "npx styleguidist server --config src/config/styleguide.config.js",
-    "build": "NODE_ENV=production && rm -rf build && mkdir build && npx babel ./src/lib --out-dir ./build --ignore \"**/*.test.js\" --copy-files",
-    "lib:publish": "cp package.json build && cp README.md build && cd ./build && yarn publish --access public",
+    "build:styleg": "npx styleguidist build --config src/config/styleguide.config.js",
+    "build:lib": "NODE_ENV=production && rm -rf build && mkdir build && npx babel ./src/lib --out-dir ./build --ignore \"**/*.test.js\" --copy-files",
+    "publish:lib": "cp package.json build && cp README.md build && cd ./build && yarn publish --access public",
     "lint": "node_modules/.bin/eslint ./",
-    "styleg:build": "npx styleguidist build --config src/config/styleguide.config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
