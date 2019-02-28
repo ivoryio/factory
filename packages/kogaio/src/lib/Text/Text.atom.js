@@ -17,7 +17,8 @@ import {
   textStyle
 } from 'styled-system'
 
-const Text = ({ className, cursor, message, textStyle, type, ...rest }) => (
+
+const Text = ({ children, className, cursor, message, textStyle, type, ...rest }) => (
   <StyledText
     className={className}
     cursor={cursor}
@@ -25,7 +26,7 @@ const Text = ({ className, cursor, message, textStyle, type, ...rest }) => (
     type={type}
     {...rest}
   >
-    {message}
+    {message || children}
   </StyledText>
 )
 
@@ -47,9 +48,10 @@ const StyledText = styled.div`
 `
 
 Text.propTypes = {
+  children: PropTypes.string,
   className: PropTypes.string,
   cursor: PropTypes.string,
-  message: PropTypes.string.isRequired,
+  message: PropTypes.string,
   textStyle: PropTypes.string,
   type: PropTypes.string
 }
