@@ -29,7 +29,7 @@ module.exports = {
       dangerousTaggedTemplateString: true // Set this to use styled-components in mocks
     }
   },
-  webpackConfig: require('react-scripts/config/webpack.config'),
+  webpackConfig: require('react-scripts/config/webpack.config')('development'),
   handlers: componentPath =>
     docgen.defaultHandlers.concat(
       (documentation, path) => {

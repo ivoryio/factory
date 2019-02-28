@@ -1,6 +1,9 @@
 docs
 public
-components
-config
+src/config
+src/components
+src/index.js
 .browserslistrc
+.eslintrc
+.eslintignore
 node_modules
