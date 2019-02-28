@@ -7,7 +7,7 @@
         target="_blank"
         rel="noopener noreferrer"
         color='#3498db'
-        fontSize='2rem'
+        fontSize='1.3rem'
         px='1em'
         py='0.5em'
         alignSelf='center'

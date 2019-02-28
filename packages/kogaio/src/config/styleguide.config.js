@@ -9,11 +9,6 @@ module.exports = {
   template: {
     favicon: 'favicon.ico'
   },
-  require: [
-    'babel-polyfill',
-    path.resolve(root, 'src/lib/assets/fonts/fonts.css'),
-    path.resolve(root, 'src/lib/assets/style.css')
-  ],
   skipComponentsWithoutExample: true,
   getExampleFilename (componentPath) {
     return componentPath.replace(/(\.[a-zA-Z]+)?(.jsx|.js)$/, '.examples.md')

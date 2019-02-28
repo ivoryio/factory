@@ -35,13 +35,15 @@ import {
   right,
   size,
   space,
-  themeGet,
   textAlign,
   top,
   width,
   zIndex
 } from 'styled-system'
 
+import Icon from '../Icon'
+import icons from 'assets/icons'
+import inputStyle from './variants'
 import Text from '../Text'
 import theme from '../assets/theme'
 
@@ -61,10 +63,11 @@ const Input = ({
   required,
   type,
   value,
+  variant,
   ...rest
 }) => (
   <InputWrapper hasLabel={label} {...rest}>
-    {label ? <Text message={label} fontSize='1.2rem' /> : null}
+    {label ? <Text message={label} fontSize='0.8rem' /> : null}
     <StyledInput
       autoComplete={autoComplete}
       borderRadius={borderRadius}
@@ -80,13 +83,30 @@ const Input = ({
       required={required}
       type={type}
       value={value}
+      variant={error ? 'error' : variant}
       {...rest}
     />
     {error ? (
-      <Text message={error} fontSize='1rem' mt='5px' ml='3px' type='error' />
+      <ErrorWrapper>
+        <Icon
+          alignSelf='center'
+          alt='error-input'
+          borderRadius='50%'
+          size={[20, 20]}
+          src={icons.errorOutline}
+        />
+        <Text message={error} fontSize='0.6rem' ml='2px' type='error' />
+      </ErrorWrapper>
     ) : null}
   </InputWrapper>
 )
+
+const ErrorWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 3px;
+`
 
 const InputWrapper = styled.div`
   display: flex;
@@ -96,27 +116,11 @@ const InputWrapper = styled.div`
 `
 
 const StyledInput = styled.input`
-  border: 1px solid #d3d3d3;
   padding: 15px 10px;
   max-width: 100%;
-  border-radius: 6px;
+  border-radius: 3px;
   margin-block-start: 5px;
-  border-color: ${props => props.error && themeGet('colors.error')};
-  ::placeholder {
-    color: ${props => props.error && 'red'};
-  }
-  &:focus {
-    outline: none;
-    outline-style: none;
-    outline-color: transparent;
-    border: 1px solid ${props =>
-    props.error ? themeGet('colors.error') : '#484848'};
-    ::placeholder {
-      color: ${props => (props.error ? themeGet('colors.error') : '#484848')};
-    }
-    color: ${props => (props.error ? themeGet('colors.error') : '#484848')};
-  }
-
+  ${inputStyle}
   ${alignContent}
   ${alignItems}
   ${alignSelf}
@@ -170,6 +174,7 @@ Input.propTypes = {
     PropTypes.number,
     PropTypes.object
   ]),
+  variant: PropTypes.string,
   ...borderRadius.propTypes,
   ...borders.propTypes,
   ...fontSize.propTypes,
@@ -186,10 +191,11 @@ Input.propTypes = {
 
 Input.defaultProps = {
   disabled: false,
-  placeholder: 'search...',
+  placeholder: 'Search...',
   required: false,
   type: 'text',
   value: '',
+  variant: 'primary',
   theme
 }
 

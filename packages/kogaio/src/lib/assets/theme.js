@@ -1,3 +1,5 @@
+import { buttons, inputs } from './variants'
+
 export default {
   gutter: '1em',
   breakpoints: {
@@ -16,105 +18,7 @@ export default {
     '16px solid',
     '32px solid'
   ],
-  buttons: {
-    primary: {
-      backgroundImage: 'linear-gradient(to bottom, #00aeef, #009feb)',
-      boxShadow: '0 1px 0 0 rgba(0, 0, 0, 0.05)',
-      color: '#fff',
-      '&:hover': {
-        backgroundImage: 'linear-gradient(to bottom, #01a2de, #0197df)'
-      },
-      '&:active': {
-        transform: 'scale(0.965)'
-      },
-      '&:focus': {
-        outlineColor: 'transparent',
-        outlineStyle: 'none'
-      },
-      '&:disabled': {
-        backgroundColor: '#b9e8fa',
-        border: 'solid 1px #92d3eb',
-        cursor: 'not-allowed',
-        opacity: 0.5,
-        transform: 'scale(1)',
-        '&:hover': {
-          backgroundImage: 'linear-gradient(to bottom, #00aeef, #009feb)'
-        }
-      }
-    },
-    outlined: {
-      border: 'solid 1px #009fda',
-      color: '#00aeef',
-      backgroundColor: 'transparent',
-      '&:active': {
-        transform: 'scale(0.965)'
-      },
-      '&:focus': {
-        outlineColor: 'transparent',
-        outlineStyle: 'none'
-      },
-      '&:hover': {
-        backgroundColor: 'rgba(0, 159, 218, 0.07)'
-      },
-      '&:disabled': {
-        border: 'solid 1px #b9e8fa',
-        cursor: 'not-allowed',
-        transform: 'scale(1)',
-        color: '#b9e8fa',
-        '&:hover': {
-          backgroundColor: 'transparent'
-        }
-      }
-    },
-    success: {
-      boxShadow:
-        '0 1px 0 0 rgba(22, 29, 37, 0.1), 0 1px 0 0 rgba(22, 29, 37, 0.1), inset 0 1px 0 1px rgba(255, 255, 255, 0.09)',
-      border: 'solid 1px #73a000',
-      backgroundImage: 'linear-gradient(to bottom, #83b700, #7dad03)',
-      color: '#fff',
-      '&:active': {
-        transform: 'scale(0.965)'
-      },
-      '&:focus': {
-        outlineColor: 'transparent',
-        outlineStyle: 'none'
-      },
-      '&:hover': {
-        backgroundImage: 'linear-gradient(to bottom, #7bab00, #76a400)',
-        border: 'solid 1px #699100'
-      },
-      '&:disabled': {
-        border: 'solid 1px #bcd47c',
-        backgroundImage: 'linear-gradient(to bottom, #dce19f, #d5eba0)',
-        cursor: 'not-allowed',
-        transform: 'scale(1)'
-      }
-    },
-    error: {
-      boxShadow:
-        '0 1px 0 0 rgba(22, 29, 37, 0.1), inset 0 1px 0 1px rgba(255, 255, 255, 0.09)',
-      border: 'solid 1px #bf0711',
-      color: '#fff',
-      backgroundImage: 'linear-gradient(to bottom, #e33719, #d63418)',
-      '&:focus': {
-        outlineColor: 'transparent',
-        outlineStyle: 'none'
-      },
-      '&:active': {
-        transform: 'scale(0.965)'
-      },
-      '&:hover': {
-        backgroundImage: 'linear-gradient(to bottom, #d93518, #cc3216)',
-        border: 'solid 1px #b50710'
-      },
-      '&:disabled': {
-        border: 'solid 1px #db9586',
-        backgroundImage: 'linear-gradient(to bottom, #fdac9a, #f2a594)',
-        cursor: 'not-allowed',
-        transform: 'scale(1)'
-      }
-    }
-  },
+  buttons,
   colors: {
     brand: '#00aeef',
     'brand-hover': '#008fc4',
@@ -203,27 +107,28 @@ export default {
   fonts: {
     serif: 'athelas, georgia, times, serif',
     sansSerif:
-      '-apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
-  },
+      'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif'
+    },
+  inputs,
   textStyles: {
     h1: {
-      fontSize: ['2.8rem', '2.7rem'][0],
-      fontFamily: 'Roboto',
+      fontSize: ['1.9rem', '1.8rem'][0],
+      fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.83
     },
     h2: {
-      fontSize: ['2.5rem', '2.4rem'][0],
-      fontFamily: 'Roboto',
+      fontSize: ['1.6rem', '1.5rem'][0],
+      fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.43
     },
     h3: {
-      fontSize: ['2rem', '1.9rem'][0],
-      fontFamily: 'Roboto',
+      fontSize: ['1.3', '1.2rem'][0],
+      fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.61
     },
     default: {
-      fontSize: '1.4rem',
-      fontFamily: 'Roboto',
+      fontSize: '1rem',
+      fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.6
     }
   },

@@ -9,7 +9,6 @@ const handleValueChange = ev => setInputVal(ev.target.value)
     <Input
       placeholder='Email'
       mt={12}
-      borderRadius={6}
       onChange={handleValueChange}
       name='email'
       value={inputVal}
@@ -54,4 +53,23 @@ const InputSimulator = () => {
   )
 };
 <InputSimulator />
+```
+
+#### Disabled Input
+```js
+const InputExample3 = () => {
+  return (
+    <Input
+      placeholder='Disabled'
+      mt={12}
+      name='disabled-input'
+      onChange={() => console.log('onChange disabled input')}
+      value=''
+      variant='disabled'
+      width={[1/3]}
+      disabled
+    />
+  )
+};
+<InputExample3 />
 ```

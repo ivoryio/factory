@@ -9,6 +9,9 @@ const confirmAction = () => {
   toggleModal()
   console.log('Success!')
 }
+const modalContent = {
+  fontSize: '1rem'
+}
   return (
     <>
     <Button title='Show modal' border='1px solid #d3d3d3' onClick={toggleModal} />
@@ -19,7 +22,7 @@ const confirmAction = () => {
           confirmActionFn={confirmAction}
           hideModal={toggleModal}
         >
-          <div>
+          <div style={modalContent}>
             This is a mocked message inside your modal. <br />
             Are you sure you wish to close this modal?
           </div>
@@ -44,8 +47,12 @@ const confirmAction = () => {
   toggleModal()
   console.log('Success!')
 }
+const modalContent = {
+  fontSize: '1rem'
+}
 const StyledHeader = styled.div`
   display: flex;
+  font-size: 1.2rem;
   justify-content: space-between;
   padding: 15px 10px;
   border-block-end: 1px solid #e5e5e5;
@@ -74,7 +81,7 @@ const CustomFooter = () => <StyledFooter>Goodbye from the custom footer.</Styled
           confirmActionFn={confirmAction}
           hideModal={toggleModal}
         >
-          <div>
+          <div style={modalContent}>
             This is some sophisticated content inside your modal. <br />
             Click outside the box to close.
           </div>

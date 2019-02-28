@@ -15,17 +15,21 @@ import {
   width
 } from 'styled-system'
 
-const Image = ({ alt, className, dataTest, src, ...rest }) => (
+import icons from 'assets/icons'
+
+const Image = ({ alt, className, dataTest, objectFit, src, ...rest }) => (
   <StyledImage
     alt={alt}
     className={className}
     data-testid={dataTest}
+    objectFit={objectFit}
     src={src}
     {...rest}
   />
 )
 
 const StyledImage = styled.img`
+  object-fit: ${props => props.objectFit};
   ${borderRadius}
   ${height}
   ${maxHeight}
@@ -36,7 +40,6 @@ const StyledImage = styled.img`
   ${size}
   ${space}
   ${width}
-  object-fit: contain;
 `
 
 Image.propTypes = {
@@ -96,6 +99,12 @@ Image.propTypes = {
   alt: PropTypes.string.isRequired,
   dataTest: PropTypes.string,
   src: PropTypes.string.isRequired
+}
+
+Image.defaultProps = {
+  alt: 'image',
+  size: [80, 80],
+  src: icons.userPlaceholder
 }
 
 export default Image
