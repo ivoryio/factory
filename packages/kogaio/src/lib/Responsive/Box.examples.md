@@ -4,7 +4,7 @@
     mx='auto'
     p={5}
     fontSize='1rem'
-    fontFamily='Verdana'
+    fontFamily='Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
     width={{ xs: 1, md: 1/2 }}
     color='white'
     textAlign='center'

@@ -107,8 +107,7 @@ const Body = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 10;
-  font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
 `
 
 const Card = styled.div`

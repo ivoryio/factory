@@ -42,6 +42,7 @@ const Form = styled.form`width: 100%;`;
       />
       <Form>
         <Input
+          autoComplete='current-email'
           placeholder='Email'
           label='Username'
           mt={12}
@@ -51,6 +52,7 @@ const Form = styled.form`width: 100%;`;
           borderRadius={6}
         />
         <Input
+          autoComplete='current-password'
           placeholder='Password'
           label='Password'
           name='password'
@@ -59,6 +61,7 @@ const Form = styled.form`width: 100%;`;
           mt={12}
         />
         <Input
+          autoComplete='your-fullname'
           placeholder='Full name'
           label='Full Name'
           name='full-name'

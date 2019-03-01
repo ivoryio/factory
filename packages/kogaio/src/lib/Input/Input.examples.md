@@ -7,6 +7,7 @@ const [inputVal, setInputVal] = useState('')
 const handleValueChange = ev => setInputVal(ev.target.value)
   return (
     <Input
+      autoComplete='current-email'
       placeholder='Email'
       mt={12}
       onChange={handleValueChange}
@@ -44,6 +45,7 @@ const InputSimulator = () => {
   }, [inputVal])
   return (
     <Input
+        autoComplete='your-text'
       onChange={handleValueChange}
       width={[1/3]}
       name='fancy-input'
@@ -60,6 +62,7 @@ const InputSimulator = () => {
 const InputExample3 = () => {
   return (
     <Input
+      autoComplete='your-text-here'
       placeholder='Disabled'
       mt={12}
       name='disabled-input'

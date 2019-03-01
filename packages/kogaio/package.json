@@ -20,10 +20,10 @@
   "scripts": {
     "start": "react-scripts start",
     "styleg": "npx styleguidist server --config src/config/styleguide.config.js",
-    "build:styleg": "npx styleguidist build --config src/config/styleguide.config.js",
     "build:lib": "NODE_ENV=production && rm -rf build && mkdir build && npx babel ./src/lib --out-dir ./build --ignore \"**/*.test.js\" --copy-files",
-    "publish:lib": "cp package.json build && cp README.md build && cd ./build && yarn publish --access public",
-    "publish:styleg": "gh-pages -d src/config/styleguide",
+    "publish:lib": "yarn build:styleg && cp package.json build && cp README.md build && cd ./build && yarn publish --access public",
+    "build:styleg": "rm -rf build && npx styleguidist build --config src/config/styleguide.config.js",
+    "publish:styleg": "yarn build:styleg && gh-pages -d ./build",
     "lint": "node_modules/.bin/eslint ./",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -34,7 +34,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "cz-conventional-changelog": "^2.1.0",
-    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-react": "^7.12.4",
     "gh-pages": "^2.0.1",
     "husky": "^1.3.1",
     "lint-staged": "^8.1.4",
@@ -49,13 +49,6 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "babel": {
-    "presets": [
-      "react",
-      "env",
-      "stage-2"
-    ]
   },
   "standard": {
     "parser": "babel-eslint"
