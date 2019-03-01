@@ -61,6 +61,7 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
+  alt: 'icon',
   size: [30, 30]
 }
 

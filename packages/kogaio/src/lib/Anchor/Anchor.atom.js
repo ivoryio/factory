@@ -48,9 +48,22 @@ const Anchor = ({ className, children, href, target, rel, ...rest }) => (
 
 const StyledAnchor = styled.a`
   box-shadow: 0 1px 0 ${themeGet('colors.highlight', '#3498db')};
-  color: white;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: normal;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  :link {
+    color: ${themeGet('colors.info')}
+  }
+  :hover {
+    transform: scale(1.02);
+    font-weight: normal;
+  }
+  :visited{
+    color: ${themeGet('colors.brand-hover')};
+  }
   ${alignContent}
   ${alignItems}
   ${alignSelf}
@@ -81,10 +94,6 @@ const StyledAnchor = styled.a`
   ${verticalAlign}
   ${zIndex}
 
-  :hover {
-    transform: scale(1.02);
-    font-weight: 500;
-  }
 `
 
 Anchor.propTypes = {
@@ -122,6 +131,10 @@ Anchor.propTypes = {
   ...top.propTypes,
   ...verticalAlign.propTypes,
   zIndex
+}
+
+Anchor.defaultProps = {
+  fontSize: '0.9rem'
 }
 
 export default Anchor
