@@ -106,8 +106,7 @@ export default {
   },
   fonts: {
     serif: 'athelas, georgia, times, serif',
-    sansSerif:
-      'Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
+    sansSerif: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
   },
   inputs,
   textStyles: {
