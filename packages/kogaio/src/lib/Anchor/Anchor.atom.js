@@ -48,7 +48,7 @@ const Anchor = ({ className, children, href, target, rel, ...rest }) => (
 
 const StyledAnchor = styled.a`
   box-shadow: 0 1px 0 ${themeGet('colors.highlight', '#3498db')};
-  font-family: Roboto, Times, sans, sans-serif;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif;
   font-weight: 900;
   letter-spacing: normal;
   text-align: center;
