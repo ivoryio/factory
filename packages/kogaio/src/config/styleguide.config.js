@@ -15,6 +15,11 @@ module.exports = {
           rel: 'stylesheet',
           type: 'text/css',
           href: 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto'
+        },
+        {
+          rel: 'stylesheet',
+          type: 'text/css',
+          href: 'https://fonts.googleapis.com/icon?family=Material+Icons'
         }
       ]
     }
