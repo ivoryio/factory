@@ -1,29 +1,11 @@
 {
-  "parser": "babel-eslint",
   "extends": [
     "react-app",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
-  "settings": {
-    "react": {
-      "createClass": "createReactClass",
-      "pragma": "React",
-      "version": "detect",
-      "flowVersion": "0.53"
-    },
-    "propWrapperFunctions": [
-      "forbidExtraProps",
-      {
-        "property": "freeze",
-        "object": "Object"
-      },
-      {
-        "property": "myFavoriteWrapper"
-      }
-    ]
-  },
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 9,
     "sourceType": "module",

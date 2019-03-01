@@ -33,7 +33,7 @@ import {
 } from 'styled-system'
 import theme from '../assets/theme'
 import { Text } from '../'
-/** For a better understanding of available props, check styled-system (https://github.com/jxnblk/styled-system/blob/master/docs/table.md)  */
+
 const Button = ({
   alignSelf,
   className,
@@ -68,7 +68,7 @@ const StyledBtn = styled.button`
   border-radius: 2px;
   cursor: pointer;
   font-size: 0.9rem;
-  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI;
+  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
   font-weight: 900;
   font-style: normal;
   letter-spacing: normal;

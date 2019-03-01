@@ -1,4 +1,4 @@
-import { buttons, inputs } from './variants'
+import { buttons, inputs } from './componentStyles'
 
 export default {
   gutter: '1em',
@@ -107,28 +107,28 @@ export default {
   fonts: {
     serif: 'athelas, georgia, times, serif',
     sansSerif:
-      'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif'
-    },
+      'Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
+  },
   inputs,
   textStyles: {
     h1: {
       fontSize: ['1.9rem', '1.8rem'][0],
-      fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
+      fontFamily: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont',
       lineHeight: 1.83
     },
     h2: {
       fontSize: ['1.6rem', '1.5rem'][0],
-      fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
+      fontFamily: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont',
       lineHeight: 1.43
     },
     h3: {
       fontSize: ['1.3', '1.2rem'][0],
-      fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
+      fontFamily: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont',
       lineHeight: 1.61
     },
     default: {
       fontSize: '1rem',
-      fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
+      fontFamily: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont',
       lineHeight: 1.6
     }
   },

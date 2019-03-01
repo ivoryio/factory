@@ -17,7 +17,6 @@ import {
   textStyle
 } from 'styled-system'
 
-
 const Text = ({ children, className, cursor, message, textStyle, type, ...rest }) => (
   <StyledText
     className={className}

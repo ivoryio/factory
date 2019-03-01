@@ -32,36 +32,36 @@
     return (
       <Container>
         <Image
-          src='https://cdn5.vectorstock.com/i/1000x1000/98/04/spy-avatar-trendy-emissary-squared-vector-9829804.jpg'
-          alt='profile-logo1'
+          src='https://placeimg.com/120/120/any'
+          alt='image-example1'
           mr={34}
           size={[120, 120]}
           borderRadius='50%'
         />
         <Image
-          src='https://cdn5.vectorstock.com/i/1000x1000/98/04/spy-avatar-trendy-emissary-squared-vector-9829804.jpg'
-          alt='profile-logo2'
+          src='https://placeimg.com/96/96/any'
+          alt='image-example2'
           mx={34}
           size={[96, 96]}
           borderRadius='50%'
         />
         <Image
-          src='https://cdn5.vectorstock.com/i/1000x1000/98/04/spy-avatar-trendy-emissary-squared-vector-9829804.jpg'
-          alt='profile-logo3'
+          src='https://placeimg.com/80/80/any'
+          alt='image-example3'
           mx={34}
           size={[80, 80]}
           borderRadius='50%'
         />
         <Image
-          src='https://cdn5.vectorstock.com/i/1000x1000/98/04/spy-avatar-trendy-emissary-squared-vector-9829804.jpg'
-          alt='profile-logo4'
+          src='https://placeimg.com/64/64/any'
+          alt='image-example4'
           mx={34}
           size={[64, 64]}
           borderRadius='50%'
           />
         <Image
-          src='https://cdn5.vectorstock.com/i/1000x1000/98/04/spy-avatar-trendy-emissary-squared-vector-9829804.jpg'
-          alt='profile-logo5'
+          src='https://placeimg.com/40/40/any'
+          alt='image-example5'
           ml={34}
           size={[40, 40]}
           borderRadius='50%'

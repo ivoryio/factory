@@ -13,7 +13,7 @@
       fontSize={{ xs: 1, md: 2, xlg: 3 }}
       color='#fff'
       bg='#87CEFA'
-      fontFamily='Verdana'
+      fontFamily='Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
     />
   </Box>
   <Box
@@ -27,7 +27,7 @@
       fontSize={{ xs: 1, sm: 2, xlg: 3 }}
       color='#fff'
       bg='#6495ED'
-      fontFamily='Verdana'
+      fontFamily='Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
     />
   </Box>
   <Box
@@ -41,7 +41,7 @@
         fontSize={{ xs: 1, sm: 2, xlg: 3 }}
         color='#fff'
         bg='#191970'
-        fontFamily='Verdana'
+        fontFamily='Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
       />
   </Box>
 </Flex>

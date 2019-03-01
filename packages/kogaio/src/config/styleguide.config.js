@@ -7,8 +7,26 @@ module.exports = {
   title: 'Ivory UI Factory',
   assetsDir: `${root}/src/lib/assets`,
   template: {
-    favicon: 'favicon.ico'
+    favicon: 'favicon.ico',
+    trimWhitespace: true,
+    head: {
+      links: [
+        {
+          rel: 'stylesheet',
+          type: 'text/css',
+          href: 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto'
+        }
+      ]
+    }
   },
+  styles: {
+    StyleGuide: {
+      '@global body': {
+        fontFamily: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
+      }
+    }
+  },
+  styleguideDir: `${root}/build`,
   skipComponentsWithoutExample: true,
   getExampleFilename (componentPath) {
     return componentPath.replace(/(\.[a-zA-Z]+)?(.jsx|.js)$/, '.examples.md')
