@@ -21,7 +21,7 @@
     "start": "react-scripts start",
     "styleg": "npx styleguidist server --config src/config/styleguide.config.js",
     "build:lib": "NODE_ENV=production && rm -rf build && mkdir build && npx babel ./src/lib --out-dir ./build --ignore \"**/*.test.js\" --copy-files",
-    "publish:lib": "yarn build:styleg && cp package.json build && cp README.md build && cd ./build && yarn publish --access public",
+    "publish:lib": "yarn build:lib && cp package.json build && cp README.md build && cd ./build && yarn publish --access public",
     "build:styleg": "rm -rf build && npx styleguidist build --config src/config/styleguide.config.js",
     "publish:styleg": "yarn build:styleg && gh-pages -d ./build",
     "lint": "node_modules/.bin/eslint ./",

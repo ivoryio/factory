@@ -14,12 +14,18 @@ const modalContent = {
 }
   return (
     <>
-    <Button title='Show modal' border='1px solid #d3d3d3' onClick={toggleModal} />
+    <Button
+      title='Show modal'
+      border='1px solid #d3d3d3'
+      onClick={toggleModal}
+      variant='outlined'
+    />
       {isModalShown && (
         <Modal
           headerLabel="Modal example"
           confirmBtnLabel="Confirm"
           confirmActionFn={confirmAction}
+          confirmButtonType='success'
           hideModal={toggleModal}
         >
           <div style={modalContent}>
@@ -71,7 +77,12 @@ const CustomHeader = () => <StyledHeader>Hi, this is my custom header</StyledHea
 const CustomFooter = () => <StyledFooter>Goodbye from the custom footer.</StyledFooter>
   return (
     <>
-    <Button title='Show modal' border='1px solid #d3d3d3' onClick={toggleModal} />
+    <Button
+      title='Show modal'
+      border='1px solid #d3d3d3'
+      onClick={toggleModal}
+      variant='outlined'
+      />
       {isModalShown && (
         <Modal
           CustomHeader={CustomHeader}

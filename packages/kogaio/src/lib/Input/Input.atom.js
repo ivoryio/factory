@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, createRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
@@ -65,41 +65,79 @@ const Input = ({
   value,
   variant,
   ...rest
-}) => (
-  <InputWrapper hasLabel={label} {...rest}>
-    {label ? <Text message={label} fontSize='0.8rem' /> : null}
-    <StyledInput
-      autoComplete={autoComplete}
-      borderRadius={borderRadius}
-      className={className}
-      data-testid={dataTest}
-      disabled={disabled}
-      error={error}
-      hasLabel={label}
-      name={name}
-      onChange={onChange}
-      placeholder={placeholder}
-      placeholderTextColor={placeholderTextColor}
-      required={required}
-      type={type}
-      value={value}
-      variant={error ? 'error' : variant}
-      {...rest}
-    />
-    {error ? (
-      <ErrorWrapper>
-        <Icon
-          alignSelf='center'
-          alt='error-input'
-          borderRadius='50%'
-          size={[20, 20]}
-          src={icons.errorOutline}
+}) => {
+  const [inputType, setInputType] = useState(type)
+  const inputRef = createRef()
+  const _selectVariant = () => {
+    if (disabled) {
+      return 'disabled'
+    }
+    if (error) {
+      return 'error'
+    }
+    return variant
+  }
+  const _toggleShowPassword = () => {
+    inputRef.current.focus()
+    if (inputType.includes('password')) {
+      return setInputType('text')
+    }
+    return setInputType(type)
+  }
+  return (
+    <InputWrapper hasLabel={label} {...rest}>
+      {label ? <Text message={label} fontSize='0.8rem' /> : null}
+      <Row>
+        <StyledInput
+          autoComplete={autoComplete}
+          borderRadius={borderRadius}
+          className={className}
+          data-testid={dataTest}
+          disabled={disabled}
+          error={error}
+          hasLabel={label}
+          name={name}
+          onChange={onChange}
+          placeholder={placeholder}
+          placeholderTextColor={placeholderTextColor}
+          ref={inputRef}
+          required={required}
+          type={inputType}
+          value={value}
+          variant={_selectVariant()}
+          {...rest}
         />
-        <Text message={error} fontSize='0.6rem' ml='2px' type='error' />
-      </ErrorWrapper>
-    ) : null}
-  </InputWrapper>
-)
+        {type === 'password' && (
+          <Icon
+            alignSelf='center'
+            position='absolute'
+            name='visibility'
+            color='#cdd3d9'
+            colorActive='#484848'
+            onMouseDown={_toggleShowPassword}
+            onMouseUp={_toggleShowPassword}
+            onTouchStart={_toggleShowPassword}
+            onTouchEnd={_toggleShowPassword}
+            size={[18, 18]}
+            right={12}
+          />
+        )}
+      </Row>
+      {error ? (
+        <ErrorWrapper>
+          <Icon
+            alignSelf='center'
+            alt='error-input'
+            borderRadius='50%'
+            size={[20, 20]}
+            src={icons.errorOutline}
+          />
+          <Text message={error} fontSize='0.6rem' ml='2px' type='error' />
+        </ErrorWrapper>
+      ) : null}
+    </InputWrapper>
+  )
+}
 
 const ErrorWrapper = styled.div`
   display: flex;
@@ -115,11 +153,23 @@ const InputWrapper = styled.div`
   ${props => props.hasLabel && space}
 `
 
+const Row = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+`
+
 const StyledInput = styled.input`
   padding: 15px 10px;
-  max-width: 100%;
+  width: 100%;
   border-radius: 3px;
   margin-block-start: 5px;
+  &:focus {
+    ~ i {
+      color: #484848;
+    }
+  }
   ${inputStyle}
   ${alignContent}
   ${alignItems}
@@ -190,9 +240,7 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
-  disabled: false,
   placeholder: 'Search...',
-  required: false,
   type: 'text',
   value: '',
   variant: 'primary',

@@ -36,6 +36,7 @@ import {
   size,
   space,
   textAlign,
+  themeGet,
   top,
   verticalAlign,
   width,
@@ -50,7 +51,8 @@ const Card = ({ className, children, ...rest }) => (
 )
 
 const StyledCard = styled.div`
-  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  background-color: ${themeGet('colors.ghost-white')};
   ${alignContent}
   ${alignItems}
   ${alignSelf}

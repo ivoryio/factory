@@ -2,33 +2,57 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import icons from '../assets/icons'
-
 import {
   alignSelf,
+  color,
   justifySelf,
   maxHeight,
   maxWidth,
   minHeight,
   minWidth,
   position,
+  top,
+  right,
+  bottom,
+  left,
   size,
   space
 } from 'styled-system'
 
-const Icon = ({ alt, className, dataTest, onClick, src, ...rest }) => (
+const Icon = ({
+  className,
+  dataTest,
+  name,
+  onMouseDown,
+  onMouseUp,
+  onTouchStart,
+  onTouchEnd,
+  onClick,
+  ...rest
+}) => (
   <StyledIcon
-    alt={alt}
-    className={className}
+    className='material-icons'
     data-testid={dataTest}
+    onMouseDown={onMouseDown}
+    onMouseUp={onMouseUp}
     onClick={onClick}
-    src={src || icons.iconPlaceholder}
+    onTouchStart={onTouchStart}
+    onTouchEnd={onTouchEnd}
     {...rest}
-  />
+  >
+    {name}
+  </StyledIcon>
 )
 
-const StyledIcon = styled.img`
+const StyledIcon = styled.i`
+  :active {
+    transform: scale(0.965);
+    color: ${props => props.colorActive};
+  }
+  user-select: none;
+  cursor: pointer;
   ${alignSelf}
+  ${color}
   ${justifySelf}
   ${maxHeight}
   ${maxWidth}
@@ -37,10 +61,10 @@ const StyledIcon = styled.img`
   ${position}
   ${size}
   ${space}
-  cursor: pointer;
-  :active {
-    transform: scale(0.965);
-  }
+  ${top}
+  ${right}
+  ${bottom}
+  ${left}
 `
 
 Icon.propTypes = {
@@ -53,7 +77,6 @@ Icon.propTypes = {
   ...position.propTypes,
   ...size.propTypes,
   ...space.propTypes,
-  alt: PropTypes.string.isRequired,
   className: PropTypes.string,
   dataTest: PropTypes.string,
   onClick: PropTypes.func,
@@ -61,7 +84,6 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  alt: 'icon',
   size: [30, 30]
 }
 

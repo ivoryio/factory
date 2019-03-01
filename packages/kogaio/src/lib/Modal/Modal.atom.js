@@ -33,18 +33,6 @@ class Modal extends PureComponent {
     }
   }
 
-  _pickConfirmButtonLabel = () => {
-    const { actionBtnType } = this.props
-    switch (actionBtnType) {
-      case 'destructive':
-        return '#e74c3c'
-      case 'info':
-        return '#3498db'
-      default:
-        return '#2ecc71'
-    }
-  }
-
   render () {
     const {
       className,
@@ -56,6 +44,7 @@ class Modal extends PureComponent {
       CustomFooter,
       confirmBtnLabel,
       confirmActionFn,
+      confirmButtonType,
       confirmBtnDataTest
     } = this.props
     return ReactDOM.createPortal(
@@ -78,9 +67,8 @@ class Modal extends PureComponent {
                   data-testid={confirmBtnDataTest}
                   title={confirmBtnLabel}
                   onClick={confirmActionFn}
-                  variant='error'
                   ml='5px'
-                  confirmButtonColour={this._pickConfirmButtonLabel()}
+                  variant={confirmButtonType}
                 />
               </Footer>
             </Row>
@@ -168,7 +156,6 @@ const Footer = styled.div`
 `
 
 Modal.propTypes = {
-  actionBtnType: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.object,
@@ -182,13 +169,15 @@ Modal.propTypes = {
   confirmBtnLabel: PropTypes.string,
   hideModal: PropTypes.func.isRequired,
   confirmActionFn: PropTypes.func.isRequired,
+  confirmButtonType: PropTypes.string,
   confirmBtnDataTest: PropTypes.string
 }
 
 Modal.defaultProps = {
   actionBtnType: 'info',
   headerLabel: 'Modal title',
-  confirmBtnLabel: 'Confirm'
+  confirmBtnLabel: 'Confirm',
+  confirmButtonType: 'outlined'
 }
 
 export default Modal
