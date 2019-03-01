@@ -108,21 +108,21 @@ export default {
     serif: 'athelas, georgia, times, serif',
     sansSerif:
       'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif'
-    },
+  },
   inputs,
   textStyles: {
     h1: {
-      fontSize: ['1.9rem', '1.8rem'][0],
+      fontSize: '1.9rem',
       fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.83
     },
     h2: {
-      fontSize: ['1.6rem', '1.5rem'][0],
+      fontSize: '1.6rem',
       fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.43
     },
     h3: {
-      fontSize: ['1.3', '1.2rem'][0],
+      fontSize: '1.3',
       fontFamily: 'Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif',
       lineHeight: 1.61
     },

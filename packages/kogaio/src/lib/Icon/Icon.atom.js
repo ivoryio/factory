@@ -13,7 +13,7 @@ import {
   minWidth,
   position,
   size,
-  space,
+  space
 } from 'styled-system'
 
 const Icon = ({ alt, className, dataTest, onClick, src, ...rest }) => (
@@ -61,6 +61,7 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
+  alt: 'icon',
   size: [30, 30]
 }
 
