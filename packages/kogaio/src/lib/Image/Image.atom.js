@@ -15,19 +15,24 @@ import {
   width
 } from 'styled-system'
 
-import icons from 'assets/icons'
+import Icon from '../Icon'
 
-const Image = ({ alt, className, dataTest, objectFit, src, ...rest }) => (
-  <StyledImage
-    alt={alt}
-    className={className}
-    data-testid={dataTest}
-    objectFit={objectFit}
-    src={src}
-    {...rest}
+const Image = ({ alt, className, dataTest, objectFit, src, ...rest }) => {
+  if (src) {
+    return <StyledImage
+      alt={alt}
+      className={className}
+      data-testid={dataTest}
+      objectFit={objectFit}
+      src={src}
+      {...rest}
+    />
+  }
+  return <Icon
+    fontSize={100}
+    name='image'
   />
-)
-
+}
 const StyledImage = styled.img`
   object-fit: ${props => props.objectFit};
   ${borderRadius}
@@ -103,8 +108,7 @@ Image.propTypes = {
 
 Image.defaultProps = {
   alt: 'image',
-  size: [80, 80],
-  src: icons.userPlaceholder
+  size: [80, 80]
 }
 
 export default Image

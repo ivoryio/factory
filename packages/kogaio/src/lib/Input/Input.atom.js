@@ -42,7 +42,6 @@ import {
 } from 'styled-system'
 
 import Icon from '../Icon'
-import icons from 'assets/icons'
 import inputStyle from './variants'
 import Text from '../Text'
 import theme from '../assets/theme'
@@ -114,11 +113,11 @@ const Input = ({
             name='visibility'
             color='#cdd3d9'
             colorActive='#484848'
+            fontSize={24}
             onMouseDown={_toggleShowPassword}
             onMouseUp={_toggleShowPassword}
             onTouchStart={_toggleShowPassword}
             onTouchEnd={_toggleShowPassword}
-            size={[18, 18]}
             right={12}
           />
         )}
@@ -128,9 +127,9 @@ const Input = ({
           <Icon
             alignSelf='center'
             alt='error-input'
+            fontSize={20}
+            name='error_outline'
             borderRadius='50%'
-            size={[20, 20]}
-            src={icons.errorOutline}
           />
           <Text message={error} fontSize='0.6rem' ml='2px' type='error' />
         </ErrorWrapper>
@@ -157,6 +156,7 @@ const Row = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-block-start: 5px;
   position: relative;
 `
 
@@ -164,7 +164,6 @@ const StyledInput = styled.input`
   padding: 15px 10px;
   width: 100%;
   border-radius: 3px;
-  margin-block-start: 5px;
   &:focus {
     ~ i {
       color: #484848;

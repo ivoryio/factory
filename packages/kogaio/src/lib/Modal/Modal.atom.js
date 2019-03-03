@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ReactDOM from 'react-dom'
 import Button from '../Button'
-import icons from '../assets/icons'
+import Icon from '../Icon'
 
 class Modal extends PureComponent {
   constructor (props) {
@@ -53,7 +53,12 @@ class Modal extends PureComponent {
           {!CustomHeader ? (
             <Row borderBlockEnd='1px solid #e5e5e5'>
               <Header>{headerLabel}</Header>
-              <CloseIcon src={icons.close} alt='Close' onClick={hideModal} />
+              <Icon
+                alt='close-modal'
+                name='close'
+                onClick={hideModal}
+                fontSize={20}
+              />
             </Row>
           ) : (
             <CustomHeader />
@@ -128,15 +133,6 @@ const Header = styled.div`
   font-size: 1.8rem;
   font-weight: 500;
   color: #484848;
-`
-
-const CloseIcon = styled.img`
-  width: 10px;
-  height: 10px;
-  cursor: pointer;
-  :active {
-    transform: scale(0.965);
-  }
 `
 
 const Content = styled.div`

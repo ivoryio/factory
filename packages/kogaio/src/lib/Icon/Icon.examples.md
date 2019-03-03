@@ -5,15 +5,13 @@
 
 #### Custom Icon
 ```js
-const { default: icons } = require('assets/icons')
-
 function onClick () {
   console.log('Custom Icon clicked')
 }
 <Icon
-  alt='signOut'
+  alt='sign-out'
+  fontSize='40px'
+  name='exit_to_app'
   onClick={onClick}
-  size={[50, 50]}
-  src={icons.logout}
 />
 ```

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {
   alignSelf,
   color,
+  fontSize,
   justifySelf,
   maxHeight,
   maxWidth,
@@ -53,6 +54,7 @@ const StyledIcon = styled.i`
   cursor: pointer;
   ${alignSelf}
   ${color}
+  ${fontSize}
   ${justifySelf}
   ${maxHeight}
   ${maxWidth}
@@ -84,7 +86,8 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  size: [30, 30]
+  fontSize: 30,
+  name: 'image'
 }
 
 export default Icon
