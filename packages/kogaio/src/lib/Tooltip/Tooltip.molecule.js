@@ -63,14 +63,14 @@ const Tooltip = ({
           top={8}
           left={8}
         />
-        <Touchable position='absolute' top={8} right={8} onClick={hideTooltip}>
-          <Icon
-            color='#cdd3d9'
-            colorActive='#636f7c'
-            cursor='pointer'
-            name='cancel'
-            fontSize='1em'
-          />
+        <Touchable
+          colorActive='#636f7c'
+          position='absolute'
+          top={8}
+          right={8}
+          onClick={hideTooltip}
+        >
+          <Icon color='#cdd3d9' cursor='pointer' name='cancel' fontSize='1em' />
         </Touchable>
         <Text className='tooltip-text' px={36} py={2} fontSize={fontSize}>
           {children}
@@ -80,53 +80,61 @@ const Tooltip = ({
   ) : null
 }
 
-const _positionAndAlignArrow = () => props => {
-  const direction = _positionArrow()
-  const alignment = _alignArrow()
-  return `${direction}; ${alignment};`
-
-  function _positionArrow () {
-    const { direction } = props.arrow
-    switch (direction) {
-      case 'right':
-        return 'right: -5px; border-right: 1px solid; border-bottom: 1px solid;'
-      case 'bottom':
-        return 'bottom: -5px; border-bottom: 1px solid; border-left: 1px solid;'
-      case 'left':
-        return 'left: -5px; border-left: 1px solid; border-top: 1px solid;'
-      default:
-        return 'top: -5px; border-top: 1px solid; border-right: 1px solid;'
-    }
-  }
-  function _alignArrow () {
-    const verticalAlignment = ['top', 'center', 'bottom']
-    const horizontalAlignment = ['left', 'center', 'right']
-    const { direction = 'top', alignment = 'center' } = props.arrow
-    if (['left', 'right'].includes(direction)) {
-      if (!verticalAlignment.includes(alignment)) {
-        console.error(
-          `* Invalid '${alignment}' alignment prop passed to ${direction} direction. Expected one of ${verticalAlignment}`
-        )
-        return 'top: calc(50% - 6px);'
-      }
-      if (alignment.includes('center')) return 'top: calc(50%  - 6px);'
-      return `${alignment}: 16px;`
-    }
-    if (['top', 'bottom'].includes(direction)) {
-      if (!horizontalAlignment.includes(alignment)) {
-        console.error(
-          `* Invalid '${alignment}' alignment prop passed to ${direction} direction. Expected one of ${horizontalAlignment} `
-        )
-        return 'left: calc(50% - 6px);'
-      }
-      if (alignment.includes('center')) return 'left: calc(50% - 6px);'
-      return `${alignment}: 16px;`
-    }
-  }
-}
-
 const arrowStyle = css`
-  ${_positionAndAlignArrow}
+  ${props => {
+    const direction = _positionArrow()
+    const alignment = _alignArrow()
+    const size = _calcArrowSize()
+    return `${direction}; ${alignment}; ${size};`
+
+    function _positionArrow () {
+      const { direction, size = 8 } = props.arrow
+      const position = -(size / 2 + 1)
+      switch (direction) {
+        case 'right':
+          return `right: ${position}px; border-right: 1px solid; border-bottom: 1px solid;`
+        case 'bottom':
+          return `bottom: ${position}px; border-bottom: 1px solid; border-left: 1px solid;`
+        case 'left':
+          return `left: ${position}px; border-left: 1px solid; border-top: 1px solid;`
+        default:
+          return `top: ${position}px; border-top: 1px solid; border-right: 1px solid;`
+      }
+    }
+
+    function _alignArrow () {
+      const verticalAlignment = ['top', 'center', 'bottom']
+      const horizontalAlignment = ['left', 'center', 'right']
+      const { direction = 'top', alignment = 'center', size } = props.arrow
+      if (['left', 'right'].includes(direction)) {
+        if (!verticalAlignment.includes(alignment)) {
+          console.error(
+            `* Invalid '${alignment}' alignment prop passed to ${direction} direction. Expected one of ${verticalAlignment}`
+          )
+          return `top: calc(50% - ${size / 2}px);`
+        }
+        if (alignment.includes('center')) return 'top: calc(50%  - 6px);'
+        return `${alignment}: 16px;`
+      }
+      if (['top', 'bottom'].includes(direction)) {
+        if (!horizontalAlignment.includes(alignment)) {
+          console.error(
+            `* Invalid '${alignment}' alignment prop passed to ${direction} direction. Expected one of ${horizontalAlignment} `
+          )
+          return `left: calc(50% - ${size / 2}px);`
+        }
+        if (alignment.includes('center')) return 'left: calc(50% - 6px);'
+        return `${alignment}: 16px;`
+      }
+    }
+    function _calcArrowSize () {
+      const { size } = props.arrow
+      if (size) {
+        return `width: ${size}px; height: ${size}px;`
+      }
+      return 'width: 8px; height: 8px;'
+    }
+  }}
 `
 
 const animatedOpacity = keyframes`
@@ -149,8 +157,6 @@ const Container = styled(Box)`
     content: '';
     display: block;
     position: absolute;
-    width: 8px;
-    height: 8px;
     ${arrowStyle}
 
     -moz-transform: rotate(-45deg);
@@ -191,7 +197,25 @@ const Body = styled.div`
 `
 
 Tooltip.propTypes = {
-  /** describes tooltip arrow orientation and alignment */
+  ...borders.propTypes,
+  ...bottom.propTypes,
+  ...boxShadow.propTypes,
+  ...color.propTypes,
+  ...height.propTypes,
+  ...left.propTypes,
+  ...maxHeight.propTypes,
+  ...maxWidth.propTypes,
+  ...minHeight.propTypes,
+  ...minWidth.propTypes,
+  ...opacity.propTypes,
+  ...overflow.propTypes,
+  ...position.propTypes,
+  ...right.propTypes,
+  ...space.propTypes,
+  ...top.propTypes,
+  ...width.propTypes,
+  ...zIndex.propTypes,
+  /** describes tooltip arrow orientation, alignment and size */
   arrow: PropTypes.object.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.string,
