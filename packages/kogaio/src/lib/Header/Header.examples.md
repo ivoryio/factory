@@ -31,7 +31,7 @@
   const React = require('react')
   const { default: styled, keyframes } = require('styled-components')
   const { default: images } = require('assets/images')
-  console.log('images Header:', images)
+
   const scaleLogo = keyframes`
     0% {
       transform: scale(1);
