@@ -22,7 +22,6 @@ import {
   overflow,
   position,
   right,
-  size,
   themeGet,
   top,
   space
@@ -30,12 +29,13 @@ import {
 
 import { Box } from '../Responsive'
 import Text from '../Text'
+import Touchable from '../Touchable'
 
 const Dropdown = ({
-  placeholder,
-  options,
-  selectedOption,
   handleSelectionChange,
+  options,
+  placeholder,
+  selectedOption,
   ...rest
 }) => {
   const [showList, setShowList] = useState(false)
@@ -46,23 +46,22 @@ const Dropdown = ({
   }
   return (
     <Container {...rest}>
-      <Placeholder onClick={handleShowListChange}>
+      <StyledTouchable onClick={handleShowListChange}>
         <Text fontFamily='Roboto' fontSize='1em'>
           {selectedOption || placeholder}
         </Text>
-      </Placeholder>
+      </StyledTouchable>
       {showList && (
         <ListWrapper>
           {options.map(option => (
-            <OptionWrapper
-              key={option.key}
-              onClick={onClickOption(option.name)}
-            >
-              <TextWrapper>
+            <OptionWrapper key={option.key}>
+              <TouchableText
+                onClick={onClickOption(option.name)}
+              >
                 <Text fontFamily='Roboto' fontSize='1em'>
                   {option.name}
                 </Text>
-              </TextWrapper>
+              </TouchableText>
             </OptionWrapper>
           ))}
         </ListWrapper>
@@ -72,20 +71,20 @@ const Dropdown = ({
 }
 
 const Container = styled(Box)`
+  display: flex;
+  flex-direction: column;
   border-radius: 2px;
   box-shadow: 0 1px 4px 0 rgba(22, 29, 37, 0.35);
   position: relative;
   &:after {
-    color: rgba(22, 29, 37, 0.35);
+    box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.35);
     background-color: ${themeGet('colors.white')};
     content: '';
     display: block;
     position: absolute;
     width: 8px;
     height: 8px;
-    border-top: 1px solid;
-    border-right: 1px solid;
-    top: -5px;
+    top: -3px;
     right: 25px;
     -moz-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
@@ -110,41 +109,41 @@ const Container = styled(Box)`
   ${overflow}
   ${position}
   ${right}
-  ${size}
   ${space}
   ${top}
 `
 
-const Placeholder = styled.div`
+const StyledTouchable = styled(Touchable)`
   background-color: ${themeGet('colors.white')};
   cursor: pointer;
   display: flex;
+  flex: 1;
   flex-direction: row;
   justify-content: center;
 `
 
 const ListWrapper = styled.div`
+  align-items: center;
   background-color: ${themeGet('colors.white')};
   display: flex;
   flex-direction: column;
-  align-items: center;
   & > :nth-child(n + 2) {
     border-top: 1px solid ${themeGet('colors.azureish-white')};
   }
 `
 const OptionWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  width: 100%;
 `
-const TextWrapper = styled.div`
+const TouchableText = styled(Touchable)`
   cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 5px
   padding-bottom: 5px;
+  padding-top: 5px
   width: 85%;
 `
 
@@ -156,7 +155,6 @@ Dropdown.propTypes = {
 }
 
 Dropdown.defaultProps = {
-  placeholder: 'Pick one option, please',
-  width: '300px'
+  placeholder: 'Pick one option, please'
 }
 export default Dropdown
