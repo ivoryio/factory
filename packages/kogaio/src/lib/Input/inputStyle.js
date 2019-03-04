@@ -1,7 +1,5 @@
 import { variant } from 'styled-system'
 
-const inputStyle = variant({
+export default variant({
   key: 'inputs'
 })
-
-export default inputStyle

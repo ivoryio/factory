@@ -17,20 +17,15 @@ import {
   textStyle
 } from 'styled-system'
 
-const Text = ({ children, className, cursor, message, textStyle, type, ...rest }) => (
-  <StyledText
-    className={className}
-    cursor={cursor}
-    textStyle={textStyle}
-    type={type}
-    {...rest}
-  >
+const Text = ({ children, className, message, ...rest }) => (
+  <StyledText className={className} {...rest}>
     {message || children}
   </StyledText>
 )
 
 /** @component */
 const StyledText = styled.div`
+  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
   ${color}
   ${colorStyle}
   ${fontFamily}
@@ -47,16 +42,10 @@ const StyledText = styled.div`
 `
 
 Text.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   className: PropTypes.string,
   cursor: PropTypes.string,
-  message: PropTypes.string,
-  textStyle: PropTypes.string,
-  type: PropTypes.string
-}
-
-Text.defaultProps = {
-  textStyle: 'default'
+  message: PropTypes.string
 }
 
 export default Text

@@ -1,19 +1,16 @@
-#### Placeholder Icon
 ```js
-<Icon />
-```
-
-#### Custom Icon
-```js
-const { default: icons } = require('assets/icons')
-
+const Flex = require('../Responsive/Flex.js').default;
 function onClick () {
   console.log('Custom Icon clicked')
-}
-<Icon
-  alt='signOut'
-  onClick={onClick}
-  size={[50, 50]}
-  src={icons.logout}
-/>
+};
+  <Flex alignItems='center'>
+    <Icon name='photo' fontSize='2em' />
+    <Icon
+      cursor='pointer'
+      fontSize='2.5em'
+      ml='16px'
+      name='exit_to_app'
+      onClick={onClick}
+    />
+  </Flex>
 ```
