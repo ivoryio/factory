@@ -17,22 +17,20 @@ import {
 
 import Icon from '../Icon'
 
-const Image = ({ alt, className, dataTest, objectFit, src, ...rest }) => {
-  if (src) {
-    return <StyledImage
+const Image = ({ alt, className, dataTest, objectFit, src, ...rest }) =>
+  (src
+    ? <StyledImage
       alt={alt}
       className={className}
       data-testid={dataTest}
       objectFit={objectFit}
       src={src}
       {...rest}
-    />
-  }
-  return <Icon
-    fontSize={100}
-    name='image'
-  />
-}
+    /> : <Icon
+      fontSize={100}
+      name='image'
+    />)
+
 const StyledImage = styled.img`
   object-fit: ${props => props.objectFit};
   ${borderRadius}
