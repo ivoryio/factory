@@ -29,6 +29,7 @@ const options = [
       handleSelectionChange={handleSelectionChange}
       options={options}
       placeholder='Please pick your option...'
+      py={12}
       selectedOption={selectedOption}
       width={300}
     />

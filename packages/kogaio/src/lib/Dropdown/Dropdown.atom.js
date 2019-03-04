@@ -86,7 +86,7 @@ const Container = styled(Box)`
     border-top: 1px solid;
     border-right: 1px solid;
     top: -5px;
-    right: 25px;
+    right: 15px;
     -moz-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
   }
@@ -121,7 +121,6 @@ const Placeholder = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 2px;
 `
 
 const ListWrapper = styled.div`
