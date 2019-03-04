@@ -72,7 +72,7 @@ export default {
       transform: 'scale(1)'
     }
   },
-  error: {
+  destructive: {
     boxShadow:
       '0 1px 0 0 rgba(22, 29, 37, 0.1), inset 0 1px 0 1px rgba(255, 255, 255, 0.09)',
     border: 'solid 1px #bf0711',

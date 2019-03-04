@@ -1,4 +1,4 @@
-import { buttons, inputs } from './componentStyles'
+import { buttons, inputs, textStyles, tooltips } from './componentStyles'
 
 export default {
   gutter: '1em',
@@ -43,64 +43,21 @@ export default {
     black: '#000'
   },
   colorStyles: {
-    input: {
-      regular: {
-        background: '#fff',
-        border: '1px solid #b3c3d4'
-      },
-      focused: {
-        background: '#fff',
-        border: '1px solid #009fda'
-      },
-      error: {
-        background: '#fbeae5',
-        border: '1px solid #fb5607'
-      },
-      valid: {
-        background: '#fff',
-        border: '1px solid #7dad03'
-      },
-      disabled: {
-        background: '#f9fafb',
-        border: '1px solid #dfe3e8'
-      }
+    'card-white': {
+      boxShadow: '5px 0 10px 0 rgba(0, 0, 0, 0.15)',
+      backgroundColor: '#fff'
     },
-    button: {
-      regular: {
-        'background-image': 'linear-gradient(to bottom, #00aeef, #009feb)',
-        border: '1px solid #009fda'
+    'card-gray': {
+      boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2)',
+      backgroundColor: '#f6f9fb'
+    },
+    brand: {
+      color: '#00aeef',
+      '&:hover': {
+        color: '#008fc4'
       },
-      hover: {
-        'background-image': 'linear-gradient(to bottom, #01a2de, #0197df)',
-        border: '1px solid #008cc0'
-      },
-      disabled: {
-        'background-color': '#b9e8fa',
-        border: '1px solid #92d3eb'
-      },
-      outlined: {
-        'background-color': '#fff',
-        border: '1px solid #009fda'
-      },
-      'outline-hover': {
-        'background-color': 'rgba(0, 159, 218, 0.07)',
-        border: '1px solid #009fda'
-      },
-      'outline-disabled': {
-        'background-color': '#fff',
-        border: '1px solid #b9e8fa'
-      },
-      error: {
-        'background-image': 'linear-gradient(to bottom, #e33719, #d63418)',
-        border: 'solid 1px #bf0711'
-      },
-      'error-hover': {
-        'background-image': 'linear-gradient(to bottom, #d93518, #cc3216)',
-        border: '1px solid #b50710'
-      },
-      'error-disabled': {
-        'background-image': 'linear-gradient(to bottom, #fdac9a, #f2a594)',
-        border: '1px solid #db9586'
+      '&:disabled': {
+        color: '#b9e8fa'
       }
     }
   },
@@ -109,28 +66,7 @@ export default {
     sansSerif: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
   },
   inputs,
-  textStyles: {
-    h1: {
-      fontSize: '1.9rem',
-      fontFamily: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont',
-      lineHeight: 1.83
-    },
-    h2: {
-      fontSize: '1.6rem',
-      fontFamily: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont',
-      lineHeight: 1.43
-    },
-    h3: {
-      fontSize: '1.3',
-      fontFamily: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont',
-      lineHeight: 1.61
-    },
-    default: {
-      fontSize: '1rem',
-      fontFamily: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont',
-      lineHeight: 1.6
-    }
-  },
+  textStyles,
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64],
   fontWeights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
   lineHeights: {
@@ -149,5 +85,6 @@ export default {
     small: '0 0 4px rgba(0, 0, 0, .125)',
     large: '0 0 24px rgba(0, 0, 0, .125)'
   },
+  tooltips,
   space: [0, 4, 8, 16, 32, 64, 128, 256]
 }

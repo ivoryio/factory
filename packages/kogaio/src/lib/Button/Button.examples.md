@@ -1,131 +1,14 @@
-#### Primary button
-```js
-  let counter = 0
-  const simulateClick = () => {
-    setTimeout(() => {
-      counter = 0
-    }, 2000)
-    counter += 1
-    console.log(`I clicked ${counter} times!`)
-  }
-  const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column'
-  };
-  <div style={containerStyle}>
-    <Button
-      fontSize={['0.9rem', '1rem']}
-      onClick={simulateClick}
-      variant='primary'
-      title='Button Label'
-      width={[160, 140, 120]}
-    />
-    <Button
-      fontSize={['0.9rem', '1rem']}
-      onClick={simulateClick}
-      variant='primary'
-      title='Button Label'
-      disabled
-      mt='5px'
-      width={[160, 140, 120]}
-    />
-  </div>
-```
-
-#### Outlined button
-```js
-  const simulateClick = () => {
-    console.log('Hey, I just clicked!')
-  }
-  const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column'
-  };
-  <div style={containerStyle}>
-    <Button
-      fontSize={['0.9rem', '1rem']}
-      onClick={simulateClick}
-      title='Button Label'
-      variant='outlined'
-      width={[160, 140, 120]}
-    />
-     <Button
-      fontSize={['0.9rem', '1rem']}
-      onClick={simulateClick}
-      title='Button Label'
-      variant='outlined'
-      mt='5px'
-      disabled
-      width={[160, 140, 120]}
-    />
-  </div>
-```
-
-#### Success button
-```js
-  const simulateClick = () => {
-    console.log('Hey, I just clicked!')
-  }
-  const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column'
-  };
-  <div style={containerStyle}>
-    <Button
-      fontSize={['0.9rem', '1rem']}
-      onClick={simulateClick}
-      title='Button Label'
-      variant='success'
-      mt='5px'
-      width={[160, 140, 120]}
-    />
-    <Button
-      fontSize={['0.9rem', '1rem']}
-      onClick={simulateClick}
-      title='Button Label'
-      variant='success'
-      mt='5px'
-      disabled
-      width={[160, 140, 120]}
-    />
-  </div>
-```
-
-#### Destructive button
-```js
-  const simulateClick = () => {
-    console.log('Hey, I just clicked!')
-  }
-  const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column'
-  };
-  <div style={containerStyle}>
-    <Button
-      fontSize={['0.9rem', '1rem']}
-      onClick={simulateClick}
-      title='Button Label'
-      variant='error'
-      mt='5px'
-      width={[160, 140, 120]}
-    />
-    <Button
-      border='solid 1px #699100'
-      fontSize={['0.9rem', '1rem']}
-      onClick={simulateClick}
-      title='Button Label'
-      variant='error'
-      mt='5px'
-      disabled
-      width={[160, 140, 120]}
-    />
-  </div>
-```
-
-#### LoadingButton
+#### Button variants
 ```js
   const React = require('react')
   const { useState } = React
+  const { default: styled } = require('styled-components')
+  const Flex = require('../Responsive/Flex').default
+  const Box = require('../Responsive/Box.js').default
+  const Column = styled(Box)`
+    display: flex;
+    flex-direction: column;
+  `
   const ButtonExample = () => {
     const [isLoading, setIsLoading] = useState(false)
     const toggleLoading = () => {
@@ -135,16 +18,120 @@
       }, 3000)
     }
     return (
-      <Button
-        fontSize={['0.9rem', '1rem']}
-        isLoading={isLoading}
-        disabled={isLoading}
-        onClick={toggleLoading}
-        variant='primary'
-        title='Submit'
-        width={[160, 140, 120]}
-      />
+      <Flex flexWrap='wrap' justifyContent='space-between' width={1}>
+        <Column
+          px='16px'
+          my='4px'
+          width={{ xs: 1, sm: 1/2, md: 1/3 }}
+        >
+          Primary
+          <Button
+            fontSize={['0.9rem', '1rem']}
+            onClick={() => {}}
+            variant='primary'
+            title='Button Label'
+            width='100%'
+          />
+          <Button
+            fontSize={['0.9rem', '1rem']}
+            onClick={() => {}}
+            variant='primary'
+            title='Button Label'
+            disabled
+            mt='5px'
+            width='100%'
+          />
+        </Column>
+        <Column
+          px='16px'
+          my='4px'
+          width={{ xs: 1, sm: 1/2, md: 1/3 }}
+        >
+          Outlined
+          <Button
+            fontSize={['0.9rem', '1rem']}
+            onClick={() => {}}
+            title='Button Label'
+            variant='outlined'
+            width='100%'
+          />
+          <Button
+            fontSize={['0.9rem', '1rem']}
+            onClick={() => {}}
+            title='Button Label'
+            variant='outlined'
+            mt='5px'
+            disabled
+            width='100%'
+          />
+        </Column>
+        <Column
+          px='16px'
+          my='4px'
+          width={{ xs: 1, sm: 1/2, md: 1/3 }}
+        >
+          Success
+          <Button
+            fontSize={['0.9rem', '1rem']}
+            onClick={() => {}}
+            title='Button Label'
+            variant='success'
+            mr='16px'
+            width='100%'
+          />
+          <Button
+            fontSize={['0.9rem', '1rem']}
+            onClick={() => {}}
+            title='Button Label'
+            variant='success'
+            mt='5px'
+            disabled
+            mr='16px'
+            width='100%'
+          />
+        </Column>
+        <Column
+          px='16px'
+          my='4px'
+          width={{ xs: 1, sm: 1/2, md: 1/3 }}>
+          Destructive
+          <Button
+            fontSize={['0.9rem', '1rem']}
+            onClick={() => {}}
+            title='Button Label'
+            variant='destructive'
+            width='100%'
+          />
+          <Button
+            border='solid 1px #699100'
+            fontSize={['0.9rem', '1rem']}
+            onClick={() => {}}
+            title='Button Label'
+            variant='destructive'
+            mt='5px'
+            disabled
+            width='100%'
+          />
+        </Column>
+        <Column
+          px='16px'
+          my='4px'
+          width={{ xs: 1, sm: 1/2, md: 1/3 }}
+        >
+          Loading state
+          <Button
+            fontSize={['0.9rem', '1rem']}
+            isLoading={isLoading}
+            disabled={isLoading}
+            onClick={toggleLoading}
+            variant='primary'
+            title='Submit'
+            mr='16px'
+            width='100%'
+          />
+        </Column>
+      </Flex>
     )
-  };
+  }
   <ButtonExample />
 ```
