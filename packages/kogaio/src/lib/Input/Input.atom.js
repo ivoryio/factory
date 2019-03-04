@@ -250,7 +250,7 @@ const StyledInput = styled.input`
 const ErrorWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 4px;
+  margin-block-start: 4px;
 
   & > i {
     color: ${themeGet('colors.error')};
