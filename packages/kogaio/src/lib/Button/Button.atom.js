@@ -2,9 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
-  alignItems,
-  borderColor,
-  borderRadius,
   borders,
   bottom,
   boxShadow,
@@ -73,13 +70,10 @@ const StyledBtn = styled.button`
   font-style: normal;
   letter-spacing: normal;
   min-height: 36px;
-  line-height: 1.93;
+  line-height: 1.9;
   text-transform: uppercase;
   width: 160px;
   
-  ${alignItems}
-  ${borderColor}
-  ${borderRadius}
   ${borders}
   ${bottom}
   ${boxShadow}
@@ -116,14 +110,15 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
-  theme: PropTypes.object,
-  title: PropTypes.string.isRequired
+  theme: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf(['primary', 'outlined', 'success', 'destructive'])
 }
 
 Button.defaultProps = {
-  theme,
-  isLoading: false,
   disabled: false,
+  isLoading: false,
+  theme,
   variant: 'primary'
 }
 

@@ -158,8 +158,8 @@ Modal.propTypes = {
     PropTypes.node
   ]),
   className: PropTypes.string,
-  CustomHeader: PropTypes.element,
-  CustomFooter: PropTypes.element,
+  CustomHeader: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
+  CustomFooter: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
   dataTest: PropTypes.string,
   headerLabel: PropTypes.string,
   confirmBtnLabel: PropTypes.string,

@@ -1,14 +1,17 @@
-#### Empty card
+#### Empty cards
 ```js
 const { default: Flex } = require('../Responsive/Flex');
 const { default: Space } = require('../Responsive/Space');
   <Flex justifyContent='center'>
     <Space mx={16} my={16}>
       <Card
-        alignItems='center'
-        color='#fff'
-        position='relative'
         width='350px'
+        height='350px'
+        colors='card-white'
+      />
+      <Card
+        width='350px'
+        colors='card-gray'
         height='350px'
       />
     </Space>
@@ -22,13 +25,14 @@ const { Flex, Space } = require('../Responsive');
 const Form = styled.form`width: 100%;`;
 
   const CardWithFormExample = () => {
-    const [passwordVal, setPasswordVal] = useState('')
-    const _changeInputValue = ev => setPasswordVal(ev.target.value)
+    const [inputVal, setInputVal] = useState('')
+    const _changeInputValue = ev => setInputVal(ev.target.value)
     return (
       <Flex justifyContent='center'>
         <Space mx={16} my={16}>
           <Card
             alignItems='center'
+            colors='card-gray'
             display='flex'
             flexDirection='column'
             width='350px'
@@ -51,14 +55,14 @@ const Form = styled.form`width: 100%;`;
                 disabled
               />
               <Input
-                autoComplete='current-password'
+                autoComplete='current-text'
                 label='Input label'
                 mt={12}
-                name='password'
+                name='full-name'
                 onChange={_changeInputValue}
-                placeholder='Password'
-                type='password'
-                value={passwordVal}
+                placeholder='Your text goes here...'
+                type='text'
+                value={inputVal}
               />
             </Form>
             <Button

@@ -24,7 +24,7 @@ const options = [
   return (
     <Dropdown
       mx='auto'
-      fontSize='2rem'
+      fontSize='1rem'
       fontFamily='Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
       handleSelectionChange={handleSelectionChange}
       options={options}

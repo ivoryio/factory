@@ -7,10 +7,6 @@ import {
   color,
   fontSize,
   justifySelf,
-  maxHeight,
-  maxWidth,
-  minHeight,
-  minWidth,
   position,
   top,
   right,
@@ -22,6 +18,7 @@ import {
 
 const Icon = ({
   className,
+  cursor,
   dataTest,
   name,
   onMouseDown,
@@ -33,6 +30,7 @@ const Icon = ({
 }) => (
   <StyledIcon
     className='material-icons'
+    cursor={cursor}
     data-testid={dataTest}
     onMouseDown={onMouseDown}
     onMouseUp={onMouseUp}
@@ -46,20 +44,12 @@ const Icon = ({
 )
 
 const StyledIcon = styled.i`
-  :active {
-    transform: scale(0.965);
-    color: ${props => props.colorActive};
-  }
   user-select: none;
-  cursor: pointer;
+  cursor: ${props => props.cursor};
   ${alignSelf}
   ${color}
   ${fontSize}
   ${justifySelf}
-  ${maxHeight}
-  ${maxWidth}
-  ${minHeight}
-  ${minWidth}
   ${position}
   ${size}
   ${space}
@@ -72,10 +62,7 @@ const StyledIcon = styled.i`
 Icon.propTypes = {
   ...alignSelf.propTypes,
   ...justifySelf.propTypes,
-  ...maxHeight.propTypes,
-  ...maxWidth.propTypes,
-  ...minHeight.propTypes,
-  ...minWidth.propTypes,
+  ...fontSize.propTypes,
   ...position.propTypes,
   ...size.propTypes,
   ...space.propTypes,
@@ -86,8 +73,8 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  fontSize: 30,
-  name: 'image'
+  name: 'image',
+  fontSize: '1.25rem'
 }
 
 export default Icon

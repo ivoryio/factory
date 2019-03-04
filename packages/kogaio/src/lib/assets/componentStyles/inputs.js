@@ -1,19 +1,12 @@
 export default {
-  primary: {
-    backgroundColor: '#ffffff',
-    boxShadow:
-      'inset 0 1px 2px 0 rgba(102, 113, 123, 0.21), inset 0 0 0 1px rgba(102, 113, 123, 0.25)',
-    border: 'solid 1px #c4cdd5',
+  default: {
+    border: 'solid 1px #b3c3d4',
     '::placeholder': {
-      color: '#c4cdd5'
+      color: '#979ca6'
     },
     '&:focus': {
       border: 'solid 1px #009fda',
-      boxShadow: '0 1px 0 0 rgba(22, 29, 37, 0.05)',
       color: '#1b202f',
-      outline: 'none',
-      outlineStyle: 'none',
-      outlineColor: 'transparent',
       '::placeholder': {
         color: '#1b202f'
       }
@@ -24,36 +17,21 @@ export default {
   },
   valid: {
     border: 'solid 1px #7dad03',
-    boxShadow: '0 1px 0 0 rgba(22, 29, 37, 0.05)',
-    color: '#1b202f',
-    outline: 'none',
-    outlineStyle: 'none',
-    outlineColor: 'transparent'
+    color: '#1b202f'
   },
   error: {
     backgroundColor: '#fbeae5',
-    boxShadow: '0 1px 0 0 rgba(22, 29, 37, 0.05)',
     border: 'solid 1px #fb5607',
     '::placeholder': {
       color: '#1b202f'
-    },
-    '&:focus': {
-      border: 'solid 1px #fb5607',
-      boxShadow: '0 1px 0 0 rgba(22, 29, 37, 0.05)',
-      color: '#1b202f',
-      outline: 'none',
-      outlineStyle: 'none',
-      outlineColor: 'transparent',
-      '::placeholder': {
-        color: '#1b202f'
-      }
     }
   },
   disabled: {
     border: 'solid 1px #dfe3e8',
     backgroundColor: '#f9fafb',
+    boxShadow: 'none',
     '::placeholder': {
-      color: '#c4cdd5'
+      color: '#979ca6'
     },
     cursor: 'not-allowed'
   }

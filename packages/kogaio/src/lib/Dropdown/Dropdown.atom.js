@@ -45,9 +45,9 @@ const Dropdown = ({
     handleShowListChange(!showList)
   }
   return (
-    <Container {...rest} id='container'>
+    <Container {...rest}>
       <Placeholder onClick={handleShowListChange}>
-        <Text fontFamily='Roboto' fontSize='20px'>
+        <Text fontFamily='Roboto' fontSize='1em'>
           {selectedOption || placeholder}
         </Text>
       </Placeholder>
@@ -59,7 +59,7 @@ const Dropdown = ({
               onClick={onClickOption(option.name)}
             >
               <TextWrapper>
-                <Text fontFamily='Roboto' fontSize='20px'>
+                <Text fontFamily='Roboto' fontSize='1em'>
                   {option.name}
                 </Text>
               </TextWrapper>
@@ -139,11 +139,13 @@ const OptionWrapper = styled.div`
   justify-content: center;
 `
 const TextWrapper = styled.div`
-  width: 85%;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  cursor: pointer;
+  padding-top: 5px
+  padding-bottom: 5px;
+  width: 85%;
 `
 
 Dropdown.propTypes = {
