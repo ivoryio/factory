@@ -76,7 +76,7 @@ const Container = styled(Box)`
   box-shadow: 0 1px 4px 0 rgba(22, 29, 37, 0.35);
   position: relative;
   &:after {
-    color: ${themeGet('colors.azureish-white')};
+    color: rgba(22, 29, 37, 0.35);
     background-color: ${themeGet('colors.white')};
     content: '';
     display: block;
@@ -86,7 +86,7 @@ const Container = styled(Box)`
     border-top: 1px solid;
     border-right: 1px solid;
     top: -5px;
-    right: 15px;
+    right: 25px;
     -moz-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
   }
