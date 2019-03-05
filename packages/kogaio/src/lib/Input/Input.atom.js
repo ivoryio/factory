@@ -93,7 +93,7 @@ const Input = ({
   return (
     <InputWrapper hasLabel={label} {...rest}>
       {label ? (
-        <InputLabel cssLabel={cssLabel} htmlFor={id} fontSize='0.8rem'>
+        <InputLabel cssLabel={cssLabel} htmlFor={id} textStyle='input-label'>
           {label}
         </InputLabel>
       ) : null}
@@ -175,14 +175,10 @@ const Row = styled.div`
   position: relative;
 `
 
-const InputLabel = styled.label`
-  font-size: 0.875em;
-  color: ${themeGet('colors.dark-gunmetal')};
+const InputLabel = styled(Text)`
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
-  line-height: 2;
-  letter-spacing: normal;
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
   ${props => props.cssLabel};
 `
@@ -283,7 +279,7 @@ Input.propTypes = {
     PropTypes.number,
     PropTypes.object
   ]),
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
   variant: PropTypes.oneOf(['default', 'valid', 'error', 'disabled'])
 }
 

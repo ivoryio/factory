@@ -43,14 +43,6 @@ export default {
     black: '#000'
   },
   colorStyles: {
-    'card-white': {
-      boxShadow: '5px 0 10px 0 rgba(0, 0, 0, 0.15)',
-      backgroundColor: '#fff'
-    },
-    'card-gray': {
-      boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2)',
-      backgroundColor: '#f6f9fb'
-    },
     brand: {
       color: '#00aeef',
       '&:hover': {
@@ -59,6 +51,14 @@ export default {
       '&:disabled': {
         color: '#b9e8fa'
       }
+    },
+    'card-white': {
+      boxShadow: '5px 0 10px 0 rgba(0, 0, 0, 0.15)',
+      backgroundColor: '#fff'
+    },
+    'card-gray': {
+      boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2)',
+      backgroundColor: '#f6f9fb'
     }
   },
   fonts: {

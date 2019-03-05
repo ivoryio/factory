@@ -25,6 +25,7 @@ import {
 import Box from '../Responsive/Box'
 import { Icon, Text, Touchable } from '../'
 import tooltipStyle from './tooltipStyle'
+import theme from '../assets/theme'
 
 const Tooltip = ({
   arrow,
@@ -72,7 +73,13 @@ const Tooltip = ({
         >
           <Icon color='#cdd3d9' cursor='pointer' name='cancel' fontSize='1em' />
         </Touchable>
-        <Text className='tooltip-text' px={36} py={2} fontSize={fontSize}>
+        <Text
+          className='tooltip-text'
+          px={36}
+          py={2}
+          fontSize={fontSize}
+          textStyle='paragraph'
+        >
           {children}
         </Text>
       </Body>
@@ -193,7 +200,7 @@ const Body = styled.div`
   justify-content: center;
   align-items: center;
   line-height: 1.6;
-  font-size: 1.25rem;
+  font-size: 1rem;
 `
 
 Tooltip.propTypes = {
@@ -229,6 +236,7 @@ Tooltip.propTypes = {
   ]),
   icLeft: PropTypes.string,
   isShown: PropTypes.bool.isRequired,
+  theme: PropTypes.object.isRequired,
   variant: PropTypes.string
 }
 Tooltip.defaultProps = {
@@ -239,6 +247,7 @@ Tooltip.defaultProps = {
   },
   fontSize: '12px',
   icLeft: 'assignment',
+  theme,
   variant: 'error'
 }
 

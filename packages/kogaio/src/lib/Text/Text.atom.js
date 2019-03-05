@@ -16,11 +16,10 @@ import {
   textAlign,
   textStyle
 } from 'styled-system'
+import theme from '../assets/theme'
 
-const Text = ({ children, className, message, ...rest }) => (
-  <StyledText className={className} {...rest}>
-    {message || children}
-  </StyledText>
+const Text = ({ children, message, ...rest }) => (
+  <StyledText {...rest}>{message || children}</StyledText>
 )
 
 /** @component */
@@ -43,9 +42,14 @@ const StyledText = styled.div`
 
 Text.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  className: PropTypes.string,
   cursor: PropTypes.string,
-  message: PropTypes.string
+  message: PropTypes.string,
+  theme: PropTypes.object.isRequired
+}
+
+Text.defaultProps = {
+  theme,
+  textStyle: 'paragraph'
 }
 
 export default Text

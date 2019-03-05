@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import ReactDOM from 'react-dom'
 import Button from '../Button'
 import icons from '../assets/icons'
+import theme from '../assets/theme'
 
 class Modal extends PureComponent {
   constructor (props) {
@@ -45,11 +46,12 @@ class Modal extends PureComponent {
       confirmBtnLabel,
       confirmActionFn,
       confirmButtonType,
-      confirmBtnDataTest
+      confirmBtnDataTest,
+      ...rest
     } = this.props
     return ReactDOM.createPortal(
       <Body className={className} data-testid={dataTest}>
-        <Card id='modal-body'>
+        <Card id='modal-body' {...rest}>
           {!CustomHeader ? (
             <Row borderBlockEnd='1px solid #e5e5e5'>
               <Header>{headerLabel}</Header>
@@ -170,14 +172,16 @@ Modal.propTypes = {
   hideModal: PropTypes.func.isRequired,
   confirmActionFn: PropTypes.func.isRequired,
   confirmButtonType: PropTypes.string,
-  confirmBtnDataTest: PropTypes.string
+  confirmBtnDataTest: PropTypes.string,
+  theme: PropTypes.object.isRequired
 }
 
 Modal.defaultProps = {
   actionBtnType: 'info',
   headerLabel: 'Modal title',
   confirmBtnLabel: 'Confirm',
-  confirmButtonType: 'outlined'
+  confirmButtonType: 'outlined',
+  theme
 }
 
 export default Modal

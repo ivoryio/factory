@@ -24,6 +24,7 @@ import {
   width,
   zIndex
 } from 'styled-system'
+import theme from '../assets/theme'
 
 const Touchable = ({
   activeOpacity,
@@ -138,13 +139,15 @@ Touchable.propTypes = {
   onClick: PropTypes.func.isRequired,
   activeOpacity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   effect: PropTypes.oneOf(['opacity', 'highlight', 'no-feedback']).isRequired,
+  theme: PropTypes.object.isRequired,
   underlayColor: PropTypes.string
 }
 
 Touchable.defaultProps = {
   activeOpacity: 0.7,
   effect: 'no-feedback',
-  underlayColor: '#00aeef'
+  underlayColor: '#00aeef',
+  theme
 }
 
 export default Touchable

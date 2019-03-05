@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-
 import {
   alignSelf,
   color,
@@ -15,6 +14,7 @@ import {
   size,
   space
 } from 'styled-system'
+import theme from '../assets/theme'
 
 const Icon = ({
   className,
@@ -69,11 +69,13 @@ Icon.propTypes = {
   className: PropTypes.string,
   dataTest: PropTypes.string,
   onClick: PropTypes.func,
-  src: PropTypes.string
+  src: PropTypes.string,
+  theme: PropTypes.object.isRequired
 }
 
 Icon.defaultProps = {
-  fontSize: '1.25rem'
+  fontSize: '1.25rem',
+  theme
 }
 
 export default Icon

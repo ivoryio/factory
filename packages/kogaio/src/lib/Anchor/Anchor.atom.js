@@ -33,6 +33,7 @@ import {
   verticalAlign,
   zIndex
 } from 'styled-system'
+import theme from '../assets/theme'
 
 const Anchor = ({ className, children, href, target, rel, ...rest }) => (
   <StyledAnchor
@@ -130,11 +131,13 @@ Anchor.propTypes = {
   ...textAlign.propTypes,
   ...top.propTypes,
   ...verticalAlign.propTypes,
+  theme: PropTypes.object.isRequired,
   zIndex
 }
 
 Anchor.defaultProps = {
-  fontSize: '0.9rem'
+  fontSize: '0.9rem',
+  theme
 }
 
 export default Anchor
