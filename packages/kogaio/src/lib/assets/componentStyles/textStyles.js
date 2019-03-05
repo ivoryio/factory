@@ -17,7 +17,11 @@ export default {
   link: {
     fontSize: '0.875em',
     color: '#009fda',
-    lineHeight: 1.7
+    lineHeight: 1.7,
+    fontWeight: 900,
+    '&:visited': {
+      fontWeight: 'normal'
+    }
   },
   'input-label': {
     fontSize: '0.875em',

@@ -146,9 +146,7 @@ const Input = ({
           arrow={{ alignment: 'right' }}
           isShown={!!error}
           variant='error'
-          position='absolute'
-          top='calc(100% + 6px)'
-          right='0'
+          mt={2}
           width={1}
         >
           {error}
