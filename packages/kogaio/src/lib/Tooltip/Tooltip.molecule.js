@@ -170,6 +170,7 @@ const Container = styled(Box)`
     -webkit-transform: rotate(-45deg);
   }
 
+  ${tooltipStyle}
   ${borders}
   ${bottom}
   ${boxShadow}
@@ -186,7 +187,6 @@ const Container = styled(Box)`
   ${right}
   ${space}
   ${top}
-  ${tooltipStyle}
   ${width}
   ${zIndex}
 `
@@ -200,7 +200,7 @@ const Body = styled.div`
   justify-content: center;
   align-items: center;
   line-height: 1.6;
-  font-size: 1rem;
+  font-size: 1.25rem;
 `
 
 Tooltip.propTypes = {

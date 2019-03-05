@@ -25,6 +25,7 @@ const Text = ({ children, message, ...rest }) => (
 /** @component */
 const StyledText = styled.div`
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
+  ${textStyle}
   ${color}
   ${colorStyle}
   ${fontFamily}
@@ -37,7 +38,6 @@ const StyledText = styled.div`
   ${size}
   ${space}
   ${textAlign}
-  ${textStyle}
 `
 
 Text.propTypes = {
@@ -48,8 +48,7 @@ Text.propTypes = {
 }
 
 Text.defaultProps = {
-  theme,
-  textStyle: 'paragraph'
+  theme
 }
 
 export default Text
