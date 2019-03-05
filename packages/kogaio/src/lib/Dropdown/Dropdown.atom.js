@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   alignItems,
   alignSelf,
@@ -28,6 +28,7 @@ import {
 } from 'styled-system'
 
 import { Box } from '../Responsive'
+import Icon from '../Icon'
 import Text from '../Text'
 import Touchable from '../Touchable'
 
@@ -42,27 +43,36 @@ const Dropdown = ({
   const handleShowListChange = () => setShowList(!showList)
   const selectOption = option => () => {
     onChangeOption(option)
-    handleShowListChange(!showList)
+    handleShowListChange()
   }
+  const arrowPicker = () =>
+    showList ? (
+      <Icon alignSelf='center' color='independence' fontSize='1.5em' name='arrow_drop_down' />
+    ) : (
+      <Icon alignSelf='center' color='independence' fontSize='1.5em' name='arrow_drop_up' />
+    )
+
   return (
-    <Container {...rest}>
-      <StyledTouchable onClick={handleShowListChange}>
-        <Text fontFamily='Roboto' fontSize='1em'>
+    <Container showList={showList} {...rest}>
+      <TouchablePlaceholder onClick={handleShowListChange}>
+        <Text
+          color='manatee'
+          fontFamily='Roboto'
+          fontSize='1em'
+          ml={2}
+        >
           {selectedOption || placeholder}
         </Text>
-      </StyledTouchable>
+        {arrowPicker()}
+      </TouchablePlaceholder>
       {showList && (
         <ListWrapper>
           {options.map(option => (
-            <OptionWrapper key={option.key}>
-              <TouchableText
-                onClick={selectOption(option.name)}
-              >
-                <Text fontFamily='Roboto' fontSize='1em'>
-                  {option.name}
-                </Text>
-              </TouchableText>
-            </OptionWrapper>
+            <TouchableText key={option.key} onClick={selectOption(option.name)}>
+              <Text color='dark-gunmetal' fontFamily='Roboto' fontSize='1em' ml={2}>
+                {option.name}
+              </Text>
+            </TouchableText>
           ))}
         </ListWrapper>
       )}
@@ -70,25 +80,22 @@ const Dropdown = ({
   )
 }
 
+const containerVerticalPadding = css`
+  padding-bottom: ${themeGet('space.1')}px;
+  padding-top: ${themeGet('space.1')}px;
+`
+const containerTopPadding = css`
+  padding-top: ${themeGet('space.1')}px;
+`
+
 const Container = styled(Box)`
   display: flex;
   flex-direction: column;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px 0 rgba(22, 29, 37, 0.35);
-  position: relative;
-  &:after {
-    box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.35);
-    background-color: ${themeGet('colors.white')};
-    content: '';
-    display: block;
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    top: -3px;
-    right: 25px;
-    -moz-transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
+  background-color: ${themeGet('colors.white')};
+  border-radius: ${themeGet('space.1')}px;
+  box-shadow: 0 1px 2px 0 rgba(102, 113, 123, 0.21), 0 0 0 1px rgba(102, 113, 123, 0.25);
+  border: solid 1px ${themeGet('colors.azureish-grey')};
+  ${props => props.showList ? containerTopPadding : containerVerticalPadding};
   ${alignItems}
   ${alignSelf}
   ${borderColor}
@@ -113,34 +120,29 @@ const Container = styled(Box)`
   ${top}
 `
 
-const StyledTouchable = styled(Touchable)`
-  background-color: ${themeGet('colors.white')};
+const TouchablePlaceholder = styled(Touchable)`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
 `
 const ListWrapper = styled.div`
-  align-items: center;
-  background-color: ${themeGet('colors.white')};
   display: flex;
   flex-direction: column;
-  & > :nth-child(n + 2) {
-    border-top: 1px solid ${themeGet('colors.azureish-white')};
+  margin-top: ${themeGet('space.1')}px;
+  & > button {
+    border-top: 1px solid ${themeGet('colors.azureish-grey')};
   }
-`
-const OptionWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
 `
 const TouchableText = styled(Touchable)`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  padding-bottom: ${themeGet('space.1')}px;
-  padding-top: ${themeGet('space.1')}px;
-  width: 85%;
+  align-items: center;
+  padding-bottom: ${themeGet('space.2')}px;
+  padding-top: ${themeGet('space.2')}px;
+  :hover {
+    background-color: ${themeGet('colors.white-smoke')};
+  }
 `
 
 Dropdown.propTypes = {
@@ -151,6 +153,6 @@ Dropdown.propTypes = {
 }
 
 Dropdown.defaultProps = {
-  placeholder: 'Pick one option, please'
+  placeholder: 'Choose one option'
 }
 export default Dropdown

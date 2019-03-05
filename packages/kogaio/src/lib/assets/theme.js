@@ -33,6 +33,7 @@ export default {
     'white-smoke': '#f2f6f9',
     'ice-white': '#dfe9f2',
     'azureish-white': '#d8e2ed',
+    'azureish-grey': '#c4cdd5',
     'pastel-blue': '#b3c3d4',
     'light-gray': '#cdd3d9',
     manatee: '#979ca6',
