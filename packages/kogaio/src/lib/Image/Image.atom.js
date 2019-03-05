@@ -17,12 +17,11 @@ import {
 
 import Icon from '../Icon'
 
-const Image = ({ alt, className, dataTest, objectFit, src, ...rest }) =>
+const Image = ({ alt, className, objectFit, src, ...rest }) =>
   (src
     ? <StyledImage
       alt={alt}
       className={className}
-      data-testid={dataTest}
       objectFit={objectFit}
       src={src}
       {...rest}

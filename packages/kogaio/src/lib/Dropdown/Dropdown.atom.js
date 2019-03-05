@@ -32,7 +32,7 @@ import Text from '../Text'
 import Touchable from '../Touchable'
 
 const Dropdown = ({
-  handleSelectionChange,
+  onChangeOption,
   options,
   placeholder,
   selectedOption,
@@ -40,8 +40,8 @@ const Dropdown = ({
 }) => {
   const [showList, setShowList] = useState(false)
   const handleShowListChange = () => setShowList(!showList)
-  const onClickOption = option => () => {
-    handleSelectionChange(option)
+  const selectOption = option => () => {
+    onChangeOption(option)
     handleShowListChange(!showList)
   }
   return (
@@ -56,7 +56,7 @@ const Dropdown = ({
           {options.map(option => (
             <OptionWrapper key={option.key}>
               <TouchableText
-                onClick={onClickOption(option.name)}
+                onClick={selectOption(option.name)}
               >
                 <Text fontFamily='Roboto' fontSize='1em'>
                   {option.name}
@@ -115,13 +115,10 @@ const Container = styled(Box)`
 
 const StyledTouchable = styled(Touchable)`
   background-color: ${themeGet('colors.white')};
-  cursor: pointer;
   display: flex;
-  flex: 1;
   flex-direction: row;
   justify-content: center;
 `
-
 const ListWrapper = styled.div`
   align-items: center;
   background-color: ${themeGet('colors.white')};
@@ -138,12 +135,11 @@ const OptionWrapper = styled.div`
   width: 100%;
 `
 const TouchableText = styled(Touchable)`
-  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-bottom: 5px;
-  padding-top: 5px
+  padding-bottom: ${themeGet('space.1')}px;
+  padding-top: ${themeGet('space.1')}px;
   width: 85%;
 `
 
@@ -151,7 +147,7 @@ Dropdown.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeholder: PropTypes.string,
   selectedOption: PropTypes.string,
-  handleSelectionChange: PropTypes.func.isRequired
+  onChangeOption: PropTypes.func.isRequired
 }
 
 Dropdown.defaultProps = {

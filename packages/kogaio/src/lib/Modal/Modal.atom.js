@@ -37,18 +37,16 @@ class Modal extends PureComponent {
     const {
       className,
       children,
-      dataTest,
       headerLabel,
       CustomHeader,
       hideModal,
       CustomFooter,
       confirmBtnLabel,
       confirmActionFn,
-      confirmButtonType,
-      confirmBtnDataTest
+      confirmButtonType
     } = this.props
     return ReactDOM.createPortal(
-      <Body className={className} data-testid={dataTest}>
+      <Body className={className}>
         <Card id='modal-body'>
           {!CustomHeader ? (
             <Row borderBlockEnd='1px solid #e5e5e5'>
@@ -69,7 +67,6 @@ class Modal extends PureComponent {
               <Footer>
                 <Button title='Cancel' variant='outlined' onClick={hideModal} />
                 <Button
-                  data-testid={confirmBtnDataTest}
                   title={confirmBtnLabel}
                   onClick={confirmActionFn}
                   ml='5px'

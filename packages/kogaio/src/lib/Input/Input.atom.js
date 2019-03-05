@@ -49,7 +49,6 @@ import theme from '../assets/theme'
 
 const Input = ({
   autoComplete,
-  dataTest,
   className,
   cssLabel,
   disabled,
@@ -102,7 +101,6 @@ const Input = ({
           autoComplete={autoComplete}
           borderRadius={borderRadius}
           className={className}
-          data-testid={dataTest}
           disabled={disabled}
           error={error}
           hasLabel={label}

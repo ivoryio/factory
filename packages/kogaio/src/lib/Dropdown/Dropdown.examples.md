@@ -4,7 +4,7 @@ const React = require('react')
 const { useState } = React
 const DropdownExample = () => {
 const [selectedOption, setSelectedOption] = useState('')
-const handleSelectionChange = newOption =>
+const onChangeOption = newOption =>
   setSelectedOption(newOption)
 
 const options = [
@@ -26,7 +26,7 @@ const options = [
         mx='auto'
         fontSize='1rem'
         fontFamily='Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
-        handleSelectionChange={handleSelectionChange}
+        onChangeOption={onChangeOption}
         options={options}
         placeholder='Please pick your option...'
         py={12}
