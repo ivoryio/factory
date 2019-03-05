@@ -234,7 +234,8 @@ Tooltip.propTypes = {
 Tooltip.defaultProps = {
   arrow: {
     direction: 'top',
-    alignment: 'left'
+    alignment: 'left',
+    size: 8
   },
   fontSize: '12px',
   icLeft: 'assignment',
