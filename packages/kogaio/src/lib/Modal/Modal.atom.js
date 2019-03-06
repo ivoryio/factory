@@ -2,9 +2,11 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ReactDOM from 'react-dom'
+
 import Button from '../Button'
-import icons from '../assets/icons'
+import Card from '../Card'
 import theme from '../assets/theme'
+import { themeGet } from 'styled-system'
 
 class Modal extends PureComponent {
   constructor (props) {
@@ -38,45 +40,60 @@ class Modal extends PureComponent {
     const {
       className,
       children,
-      dataTest,
-      headerLabel,
-      CustomHeader,
-      hideModal,
-      CustomFooter,
+      cancelBtnLabel,
       confirmBtnLabel,
       confirmActionFn,
       confirmButtonType,
       confirmBtnDataTest,
+      Header,
+      hideModal,
+      Footer,
       ...rest
     } = this.props
     return ReactDOM.createPortal(
-      <Body className={className} data-testid={dataTest}>
-        <Card id='modal-body' {...rest}>
-          {!CustomHeader ? (
+      <Body className={className}>
+        <Card
+          bg='white'
+          boxShadow='5px 0 10px 0 rgba(0, 0, 0, 0.15);'
+          display='flex'
+          flexDirection='column'
+          width={{ xs: 1 / 2, md: 1 / 3 }}
+          minWidth='25em'
+          maxWidth='35em'
+          minHeight='18em'
+          maxHeight='25em'
+          id='modal-body'
+          position='relative'
+          {...rest}
+        >
+          {Header ? (
             <Row borderBlockEnd='1px solid #e5e5e5'>
-              <Header>{headerLabel}</Header>
-              <CloseIcon src={icons.close} alt='Close' onClick={hideModal} />
+              <Header />
             </Row>
-          ) : (
-            <CustomHeader />
-          )}
-          <Content>{children}</Content>
-          {!CustomFooter ? (
+          ) : null}
+          <Content>
+            {children}
+            <ButtonsWrapper>
+              <Button
+                mr={3}
+                onClick={confirmActionFn}
+                title={confirmBtnLabel || 'Confirm'}
+                variant={confirmButtonType}
+                width='10em'
+              />
+              <Button
+                onClick={hideModal}
+                title={cancelBtnLabel || 'Cancel'}
+                variant='destructive'
+                width='10em'
+              />
+            </ButtonsWrapper>
+          </Content>
+          {Footer ? (
             <Row p='18px 12px 12px' borderBlockStart='1px solid #e5e5e5'>
-              <Footer>
-                <Button title='Cancel' variant='outlined' onClick={hideModal} />
-                <Button
-                  data-testid={confirmBtnDataTest}
-                  title={confirmBtnLabel}
-                  onClick={confirmActionFn}
-                  ml='5px'
-                  variant={confirmButtonType}
-                />
-              </Footer>
+              <Footer />
             </Row>
-          ) : (
-            <CustomFooter />
-          )}
+          ) : null}
         </Card>
       </Body>,
       this.modalEl
@@ -90,8 +107,7 @@ const Body = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(10, 10, 10, 0.75);
-  color: #fff;
+  background: rgba(36, 49, 67, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,19 +115,11 @@ const Body = styled.div`
   z-index: 10;
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
 `
-
-const Card = styled.div`
+const ButtonsWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  color: #000;
-  width: ${window.innerWidth / 3}px;
-  min-width: 400px;
-  max-width: 550px;
-  min-height: ${window.innerHeight / 2}px;
-  max-height: 400px;
-  background-color: #fff;
-  border-radius: 5px;
-  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: ${themeGet('space.4')}px;
 `
 
 const Row = styled.div`
@@ -126,35 +134,12 @@ const Row = styled.div`
   border-block-end: ${props => props.borderBlockEnd};
 `
 
-const Header = styled.div`
-  font-size: 1.8rem;
-  font-weight: 500;
-  color: #484848;
-`
-
-const CloseIcon = styled.img`
-  width: 10px;
-  height: 10px;
-  cursor: pointer;
-  :active {
-    transform: scale(0.965);
-  }
-`
-
 const Content = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 6px 12px;
-`
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  padding-block-end: 10px;
 `
 
 Modal.propTypes = {
@@ -164,10 +149,10 @@ Modal.propTypes = {
     PropTypes.node
   ]),
   className: PropTypes.string,
-  CustomHeader: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
-  CustomFooter: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
-  dataTest: PropTypes.string,
+  Header: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
+  Footer: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
   headerLabel: PropTypes.string,
+  cancelBtnLabel: PropTypes.string,
   confirmBtnLabel: PropTypes.string,
   hideModal: PropTypes.func.isRequired,
   confirmActionFn: PropTypes.func.isRequired,
@@ -178,7 +163,6 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
   actionBtnType: 'info',
-  headerLabel: 'Modal title',
   confirmBtnLabel: 'Confirm',
   confirmButtonType: 'outlined',
   theme
