@@ -40,36 +40,33 @@ const Dropdown = ({
   ...rest
 }) => {
   const [showList, setShowList] = useState(false)
-  const handleShowListChange = () => setShowList(!showList)
+  const toggleDropdown = () => setShowList(!showList)
   const selectOption = option => () => {
     onChangeOption(option)
-    handleShowListChange()
+    toggleDropdown()
   }
-  const arrowPicker = () =>
-    showList ? (
-      <Icon alignSelf='center' color='independence' fontSize='1.5em' name='arrow_drop_down' />
-    ) : (
-      <Icon alignSelf='center' color='independence' fontSize='1.5em' name='arrow_drop_up' />
-    )
 
   return (
     <Container showList={showList} {...rest}>
-      <TouchablePlaceholder onClick={handleShowListChange}>
+      <TouchablePlaceholder onClick={toggleDropdown} pl={2}>
         <Text
           color='manatee'
-          fontFamily='Roboto'
           fontSize='1em'
-          ml={2}
         >
           {selectedOption || placeholder}
         </Text>
-        {arrowPicker()}
+        <Icon
+          alignSelf='center'
+          color='independence'
+          fontSize='1.5em'
+          name={showList ? 'arrow_drop_down' : 'arrow_drop_up'}
+        />
       </TouchablePlaceholder>
       {showList && (
         <ListWrapper>
           {options.map(option => (
-            <TouchableText key={option.key} onClick={selectOption(option.name)}>
-              <Text color='dark-gunmetal' fontFamily='Roboto' fontSize='1em' ml={2}>
+            <TouchableText key={option.key} onClick={selectOption(option.name)} pl={2}>
+              <Text color='dark-gunmetal' fontSize='1em'>
                 {option.name}
               </Text>
             </TouchableText>
@@ -81,11 +78,11 @@ const Dropdown = ({
 }
 
 const containerVerticalPadding = css`
-  padding-bottom: ${themeGet('space.1')}px;
-  padding-top: ${themeGet('space.1')}px;
+  padding-block-end: ${themeGet('space.1')}px;
+  padding-block-start: ${themeGet('space.1')}px;
 `
 const containerTopPadding = css`
-  padding-top: ${themeGet('space.1')}px;
+  padding-block-start: ${themeGet('space.1')}px;
 `
 
 const Container = styled(Box)`
@@ -129,17 +126,17 @@ const TouchablePlaceholder = styled(Touchable)`
 const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: ${themeGet('space.1')}px;
+  margin-block-start: ${themeGet('space.1')}px;
   & > button {
-    border-top: 1px solid ${themeGet('colors.azureish-grey')};
+    border-block-start: 1px solid ${themeGet('colors.azureish-grey')};
   }
 `
 const TouchableText = styled(Touchable)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-bottom: ${themeGet('space.2')}px;
-  padding-top: ${themeGet('space.2')}px;
+  padding-block-end: ${themeGet('space.2')}px;
+  padding-block-start: ${themeGet('space.2')}px;
   :hover {
     background-color: ${themeGet('colors.white-smoke')};
   }

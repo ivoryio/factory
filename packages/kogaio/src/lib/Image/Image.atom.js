@@ -27,7 +27,7 @@ const Image = ({ alt, className, objectFit, src, ...rest }) =>
       src={src}
       {...rest}
     /> : <Icon
-      fontSize={100}
+      fontSize={7}
       name='image'
     />)
 

@@ -57,7 +57,7 @@ class Modal extends PureComponent {
                 alt='close-modal'
                 name='close'
                 onClick={hideModal}
-                fontSize={20}
+                fontSize={5}
               />
             </Row>
           ) : (

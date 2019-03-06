@@ -88,10 +88,10 @@
   const IconWrapper = () => (
     <Icon
       alt='sign-out'
-      fontSize={35}
+      fontSize={5}
       name='exit_to_app'
       position='absolute'
-      right={16}
+      right='16px'
     />
   )
 
