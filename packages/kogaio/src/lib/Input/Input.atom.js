@@ -92,7 +92,7 @@ const Input = ({
   return (
     <InputWrapper hasLabel={label} {...rest}>
       {label ? (
-        <InputLabel cssLabel={cssLabel} htmlFor={id} fontSize='0.8rem'>
+        <InputLabel cssLabel={cssLabel} htmlFor={id} textStyle='input-label'>
           {label}
         </InputLabel>
       ) : null}
@@ -144,9 +144,7 @@ const Input = ({
           arrow={{ alignment: 'right' }}
           isShown={!!error}
           variant='error'
-          position='absolute'
-          top='calc(100% + 6px)'
-          right='0'
+          mt={2}
           width={1}
         >
           {error}
@@ -173,14 +171,10 @@ const Row = styled.div`
   position: relative;
 `
 
-const InputLabel = styled.label`
-  font-size: 0.875em;
-  color: ${themeGet('colors.dark-gunmetal')};
+const InputLabel = styled(Text)`
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
-  line-height: 2;
-  letter-spacing: normal;
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
   ${props => props.cssLabel};
 `
@@ -248,7 +242,7 @@ const StyledInput = styled.input`
 const ErrorWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 4px;
+  margin-block-start: 4px;
 
   & > i {
     color: ${themeGet('colors.error')};
@@ -281,7 +275,7 @@ Input.propTypes = {
     PropTypes.number,
     PropTypes.object
   ]),
-  theme: PropTypes.object,
+  theme: PropTypes.object.isRequired,
   variant: PropTypes.oneOf(['default', 'valid', 'error', 'disabled'])
 }
 

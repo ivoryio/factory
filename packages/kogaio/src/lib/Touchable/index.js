@@ -1,1 +1,1 @@
-export { default } from './Touchable'
+export { default } from './Touchable.atom'

@@ -16,6 +16,7 @@ import {
 } from 'styled-system'
 
 import Icon from '../Icon'
+import theme from '../assets/theme'
 
 const Image = ({ alt, className, objectFit, src, ...rest }) =>
   (src
@@ -100,12 +101,14 @@ Image.propTypes = {
   size: PropTypes.arrayOf(PropTypes.number),
   alt: PropTypes.string.isRequired,
   dataTest: PropTypes.string,
-  src: PropTypes.string.isRequired
+  src: PropTypes.string.isRequired,
+  theme: PropTypes.object.isRequired
 }
 
 Image.defaultProps = {
   alt: 'image',
-  size: [80, 80]
+  size: [80, 80],
+  theme
 }
 
 export default Image

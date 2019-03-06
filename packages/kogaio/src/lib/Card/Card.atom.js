@@ -43,6 +43,7 @@ import {
   zIndex
 } from 'styled-system'
 import PropTypes from 'prop-types'
+import theme from '../assets/theme'
 
 const Card = ({ className, children, ...rest }) => (
   <StyledCard className={className} {...rest}>
@@ -95,7 +96,12 @@ const StyledCard = styled.div`
 
 Card.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
-  className: PropTypes.string
+  className: PropTypes.string,
+  theme: PropTypes.object.isRequired
+}
+
+Card.defaultProps = {
+  theme
 }
 
 export default Card

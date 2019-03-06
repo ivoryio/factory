@@ -3,14 +3,13 @@ import styled from 'styled-components'
 import {
   alignSelf,
   color,
-  flex,
   fontFamily,
   fontSize,
-  order,
   space,
   textAlign,
   width
 } from 'styled-system'
+import theme from '../assets/theme'
 
 const Box = props => <StyledBox {...props} />
 
@@ -21,8 +20,6 @@ const StyledBox = styled.div`
   ${width}
   ${fontFamily}
   ${fontSize}
-  ${flex}
-  ${order}
   ${alignSelf}
   ${textAlign}
   ${props => props.css}
@@ -36,7 +33,12 @@ Box.propTypes = {
   ...width.propTypes,
   ...fontSize.propTypes,
   ...fontFamily.propTypes,
-  ...textAlign.propTypes
+  ...textAlign.propTypes,
+  theme
+}
+
+Box.defaultProps = {
+  theme
 }
 
 export default Box

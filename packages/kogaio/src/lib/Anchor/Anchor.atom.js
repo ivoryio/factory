@@ -34,35 +34,34 @@ import {
   zIndex
 } from 'styled-system'
 
-const Anchor = ({ className, children, href, target, rel, ...rest }) => (
-  <StyledAnchor
-    className={className}
-    href={href}
-    target={target}
-    rel={rel}
-    {...rest}
-  >
-    {children}
+import Text from '../Text'
+import theme from '../assets/theme'
+
+const Anchor = ({
+  children,
+  fontSize,
+  fontWeight,
+  href,
+  target,
+  rel,
+  ...rest
+}) => (
+  <StyledAnchor href={href} target={target} rel={rel} {...rest}>
+    <Text textStyle='link' fontSize={fontSize} fontWeight={fontWeight}>
+      {children}
+    </Text>
   </StyledAnchor>
 )
 
 const StyledAnchor = styled.a`
   box-shadow: 0 1px 0 ${themeGet('colors.highlight', '#3498db')};
-  font-family: Roboto, -apple-system, BlinkMacSystemFont, "avenir next", avenir, "helvetica neue", helvetica, ubuntu, noto, "segoe ui", arial, sans-serif;
-  font-weight: 900;
   letter-spacing: normal;
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
-  :link {
-    color: ${themeGet('colors.info')}
-  }
+
   :hover {
     transform: scale(1.02);
     font-weight: normal;
-  }
-  :visited{
-    color: ${themeGet('colors.brand-hover')};
   }
   ${alignContent}
   ${alignItems}
@@ -93,12 +92,14 @@ const StyledAnchor = styled.a`
   ${top}
   ${verticalAlign}
   ${zIndex}
-
 `
 
 Anchor.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func
+  ]).isRequired,
   href: PropTypes.string.isRequired,
   target: PropTypes.string,
   rel: PropTypes.string,
@@ -130,11 +131,13 @@ Anchor.propTypes = {
   ...textAlign.propTypes,
   ...top.propTypes,
   ...verticalAlign.propTypes,
+  theme: PropTypes.object.isRequired,
   zIndex
 }
 
 Anchor.defaultProps = {
-  fontSize: '0.9rem'
+  fontSize: '0.9rem',
+  theme
 }
 
 export default Anchor

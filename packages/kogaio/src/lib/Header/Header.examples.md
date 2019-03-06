@@ -2,13 +2,14 @@
 ```js
   const React = require('react')
   const { default: styled } = require('styled-components')
-
+  const Box = require('../Responsive/Box').default
+  
   const HeaderExample = () => {
     const TextComponent = text => <TextContainer>
     <Text message={text} />
     </TextContainer>
 
-    const TextContainer = styled.div`
+    const TextContainer = styled(Box)`
     flex: 1;
     text-align: center;
     `

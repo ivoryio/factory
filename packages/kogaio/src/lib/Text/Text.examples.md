@@ -1,48 +1,71 @@
-#### Paragraph
+#### H1
 ```js
-const message = 'Pack my box with five dozen liquor jugs.';
-<Text message={message} color='#3498db' />
-```
-
-#### H3
-```js
-const message = 'The quick brown fox jumps over the lazy dog.';
-const TextExamples = () => {
-  return (
-  <div>
-    <Text message={message} textStyle='h3' colors='error' 
-    letterSpacing={2} />
-    <Text message={message} textStyle='h3' colors='error' fontWeight={900} letterSpacing={2} />
-  </div>
-  )
-}
-
+  const message = 'Sphinx of black quartz, judge my vow';
+  const TextExamples = () => (
+    <>
+      <Text
+        fontWeight='bold'
+        message={message}
+        textStyle='h1'
+      />
+      <Text
+        textStyle='h1'>
+        {message}
+      </Text>
+    </>
+);
   <TextExamples />
 ```
 
 #### H2
 ```js
-const message = 'How razorback-jumping frogs can level six piqued gymnasts!';
-const TextExamples = () => {
-  return (
-    <div>
-      <Text message={message} textStyle='h2' colors='accent' opacity={.75}/>
-      <Text message={message} textStyle='h2' colors='accent' fontWeight={900} opacity={.75}/>
-    </div>
-  )
-}
-<TextExamples />
+  const message = 'How razorback-jumping frogs can level six piqued gymnasts!';
+  const TextExamples = () => (
+    <>
+      <Text fontWeight='bold' message={message} textStyle='h2' />
+      <Text textStyle='h2'>{message}</Text>
+    </>
+  );
+  <TextExamples />
 ```
-#### H1
+
+#### H3
 ```js
-const message = 'Hey, I am a H1';
-const TextExamples = () => {
-  return (
-    <div>
-      <Text message={message} textStyle='h1' colors='highlight' opacity={.75} />
-      <Text message={message} textStyle='h1' colors='highlight' opacity={.75} fontWeight={900} />
-    </div>
-  )
-}
-<TextExamples />
+  const message = 'The quick brown fox jumps over the lazy dog.';
+  const TextExamples = () => {
+    return (
+    <>
+      <Text
+        message={message}
+        textStyle='h3'
+        fontWeight='bold'
+        letterSpacing={2}
+      />
+      <Text
+        colors='info'
+        letterSpacing={2}
+        textStyle='h3'>
+        {message}
+      </Text>
+    </>
+    )
+  }
+
+  <TextExamples />
+```
+
+#### Paragraph
+```js
+  <>
+    <Text textStyle='paragraph' fontWeight='bold'>
+      Pack my box with five dozen liquor jugs.
+    </Text>
+    <Text textStyle='paragraph'>
+      The quick brown fox jumps over the lazy dog.
+    </Text>
+      <Text textStyle='paragraph' color='#979ca6'>
+      Sphinx of black quartz, judge my vow.
+    </Text>
+  </>
+  
 ```

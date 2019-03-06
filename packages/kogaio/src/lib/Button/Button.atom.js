@@ -74,10 +74,10 @@ const StyledBtn = styled.button`
   text-transform: uppercase;
   width: 160px;
   
+  ${buttonStyle}
   ${borders}
   ${bottom}
   ${boxShadow}
-  ${buttonStyle}
   ${color}
   ${display}
   ${fontSize}
