@@ -9,6 +9,7 @@ import {
   borders,
   bottom,
   color,
+  colorStyle,
   display,
   flex,
   flexBasis,
@@ -27,6 +28,7 @@ import {
   space
 } from 'styled-system'
 
+import theme from '../assets/theme'
 import { Box } from '../Responsive'
 import Icon from '../Icon'
 import Text from '../Text'
@@ -88,9 +90,7 @@ const containerTopPadding = css`
 const Container = styled(Box)`
   display: flex;
   flex-direction: column;
-  background-color: ${themeGet('colors.white')};
   border-radius: ${themeGet('space.1')}px;
-  box-shadow: 0 1px 2px 0 rgba(102, 113, 123, 0.21), 0 0 0 1px rgba(102, 113, 123, 0.25);
   border: solid 1px ${themeGet('colors.azureish-grey')};
   ${props => props.showList ? containerTopPadding : containerVerticalPadding};
   ${alignItems}
@@ -100,6 +100,7 @@ const Container = styled(Box)`
   ${borders}
   ${bottom}
   ${color}
+  ${colorStyle}
   ${display}
   ${flex}
   ${flexBasis}
@@ -146,10 +147,12 @@ Dropdown.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeholder: PropTypes.string,
   selectedOption: PropTypes.string,
-  onChangeOption: PropTypes.func.isRequired
+  onChangeOption: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired
 }
 
 Dropdown.defaultProps = {
-  placeholder: 'Choose one option'
+  placeholder: 'Choose one option',
+  theme
 }
 export default Dropdown

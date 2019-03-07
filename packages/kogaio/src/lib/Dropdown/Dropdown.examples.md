@@ -23,6 +23,7 @@ const options = [
 ]
   return (
       <Dropdown
+        colors='dropdown-white'
         mx='auto'
         fontSize='1rem'
         onChangeOption={onChangeOption}
