@@ -3,7 +3,7 @@
   <Tooltip
     isShown
     arrow={{ alignment: 'center' }}
-    width={[1/3]}
+    width={{ sm: 1, md: 1/2, lg: 1/3 }}
     variant='info'>
     This is an informational tooltip.
     It's purpose is to inform.
@@ -13,7 +13,7 @@
     arrow={{ direction: 'left', alignment: 'top' }}
     mt={12}
     variant='success'
-    width={[1/3]}>
+    width={{ sm: 1, md: 1/2, lg: 1/3 }}>
     This is a successful tooltip.
     Look at it validating your actions.
     It is also aligned to left-top.
@@ -23,7 +23,7 @@
     arrow={{ direction: 'right', alignment: 'center' }}
     mt={12}
     variant='error'
-    width={[1/3]}>
+    width={{ sm: 1, md: 1/2, lg: 1/3 }}>
     Please add a valid format:
     an uppercase, a lowercase, a digit and, a non-alphanumeric character.
   </Tooltip>

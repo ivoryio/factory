@@ -7,3 +7,5 @@ src/index.js
 .eslintrc
 .eslintignore
 node_modules
+src/lib/**/*.examples.md
+src/lib/assets/favicon.ico

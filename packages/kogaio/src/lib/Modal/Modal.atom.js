@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ReactDOM from 'react-dom'
 import Button from '../Button'
-import Icon from '../Icon'
-import theme from '../assets/theme'
+import { themeGet } from 'styled-system'
 
 class Modal extends PureComponent {
   constructor (props) {
@@ -51,23 +50,26 @@ class Modal extends PureComponent {
       <Body className={className}>
         <Card id='modal-body' {...rest}>
           {!CustomHeader ? (
-            <Row borderBlockEnd='1px solid #e5e5e5'>
+            <Row
+              borderBlockEnd={`1px solid ${themeGet('colors.ice-white')(
+                rest
+              )} `}
+            >
               <Header>{headerLabel}</Header>
-              <Icon
-                alt='close-modal'
-                name='close'
-                onClick={hideModal}
-                fontSize={5}
-              />
             </Row>
           ) : (
             <CustomHeader />
           )}
           <Content>{children}</Content>
           {!CustomFooter ? (
-            <Row p='18px 12px 12px' borderBlockStart='1px solid #e5e5e5'>
+            <Row
+              p='18px 12px 12px'
+              borderBlockStart={`1px solid ${themeGet('colors.ice-white')(
+                rest
+              )}`}
+            >
               <Footer>
-                <Button title='Cancel' variant='outlined' onClick={hideModal} />
+                <Button title='Cancel' variant='outline' onClick={hideModal} />
                 <Button
                   title={confirmBtnLabel}
                   onClick={confirmActionFn}
@@ -93,7 +95,7 @@ const Body = styled.div`
   width: 100%;
   height: 100%;
   background: rgba(10, 10, 10, 0.75);
-  color: #fff;
+  color: ${themeGet('colors.white')};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -105,13 +107,13 @@ const Body = styled.div`
 const Card = styled.div`
   display: flex;
   flex-direction: column;
-  color: #000;
+  color: ${themeGet('colors.black')};
   width: ${window.innerWidth / 3}px;
   min-width: 400px;
   max-width: 550px;
   min-height: ${window.innerHeight / 2}px;
   max-height: 400px;
-  background-color: #fff;
+  background-color: ${themeGet('colors.white')};
   border-radius: 5px;
   position: relative;
 `
@@ -131,7 +133,7 @@ const Row = styled.div`
 const Header = styled.div`
   font-size: 1.8rem;
   font-weight: 500;
-  color: #484848;
+  color: ${themeGet('colors.paynes-gray')};
 `
 
 const Content = styled.div`
@@ -165,16 +167,14 @@ Modal.propTypes = {
   hideModal: PropTypes.func.isRequired,
   confirmActionFn: PropTypes.func.isRequired,
   confirmButtonType: PropTypes.string,
-  confirmBtnDataTest: PropTypes.string,
-  theme: PropTypes.object.isRequired
+  confirmBtnDataTest: PropTypes.string
 }
 
 Modal.defaultProps = {
   actionBtnType: 'info',
   headerLabel: 'Modal title',
   confirmBtnLabel: 'Confirm',
-  confirmButtonType: 'outlined',
-  theme
+  confirmButtonType: 'outline'
 }
 
 export default Modal

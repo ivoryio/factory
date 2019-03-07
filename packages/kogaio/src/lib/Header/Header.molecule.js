@@ -15,7 +15,6 @@ import {
   position,
   space
 } from 'styled-system'
-import theme from '../assets/theme'
 
 const Header = ({ className, left, center, right, ...rest }) => (
   <StyledHeader className={className} {...rest}>
@@ -85,12 +84,7 @@ Header.propTypes = {
   className: PropTypes.string,
   left: PropTypes.node,
   middle: PropTypes.node,
-  right: PropTypes.node,
-  theme
-}
-
-Header.defaultProps = {
-  theme
+  right: PropTypes.node
 }
 
 export default Header

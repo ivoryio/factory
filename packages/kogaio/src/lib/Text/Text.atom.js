@@ -14,9 +14,9 @@ import {
   size,
   space,
   textAlign,
-  textStyle
+  textStyle,
+  themeGet
 } from 'styled-system'
-import theme from '../assets/theme'
 
 const Text = ({ children, message, ...rest }) => (
   <StyledText {...rest}>{message || children}</StyledText>
@@ -24,6 +24,7 @@ const Text = ({ children, message, ...rest }) => (
 
 /** @component */
 const StyledText = styled.div`
+  color: ${themeGet('colors.dark-gunmetal', '#484848')};
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
   ${textStyle}
   ${color}
@@ -43,12 +44,7 @@ const StyledText = styled.div`
 Text.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   cursor: PropTypes.string,
-  message: PropTypes.string,
-  theme: PropTypes.object.isRequired
-}
-
-Text.defaultProps = {
-  theme
+  message: PropTypes.string
 }
 
 export default Text

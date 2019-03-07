@@ -18,14 +18,14 @@ const modalContent = {
       title='Show modal'
       border='1px solid #d3d3d3'
       onClick={toggleModal}
-      variant='outlined'
+      variant='outline'
     />
       {isModalShown && (
         <Modal
           headerLabel="Modal example"
           confirmBtnLabel="Confirm"
           confirmActionFn={confirmAction}
-          confirmButtonType='success'
+          confirmButtonType='validation'
           hideModal={toggleModal}
         >
           <div style={modalContent}>
@@ -81,7 +81,7 @@ const CustomFooter = () => <StyledFooter>Goodbye from the custom footer.</Styled
       title='Show modal'
       border='1px solid #d3d3d3'
       onClick={toggleModal}
-      variant='outlined'
+      variant='outline'
       />
       {isModalShown && (
         <Modal

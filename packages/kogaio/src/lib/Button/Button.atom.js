@@ -28,7 +28,6 @@ import {
   space,
   width
 } from 'styled-system'
-import theme from '../assets/theme'
 import { Text } from '../'
 
 const Button = ({
@@ -110,15 +109,13 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
-  variant: PropTypes.oneOf(['primary', 'outlined', 'success', 'destructive'])
+  variant: PropTypes.oneOf(['primary', 'outline', 'validation', 'destructive'])
 }
 
 Button.defaultProps = {
   disabled: false,
   isLoading: false,
-  theme,
   variant: 'primary'
 }
 

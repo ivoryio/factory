@@ -15,8 +15,7 @@ import {
   width
 } from 'styled-system'
 
-import images from 'assets/images'
-import theme from '../assets/theme'
+import images from '../assets/images'
 
 const Image = ({ alt, className, objectFit, src, ...rest }) => (
   <StyledImage
@@ -98,14 +97,13 @@ Image.propTypes = {
   size: PropTypes.arrayOf(PropTypes.number),
   alt: PropTypes.string.isRequired,
   dataTest: PropTypes.string,
-  src: PropTypes.string.isRequired,
-  theme: PropTypes.object.isRequired
+  src: PropTypes.string.isRequired
 }
 
 Image.defaultProps = {
   alt: 'image',
   size: [80, 80],
-  theme
+  src: images.placeholder
 }
 
 export default Image

@@ -35,7 +35,6 @@ import {
 } from 'styled-system'
 
 import Text from '../Text'
-import theme from '../assets/theme'
 
 const Anchor = ({
   children,
@@ -54,7 +53,7 @@ const Anchor = ({
 )
 
 const StyledAnchor = styled.a`
-  box-shadow: 0 1px 0 ${themeGet('colors.highlight', '#3498db')};
+  box-shadow: 0 1px 0 ${themeGet('colors.brand', '#3498db')};
   letter-spacing: normal;
   text-align: center;
   text-decoration: none;
@@ -131,13 +130,11 @@ Anchor.propTypes = {
   ...textAlign.propTypes,
   ...top.propTypes,
   ...verticalAlign.propTypes,
-  theme: PropTypes.object.isRequired,
   zIndex
 }
 
 Anchor.defaultProps = {
-  fontSize: '0.9rem',
-  theme
+  fontSize: '0.9rem'
 }
 
 export default Anchor
