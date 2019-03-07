@@ -29,7 +29,7 @@ import {
   themeGet,
   width
 } from 'styled-system'
-import { Text } from '../'
+import Typography from '../Typography'
 
 const Button = ({
   alignSelf,
@@ -56,7 +56,7 @@ const Button = ({
     variant={variant}
     {...rest}
   >
-    {!isLoading ? title : <Text message='loading...' />}
+    {!isLoading ? title : <Typography message='loading...' />}
   </StyledBtn>
 )
 

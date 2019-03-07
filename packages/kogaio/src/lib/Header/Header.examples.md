@@ -6,7 +6,7 @@
   
   const HeaderExample = () => {
     const TextComponent = text => <TextContainer>
-    <Text message={text} />
+    <Typography message={text} />
     </TextContainer>
 
     const TextContainer = styled(Box)`

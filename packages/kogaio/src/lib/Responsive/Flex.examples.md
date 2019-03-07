@@ -7,7 +7,7 @@
     py={3}
     width={{ xs: 1, sm: 1/2, md: 1/3 }}
     textAlign='left'>
-    <Text
+    <Typography
       p={3}
       message='These boxes'
       fontSize={{ xs: 1, md: 2, xlg: 3 }}
@@ -21,7 +21,7 @@
     py={3}
     textAlign='center'
     width={{ xs: 1, sm: 1/2, md: 1/3 }}>
-    <Text
+    <Typography
       p={3}
       message='are flexible'
       fontSize={{ xs: 1, sm: 2, xlg: 3 }}
@@ -35,7 +35,7 @@
     py={3}
     width={{ xs: 1, sm: 1/2, md: 1/3 }}
     textAlign='right'>
-      <Text
+      <Typography
         p={3}
         message='and responsive'
         fontSize={{ xs: 1, sm: 2, xlg: 3 }}

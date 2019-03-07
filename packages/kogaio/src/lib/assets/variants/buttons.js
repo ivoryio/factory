@@ -10,7 +10,7 @@ export default function (colors, shadows) {
       backgroundImage: `linear-gradient(to bottom, ${brand.primary}, ${
         brand.complementary
       })`,
-      boxShadow: '0 1px 0 0 rgba(0, 0, 0, 0.05)',
+      boxShadow: `${shadows['button-basic']}`,
       '&:active': {
         transform: 'scale(0.965)'
       },
@@ -33,8 +33,8 @@ export default function (colors, shadows) {
         transform: 'scale(1)',
         '&:hover': {
           backgroundImage: `linear-gradient(to bottom, ${
-            colors.brand
-          }, #009feb)`
+            colors.brand.primary
+          }, ${colors.brand.complementary})`
         }
       }
     },
@@ -102,7 +102,7 @@ export default function (colors, shadows) {
       })`,
       border: `1px solid ${destructive.border}`,
       boxShadow: shadows['button-extended'],
-      color: '#fff',
+      color: `${colors.white}`,
       '&:focus': {
         outlineColor: 'transparent',
         outlineStyle: 'none'

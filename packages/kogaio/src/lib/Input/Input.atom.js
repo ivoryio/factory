@@ -1,4 +1,4 @@
-import React, { useState, createRef } from 'react'
+import React, { Fragment, useState, createRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
@@ -43,7 +43,7 @@ import {
 } from 'styled-system'
 
 import inputStyle from './inputStyle'
-import Text from '../Text'
+import Typography from '../Typography'
 import { Tooltip, Icon } from '../'
 
 const Input = ({
@@ -143,17 +143,17 @@ const Input = ({
       ) : (
         <ErrorWrapper mt={1}>
           {error ? (
-            <>
+            <Fragment>
               <Icon
                 color='error'
                 fontSize='0.85em'
                 name='error_outline'
                 pr={1}
               />
-              <Text color='error' fontSize={0} width={1} textStyle='error'>
+              <Typography color='error' fontSize={0} width={1} textStyle='error'>
                 {error}
-              </Text>
-            </>
+              </Typography>
+            </Fragment>
           ) : null}
         </ErrorWrapper>
       )}
@@ -178,7 +178,7 @@ const Row = styled.div`
   position: relative;
 `
 
-const InputLabel = styled(Text)`
+const InputLabel = styled(Typography)`
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;

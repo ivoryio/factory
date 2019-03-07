@@ -23,7 +23,7 @@ import {
 } from 'styled-system'
 
 import Box from '../Responsive/Box'
-import { Icon, Text, Touchable } from '../'
+import { Icon, Typography, Touchable } from '../'
 import tooltipStyle from './tooltipStyle'
 
 const Tooltip = ({
@@ -68,7 +68,7 @@ const Tooltip = ({
           top='8px'
           left='8px'
         />
-        <Text
+        <Typography
           className='tooltip-text'
           px={4}
           py={2}
@@ -76,7 +76,7 @@ const Tooltip = ({
           textStyle='paragraph'
         >
           {children}
-        </Text>
+        </Typography>
         <Touchable
           effect='opacity'
           position='absolute'

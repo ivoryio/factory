@@ -30,7 +30,7 @@ import {
 
 import { Box } from '../Responsive'
 import Icon from '../Icon'
-import Text from '../Text'
+import Typography from '../Typography'
 import Touchable from '../Touchable'
 
 const Dropdown = ({
@@ -50,12 +50,9 @@ const Dropdown = ({
   return (
     <Container showList={showList} {...rest}>
       <TouchablePlaceholder onClick={toggleDropdown} px={2}>
-        <Text
-          color='manatee'
-          fontSize='1em'
-        >
+        <Typography color='manatee' fontSize='1em'>
           {selectedOption || placeholder}
-        </Text>
+        </Typography>
         <Icon
           alignSelf='center'
           color='independence'
@@ -66,11 +63,15 @@ const Dropdown = ({
       {showList && (
         <ListWrapper>
           {options.map(option => (
-            <TouchableText key={option.key} onClick={selectOption(option.name)} p={2}>
-              <Text color='dark-gunmetal' fontSize='1em'>
+            <ButtonWrapper
+              key={option.key}
+              onClick={selectOption(option.name)}
+              p={2}
+            >
+              <Typography color='dark-gunmetal' fontSize='1em'>
                 {option.name}
-              </Text>
-            </TouchableText>
+              </Typography>
+            </ButtonWrapper>
           ))}
         </ListWrapper>
       )}
@@ -90,7 +91,7 @@ const Container = styled(Box)`
   display: flex;
   flex-direction: column;
   border: solid 1px ${themeGet('colors.azureish-grey')};
-  ${props => props.showList ? containerTopPadding : containerVerticalPadding};
+  ${props => (props.showList ? containerTopPadding : containerVerticalPadding)};
   ${alignItems}
   ${alignSelf}
   ${borderColor}
@@ -132,7 +133,7 @@ const ListWrapper = styled.div`
     border-block-start: 1px solid ${themeGet('colors.azureish-grey')};
   }
 `
-const TouchableText = styled(Touchable)`
+const ButtonWrapper = styled(Touchable)`
   text-align: left;
   width: 100%;
   :hover {
@@ -144,8 +145,7 @@ Dropdown.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeholder: PropTypes.string,
   selectedOption: PropTypes.string,
-  onChangeOption: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired
+  onChangeOption: PropTypes.func.isRequired
 }
 
 Dropdown.defaultProps = {

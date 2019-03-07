@@ -63,7 +63,7 @@ const touchableWithEffect = css`
             background-color: ${underlayColor};
           }
           :hover {
-            background-color: ${themeGet('colors.brand-hover')(props)};
+            background-color: ${themeGet('colors.brand.hover.primary')(props)};
             color: ${themeGet('colors.white')(props)}
           }
           `
