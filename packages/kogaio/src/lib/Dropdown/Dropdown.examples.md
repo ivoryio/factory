@@ -10,7 +10,7 @@ const onChangeOption = newOption =>
 const options = [
   {
     key: 'option1',
-    name: 'First Option bcxb bcxb bcxbcx bcx'
+    name: 'First Option'
   },
   {
     key: 'option2',
