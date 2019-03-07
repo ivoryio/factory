@@ -90,8 +90,8 @@ const Container = styled(Box)`
     content: '';
     display: block;
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: ${themeGet('space.2')}px;
+    height: ${themeGet('space.2')}px;
     top: -4px;
     -moz-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
