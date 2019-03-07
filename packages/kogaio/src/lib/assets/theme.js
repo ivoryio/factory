@@ -59,6 +59,7 @@ const theme = new function () {
     'white-smoke': '#f2f6f9',
     'ice-white': '#dfe9f2',
     'azureish-white': '#d8e2ed',
+    'azureish-grey': '#c4cdd5',
     'pastel-blue': '#b3c3d4',
     'light-gray': '#cdd3d9',
     manatee: '#979ca6',
@@ -87,6 +88,10 @@ const theme = new function () {
     'card-gray': {
       boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2)',
       backgroundColor: this.colors['ghost-white']
+    },
+    'dropdown-white': {
+      boxShadow: '0 1px 2px 0 rgba(102, 113, 123, 0.21), 0 0 0 1px rgba(102, 113, 123, 0.25)',
+      backgroundColor: '#fff'
     }
   }
   this.gutter = '1em'

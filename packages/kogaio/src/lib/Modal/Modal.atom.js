@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ReactDOM from 'react-dom'
 import Button from '../Button'
-import icons from '../assets/icons'
 import { themeGet } from 'styled-system'
 
 class Modal extends PureComponent {
@@ -38,7 +37,6 @@ class Modal extends PureComponent {
     const {
       className,
       children,
-      dataTest,
       headerLabel,
       CustomHeader,
       hideModal,
@@ -46,11 +44,10 @@ class Modal extends PureComponent {
       confirmBtnLabel,
       confirmActionFn,
       confirmButtonType,
-      confirmBtnDataTest,
       ...rest
     } = this.props
     return ReactDOM.createPortal(
-      <Body className={className} data-testid={dataTest}>
+      <Body className={className}>
         <Card id='modal-body' {...rest}>
           {!CustomHeader ? (
             <Row
@@ -59,7 +56,6 @@ class Modal extends PureComponent {
               )} `}
             >
               <Header>{headerLabel}</Header>
-              <CloseIcon src={icons.close} alt='Close' onClick={hideModal} />
             </Row>
           ) : (
             <CustomHeader />
@@ -75,7 +71,6 @@ class Modal extends PureComponent {
               <Footer>
                 <Button title='Cancel' variant='outline' onClick={hideModal} />
                 <Button
-                  data-testid={confirmBtnDataTest}
                   title={confirmBtnLabel}
                   onClick={confirmActionFn}
                   ml='5px'
@@ -139,15 +134,6 @@ const Header = styled.div`
   font-size: 1.8rem;
   font-weight: 500;
   color: ${themeGet('colors.paynes-gray')};
-`
-
-const CloseIcon = styled.img`
-  width: 10px;
-  height: 10px;
-  cursor: pointer;
-  :active {
-    transform: scale(0.965);
-  }
 `
 
 const Content = styled.div`

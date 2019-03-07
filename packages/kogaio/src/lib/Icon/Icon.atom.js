@@ -18,7 +18,6 @@ import {
 const Icon = ({
   className,
   cursor,
-  dataTest,
   name,
   onMouseDown,
   onMouseUp,
@@ -30,7 +29,6 @@ const Icon = ({
   <StyledIcon
     className='material-icons'
     cursor={cursor}
-    data-testid={dataTest}
     onMouseDown={onMouseDown}
     onMouseUp={onMouseUp}
     onClick={onClick}
@@ -72,7 +70,8 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  fontSize: '1.25rem'
+  fontSize: '1.25rem',
+  name: 'image'
 }
 
 export default Icon
