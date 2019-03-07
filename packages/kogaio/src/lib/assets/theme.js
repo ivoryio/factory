@@ -60,6 +60,10 @@ export default {
     'card-gray': {
       boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2)',
       backgroundColor: '#f6f9fb'
+    },
+    'menu-list': {
+      boxShadow: '0 1px 4px 0 rgba(22, 29, 37, 0.35)',
+      backgroundColor: '#fff'
     }
   },
   fonts: {

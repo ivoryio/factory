@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   alignItems,
   alignSelf,
@@ -9,6 +9,7 @@ import {
   borders,
   bottom,
   color,
+  colorStyle,
   display,
   flex,
   flexBasis,
@@ -27,38 +28,63 @@ import {
   space
 } from 'styled-system'
 
+import theme from '../assets/theme'
 import { Box } from '../Responsive'
 import Text from '../Text'
 import Touchable from '../Touchable'
 
 const MenuList = ({
+  arrowAlignment,
   listItems,
   onSelectItem,
   ...rest
 }) => (
-  <Container {...rest}>
-    <ListWrapper>
+  <Container arrowAlignment={arrowAlignment} {...rest}>
+    {listItems ? <ListWrapper>
       {listItems.map(item => (
         <TouchableText
           key={item.key}
           onClick={onSelectItem(item.name)}
         >
-          <Text mx={3} color='dark-gunmetal' fontFamily='Roboto' fontSize='1em' textAlign='left'>
+          <Text mx={3} color='dark-gunmetal' fontSize='1em' textAlign='left'>
             {item.name}
           </Text>
         </TouchableText>
       ))}
-    </ListWrapper>
+    </ListWrapper> : null}
   </Container>
 )
+
+const arrowVerticalAlignment = css`
+  ${props => {
+    const alignment = _alignArrow()
+    return `${alignment}`
+
+    function _alignArrow () {
+      const alignments = ['left', 'center', 'right']
+      const { arrowAlignment } = props
+      if (alignments.includes(arrowAlignment)) {
+        switch (arrowAlignment) {
+          case 'left':
+            return `left: 25px;`
+          case 'center':
+            return `align-self: center;`
+          default:
+            return `right: 25px;`
+        }
+      }
+      console.warn('Invalid prop: arrowAlignments must be one of these values: left, center, right')
+    }
+  }}
+`
 
 const Container = styled(Box)`
   display: flex;
   flex-direction: column;
   border-radius: 2px;
-  box-shadow: 0 1px 4px 0 rgba(22, 29, 37, 0.35);
   position: relative;
   &:after {
+    ${arrowVerticalAlignment}
     box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.35);
     background-color: ${themeGet('colors.white')};
     content: '';
@@ -67,7 +93,6 @@ const Container = styled(Box)`
     width: 8px;
     height: 8px;
     top: -4px;
-    right: 25px;
     -moz-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
   }
@@ -78,6 +103,7 @@ const Container = styled(Box)`
   ${borders}
   ${bottom}
   ${color}
+  ${colorStyle}
   ${display}
   ${flex}
   ${flexBasis}
@@ -97,7 +123,6 @@ const Container = styled(Box)`
 
 const ListWrapper = styled.div`
   align-items: center;
-  background-color: ${themeGet('colors.white')};
   display: flex;
   flex-direction: column;
   & > :nth-child(n + 2) {
@@ -119,8 +144,13 @@ const TouchableText = styled(Touchable)`
 `
 
 MenuList.propTypes = {
+  arrowAlignment: PropTypes.oneOf(['left', 'center', 'right']),
   listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onSelectItem: PropTypes.func.isRequired
+  onSelectItem: PropTypes.func.isRequired,
+  theme
+}
+MenuList.defaultProps = {
+  arrowAlignment: 'right'
 }
 
 export default MenuList

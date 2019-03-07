@@ -11,7 +11,6 @@ const onChangeItem = item =>
 const onChangeShowList = () =>
   setShowList(!showList)
 const selectItem = item => () => {
-  console.log('selectItem fired', item)
     onChangeItem(item)
     onChangeShowList()
   }
@@ -44,9 +43,10 @@ const menuListWrapper = {
       />
       { showList &&
       <MenuList
+        arrowAlignment='center'
+        colors='menu-list'
         mt={2}
         fontSize='1rem'
-        fontFamily='Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
         onSelectItem={selectItem}
         listItems={listItems}
         width={{ xs: 1/2, md: 1/3, lg: 1/4}}
