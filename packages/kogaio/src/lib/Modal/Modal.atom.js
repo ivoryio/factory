@@ -72,7 +72,9 @@ class Modal extends PureComponent {
             </Row>
           ) : null}
           <Content>
-            {children}
+            <ChildWrapper>
+              {children}
+            </ChildWrapper>
             <ButtonsWrapper>
               <Button
                 mr={3}
@@ -121,7 +123,13 @@ const ButtonsWrapper = styled.div`
   justify-content: center;
   margin-top: ${themeGet('space.4')}px;
 `
-
+const ChildWrapper = styled.div`
+  color: ${themeGet('colors.dark-gunmetal')};
+  font-size: 1em;
+  padding-inline-start: ${themeGet('space.3')};
+  padding-inline-end: ${themeGet('space.3')};
+  text-align: center;
+`
 const Row = styled.div`
   display: flex;
   justify-content: space-between;

@@ -1,4 +1,4 @@
-#### Modal with content
+#### Modal with header, footer and content
 ```js
 const React = require('react')
 const { useState } = React
@@ -11,12 +11,6 @@ const confirmAction = () => {
   console.log('Success!')
 }
 
-const ChildWrapper = styled.div`
-  align-self: center;
-  color: black;
-  font-size: 1rem;
-  text-align: center;
-`
 const Footer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -58,10 +52,8 @@ const Header = styled.div`
           Header={HeaderCmp}
           Footer={FooterCmp}
         >
-          <ChildWrapper>
             This is a mocked message inside your modal. <br />
             Are you sure you wish to close this modal?
-          </ChildWrapper>
         </Modal>
       )}
     </>
@@ -70,7 +62,7 @@ const Header = styled.div`
 <ModalExample1 />
 ```
 
-#### Modal with custom header and footer
+#### Modal with only content
 ```js
 const React = require('react')
 
@@ -81,12 +73,6 @@ const toggleModal = () => setModalShown(!isModalShown)
 const confirmAction = () => {
   toggleModal()
   console.log('Success!')
-}
-const modalContent = {
-  aligSelf: 'center',
-  color: 'black',
-  fontSize: '1rem',
-  textAlign: 'center'
 }
   return (
     <>
@@ -102,10 +88,8 @@ const modalContent = {
           confirmButtonType='success'
           hideModal={toggleModal}
         >
-          <div style={modalContent}>
             This is some sophisticated content inside your modal. <br />
             Click outside the box to close.
-          </div>
         </Modal>
       )}
     </>
