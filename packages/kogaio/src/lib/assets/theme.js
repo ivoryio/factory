@@ -40,7 +40,8 @@ export default {
     independence: '#4f5767',
     'gun-metal': '#243143',
     'dark-gunmetal': '#1b202f',
-    black: '#000'
+    black: '#000',
+    'modal-background': 'rgba(36, 49, 67, 0.25)'
   },
   colorStyles: {
     brand: {

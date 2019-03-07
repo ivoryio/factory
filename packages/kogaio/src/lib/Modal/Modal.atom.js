@@ -6,7 +6,20 @@ import ReactDOM from 'react-dom'
 import Button from '../Button'
 import Card from '../Card'
 import theme from '../assets/theme'
-import { themeGet } from 'styled-system'
+import {
+  color,
+  display,
+  flexDirection,
+  fontFamily,
+  fontSize,
+  minWidth,
+  maxWidth,
+  minHeight,
+  maxHeight,
+  position,
+  themeGet,
+  width
+} from 'styled-system'
 
 class Modal extends PureComponent {
   constructor (props) {
@@ -40,11 +53,11 @@ class Modal extends PureComponent {
     const {
       className,
       children,
-      cancelBtnLabel,
-      confirmBtnLabel,
+      cancelButtonLabel,
+      cancelButtonType,
+      confirmButtonLabel,
       confirmActionFn,
       confirmButtonType,
-      confirmBtnDataTest,
       Header,
       hideModal,
       Footer,
@@ -52,18 +65,10 @@ class Modal extends PureComponent {
     } = this.props
     return ReactDOM.createPortal(
       <Body className={className}>
-        <Card
-          bg='white'
-          boxShadow='5px 0 10px 0 rgba(0, 0, 0, 0.15);'
-          display='flex'
-          flexDirection='column'
-          width={{ xs: 1 / 2, md: 1 / 3 }}
-          minWidth='25em'
-          maxWidth='35em'
-          minHeight='18em'
-          maxHeight='25em'
+        <StyledCard
+          colors='card-white'
           id='modal-body'
-          position='relative'
+
           {...rest}
         >
           {Header ? (
@@ -77,26 +82,28 @@ class Modal extends PureComponent {
             </ChildWrapper>
             <ButtonsWrapper>
               <Button
+                fontSize='1em'
                 mr={3}
                 onClick={confirmActionFn}
-                title={confirmBtnLabel || 'Confirm'}
+                title={confirmButtonLabel}
                 variant={confirmButtonType}
-                width='10em'
+                width='40%'
               />
               <Button
+                fontSize='1em'
                 onClick={hideModal}
-                title={cancelBtnLabel || 'Cancel'}
-                variant='destructive'
-                width='10em'
+                title={cancelButtonLabel}
+                variant={cancelButtonType}
+                width='40%'
               />
             </ButtonsWrapper>
           </Content>
           {Footer ? (
-            <Row p='18px 12px 12px' borderBlockStart='1px solid #e5e5e5'>
+            <Row borderBlockStart='1px solid #e5e5e5'>
               <Footer />
             </Row>
           ) : null}
-        </Card>
+        </StyledCard>
       </Body>,
       this.modalEl
     )
@@ -109,45 +116,50 @@ const Body = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(36, 49, 67, 0.25);
+  background-color: ${themeGet('colors.modal-background')};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 10;
-  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
 `
 const ButtonsWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: ${themeGet('space.4')}px;
 `
 const ChildWrapper = styled.div`
-  color: ${themeGet('colors.dark-gunmetal')};
   font-size: 1em;
-  padding-inline-start: ${themeGet('space.3')};
-  padding-inline-end: ${themeGet('space.3')};
+  padding-inline-start: ${themeGet('space.3')}px;
+  padding-inline-end: ${themeGet('space.3')}px;
   text-align: center;
 `
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding-block-start: ${props => props.pBlockStart || '15px'};
-  padding-inline-end: ${props => props.pInlineEnd || '10px'};
-  padding-block-end: ${props => props.pBlockEnd || '15px'};
-  padding-inline-start: ${props => props.pInlineStart || '10px'};
-  padding: ${props => props.p};
-  border-block-start ${props => props.borderBlockStart};
-  border-block-end: ${props => props.borderBlockEnd};
-`
-
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
   height: 100%;
+`
+const Row = styled.div`
+  padding-inline-start: ${themeGet('space.2')}px;
+  padding-inline-end: ${themeGet('space.2')}px;
+  border-block-end: ${props => props.borderBlockEnd};
+  border-block-start: ${props => props.borderBlockStart};
+`
+const StyledCard = styled(Card)`
+  ${color}
+  ${display}
+  ${flexDirection}
+  ${fontFamily}
+  ${fontSize}
+  ${minWidth}
+  ${maxWidth}
+  ${minHeight}
+  ${maxHeight}
+  ${position}
+  ${width}
 `
 
 Modal.propTypes = {
@@ -156,23 +168,25 @@ Modal.propTypes = {
     PropTypes.object,
     PropTypes.node
   ]),
+  cancelButtonType: PropTypes.string,
+  cancelButtonLabel: PropTypes.string,
+  confirmActionFn: PropTypes.func.isRequired,
+  confirmButtonType: PropTypes.string,
+  confirmButtonLabel: PropTypes.string,
   className: PropTypes.string,
   Header: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
   Footer: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
   headerLabel: PropTypes.string,
-  cancelBtnLabel: PropTypes.string,
-  confirmBtnLabel: PropTypes.string,
   hideModal: PropTypes.func.isRequired,
-  confirmActionFn: PropTypes.func.isRequired,
-  confirmButtonType: PropTypes.string,
-  confirmBtnDataTest: PropTypes.string,
   theme: PropTypes.object.isRequired
 }
 
 Modal.defaultProps = {
-  actionBtnType: 'info',
-  confirmBtnLabel: 'Confirm',
-  confirmButtonType: 'outlined',
+  cancelButtonLabel: 'Cancel',
+  cancelButtonType: 'destructive',
+  confirmButtonLabel: 'Confirm',
+  confirmButtonType: 'success',
+  fontFamily: 'Roboto',
   theme
 }
 

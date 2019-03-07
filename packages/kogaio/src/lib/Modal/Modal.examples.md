@@ -16,24 +16,17 @@ const Footer = styled.div`
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  padding-block-end: 10px;
   font-size: 1.8rem;
-  color: #484848;
 `
 const Header = styled.div`
   font-size: 1.8rem;
-  color: #484848;
 `
-  const FooterCmp = () => {
-      return (
-        <Footer> Footer Content </Footer>
-      )
-  }
-  const HeaderCmp = () => {
-    return (
-      <Header>Header Content</Header>
-    )
-  }
+const FooterCmp = () => (
+    <Footer> Footer Content </Footer>
+  )
+const HeaderCmp = () => (
+    <Header>Header Content</Header>
+  )
   return (
     <>
     <Button
@@ -44,13 +37,24 @@ const Header = styled.div`
     />
       {isModalShown && (
         <Modal
-          cancelBtnLavel='Cancel'
-          confirmBtnLabel='Confirm'
-          confirmActionFn={confirmAction}
+          color='dark-gunmetal'
+          cancelButtonLabel='Cancel'
+          cancelButtonType='invariant'
+          confirmButtonLabel='Confirm'
           confirmButtonType='success'
+          confirmActionFn={confirmAction}
+          display='flex'
+          flexDirection='column'
+          fontSize='1rem'
           hideModal={toggleModal}
+          minWidth='25em'
+          maxWidth='35em'
+          minHeight='18em'
+          maxHeight='25em'
+          position='relative'
           Header={HeaderCmp}
           Footer={FooterCmp}
+          width={{ xs: 1 / 2, md: 1 / 4 }}
         >
             This is a mocked message inside your modal. <br />
             Are you sure you wish to close this modal?
@@ -62,7 +66,7 @@ const Header = styled.div`
 <ModalExample1 />
 ```
 
-#### Modal with only content
+#### Modal with content only
 ```js
 const React = require('react')
 
@@ -85,10 +89,18 @@ const confirmAction = () => {
       {isModalShown && (
         <Modal
           confirmActionFn={confirmAction}
-          confirmButtonType='success'
+          display='flex'
+          flexDirection='column'
+          fontSize='1rem'
           hideModal={toggleModal}
+          minWidth='20em'
+          maxWidth='35em'
+          minHeight='12em'
+          maxHeight='25em'
+          position='relative'
+          width={{ xs: 1 / 2, md: 1 / 3 }}
         >
-            This is some sophisticated content inside your modal. <br />
+            This is a modal with content inside your modal. <br />
             Click outside the box to close.
         </Modal>
       )}
