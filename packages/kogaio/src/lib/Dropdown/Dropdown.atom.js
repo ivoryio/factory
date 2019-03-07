@@ -48,7 +48,7 @@ const Dropdown = ({
 
   return (
     <Container showList={showList} {...rest}>
-      <TouchablePlaceholder onClick={toggleDropdown} pl={2}>
+      <TouchablePlaceholder onClick={toggleDropdown} px={2}>
         <Text
           color='manatee'
           fontSize='1em'
@@ -65,7 +65,7 @@ const Dropdown = ({
       {showList && (
         <ListWrapper>
           {options.map(option => (
-            <TouchableText key={option.key} onClick={selectOption(option.name)} pl={2}>
+            <TouchableText key={option.key} onClick={selectOption(option.name)} p={2}>
               <Text color='dark-gunmetal' fontSize='1em'>
                 {option.name}
               </Text>
@@ -122,6 +122,7 @@ const TouchablePlaceholder = styled(Touchable)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  overflow: auto;
 `
 const ListWrapper = styled.div`
   display: flex;
@@ -135,8 +136,7 @@ const TouchableText = styled(Touchable)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-block-end: ${themeGet('space.2')}px;
-  padding-block-start: ${themeGet('space.2')}px;
+  overflow: auto;
   :hover {
     background-color: ${themeGet('colors.white-smoke')};
   }

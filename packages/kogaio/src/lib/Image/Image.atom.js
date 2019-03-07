@@ -15,21 +15,18 @@ import {
   width
 } from 'styled-system'
 
-import Icon from '../Icon'
+import images from 'assets/images'
 import theme from '../assets/theme'
 
-const Image = ({ alt, className, objectFit, src, ...rest }) =>
-  (src
-    ? <StyledImage
-      alt={alt}
-      className={className}
-      objectFit={objectFit}
-      src={src}
-      {...rest}
-    /> : <Icon
-      fontSize={7}
-      name='image'
-    />)
+const Image = ({ alt, className, objectFit, src, ...rest }) => (
+  <StyledImage
+    alt={alt}
+    className={className}
+    objectFit={objectFit}
+    src={src || images.placeholder}
+    {...rest}
+  />
+)
 
 const StyledImage = styled.img`
   object-fit: ${props => props.objectFit};
