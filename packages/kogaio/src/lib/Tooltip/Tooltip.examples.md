@@ -11,7 +11,7 @@
   <Tooltip
     isShown
     arrow={{ direction: 'left', alignment: 'top' }}
-    mt={12}
+    mt='12px'
     variant='success'
     width={{ sm: 1, md: 1/2, lg: 1/3 }}>
     This is a successful tooltip.
@@ -21,7 +21,7 @@
   <Tooltip
     isShown
     arrow={{ direction: 'right', alignment: 'center' }}
-    mt={12}
+    mt='12px'
     variant='error'
     width={{ sm: 1, md: 1/2, lg: 1/3 }}>
     Please add a valid format:

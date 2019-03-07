@@ -188,7 +188,7 @@ const InputLabel = styled(Text)`
 
 const StyledInput = styled.input`
   width: 100%;
-  border-radius: 3px;
+  border-radius: ${themeGet('radii.2')}px;
   padding-inline-start: 12px;
   padding-inline-end: 30px;
   height: 36px;

@@ -20,8 +20,8 @@
     return (
       <Flex flexWrap='wrap' justifyContent='space-between' width={1}>
         <Column
-          px='16px'
-          my='4px'
+          px={3}
+          my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
           Primary
@@ -38,13 +38,13 @@
             variant='primary'
             title='Button Label'
             disabled
-            mt='5px'
+            mt={1}
             width='100%'
           />
         </Column>
         <Column
-          px='16px'
-          my='4px'
+          px={3}
+          my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
           Outlined
@@ -60,14 +60,14 @@
             onClick={() => {}}
             title='Button Label'
             variant='outline'
-            mt='5px'
+            mt={1}
             disabled
             width='100%'
           />
         </Column>
         <Column
-          px='16px'
-          my='4px'
+          px={3}
+          my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
           Success
@@ -76,7 +76,7 @@
             onClick={() => {}}
             title='Button Label'
             variant='validation'
-            mr='16px'
+            mr={3}
             width='100%'
           />
           <Button
@@ -84,15 +84,15 @@
             onClick={() => {}}
             title='Button Label'
             variant='validation'
-            mt='5px'
+            mt={1}
             disabled
-            mr='16px'
+            mr={3}
             width='100%'
           />
         </Column>
         <Column
-          px='16px'
-          my='4px'
+          px={3}
+          my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}>
           Destructive
           <Button
@@ -108,14 +108,14 @@
             onClick={() => {}}
             title='Button Label'
             variant='destructive'
-            mt='5px'
+            mt={1}
             disabled
             width='100%'
           />
         </Column>
         <Column
-          px='16px'
-          my='4px'
+          px={3}
+          my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
           Loading state
@@ -126,7 +126,7 @@
             onClick={toggleLoading}
             variant='primary'
             title='Submit'
-            mr='16px'
+            mr={3}
             width='100%'
           />
         </Column>
