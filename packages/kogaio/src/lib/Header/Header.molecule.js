@@ -13,7 +13,8 @@ import {
   minHeight,
   minWidth,
   position,
-  space
+  space,
+  themeGet
 } from 'styled-system'
 
 const Header = ({ className, left, center, right, ...rest }) => (
@@ -56,8 +57,8 @@ const MiddleSection = styled.div`
   flex: 1;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: ${themeGet('space.1')}px;
+  margin-right: ${themeGet('space.1')}px;
   ${color};
 `
 const RightSection = styled.div`

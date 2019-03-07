@@ -65,12 +65,12 @@ const Tooltip = ({
           name={leftIcon}
           fontSize='1em'
           position='absolute'
-          top={8}
-          left={8}
+          top='8px'
+          left='8px'
         />
         <Text
           className='tooltip-text'
-          px={36}
+          px={4}
           py={2}
           fontSize={fontSize}
           textStyle='paragraph'
@@ -80,8 +80,8 @@ const Tooltip = ({
         <Touchable
           effect='opacity'
           position='absolute'
-          top={8}
-          right={8}
+          top='8px'
+          right='8px'
           onClick={hideTooltip}
         >
           <Icon cursor='pointer' name='cancel' fontSize='1em' />

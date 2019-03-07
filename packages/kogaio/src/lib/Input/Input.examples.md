@@ -27,14 +27,14 @@
 
   return (
     <Flex flexWrap='wrap'>
-      <Box px='8px' width={{ xs: 1, md: 1/2 }}>
+      <Box px={2} width={{ xs: 1, md: 1/2 }}>
         <form>
           <Input
             autoComplete='current-email'
             placeholder='Email'
             onChange={handleValueChange('input1')}
             label='Default'
-            mt='4px'
+            mt={1}
             name='email'
             type='password'
             value={formValues.input1}
@@ -49,12 +49,12 @@
           />
         </form>
       </Box>
-      <Box px='8px' width={{ xs: 1, md: 1/2 }}>
+      <Box px={2} width={{ xs: 1, md: 1/2 }}>
         <Input
           autoComplete='your-text'
           label='Valid input'
           onChange={() => console.log('It is valid.')}
-          mt='4px'
+          mt={1}
           name='error-input'
           variant='valid'
           value='this is valid'

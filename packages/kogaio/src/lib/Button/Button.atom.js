@@ -26,6 +26,7 @@ import {
   textAlign,
   top,
   space,
+  themeGet,
   width
 } from 'styled-system'
 import { Text } from '../'
@@ -61,7 +62,7 @@ const Button = ({
 
 /** @component */
 const StyledBtn = styled.button`
-  border-radius: 2px;
+  border-radius: ${themeGet('radii.1')}px;
   cursor: pointer;
   font-size: 0.9rem;
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;

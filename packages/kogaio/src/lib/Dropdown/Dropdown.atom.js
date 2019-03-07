@@ -28,7 +28,6 @@ import {
   space
 } from 'styled-system'
 
-import theme from '../assets/theme'
 import { Box } from '../Responsive'
 import Icon from '../Icon'
 import Text from '../Text'
@@ -150,7 +149,6 @@ Dropdown.propTypes = {
 }
 
 Dropdown.defaultProps = {
-  placeholder: 'Choose one option',
-  theme
+  placeholder: 'Choose one option'
 }
 export default Dropdown

@@ -2,7 +2,7 @@
 ```js
   <Flex alignItems='center'>
     <Box width={{ sm: 1, md: 1/2, lg: 1/3 }}>
-      <Touchable effect='no-feedback' p={12} onClick={() => {}}>
+      <Touchable effect='no-feedback' p='12px' onClick={() => {}}>
         Touchable Without Feedback
       </Touchable>
     </Box>
@@ -17,7 +17,7 @@
       </Touchable>
     </Box>
     <Box width={{ sm: 1, md: 1/2, lg: 1/3 }}>
-      <Touchable effect='highlight' onClick={() => {}} p={12} underlayColor='#009fda'>
+      <Touchable effect='highlight' onClick={() => {}} p='12px' underlayColor='#009fda'>
         Touchable Highlight
       </Touchable>
     </Box>
