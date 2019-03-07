@@ -90,7 +90,6 @@ const containerTopPadding = css`
 const Container = styled(Box)`
   display: flex;
   flex-direction: column;
-  border-radius: ${themeGet('space.1')}px;
   border: solid 1px ${themeGet('colors.azureish-grey')};
   ${props => props.showList ? containerTopPadding : containerVerticalPadding};
   ${alignItems}
@@ -119,13 +118,14 @@ const Container = styled(Box)`
 `
 
 const TouchablePlaceholder = styled(Touchable)`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  overflow: auto;
 `
 const ListWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-block-start: ${themeGet('space.1')}px;
@@ -134,10 +134,8 @@ const ListWrapper = styled.div`
   }
 `
 const TouchableText = styled(Touchable)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow: auto;
+  text-align: left;
+  width: 100%;
   :hover {
     background-color: ${themeGet('colors.white-smoke')};
   }

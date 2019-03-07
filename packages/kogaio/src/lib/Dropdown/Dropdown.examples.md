@@ -10,7 +10,7 @@ const onChangeOption = newOption =>
 const options = [
   {
     key: 'option1',
-    name: 'First Option'
+    name: 'First Option bcxb bcxb bcxbcx bcx'
   },
   {
     key: 'option2',
@@ -23,6 +23,7 @@ const options = [
 ]
   return (
       <Dropdown
+        borderRadius={1}
         colors='dropdown-white'
         mx='auto'
         fontSize='1rem'
