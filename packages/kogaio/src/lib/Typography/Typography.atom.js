@@ -18,7 +18,7 @@ import {
   themeGet
 } from 'styled-system'
 
-const Text = ({ children, message, ...rest }) => (
+const Typography = ({ children, message, ...rest }) => (
   <StyledText {...rest}>{message || children}</StyledText>
 )
 
@@ -41,10 +41,10 @@ const StyledText = styled.div`
   ${textAlign}
 `
 
-Text.propTypes = {
+Typography.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   cursor: PropTypes.string,
   message: PropTypes.string
 }
 
-export default Text
+export default Typography

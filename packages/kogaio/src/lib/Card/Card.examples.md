@@ -38,7 +38,7 @@ const Form = styled.form`width: 100%;`;
             width='350px'
             p={4}
           >
-            <Text
+            <Typography
               message='Card title'
               fontWeight='bold'
               textStyle='h2'
