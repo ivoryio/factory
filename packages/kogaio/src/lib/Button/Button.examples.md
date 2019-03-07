@@ -52,14 +52,14 @@
             fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             title='Button Label'
-            variant='outlined'
+            variant='outline'
             width='100%'
           />
           <Button
             fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             title='Button Label'
-            variant='outlined'
+            variant='outline'
             mt='5px'
             disabled
             width='100%'
@@ -75,7 +75,7 @@
             fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             title='Button Label'
-            variant='success'
+            variant='validation'
             mr='16px'
             width='100%'
           />
@@ -83,7 +83,7 @@
             fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             title='Button Label'
-            variant='success'
+            variant='validation'
             mt='5px'
             disabled
             mr='16px'

@@ -34,7 +34,6 @@
             placeholder='Email'
             onChange={handleValueChange('input1')}
             label='Default'
-            mb='12px'
             mt='4px'
             name='email'
             type='password'
@@ -55,7 +54,6 @@
           autoComplete='your-text'
           label='Valid input'
           onChange={() => console.log('It is valid.')}
-          mb='12px'
           mt='4px'
           name='error-input'
           variant='valid'

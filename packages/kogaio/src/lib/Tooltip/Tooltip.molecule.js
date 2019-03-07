@@ -25,7 +25,6 @@ import {
 import Box from '../Responsive/Box'
 import { Icon, Text, Touchable } from '../'
 import tooltipStyle from './tooltipStyle'
-import theme from '../assets/theme'
 
 const Tooltip = ({
   arrow,
@@ -36,7 +35,16 @@ const Tooltip = ({
   variant,
   ...rest
 }) => {
+  // #region initialisation
   const [showTooltip, setTooltipShown] = useState(false)
+  useEffect(
+    () => {
+      setTooltipShown(isShown)
+    },
+    [isShown]
+  )
+  // #endregion
+  // #region functions
   const leftIcon = (() => {
     switch (variant) {
       case 'success':
@@ -47,15 +55,11 @@ const Tooltip = ({
         return 'assignment'
     }
   })()
-  useEffect(
-    () => {
-      setTooltipShown(isShown)
-    },
-    [isShown]
-  )
   const hideTooltip = () => setTooltipShown(false)
+  // #endregion
+  // #region render
   return showTooltip ? (
-    <Container arrow={arrow} variant={variant} {...rest}>
+    <Container arrow={arrow} className='iv-tooltip' variant={variant} {...rest}>
       <Body>
         <Icon
           name={leftIcon}
@@ -64,15 +68,6 @@ const Tooltip = ({
           top={8}
           left={8}
         />
-        <Touchable
-          colorActive='#636f7c'
-          position='absolute'
-          top={8}
-          right={8}
-          onClick={hideTooltip}
-        >
-          <Icon color='#cdd3d9' cursor='pointer' name='cancel' fontSize='1em' />
-        </Touchable>
         <Text
           className='tooltip-text'
           px={36}
@@ -82,9 +77,19 @@ const Tooltip = ({
         >
           {children}
         </Text>
+        <Touchable
+          effect='opacity'
+          position='absolute'
+          top={8}
+          right={8}
+          onClick={hideTooltip}
+        >
+          <Icon cursor='pointer' name='cancel' fontSize='1em' />
+        </Touchable>
       </Body>
     </Container>
   ) : null
+  // #endregion
 }
 
 const arrowStyle = css`
@@ -236,7 +241,6 @@ Tooltip.propTypes = {
   ]),
   icLeft: PropTypes.string,
   isShown: PropTypes.bool.isRequired,
-  theme: PropTypes.object.isRequired,
   variant: PropTypes.string
 }
 Tooltip.defaultProps = {
@@ -247,7 +251,6 @@ Tooltip.defaultProps = {
   },
   fontSize: '12px',
   icLeft: 'assignment',
-  theme,
   variant: 'error'
 }
 

@@ -14,7 +14,6 @@ import {
   size,
   space
 } from 'styled-system'
-import theme from '../assets/theme'
 
 const Icon = ({
   className,
@@ -69,13 +68,11 @@ Icon.propTypes = {
   className: PropTypes.string,
   dataTest: PropTypes.string,
   onClick: PropTypes.func,
-  src: PropTypes.string,
-  theme: PropTypes.object.isRequired
+  src: PropTypes.string
 }
 
 Icon.defaultProps = {
-  fontSize: '1.25rem',
-  theme
+  fontSize: '1.25rem'
 }
 
 export default Icon

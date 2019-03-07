@@ -68,7 +68,7 @@ const Form = styled.form`width: 100%;`;
             <Button
               onClick={() => console.log('Clicked!')}
               mt={12}
-              variant='outlined'
+              variant='outline'
               title='Submit'
             />
           </Card>
