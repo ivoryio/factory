@@ -43,8 +43,10 @@ import {
 } from 'styled-system'
 
 import inputStyle from './inputStyle'
+import Icon from '../Icon'
+import Tooltip from '../Tooltip'
+import Touchable from '../Touchable'
 import Typography from '../Typography'
-import { Tooltip, Icon } from '../'
 
 const Input = ({
   autoComplete,
@@ -116,18 +118,16 @@ const Input = ({
           {...rest}
         />
         {type === 'password' ? (
-          <Icon
-            color='light-gray'
-            cursor='pointer'
-            fontSize='1.25em'
-            name='visibility'
+          <Touchable
             onMouseDown={_toggleShowPassword}
             onMouseUp={_toggleShowPassword}
             onTouchStart={_toggleShowPassword}
             onTouchEnd={_toggleShowPassword}
             position='absolute'
             right={8}
-          />
+          >
+            <Icon color='light-gray' fontSize='1.25em' name='visibility' />
+          </Touchable>
         ) : null}
       </Row>
       {withErrorTooltip ? (
@@ -150,7 +150,12 @@ const Input = ({
                 name='error_outline'
                 pr={1}
               />
-              <Typography color='error' fontSize={0} width={1} textStyle='error'>
+              <Typography
+                color='error'
+                fontSize={0}
+                width={1}
+                textStyle='error'
+              >
                 {error}
               </Typography>
             </Fragment>

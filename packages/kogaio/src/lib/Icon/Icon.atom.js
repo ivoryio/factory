@@ -15,27 +15,8 @@ import {
   space
 } from 'styled-system'
 
-const Icon = ({
-  className,
-  cursor,
-  name,
-  onMouseDown,
-  onMouseUp,
-  onTouchStart,
-  onTouchEnd,
-  onClick,
-  ...rest
-}) => (
-  <StyledIcon
-    className='material-icons'
-    cursor={cursor}
-    onMouseDown={onMouseDown}
-    onMouseUp={onMouseUp}
-    onClick={onClick}
-    onTouchStart={onTouchStart}
-    onTouchEnd={onTouchEnd}
-    {...rest}
-  >
+const Icon = ({ className, name, ...rest }) => (
+  <StyledIcon className='material-icons' {...rest}>
     {name}
   </StyledIcon>
 )

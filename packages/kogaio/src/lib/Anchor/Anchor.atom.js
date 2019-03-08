@@ -95,14 +95,6 @@ const StyledAnchor = styled.a`
 `
 
 Anchor.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.func
-  ]).isRequired,
-  href: PropTypes.string.isRequired,
-  target: PropTypes.string,
-  rel: PropTypes.string,
   ...alignContent.propTypes,
   ...alignItems.propTypes,
   ...alignSelf.propTypes,
@@ -131,6 +123,15 @@ Anchor.propTypes = {
   ...textAlign.propTypes,
   ...top.propTypes,
   ...verticalAlign.propTypes,
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.func,
+    PropTypes.element
+  ]).isRequired,
+  href: PropTypes.string.isRequired,
+  target: PropTypes.string,
+  rel: PropTypes.string,
   zIndex
 }
 

@@ -30,6 +30,10 @@ const Touchable = ({
   children,
   effect,
   onClick,
+  onMouseDown,
+  onMouseUp,
+  onTouchStart,
+  onTouchEnd,
   underlayColor,
   ...rest
 }) => (
@@ -37,6 +41,10 @@ const Touchable = ({
     activeOpacity={activeOpacity}
     effect={effect}
     onClick={onClick}
+    onMouseDown={onMouseDown}
+    onMouseUp={onMouseUp}
+    onTouchStart={onTouchStart}
+    onTouchEnd={onTouchEnd}
     underlayColor={underlayColor}
     {...rest}
   >
@@ -135,7 +143,11 @@ Touchable.propTypes = {
   ...width.propTypes,
   ...zIndex.propTypes,
   children: PropTypes.node,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  onMouseDown: PropTypes.func,
+  onMouseUp: PropTypes.func,
+  onTouchStart: PropTypes.func,
+  onTouchEnd: PropTypes.func,
   activeOpacity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   effect: PropTypes.oneOf(['opacity', 'highlight', 'no-feedback']).isRequired,
   underlayColor: PropTypes.string

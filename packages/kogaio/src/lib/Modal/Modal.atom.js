@@ -64,21 +64,14 @@ class Modal extends PureComponent {
     } = this.props
     return ReactDOM.createPortal(
       <Body className={className}>
-        <StyledCard
-          colors='card-white'
-          id='modal-body'
-
-          {...rest}
-        >
+        <StyledCard colors='card-white' id='modal-body' {...rest}>
           {Header ? (
             <Row>
               <Header />
             </Row>
           ) : null}
           <Content>
-            <ChildWrapper>
-              {children}
-            </ChildWrapper>
+            <ChildWrapper>{children}</ChildWrapper>
             <ButtonsWrapper>
               <ModalButton
                 fontSize='1em'
@@ -150,8 +143,9 @@ const Row = styled.div`
   &:first-of-type {
     border-block-end: ${themeGet('borders.1')} ${themeGet('colors.light-gray')};
   }
-  &:nth-of-type(2) {
-    border-block-start: ${themeGet('borders.1')} ${themeGet('colors.light-gray')};
+  &:last-of-type {
+    border-block-start: ${themeGet('borders.1')}
+      ${themeGet('colors.light-gray')};
   }
 `
 const StyledCard = styled(Card)`
@@ -174,25 +168,27 @@ Modal.propTypes = {
     PropTypes.object,
     PropTypes.node
   ]),
-  cancelButtonType: PropTypes.oneOfType(['primary, outline, validation, destructive']),
+  cancelButtonType: PropTypes.oneOf([
+    'primary, outline, validation, destructive'
+  ]),
   cancelButtonLabel: PropTypes.string,
   confirmActionFn: PropTypes.func.isRequired,
-  confirmButtonType: PropTypes.oneOfType(['primary, outline, validation, destructive']),
+  confirmButtonType: PropTypes.oneOf([
+    'primary, outline, validation, destructive'
+  ]),
   confirmButtonLabel: PropTypes.string,
   className: PropTypes.string,
   Header: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
   Footer: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
   headerLabel: PropTypes.string,
-  hideModal: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired
+  hideModal: PropTypes.func.isRequired
 }
 
 Modal.defaultProps = {
   cancelButtonLabel: 'Cancel',
-  cancelButtonType: 'destructive',
+  cancelButtonType: 'outlined',
   confirmButtonLabel: 'Confirm',
-  confirmButtonType: 'validation',
-  fontFamily: 'Roboto'
+  confirmButtonType: 'validation'
 }
 
 export default Modal

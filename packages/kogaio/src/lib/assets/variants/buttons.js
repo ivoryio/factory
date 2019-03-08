@@ -30,12 +30,7 @@ export default function (colors, shadows) {
         color: brand.white,
         background: brand.disabled.background,
         cursor: 'not-allowed',
-        transform: 'scale(1)',
-        '&:hover': {
-          backgroundImage: `linear-gradient(to bottom, ${
-            colors.brand.primary
-          }, ${colors.brand.complementary})`
-        }
+        transform: 'scale(1)'
       }
     },
     outline: {

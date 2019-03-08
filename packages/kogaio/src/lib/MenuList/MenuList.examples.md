@@ -3,56 +3,73 @@
 const React = require('react')
 const { useState } = React
 const { default: Icon } = require('../Icon')
+
 const MenuListExample = () => {
-const [selectedItem, setSelectedItem] = useState('')
-const [showList, setShowList] = useState(false)
-const onChangeItem = item =>
-  setSelectedItem(item)
-const onChangeShowList = () =>
-  setShowList(!showList)
-const selectItem = item => () => {
-    onChangeItem(item)
-    onChangeShowList()
-  }
 const listItems = [
   {
-    key: 'list-item1',
+    id: 'list-item1',
     name: 'Menu list item 1'
   },
   {
-    key: 'list-item2',
+    id: 'list-item2',
     name: 'Menu list item 2'
   },
   {
-    key: 'list-item3',
+    id: 'list-item3',
     name: 'Menu list item 3'
   }
 ]
-const menuListWrapper = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center'
-}
+const MyCustomToggler = ({ onClick }) => (
+  <div
+    style={{ cursor: 'pointer', color: 'blue' }}
+    onClick={onClick}>
+      Test
+  </div>
+)
   return (
-    <div style={menuListWrapper}>
-      <Icon
-        cursor='pointer'
-        name='notification_important'
-        onClick={onChangeShowList}
-        fontSize='2rem'
-      />
-      { showList &&
-      <MenuList
-        arrowAlignment='center'
-        colors='menu-list'
-        mt={2}
-        fontSize='1rem'
-        onSelectItem={selectItem}
-        listItems={listItems}
-        width={{ xs: 1/2, md: 1/3, lg: 1/4}}
-      />
-      }
-    </div>
+    <Flex>
+      <Box width={{ xs: 1, sm: 1/2, lg: 1/3 }}>
+        <MenuList
+          alignment='left'
+          arrowSize={10}
+          icSize={24}
+          id='menu'
+          colors='menu-list'
+          mt={2}
+          fontSize='1rem'
+          onSelectItem={item => console.log(`Selected ${item}`)}
+          listItems={listItems}
+        />
+      </Box>
+      <Box width={{ xs: 1, sm: 1/2, lg: 1/3}}>
+        <MenuList
+          alignment='center'
+          arrowSize={10}
+          icName='settings'
+          icSize={24}
+          id='menu2'
+          colors='menu-list'
+          mt={2}
+          fontSize='1rem'
+          onSelectItem={item => console.log(`Selected ${item}`)}
+          listItems={listItems}
+        />
+      </Box>
+      <Box width={{ xs: 1, sm: 1/2, lg: 1/3}}>
+        <MenuList
+          alignment='right'
+          arrowSize={10}
+          icName='account_circle'
+          icSize={24}
+          id='menu3'
+          colors='menu-list'
+          mt={2}
+          fontSize='1rem'
+          onSelectItem={item => console.log(`Selected ${item}`)}
+          listItems={listItems}
+        />
+      </Box>
+    </Flex>
   )
 }
   <MenuListExample />

@@ -56,7 +56,7 @@ const Button = ({
     variant={variant}
     {...rest}
   >
-    {!isLoading ? title : <Typography message='loading...' />}
+    {isLoading ? <Typography color='white' message='loading...' /> : title}
   </StyledBtn>
 )
 
@@ -64,9 +64,9 @@ const Button = ({
 const StyledBtn = styled.button`
   border-radius: ${themeGet('radii.1')}px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
-  font-weight: 900;
+  font-weight: bold;
   font-style: normal;
   letter-spacing: normal;
   min-height: 36px;
