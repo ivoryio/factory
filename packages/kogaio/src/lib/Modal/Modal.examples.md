@@ -55,7 +55,8 @@ const HeaderCmp = () => (
           width={{ xs: 1 / 2, md: 1 / 4 }}
         >
             This is a mocked message inside your modal. <br />
-            Are you sure you wish to close this modal?
+            Are you sure you wish to close this modal? <br />
+            Also you can close it by clicking outside the box.
         </Modal>
       )}
     </>
@@ -98,8 +99,8 @@ const confirmAction = () => {
           position='relative'
           width={{ xs: 1 / 2, md: 1 / 3 }}
         >
-            This is a modal with content inside your modal. <br />
-            Click outside the box to close.
+            This is a mocked message inside your modal. <br />
+            Are you sure you wish to close this modal?
         </Modal>
       )}
     </>
