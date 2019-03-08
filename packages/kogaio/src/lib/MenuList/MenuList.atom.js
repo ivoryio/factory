@@ -20,7 +20,6 @@ import {
   minHeight,
   minWidth,
   opacity,
-  overflow,
   position,
   right,
   themeGet,
@@ -114,7 +113,6 @@ const Container = styled(Box)`
   ${minHeight}
   ${minWidth}
   ${opacity}
-  ${overflow}
   ${position}
   ${right}
   ${space}
