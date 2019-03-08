@@ -28,7 +28,7 @@
   return (
     <Flex flexWrap='wrap'>
       <Box px={2} width={{ xs: 1, md: 1/2 }}>
-        <form>
+        <form onSubmit={ev => ev.preventDefault()}>
           <Input
             autoComplete='current-email'
             placeholder='Email'
