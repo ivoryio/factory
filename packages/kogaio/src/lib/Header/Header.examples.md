@@ -6,7 +6,7 @@
   
   const HeaderExample = () => {
     const TextComponent = text => <TextContainer>
-    <Text message={text} />
+    <Typography message={text} />
     </TextContainer>
 
     const TextContainer = styled(Box)`
@@ -31,7 +31,8 @@
 ```js
   const React = require('react')
   const { default: styled, keyframes } = require('styled-components')
-  const { default: icons } = require('assets/icons')
+  const { default: images } = require('assets/images')
+
   const scaleLogo = keyframes`
     0% {
       transform: scale(1);
@@ -80,15 +81,24 @@
 
   const LogoWrapper = () => (
     <CenterSection>
-      <Logo src={icons.ivoryLogo} />
+      <Logo src={images.ivoryLogo} />
       <Title> Ivory </Title>
     </CenterSection>
+  )
+  const IconWrapper = () => (
+    <Icon
+      alt='sign-out'
+      fontSize={5}
+      name='exit_to_app'
+      position='absolute'
+      right='16px'
+    />
   )
 
   return (
     <Header
       center={<LogoWrapper />}
-      right={<LogoutIcon src={icons.logout} />}
+      right={<IconWrapper />}
       bg='white'
       p={1}
       position='relative'

@@ -33,15 +33,13 @@ const HeaderCmp = () => (
       title='Show modal'
       border='1px solid #d3d3d3'
       onClick={toggleModal}
-      variant='outlined'
+      variant='outline'
     />
       {isModalShown && (
         <Modal
           color='dark-gunmetal'
-          cancelButtonLabel='Cancel'
-          cancelButtonType='invariant'
-          confirmButtonLabel='Confirm'
-          confirmButtonType='success'
+          cancelButtonLabel='Cancel Button'
+          confirmButtonLabel='Confirm Button'
           confirmActionFn={confirmAction}
           display='flex'
           flexDirection='column'
@@ -84,7 +82,7 @@ const confirmAction = () => {
       title='Show modal'
       border='1px solid #d3d3d3'
       onClick={toggleModal}
-      variant='outlined'
+      variant='outline'
       />
       {isModalShown && (
         <Modal

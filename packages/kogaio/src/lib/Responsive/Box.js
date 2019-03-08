@@ -9,7 +9,6 @@ import {
   textAlign,
   width
 } from 'styled-system'
-import theme from '../assets/theme'
 
 const Box = props => <StyledBox {...props} />
 
@@ -33,12 +32,7 @@ Box.propTypes = {
   ...width.propTypes,
   ...fontSize.propTypes,
   ...fontFamily.propTypes,
-  ...textAlign.propTypes,
-  theme
-}
-
-Box.defaultProps = {
-  theme
+  ...textAlign.propTypes
 }
 
 export default Box

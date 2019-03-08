@@ -1,4 +1,4 @@
-import React, { useState, createRef } from 'react'
+import React, { Fragment, useState, createRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
@@ -43,18 +43,16 @@ import {
 } from 'styled-system'
 
 import inputStyle from './inputStyle'
-import Text from '../Text'
+import Typography from '../Typography'
 import { Tooltip, Icon } from '../'
-import theme from '../assets/theme'
 
 const Input = ({
   autoComplete,
-  dataTest,
   className,
   cssLabel,
   disabled,
   error,
-  withErrorLabel,
+  withErrorTooltip,
   blockSize,
   id,
   inlineSize,
@@ -63,13 +61,14 @@ const Input = ({
   onChange,
   placeholder,
   placeholderTextColor,
+  ref,
   required,
   type,
   value,
   variant,
   ...rest
 }) => {
-  const inputRef = createRef()
+  const inputRef = ref || createRef()
   const [inputType, setInputType] = useState(type)
 
   const inputVariant = (() => {
@@ -89,7 +88,6 @@ const Input = ({
     }
     return setInputType(type)
   }
-
   return (
     <InputWrapper hasLabel={label} {...rest}>
       {label ? (
@@ -102,7 +100,6 @@ const Input = ({
           autoComplete={autoComplete}
           borderRadius={borderRadius}
           className={className}
-          data-testid={dataTest}
           disabled={disabled}
           error={error}
           hasLabel={label}
@@ -120,37 +117,45 @@ const Input = ({
         />
         {type === 'password' ? (
           <Icon
-            position='absolute'
-            name='visibility'
-            color='#cdd3d9'
-            colorActive='#484848'
+            color='light-gray'
             cursor='pointer'
+            fontSize='1.25em'
+            name='visibility'
             onMouseDown={_toggleShowPassword}
             onMouseUp={_toggleShowPassword}
             onTouchStart={_toggleShowPassword}
             onTouchEnd={_toggleShowPassword}
-            fontSize='1.25em'
+            position='absolute'
             right={8}
           />
         ) : null}
       </Row>
-      {withErrorLabel ? (
-        <ErrorWrapper>
-          <Icon name='error_outline' fontSize='0.85em' />
-          <Text ml='4px' textStyle='error'>
-            {error}
-          </Text>
-        </ErrorWrapper>
-      ) : (
+      {withErrorTooltip ? (
         <Tooltip
-          arrow={{ alignment: 'right' }}
+          arrow={{ direction: 'top', alignment: 'right' }}
           isShown={!!error}
-          variant='error'
           mt={2}
+          variant='error'
           width={1}
         >
           {error}
         </Tooltip>
+      ) : (
+        <ErrorWrapper mt={1}>
+          {error ? (
+            <Fragment>
+              <Icon
+                color='error'
+                fontSize='0.85em'
+                name='error_outline'
+                pr={1}
+              />
+              <Typography color='error' fontSize={0} width={1} textStyle='error'>
+                {error}
+              </Typography>
+            </Fragment>
+          ) : null}
+        </ErrorWrapper>
       )}
     </InputWrapper>
   )
@@ -161,7 +166,7 @@ const InputWrapper = styled.div`
   flex-direction: column;
   width: 100%;
   position: relative;
-  ${props => props.hasLabel && space}
+  ${props => props.hasLabel && space};
 `
 
 const Row = styled.div`
@@ -173,7 +178,7 @@ const Row = styled.div`
   position: relative;
 `
 
-const InputLabel = styled(Text)`
+const InputLabel = styled(Typography)`
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
@@ -183,7 +188,7 @@ const InputLabel = styled(Text)`
 
 const StyledInput = styled.input`
   width: 100%;
-  border-radius: 3px;
+  border-radius: ${themeGet('radii.2')}px;
   padding-inline-start: 12px;
   padding-inline-end: 30px;
   height: 36px;
@@ -198,9 +203,15 @@ const StyledInput = styled.input`
 
   &:focus {
     ~ i {
-      color: #484848;
+      color: ${themeGet('colors.paynes-gray')};
     }
   }
+
+  &::placeholder {
+      color: ${themeGet('colors.manatee')};
+    }
+  }
+  
   ${inputStyle}
   ${alignContent}
   ${alignItems}
@@ -244,11 +255,8 @@ const StyledInput = styled.input`
 const ErrorWrapper = styled.div`
   display: flex;
   align-items: center;
-  margin-block-start: 4px;
-
-  & > i {
-    color: ${themeGet('colors.error')};
-  }
+  height: 12px;
+  ${space}
 `
 
 Input.propTypes = {
@@ -277,13 +285,11 @@ Input.propTypes = {
     PropTypes.number,
     PropTypes.object
   ]),
-  theme: PropTypes.object.isRequired,
   variant: PropTypes.oneOf(['default', 'valid', 'error', 'disabled'])
 }
 
 Input.defaultProps = {
   placeholder: 'Search...',
-  theme,
   type: 'text',
   value: '',
   variant: 'default'

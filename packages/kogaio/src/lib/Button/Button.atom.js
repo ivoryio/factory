@@ -26,10 +26,10 @@ import {
   textAlign,
   top,
   space,
+  themeGet,
   width
 } from 'styled-system'
-import theme from '../assets/theme'
-import { Text } from '../'
+import Typography from '../Typography'
 
 const Button = ({
   alignSelf,
@@ -56,13 +56,13 @@ const Button = ({
     variant={variant}
     {...rest}
   >
-    {!isLoading ? title : <Text message='loading...' />}
+    {!isLoading ? title : <Typography message='loading...' />}
   </StyledBtn>
 )
 
 /** @component */
 const StyledBtn = styled.button`
-  border-radius: 2px;
+  border-radius: ${themeGet('radii.1')}px;
   cursor: pointer;
   font-size: 0.9rem;
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
@@ -110,15 +110,13 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
-  variant: PropTypes.oneOf(['primary', 'outlined', 'success', 'destructive'])
+  variant: PropTypes.oneOf(['primary', 'outline', 'validation', 'destructive'])
 }
 
 Button.defaultProps = {
   disabled: false,
   isLoading: false,
-  theme,
   variant: 'primary'
 }
 

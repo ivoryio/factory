@@ -14,12 +14,10 @@ import {
   size,
   space
 } from 'styled-system'
-import theme from '../assets/theme'
 
 const Icon = ({
   className,
   cursor,
-  dataTest,
   name,
   onMouseDown,
   onMouseUp,
@@ -31,7 +29,6 @@ const Icon = ({
   <StyledIcon
     className='material-icons'
     cursor={cursor}
-    data-testid={dataTest}
     onMouseDown={onMouseDown}
     onMouseUp={onMouseUp}
     onClick={onClick}
@@ -69,13 +66,12 @@ Icon.propTypes = {
   className: PropTypes.string,
   dataTest: PropTypes.string,
   onClick: PropTypes.func,
-  src: PropTypes.string,
-  theme: PropTypes.object.isRequired
+  src: PropTypes.string
 }
 
 Icon.defaultProps = {
   fontSize: '1.25rem',
-  theme
+  name: 'image'
 }
 
 export default Icon

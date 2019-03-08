@@ -28,7 +28,7 @@ import {
 } from 'styled-system'
 
 import { Box } from '../Responsive'
-import Text from '../Text'
+import Typography from '../Typography'
 import Touchable from '../Touchable'
 
 const MenuList = ({
@@ -44,9 +44,9 @@ const MenuList = ({
           key={item.key}
           onClick={onSelectItem(item.name)}
         >
-          <Text p={3} color='dark-gunmetal' fontSize='1em' textAlign='left'>
+          <Typography p={3} color='dark-gunmetal' fontSize='1em' textAlign='left'>
             {item.name}
-          </Text>
+          </Typography>
         </TouchableText>
       ))}
     </ListWrapper>
@@ -136,7 +136,8 @@ const TouchableText = styled(Touchable)`
 MenuList.propTypes = {
   arrowAlignment: PropTypes.oneOf(['left', 'center', 'right']),
   listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onSelectItem: PropTypes.func.isRequired
+  onSelectItem: PropTypes.func.isRequired,
+  theme: PropTypes.object
 }
 MenuList.defaultProps = {
   arrowAlignment: 'right'

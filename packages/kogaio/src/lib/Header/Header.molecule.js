@@ -13,9 +13,9 @@ import {
   minHeight,
   minWidth,
   position,
-  space
+  space,
+  themeGet
 } from 'styled-system'
-import theme from '../assets/theme'
 
 const Header = ({ className, left, center, right, ...rest }) => (
   <StyledHeader className={className} {...rest}>
@@ -57,8 +57,8 @@ const MiddleSection = styled.div`
   flex: 1;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: ${themeGet('space.1')}px;
+  margin-right: ${themeGet('space.1')}px;
   ${color};
 `
 const RightSection = styled.div`
@@ -85,12 +85,7 @@ Header.propTypes = {
   className: PropTypes.string,
   left: PropTypes.node,
   middle: PropTypes.node,
-  right: PropTypes.node,
-  theme
-}
-
-Header.defaultProps = {
-  theme
+  right: PropTypes.node
 }
 
 export default Header

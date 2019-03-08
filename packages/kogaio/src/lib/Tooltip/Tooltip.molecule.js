@@ -23,9 +23,8 @@ import {
 } from 'styled-system'
 
 import Box from '../Responsive/Box'
-import { Icon, Text, Touchable } from '../'
+import { Icon, Typography, Touchable } from '../'
 import tooltipStyle from './tooltipStyle'
-import theme from '../assets/theme'
 
 const Tooltip = ({
   arrow,
@@ -36,7 +35,16 @@ const Tooltip = ({
   variant,
   ...rest
 }) => {
+  // #region initialisation
   const [showTooltip, setTooltipShown] = useState(false)
+  useEffect(
+    () => {
+      setTooltipShown(isShown)
+    },
+    [isShown]
+  )
+  // #endregion
+  // #region functions
   const leftIcon = (() => {
     switch (variant) {
       case 'success':
@@ -47,44 +55,41 @@ const Tooltip = ({
         return 'assignment'
     }
   })()
-  useEffect(
-    () => {
-      setTooltipShown(isShown)
-    },
-    [isShown]
-  )
   const hideTooltip = () => setTooltipShown(false)
+  // #endregion
+  // #region render
   return showTooltip ? (
-    <Container arrow={arrow} variant={variant} {...rest}>
+    <Container arrow={arrow} className='iv-tooltip' variant={variant} {...rest}>
       <Body>
         <Icon
           name={leftIcon}
           fontSize='1em'
           position='absolute'
-          top={8}
-          left={8}
+          top='8px'
+          left='8px'
         />
-        <Touchable
-          colorActive='#636f7c'
-          position='absolute'
-          top={8}
-          right={8}
-          onClick={hideTooltip}
-        >
-          <Icon color='#cdd3d9' cursor='pointer' name='cancel' fontSize='1em' />
-        </Touchable>
-        <Text
+        <Typography
           className='tooltip-text'
-          px={36}
+          px={4}
           py={2}
           fontSize={fontSize}
           textStyle='paragraph'
         >
           {children}
-        </Text>
+        </Typography>
+        <Touchable
+          effect='opacity'
+          position='absolute'
+          top='8px'
+          right='8px'
+          onClick={hideTooltip}
+        >
+          <Icon cursor='pointer' name='cancel' fontSize='1em' />
+        </Touchable>
       </Body>
     </Container>
   ) : null
+  // #endregion
 }
 
 const arrowStyle = css`
@@ -236,7 +241,6 @@ Tooltip.propTypes = {
   ]),
   icLeft: PropTypes.string,
   isShown: PropTypes.bool.isRequired,
-  theme: PropTypes.object.isRequired,
   variant: PropTypes.string
 }
 Tooltip.defaultProps = {
@@ -247,7 +251,6 @@ Tooltip.defaultProps = {
   },
   fontSize: '12px',
   icLeft: 'assignment',
-  theme,
   variant: 'error'
 }
 

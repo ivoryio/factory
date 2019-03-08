@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom'
 
 import Button from '../Button'
 import Card from '../Card'
-import theme from '../assets/theme'
 import {
   color,
   display,
@@ -168,10 +167,10 @@ Modal.propTypes = {
     PropTypes.object,
     PropTypes.node
   ]),
-  cancelButtonType: PropTypes.string,
+  cancelButtonType: PropTypes.oneOfType(['primary, outline, validation, destructive']),
   cancelButtonLabel: PropTypes.string,
   confirmActionFn: PropTypes.func.isRequired,
-  confirmButtonType: PropTypes.string,
+  confirmButtonType: PropTypes.oneOfType(['primary, outline, validation, destructive']),
   confirmButtonLabel: PropTypes.string,
   className: PropTypes.string,
   Header: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
@@ -185,9 +184,8 @@ Modal.defaultProps = {
   cancelButtonLabel: 'Cancel',
   cancelButtonType: 'destructive',
   confirmButtonLabel: 'Confirm',
-  confirmButtonType: 'success',
-  fontFamily: 'Roboto',
-  theme
+  confirmButtonType: 'validation',
+  fontFamily: 'Roboto'
 }
 
 export default Modal

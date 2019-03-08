@@ -34,8 +34,7 @@ import {
   zIndex
 } from 'styled-system'
 
-import Text from '../Text'
-import theme from '../assets/theme'
+import Typography from '../Typography'
 
 const Anchor = ({
   children,
@@ -47,17 +46,18 @@ const Anchor = ({
   ...rest
 }) => (
   <StyledAnchor href={href} target={target} rel={rel} {...rest}>
-    <Text textStyle='link' fontSize={fontSize} fontWeight={fontWeight}>
+    <Typography textStyle='link' fontSize={fontSize} fontWeight={fontWeight}>
       {children}
-    </Text>
+    </Typography>
   </StyledAnchor>
 )
 
 const StyledAnchor = styled.a`
-  box-shadow: 0 1px 0 ${themeGet('colors.highlight', '#3498db')};
+  box-shadow: 0 1px 0 ${themeGet('colors.brand.primary', '#3498db')};
   letter-spacing: normal;
   text-align: center;
   text-decoration: none;
+  border-block-end: 1px solid ${themeGet('colors.brand.primary', '#3498db')};
 
   :hover {
     transform: scale(1.02);
@@ -131,13 +131,11 @@ Anchor.propTypes = {
   ...textAlign.propTypes,
   ...top.propTypes,
   ...verticalAlign.propTypes,
-  theme: PropTypes.object.isRequired,
   zIndex
 }
 
 Anchor.defaultProps = {
-  fontSize: '0.9rem',
-  theme
+  fontSize: '0.9rem'
 }
 
 export default Anchor

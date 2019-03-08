@@ -36,9 +36,9 @@ const Form = styled.form`width: 100%;`;
             display='flex'
             flexDirection='column'
             width='350px'
-            p={32}
+            p={4}
           >
-            <Text
+            <Typography
               message='Card title'
               fontWeight='bold'
               textStyle='h2'
@@ -48,7 +48,7 @@ const Form = styled.form`width: 100%;`;
                 autoComplete='current-email'
                 placeholder='Placeholder...'
                 label='Input label'
-                mt={12}
+                mt='12px'
                 name='email'
                 onChange={() => {}}
                 type='email'
@@ -57,7 +57,7 @@ const Form = styled.form`width: 100%;`;
               <Input
                 autoComplete='current-text'
                 label='Input label'
-                mt={12}
+                mt='12px'
                 name='full-name'
                 onChange={_changeInputValue}
                 placeholder='Your text goes here...'
@@ -67,8 +67,8 @@ const Form = styled.form`width: 100%;`;
             </Form>
             <Button
               onClick={() => console.log('Clicked!')}
-              mt={12}
-              variant='outlined'
+              mt='12px'
+              variant='outline'
               title='Submit'
             />
           </Card>

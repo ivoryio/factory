@@ -15,16 +15,14 @@ import {
   width
 } from 'styled-system'
 
-import icons from '../assets/icons'
-import theme from '../assets/theme'
+import images from '../assets/images'
 
-const Image = ({ alt, className, dataTest, objectFit, src, ...rest }) => (
+const Image = ({ alt, className, objectFit, src, ...rest }) => (
   <StyledImage
     alt={alt}
     className={className}
-    data-testid={dataTest}
     objectFit={objectFit}
-    src={src}
+    src={src || images.placeholder}
     {...rest}
   />
 )
@@ -99,15 +97,13 @@ Image.propTypes = {
   size: PropTypes.arrayOf(PropTypes.number),
   alt: PropTypes.string.isRequired,
   dataTest: PropTypes.string,
-  src: PropTypes.string.isRequired,
-  theme: PropTypes.object.isRequired
+  src: PropTypes.string.isRequired
 }
 
 Image.defaultProps = {
   alt: 'image',
   size: [80, 80],
-  src: icons.userPlaceholder,
-  theme
+  src: images.placeholder
 }
 
 export default Image

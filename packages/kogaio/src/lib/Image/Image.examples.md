@@ -21,13 +21,13 @@
   const ImageExamples = () => {
     return (
       <Flex>
-        <Box width={1} mt='16px'>
+        <Box width={1} mt={3}>
           {images.map(img => (
             <Image
               alt={img.id}
               borderRadius='50%' 
               key={img.id}
-              ml='16px'
+              ml={3}
               size={img.size}
               src={img.src}
             />
