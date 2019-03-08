@@ -37,8 +37,8 @@ const MenuList = ({
   onSelectItem,
   ...rest
 }) => (
-  <Container arrowAlignment={arrowAlignment} {...rest}>
-    <ListWrapper>
+  <Container {...rest}>
+    <ListWrapper arrowAlignment={arrowAlignment}>
       {listItems.map(item => (
         <TouchableText
           key={item.key}
@@ -53,7 +53,7 @@ const MenuList = ({
   </Container>
 )
 
-const arrowVerticalAlignment = css`
+const arrowAlignment = css`
   ${props => {
     const alignment = _alignArrow()
     return `${alignment}`
@@ -64,11 +64,11 @@ const arrowVerticalAlignment = css`
       if (alignments.includes(arrowAlignment)) {
         switch (arrowAlignment) {
           case 'left':
-            return `left: 25px;`
+            return `left: calc(10% + 8px); width: 8px; height: 8px; top: -4px;`
           case 'center':
-            return `align-self: center;`
+            return `align-self: center;  width: 8px; height: 8px; top: -4px;`
           default:
-            return `right: 25px;`
+            return `right: calc(10% + 8px);  width: 8px; height: 8px; top: -4px;`
         }
       }
       console.warn('Invalid prop: arrowAlignments must be one of these values: left, center, right')
@@ -78,23 +78,7 @@ const arrowVerticalAlignment = css`
 
 const Container = styled(Box)`
   border-radius: ${themeGet('radii.1')}px;
-  display: flex;
-  flex-direction: column;
   position: relative;
-  &:after {
-    ${arrowVerticalAlignment}
-    box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.35);
-    background-color: ${themeGet('colors.white')};
-    content: '';
-    display: block;
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    top: -4px;
-    z-index: 98;
-    -moz-transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
   ${alignItems}
   ${alignSelf}
   ${borderColor}
@@ -120,7 +104,18 @@ const Container = styled(Box)`
 `
 
 const ListWrapper = styled.div`
-  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  &:after {
+    ${arrowAlignment}
+    box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.35);
+    background-color: ${themeGet('colors.white')};
+    content: '';
+    display: block;
+    position: absolute;
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
   & > :nth-child(n + 2) {
     border-top: ${themeGet('borders.1')} ${themeGet('colors.azureish-white')};
   }
@@ -128,6 +123,9 @@ const ListWrapper = styled.div`
 
 const TouchableText = styled(Touchable)`
   width: 100%;
+  &:first-of-type { 
+    z-index: 1;
+  }
   :hover {
     background-color: ${themeGet('colors.white-smoke')};
   }

@@ -71,7 +71,7 @@ class Modal extends PureComponent {
           {...rest}
         >
           {Header ? (
-            <Row borderBlockEnd='1px solid #e5e5e5'>
+            <Row>
               <Header />
             </Row>
           ) : null}
@@ -80,25 +80,22 @@ class Modal extends PureComponent {
               {children}
             </ChildWrapper>
             <ButtonsWrapper>
-              <Button
+              <ModalButton
                 fontSize='1em'
-                mr={3}
                 onClick={confirmActionFn}
                 title={confirmButtonLabel}
                 variant={confirmButtonType}
-                width='40%'
               />
-              <Button
+              <ModalButton
                 fontSize='1em'
                 onClick={hideModal}
                 title={cancelButtonLabel}
                 variant={cancelButtonType}
-                width='40%'
               />
             </ButtonsWrapper>
           </Content>
           {Footer ? (
-            <Row borderBlockStart='1px solid #e5e5e5'>
+            <Row>
               <Footer />
             </Row>
           ) : null}
@@ -123,11 +120,11 @@ const Body = styled.div`
   z-index: 10;
 `
 const ButtonsWrapper = styled.div`
-  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: ${themeGet('space.4')}px;
+  justify-content: space-between;
+  padding-inline-start: ${themeGet('space.3')}px;
+  padding-inline-end: ${themeGet('space.3')}px;
+  margin-block-start: ${themeGet('space.4')}px;
 `
 const ChildWrapper = styled.div`
   font-size: 1em;
@@ -140,12 +137,22 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  width: 100%;
+`
+const ModalButton = styled(Button)`
+  width: calc(50% - 8px);
 `
 const Row = styled.div`
   padding-inline-start: ${themeGet('space.2')}px;
   padding-inline-end: ${themeGet('space.2')}px;
   border-block-end: ${props => props.borderBlockEnd};
   border-block-start: ${props => props.borderBlockStart};
+  &:first-of-type {
+    border-block-end: ${themeGet('borders.1')} ${themeGet('colors.light-gray')};
+  }
+  &:nth-of-type(2) {
+    border-block-start: ${themeGet('borders.1')} ${themeGet('colors.light-gray')};
+  }
 `
 const StyledCard = styled(Card)`
   ${color}
