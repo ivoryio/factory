@@ -28,7 +28,6 @@ import {
   space
 } from 'styled-system'
 
-import theme from '../assets/theme'
 import { Box } from '../Responsive'
 import Text from '../Text'
 import Touchable from '../Touchable'
@@ -40,18 +39,18 @@ const MenuList = ({
   ...rest
 }) => (
   <Container arrowAlignment={arrowAlignment} {...rest}>
-    {listItems ? <ListWrapper>
+    <ListWrapper>
       {listItems.map(item => (
         <TouchableText
           key={item.key}
           onClick={onSelectItem(item.name)}
         >
-          <Text mx={3} color='dark-gunmetal' fontSize='1em' textAlign='left'>
+          <Text p={3} color='dark-gunmetal' fontSize='1em' textAlign='left'>
             {item.name}
           </Text>
         </TouchableText>
       ))}
-    </ListWrapper> : null}
+    </ListWrapper>
   </Container>
 )
 
@@ -79,9 +78,9 @@ const arrowVerticalAlignment = css`
 `
 
 const Container = styled(Box)`
+  border-radius: ${themeGet('radii.1')}px;
   display: flex;
   flex-direction: column;
-  border-radius: 2px;
   position: relative;
   &:after {
     ${arrowVerticalAlignment}
@@ -90,9 +89,10 @@ const Container = styled(Box)`
     content: '';
     display: block;
     position: absolute;
-    width: ${themeGet('space.2')}px;
-    height: ${themeGet('space.2')}px;
+    width: 8px;
+    height: 8px;
     top: -4px;
+    z-index: 98;
     -moz-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
   }
@@ -122,32 +122,23 @@ const Container = styled(Box)`
 `
 
 const ListWrapper = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+  z-index: 99;
   & > :nth-child(n + 2) {
-    border-top: 1px solid ${themeGet('colors.azureish-white')};
+    border-top: ${themeGet('borders.1')} ${themeGet('colors.azureish-white')};
   }
 `
 
 const TouchableText = styled(Touchable)`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding-bottom: ${themeGet('space.3')}px;
-  padding-top: ${themeGet('space.3')}px;
   width: 100%;
-  z-index: 99;
   :hover {
-    background-color: ${themeGet('colors.white-smoke')}
+    background-color: ${themeGet('colors.white-smoke')};
   }
 `
 
 MenuList.propTypes = {
   arrowAlignment: PropTypes.oneOf(['left', 'center', 'right']),
   listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onSelectItem: PropTypes.func.isRequired,
-  theme
+  onSelectItem: PropTypes.func.isRequired
 }
 MenuList.defaultProps = {
   arrowAlignment: 'right'
