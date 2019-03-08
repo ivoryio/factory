@@ -60,7 +60,7 @@ const Dropdown = ({
           name={showList ? 'arrow_drop_down' : 'arrow_drop_up'}
         />
       </TouchablePlaceholder>
-      {showList && (
+      {showList ? (
         <ListWrapper>
           {options.map(option => (
             <ButtonWrapper
@@ -74,7 +74,7 @@ const Dropdown = ({
             </ButtonWrapper>
           ))}
         </ListWrapper>
-      )}
+      ) : null}
     </Container>
   )
 }
@@ -90,7 +90,7 @@ const containerTopPadding = css`
 const Container = styled(Box)`
   display: flex;
   flex-direction: column;
-  border: solid 1px ${themeGet('colors.azureish-grey')};
+  border: ${themeGet('borders.1')} ${themeGet('colors.azureish-grey')};
   ${props => (props.showList ? containerTopPadding : containerVerticalPadding)};
   ${alignItems}
   ${alignSelf}
@@ -118,17 +118,17 @@ const Container = styled(Box)`
 `
 
 const TouchablePlaceholder = styled(Touchable)`
-  width: 100%;
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
+  width: 100%;
 `
 const ListWrapper = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   margin-block-start: ${themeGet('space.1')}px;
+  width: 100%;
   & > button {
     border-block-start: 1px solid ${themeGet('colors.azureish-grey')};
   }
@@ -142,10 +142,10 @@ const ButtonWrapper = styled(Touchable)`
 `
 
 Dropdown.propTypes = {
+  onChangeOption: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeholder: PropTypes.string,
-  selectedOption: PropTypes.string,
-  onChangeOption: PropTypes.func.isRequired
+  selectedOption: PropTypes.string
 }
 
 Dropdown.defaultProps = {

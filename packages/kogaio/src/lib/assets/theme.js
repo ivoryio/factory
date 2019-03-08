@@ -67,7 +67,8 @@ const defaultTheme = new function () {
     independence: '#4f5767',
     'gun-metal': '#243143',
     'dark-gunmetal': '#1b202f',
-    black: '#000'
+    black: '#000',
+    'modal-background': 'rgba(36, 49, 67, 0.25)'
   }
   this.shadows = {
     'button-basic': '0 1px 0 0 rgba(0, 0, 0, 0.05)',
@@ -88,6 +89,10 @@ const defaultTheme = new function () {
     'card-gray': {
       boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2)',
       backgroundColor: this.colors['ghost-white']
+    },
+    'menu-list': {
+      boxShadow: '0 1px 4px 0 rgba(22, 29, 37, 0.35)',
+      backgroundColor: this.colors.white
     },
     'dropdown-white': {
       boxShadow:

@@ -2,8 +2,23 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ReactDOM from 'react-dom'
+
 import Button from '../Button'
-import { themeGet } from 'styled-system'
+import Card from '../Card'
+import {
+  color,
+  display,
+  flexDirection,
+  fontFamily,
+  fontSize,
+  minWidth,
+  maxWidth,
+  minHeight,
+  maxHeight,
+  position,
+  themeGet,
+  width
+} from 'styled-system'
 
 class Modal extends PureComponent {
   constructor (props) {
@@ -37,51 +52,47 @@ class Modal extends PureComponent {
     const {
       className,
       children,
-      headerLabel,
-      CustomHeader,
-      hideModal,
-      CustomFooter,
-      confirmBtnLabel,
+      cancelButtonLabel,
+      cancelButtonType,
+      confirmButtonLabel,
       confirmActionFn,
       confirmButtonType,
+      Header,
+      hideModal,
+      Footer,
       ...rest
     } = this.props
     return ReactDOM.createPortal(
       <Body className={className}>
-        <Card id='modal-body' {...rest}>
-          {!CustomHeader ? (
-            <Row
-              borderBlockEnd={`1px solid ${themeGet('colors.ice-white')(
-                rest
-              )} `}
-            >
-              <Header>{headerLabel}</Header>
+        <StyledCard colors='card-white' id='modal-body' {...rest}>
+          {Header ? (
+            <Row>
+              <Header />
             </Row>
-          ) : (
-            <CustomHeader />
-          )}
-          <Content>{children}</Content>
-          {!CustomFooter ? (
-            <Row
-              p='18px 12px 12px'
-              borderBlockStart={`1px solid ${themeGet('colors.ice-white')(
-                rest
-              )}`}
-            >
-              <Footer>
-                <Button title='Cancel' variant='outline' onClick={hideModal} />
-                <Button
-                  title={confirmBtnLabel}
-                  onClick={confirmActionFn}
-                  ml='5px'
-                  variant={confirmButtonType}
-                />
-              </Footer>
+          ) : null}
+          <Content>
+            <ChildWrapper>{children}</ChildWrapper>
+            <ButtonsWrapper>
+              <ModalButton
+                fontSize='1em'
+                onClick={confirmActionFn}
+                title={confirmButtonLabel}
+                variant={confirmButtonType}
+              />
+              <ModalButton
+                fontSize='1em'
+                onClick={hideModal}
+                title={cancelButtonLabel}
+                variant={cancelButtonType}
+              />
+            </ButtonsWrapper>
+          </Content>
+          {Footer ? (
+            <Row>
+              <Footer />
             </Row>
-          ) : (
-            <CustomFooter />
-          )}
-        </Card>
+          ) : null}
+        </StyledCard>
       </Body>,
       this.modalEl
     )
@@ -94,62 +105,61 @@ const Body = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(10, 10, 10, 0.75);
-  color: ${themeGet('colors.white')};
+  background-color: ${themeGet('colors.modal-background')};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 10;
-  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
 `
-
-const Card = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: ${themeGet('colors.black')};
-  width: ${window.innerWidth / 3}px;
-  min-width: 400px;
-  max-width: 550px;
-  min-height: ${window.innerHeight / 2}px;
-  max-height: 400px;
-  background-color: ${themeGet('colors.white')};
-  border-radius: 5px;
-  position: relative;
-`
-
-const Row = styled.div`
+const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-block-start: ${props => props.pBlockStart || '15px'};
-  padding-inline-end: ${props => props.pInlineEnd || '10px'};
-  padding-block-end: ${props => props.pBlockEnd || '15px'};
-  padding-inline-start: ${props => props.pInlineStart || '10px'};
-  padding: ${props => props.p};
-  border-block-start ${props => props.borderBlockStart};
-  border-block-end: ${props => props.borderBlockEnd};
+  padding-inline-start: ${themeGet('space.3')}px;
+  padding-inline-end: ${themeGet('space.3')}px;
+  margin-block-start: ${themeGet('space.4')}px;
 `
-
-const Header = styled.div`
-  font-size: 1.8rem;
-  font-weight: 500;
-  color: ${themeGet('colors.paynes-gray')};
+const ChildWrapper = styled.div`
+  font-size: 1em;
+  padding-inline-start: ${themeGet('space.3')}px;
+  padding-inline-end: ${themeGet('space.3')}px;
+  text-align: center;
 `
-
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  justify-content: center;
   height: 100%;
-  padding: 6px 12px;
-`
-
-const Footer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   width: 100%;
-  padding-block-end: 10px;
+`
+const ModalButton = styled(Button)`
+  width: calc(50% - 8px);
+`
+const Row = styled.div`
+  padding-inline-start: ${themeGet('space.2')}px;
+  padding-inline-end: ${themeGet('space.2')}px;
+  border-block-end: ${props => props.borderBlockEnd};
+  border-block-start: ${props => props.borderBlockStart};
+  &:first-of-type {
+    border-block-end: ${themeGet('borders.1')} ${themeGet('colors.light-gray')};
+  }
+  &:last-of-type {
+    border-block-start: ${themeGet('borders.1')}
+      ${themeGet('colors.light-gray')};
+  }
+`
+const StyledCard = styled(Card)`
+  ${color}
+  ${display}
+  ${flexDirection}
+  ${fontFamily}
+  ${fontSize}
+  ${minWidth}
+  ${maxWidth}
+  ${minHeight}
+  ${maxHeight}
+  ${position}
+  ${width}
 `
 
 Modal.propTypes = {
@@ -158,23 +168,27 @@ Modal.propTypes = {
     PropTypes.object,
     PropTypes.node
   ]),
-  className: PropTypes.string,
-  CustomHeader: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
-  CustomFooter: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
-  dataTest: PropTypes.string,
-  headerLabel: PropTypes.string,
-  confirmBtnLabel: PropTypes.string,
-  hideModal: PropTypes.func.isRequired,
+  cancelButtonType: PropTypes.oneOf([
+    'primary, outline, validation, destructive'
+  ]),
+  cancelButtonLabel: PropTypes.string,
   confirmActionFn: PropTypes.func.isRequired,
-  confirmButtonType: PropTypes.string,
-  confirmBtnDataTest: PropTypes.string
+  confirmButtonType: PropTypes.oneOf([
+    'primary, outline, validation, destructive'
+  ]),
+  confirmButtonLabel: PropTypes.string,
+  className: PropTypes.string,
+  Header: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
+  Footer: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
+  headerLabel: PropTypes.string,
+  hideModal: PropTypes.func.isRequired
 }
 
 Modal.defaultProps = {
-  actionBtnType: 'info',
-  headerLabel: 'Modal title',
-  confirmBtnLabel: 'Confirm',
-  confirmButtonType: 'outline'
+  cancelButtonLabel: 'Cancel',
+  cancelButtonType: 'outlined',
+  confirmButtonLabel: 'Confirm',
+  confirmButtonType: 'validation'
 }
 
 export default Modal

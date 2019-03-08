@@ -19,7 +19,7 @@ Wrapper.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.func,
-    PropTypes.node
+    PropTypes.object
   ])
 }
 

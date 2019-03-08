@@ -1,7 +1,8 @@
-#### Modal with content
+#### Modal with header, footer and content
 ```js
 const React = require('react')
 const { useState } = React
+const { default: styled } = require('styled-components')
 const ModalExample1 = () => {
 const [isModalShown, setModalShown] = useState(false)
 const toggleModal = () => setModalShown(!isModalShown)
@@ -9,9 +10,23 @@ const confirmAction = () => {
   toggleModal()
   console.log('Success!')
 }
-const modalContent = {
-  fontSize: '1rem'
-}
+
+const Footer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  font-size: 1.8rem;
+`
+const Header = styled.div`
+  font-size: 1.8rem;
+`
+const FooterCmp = () => (
+    <Footer> Footer Content </Footer>
+  )
+const HeaderCmp = () => (
+    <Header>Header Content</Header>
+  )
   return (
     <>
     <Button
@@ -22,16 +37,26 @@ const modalContent = {
     />
       {isModalShown && (
         <Modal
-          headerLabel="Modal example"
-          confirmBtnLabel="Confirm"
+          color='dark-gunmetal'
+          cancelButtonLabel='Cancel Button'
+          confirmButtonLabel='Confirm Button'
           confirmActionFn={confirmAction}
-          confirmButtonType='validation'
+          display='flex'
+          flexDirection='column'
+          fontSize='1rem'
           hideModal={toggleModal}
+          minWidth='25em'
+          maxWidth='35em'
+          minHeight='18em'
+          maxHeight='25em'
+          position='relative'
+          Header={HeaderCmp}
+          Footer={FooterCmp}
+          width={{ xs: 1 / 2, md: 1 / 4 }}
         >
-          <div style={modalContent}>
             This is a mocked message inside your modal. <br />
-            Are you sure you wish to close this modal?
-          </div>
+            Are you sure you wish to close this modal? <br />
+            Also you can close it by clicking outside the box.
         </Modal>
       )}
     </>
@@ -40,10 +65,9 @@ const modalContent = {
 <ModalExample1 />
 ```
 
-#### Modal with custom header and footer
+#### Modal with content only
 ```js
 const React = require('react')
-const { default: styled } = require('styled-components')
 
 const { useState } = React
 const ModalExample2 = () => {
@@ -53,28 +77,6 @@ const confirmAction = () => {
   toggleModal()
   console.log('Success!')
 }
-const modalContent = {
-  fontSize: '1rem'
-}
-const StyledHeader = styled.div`
-  display: flex;
-  font-size: 1.2rem;
-  justify-content: space-between;
-  padding: 15px 10px;
-  border-block-end: 1px solid #e5e5e5;
-`
-const StyledFooter = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  border-block-start: 1px solid #e5e5e5;
-  padding: 10px 0;
-  max-width: 100%;
-`
-const CustomHeader = () => <StyledHeader>Hi, this is my custom header</StyledHeader>
-const CustomFooter = () => <StyledFooter>Goodbye from the custom footer.</StyledFooter>
   return (
     <>
     <Button
@@ -85,17 +87,20 @@ const CustomFooter = () => <StyledFooter>Goodbye from the custom footer.</Styled
       />
       {isModalShown && (
         <Modal
-          CustomHeader={CustomHeader}
-          CustomFooter={CustomFooter}
-          headerLabel="Modal example"
-          confirmBtnLabel="Confirm"
           confirmActionFn={confirmAction}
+          display='flex'
+          flexDirection='column'
+          fontSize='1rem'
           hideModal={toggleModal}
+          minWidth='20em'
+          maxWidth='35em'
+          minHeight='12em'
+          maxHeight='25em'
+          position='relative'
+          width={{ xs: 1 / 2, md: 1 / 3 }}
         >
-          <div style={modalContent}>
-            This is some sophisticated content inside your modal. <br />
-            Click outside the box to close.
-          </div>
+            This is a mocked message inside your modal. <br />
+            Are you sure you wish to close this modal?
         </Modal>
       )}
     </>

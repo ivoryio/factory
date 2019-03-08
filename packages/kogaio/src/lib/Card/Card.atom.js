@@ -94,7 +94,12 @@ const StyledCard = styled.div`
 `
 
 Card.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node]),
+  children: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.object,
+    PropTypes.element,
+    PropTypes.node
+  ]),
   className: PropTypes.string
 }
 

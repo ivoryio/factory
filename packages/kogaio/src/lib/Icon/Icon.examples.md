@@ -1,6 +1,9 @@
 #### Placeholder Icon
 ```js
-<Icon />
+<Icon
+  cursor='pointer'
+  fontSize='2.5em'
+/>
 ```
 
 #### Custom Icon
