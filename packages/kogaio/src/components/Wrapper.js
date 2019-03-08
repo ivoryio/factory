@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider } from 'styled-components'
 import Box from '../lib/Responsive/Box'
-import { themeFactory, theme } from '../lib/assets/theme'
+import { themeFactory } from '../lib/assets/theme'
 
 const Wrapper = ({ children }) => (
-  <ThemeProvider theme={themeFactory(theme)}>
+  <ThemeProvider theme={themeFactory()}>
     <Container>{children}</Container>
   </ThemeProvider>
 )
@@ -16,7 +16,11 @@ const Container = styled(Box)`
 `
 
 Wrapper.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node])
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+    PropTypes.node
+  ])
 }
 
 export default Wrapper

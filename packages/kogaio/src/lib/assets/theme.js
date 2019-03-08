@@ -6,7 +6,7 @@ import {
 } from './variants'
 import { mergeDeep } from './helpers'
 
-const theme = new function () {
+const defaultTheme = new function () {
   this.colors = {
     brand: {
       primary: '#00aeef',
@@ -90,7 +90,8 @@ const theme = new function () {
       backgroundColor: this.colors['ghost-white']
     },
     'dropdown-white': {
-      boxShadow: '0 1px 2px 0 rgba(102, 113, 123, 0.21), 0 0 0 1px rgba(102, 113, 123, 0.25)',
+      boxShadow:
+        '0 1px 2px 0 rgba(102, 113, 123, 0.21), 0 0 0 1px rgba(102, 113, 123, 0.25)',
       backgroundColor: '#fff'
     }
   }
@@ -149,37 +150,34 @@ const theme = new function () {
 }()
 
 function themeFactory (customTheme) {
-  const {
-    colors: customColors = {},
-    fonts: customFonts = {},
-    colorStyles: customColorStyles = {},
-    radii: customRadii = {},
-    shadows: customShadows = {}
-  } = customTheme
+  if (!customTheme) {
+    return defaultTheme
+  }
+  const updatedStyles = Object.assign(
+    {},
+    ...Object.keys(customTheme).map(style => ({
+      [style]: mergeDeep(defaultTheme[style], customTheme[style])
+    }))
+  )
 
-  const colors = mergeDeep(theme.colors, customColors)
-  const fonts = mergeDeep(theme.fonts, customFonts)
-  const colorStyles = mergeDeep(theme.colorStyles, customColorStyles)
-  const radii = mergeDeep(theme.radii, customRadii)
-  const shadows = mergeDeep(theme.shadows, customShadows)
+  const colors = updatedStyles.colors || defaultTheme.colors
+  const shadows = updatedStyles.shadows || defaultTheme.shadows
 
-  const buttons = buttonsFactory(colors, customShadows)
-  const inputs = inputsFactory(colors, customShadows)
-  const textStyles = textStylesFactory(colors, customShadows)
-  const tooltips = tooltipsFactory(colors, customShadows)
+  const buttons = buttonsFactory(colors, shadows)
+  const inputs = inputsFactory(colors, shadows)
+  const textStyles = textStylesFactory(colors, shadows)
+  const tooltips = tooltipsFactory(colors, shadows)
 
-  return {
-    ...theme,
+  const updatedTheme = {
+    ...defaultTheme,
+    ...updatedStyles,
+    shadows,
     buttons,
-    colors,
-    colorStyles,
-    fonts,
     inputs,
     textStyles,
-    radii,
-    tooltips,
-    shadows
+    tooltips
   }
+  return updatedTheme
 }
 
-export { theme, themeFactory }
+export { defaultTheme, themeFactory }
