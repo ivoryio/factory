@@ -90,7 +90,7 @@ const containerTopPadding = css`
 const Container = styled(Box)`
   display: flex;
   flex-direction: column;
-  border: ${themeGet('border.1')} ${themeGet('colors.azureish-grey')};
+  border: ${themeGet('borders.1')} ${themeGet('colors.azureish-grey')};
   ${props => (props.showList ? containerTopPadding : containerVerticalPadding)};
   ${alignItems}
   ${alignSelf}
