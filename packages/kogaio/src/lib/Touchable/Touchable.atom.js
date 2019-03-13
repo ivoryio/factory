@@ -35,6 +35,7 @@ const Touchable = ({
   onTouchStart,
   onTouchEnd,
   underlayColor,
+  type,
   ...rest
 }) => (
   <Wrapper
@@ -45,6 +46,7 @@ const Touchable = ({
     onMouseUp={onMouseUp}
     onTouchStart={onTouchStart}
     onTouchEnd={onTouchEnd}
+    type={type}
     underlayColor={underlayColor}
     {...rest}
   >
@@ -150,12 +152,14 @@ Touchable.propTypes = {
   onTouchEnd: PropTypes.func,
   activeOpacity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   effect: PropTypes.oneOf(['opacity', 'highlight', 'no-feedback']).isRequired,
+  type: PropTypes.string,
   underlayColor: PropTypes.string
 }
 
 Touchable.defaultProps = {
   activeOpacity: 0.7,
-  effect: 'no-feedback'
+  effect: 'no-feedback',
+  type: 'button'
 }
 
 export default Touchable
