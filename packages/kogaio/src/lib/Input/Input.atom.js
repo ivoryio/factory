@@ -126,7 +126,11 @@ const Input = ({
             position='absolute'
             right={8}
           >
-            <Icon color='light-gray' fontSize='1.25em' name='visibility' />
+            <Icon
+              color={error ? 'error' : 'light-gray'}
+              fontSize='1.25em'
+              name='visibility'
+            />
           </Touchable>
         ) : null}
       </Row>
@@ -194,13 +198,12 @@ const InputLabel = styled(Typography)`
 const StyledInput = styled.input`
   width: 100%;
   border-radius: ${themeGet('radii.2')}px;
-  padding-inline-start: 12px;
-  padding-inline-end: 30px;
+  padding-inline-start: ${themeGet('space.2', '8px')}px;
+  padding-inline-end: ${themeGet('space.4', '32px')}px;
   height: 36px;
   font-size: 0.875em;
-  line-height: 2;
-  background-color: themeGet('colors.white');
-  box-shadow: 0 1px 0 0 rgba(22, 29, 37, 0.05);
+  line-height: ${themeGet('lineHeights.input', 2)};
+  background-color: ${themeGet('colors.white')};
   outline: none;
   outline-style: none;
   outline-color: transparent;

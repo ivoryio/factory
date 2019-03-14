@@ -137,7 +137,10 @@ const defaultTheme = new function () {
   this.lineHeights = {
     solid: 1,
     title: 1.25,
-    copy: 1.5
+    copy: 1.5,
+    tooltip: 1.6,
+    button: 1.9,
+    input: 2
   }
   this.letterSpacings = {
     normal: 'normal',
@@ -150,7 +153,7 @@ const defaultTheme = new function () {
 
   this.buttons = buttonsFactory(this.colors, this.shadows)
   this.inputs = inputsFactory(this.colors, this.shadows)
-  this.textStyles = textStylesFactory(this.colors)
+  this.textStyles = textStylesFactory(this.colors, this.fontWeights)
   this.tooltips = tooltipsFactory(this.colors)
 }()
 

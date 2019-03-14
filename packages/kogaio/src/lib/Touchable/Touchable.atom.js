@@ -92,6 +92,7 @@ const Wrapper = styled.button`
   margin: 0;
   padding: 0;
   cursor: pointer;
+  box-shadow: none;
 
   &:focus {
     outline: none;

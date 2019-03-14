@@ -70,7 +70,7 @@ const StyledBtn = styled.button`
   font-style: normal;
   letter-spacing: normal;
   min-height: 36px;
-  line-height: 1.9;
+  line-height: ${themeGet('lineHeights.button', 1.9)};
   text-transform: uppercase;
   width: 160px;
   

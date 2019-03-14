@@ -1,4 +1,4 @@
-export default function (colors) {
+export default function (colors, fontWeights) {
   return {
     h1: {
       color: `${colors['gun-metal']}`,
@@ -17,9 +17,9 @@ export default function (colors) {
       fontSize: '0.875em',
       color: `${colors.info}`,
       lineHeight: 1.7,
-      fontWeight: 900,
+      fontWeight: fontWeights[8],
       '&:visited': {
-        fontWeight: 'normal'
+        fontWeight: fontWeights[4]
       }
     },
     'input-label': {

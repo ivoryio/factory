@@ -17,6 +17,7 @@ import {
   position,
   right,
   space,
+  themeGet,
   top,
   width,
   zIndex
@@ -159,9 +160,9 @@ const animatedOpacity = keyframes`
 `
 
 const Container = styled(Box)`
-  border-radius: 2px;
+  border-radius: ${themeGet('radii.1')}px;
   box-shadow: 0 1px 0 0 rgba(22, 29, 37, 0.05);
-  padding: 4px;
+  padding: ${themeGet('space.1')}px;
   position: relative;
   animation: ${animatedOpacity} 0.2s ease-in-out;
 
@@ -204,7 +205,7 @@ const Body = styled.div`
   position: relative;
   justify-content: center;
   align-items: center;
-  line-height: 1.6;
+  line-height: ${themeGet('lineHeights.tooltip', 1.6)};
   font-size: 1.25rem;
 `
 
