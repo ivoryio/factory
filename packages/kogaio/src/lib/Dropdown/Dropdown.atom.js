@@ -50,7 +50,9 @@ const Dropdown = ({
   return (
     <Container showList={showList} {...rest}>
       <TouchablePlaceholder onClick={toggleDropdown} px={2}>
-        <Typography color='manatee' fontSize='1em'>
+        <Typography
+          color={selectedOption ? 'black' : 'manatee'}
+          fontSize='1em'>
           {selectedOption || placeholder}
         </Typography>
         <Icon
