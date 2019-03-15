@@ -93,8 +93,13 @@ const Input = ({
   return (
     <InputWrapper hasLabel={label} {...rest}>
       {label ? (
-        <InputLabel cssLabel={cssLabel} htmlFor={id} textStyle='input-label'>
-          {label}
+        <InputLabel
+          cssLabel={cssLabel}
+          color={error ? 'error' : 'independence'}
+          htmlFor={id}
+          textStyle='input-label'
+        >
+          {label} {required && '*'}
         </InputLabel>
       ) : null}
       <Row>
@@ -117,7 +122,7 @@ const Input = ({
           variant={inputVariant}
           {...rest}
         />
-        {type === 'password' ? (
+        {type === 'password' && value ? (
           <Touchable
             onMouseDown={_toggleShowPassword}
             onMouseUp={_toggleShowPassword}
@@ -193,6 +198,7 @@ const InputLabel = styled(Typography)`
   font-stretch: normal;
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
   ${props => props.cssLabel};
+  ${fontFamily}
 `
 
 const StyledInput = styled.input`
@@ -210,7 +216,7 @@ const StyledInput = styled.input`
   font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
 
   &:focus {
-    ~ i {
+    ~ button > i {
       color: ${themeGet('colors.paynes-gray')};
     }
   }

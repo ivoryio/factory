@@ -42,6 +42,7 @@ const Button = ({
   justifyContent,
   onClick,
   title,
+  type,
   variant,
   ...rest
 }) => (
@@ -53,6 +54,7 @@ const Button = ({
     blockSize={blockSize}
     justifyContent={justifyContent}
     onClick={onClick}
+    type={type}
     variant={variant}
     {...rest}
   >
@@ -109,14 +111,16 @@ Button.propTypes = {
   dataTest: PropTypes.string,
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   title: PropTypes.string.isRequired,
+  type: PropTypes.string,
   variant: PropTypes.oneOf(['primary', 'outline', 'validation', 'destructive'])
 }
 
 Button.defaultProps = {
   disabled: false,
   isLoading: false,
+  type: 'button',
   variant: 'primary'
 }
 

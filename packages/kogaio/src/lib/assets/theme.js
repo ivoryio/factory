@@ -93,11 +93,6 @@ const defaultTheme = new function () {
     'menu-list': {
       boxShadow: '0 1px 4px 0 rgba(22, 29, 37, 0.35)',
       backgroundColor: this.colors.white
-    },
-    'dropdown-white': {
-      boxShadow:
-        '0 1px 2px 0 rgba(102, 113, 123, 0.21), 0 0 0 1px rgba(102, 113, 123, 0.25)',
-      backgroundColor: '#fff'
     }
   }
   this.gutter = '1em'
