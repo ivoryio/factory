@@ -60,9 +60,11 @@ const Dropdown = ({
   useEffect(() => {
     const _handleBackDropClick = ev => {
       const dropdownEl = document.getElementById(id)
-      const isClickInside = dropdownEl.contains(ev.target)
-      if (!isClickInside) {
-        setListShown(false)
+      if (dropdownEl) {
+        const isClickInside = dropdownEl.contains(ev.target)
+        if (!isClickInside) {
+          setListShown(false)
+        }
       }
     }
     document.addEventListener('click', _handleBackDropClick)
@@ -127,6 +129,7 @@ const animated = css`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
   ${alignItems}
   ${alignSelf}
   ${borderColor}
@@ -155,7 +158,8 @@ const Body = styled(Box)`
     props.error
       ? themeGet('colors.error')
       : themeGet('colors.azureish-grey')};
-  border-radius: ${themeGet('radii.2', 4)}px;
+  border-top-left-radius: ${themeGet('radii.2', 4)}px;
+  border-top-right-radius: ${themeGet('radii.2', 4)}px;
   background-color: ${themeGet('colors.white')};
   display: flex;
   flex-direction: column;
@@ -177,21 +181,32 @@ const SelectedOption = styled(Touchable)`
   justify-content: space-between;
   width: 100%;
   padding: ${themeGet('space.2', 8)}px;
+  text-align: left;
   ${fontFamily}
   ${fontSize}
 `
 const ListWrapper = styled.div`
+  ${animated}
+  background-color: ${themeGet('colors.white')};
+  border: solid 1px ${themeGet('colors.azureish-grey')};
+  border-block-start: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  ${animated}
-
+  left: 0;
+  position: absolute;
+  top: 100%;
+  width: calc(100% - 2px);
+  
   & > button:nth-child(n + 1) {
     border-block-start: 1px solid ${themeGet('colors.light-gray')};
   }
+  & > button:first-of-type {
+    border-block-start: none;
+  }
 `
 const Option = styled(SelectedOption)`
-  text-align: left;
   width: 100%;
   &:hover {
     background-color: ${themeGet('colors.white-smoke')};

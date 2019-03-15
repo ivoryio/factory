@@ -204,9 +204,11 @@ const InputLabel = styled(Typography)`
 const StyledInput = styled.input`
   width: 100%;
   border-radius: ${themeGet('radii.2')}px;
-  padding-inline-start: ${themeGet('space.2', '8px')}px;
-  padding-inline-end: ${themeGet('space.4', '32px')}px;
-  height: 36px;
+  /* padding-block-start: ${themeGet('space.2', 8)}px; */
+  padding-inline-end: ${themeGet('space.4', 32)}px;
+  /* padding-block-end: ${themeGet('space.2', 8)}px; */
+  padding-inline-start: ${themeGet('space.2', 8)}px;
+  min-height: 36px;
   font-size: 0.875em;
   line-height: ${themeGet('lineHeights.input', 2)};
   background-color: ${themeGet('colors.white')};
