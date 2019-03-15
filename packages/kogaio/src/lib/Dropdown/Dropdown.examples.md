@@ -4,7 +4,7 @@ const React = require('react')
 const { useState } = React
 const DropdownExample = () => {
 const [selectedOption, setSelectedOption] = useState('')
-const onChangeOption = newOption =>
+const selectOption = newOption =>
   setSelectedOption(newOption)
 
 const options = [
@@ -24,9 +24,10 @@ const options = [
   return (
       <Dropdown
         colors='dropdown-white'
-        mx='auto'
         id='example-dropdown'
-        onChangeOption={onChangeOption}
+        mx='auto'
+        label='Dropdown label'
+        onChangeOption={selectOption}
         options={options}
         selectedOption={selectedOption}
         width={{ xs: 1/2, md: 1/3 }}

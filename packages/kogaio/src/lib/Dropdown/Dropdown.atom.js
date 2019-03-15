@@ -13,33 +13,36 @@ import {
   display,
   flex,
   flexBasis,
+  fontFamily,
+  fontSize,
   justifyContent,
   left,
-  maxHeight,
-  maxWidth,
-  minHeight,
-  minWidth,
   opacity,
   overflow,
   position,
   right,
   themeGet,
   top,
-  space
+  space,
+  width
 } from 'styled-system'
 
-import { Box, Space } from '../Responsive'
+import { useBoolean } from '../utils'
+import { Box } from '../Responsive'
 import Icon from '../Icon'
 import Typography from '../Typography'
 import Touchable from '../Touchable'
-import { useBoolean } from '../utils'
 
 const Dropdown = ({
   animated,
+  cssLabel,
   id,
+  error,
+  label,
   onChangeOption,
   options,
   placeholder,
+  required,
   selectedOption,
   ...rest
 }) => {
@@ -67,8 +70,16 @@ const Dropdown = ({
   }, [])
 
   return (
-    <Container isListShown={isListShown} id={id} {...rest}>
-      <Space p={2}>
+    <Container {...rest}>
+      <DropdownLabel
+        color={error ? 'error' : 'independence'}
+        cssLabel={cssLabel}
+        htmlFor={id}
+        textStyle='input-label'
+      >
+        {label} {required && '*'}
+      </DropdownLabel>
+      <Body id={id} error={error} isListShown={isListShown}>
         <SelectedOption onClick={toggleList}>
           <Typography color={selectedOption ? 'dark-gunmetal' : 'manatee'}>
             {selectedOption || placeholder}
@@ -80,20 +91,18 @@ const Dropdown = ({
             name={isListShown ? 'arrow_drop_down' : 'arrow_drop_up'}
           />
         </SelectedOption>
-      </Space>
-      {isListShown ? (
-        <ListWrapper animated={animated}>
-          {options.map(option => (
-            <Space key={option.key} p={2}>
-              <Option onClick={selectOption(option.name)}>
+        {isListShown ? (
+          <ListWrapper animated={animated}>
+            {options.map(option => (
+              <Option key={option.key} onClick={selectOption(option.name)}>
                 <Typography color='dark-gunmetal' fontSize='1em'>
                   {option.name}
                 </Typography>
               </Option>
-            </Space>
-          ))}
-        </ListWrapper>
-      ) : null}
+            ))}
+          </ListWrapper>
+        ) : null}
+      </Body>
     </Container>
   )
 }
@@ -115,13 +124,9 @@ const animated = css`
   `}
 `
 
-const Container = styled(Box)`
-  border: solid 1px ${themeGet('colors.azureish-grey')};
-  border-radius: ${themeGet('radii.2', 4)}px;
-  background-color: ${themeGet('colors.white')};
+const Container = styled.div`
   display: flex;
   flex-direction: column;
-
   ${alignItems}
   ${alignSelf}
   ${borderColor}
@@ -135,23 +140,45 @@ const Container = styled(Box)`
   ${flexBasis}
   ${justifyContent}
   ${left}
-  ${maxHeight}
-  ${maxWidth}
-  ${minHeight}
-  ${minWidth}
   ${opacity}
   ${overflow}
   ${position}
   ${right}
   ${space}
   ${top}
+  ${width}
 `
+
+const Body = styled(Box)`
+  border: solid 1px
+    ${props =>
+    props.error
+      ? themeGet('colors.error')
+      : themeGet('colors.azureish-grey')};
+  border-radius: ${themeGet('radii.2', 4)}px;
+  background-color: ${themeGet('colors.white')};
+  display: flex;
+  flex-direction: column;
+`
+const DropdownLabel = styled(Typography)`
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
+  ${fontFamily}
+  ${props => props.cssLabel};
+`
+
 const SelectedOption = styled(Touchable)`
   align-items: center;
   display: flex;
   flex-direction: row;
+  font-size: ${themeGet('fontSizes.1')};
   justify-content: space-between;
   width: 100%;
+  padding: ${themeGet('space.2', 8)}px;
+  ${fontFamily}
+  ${fontSize}
 `
 const ListWrapper = styled.div`
   display: flex;
@@ -173,10 +200,14 @@ const Option = styled(SelectedOption)`
 
 Dropdown.propTypes = {
   animated: PropTypes.bool,
+  cssLabel: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  label: PropTypes.string,
   onChangeOption: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeholder: PropTypes.string,
+  required: PropTypes.bool,
   selectedOption: PropTypes.string
 }
 
