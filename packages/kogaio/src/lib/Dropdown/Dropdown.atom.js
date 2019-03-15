@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import {
   alignItems,
   alignSelf,
@@ -38,6 +38,7 @@ const Dropdown = ({
   options,
   placeholder,
   selectedOption,
+  optionVerticalPadding,
   ...rest
 }) => {
   const [showList, setShowList] = useState(false)
@@ -49,8 +50,10 @@ const Dropdown = ({
 
   return (
     <Container showList={showList} {...rest}>
-      <TouchablePlaceholder onClick={toggleDropdown} px={2}>
-        <Typography color='manatee' fontSize='1em'>
+      <TouchablePlaceholder onClick={toggleDropdown} px={2} py={optionVerticalPadding}>
+        <Typography
+          color={selectedOption ? 'black' : 'manatee'}
+          fontSize='1em'>
           {selectedOption || placeholder}
         </Typography>
         <Icon
@@ -66,7 +69,8 @@ const Dropdown = ({
             <ButtonWrapper
               key={option.key}
               onClick={selectOption(option.name)}
-              p={2}
+              px={2}
+              py={optionVerticalPadding}
             >
               <Typography color='dark-gunmetal' fontSize='1em'>
                 {option.name}
@@ -79,19 +83,10 @@ const Dropdown = ({
   )
 }
 
-const containerVerticalPadding = css`
-  padding-block-end: ${themeGet('space.1')}px;
-  padding-block-start: ${themeGet('space.1')}px;
-`
-const containerTopPadding = css`
-  padding-block-start: ${themeGet('space.1')}px;
-`
-
 const Container = styled(Box)`
   display: flex;
   flex-direction: column;
   border: ${themeGet('borders.1')} ${themeGet('colors.azureish-grey')};
-  ${props => (props.showList ? containerTopPadding : containerVerticalPadding)};
   ${alignItems}
   ${alignSelf}
   ${borderColor}
@@ -127,7 +122,6 @@ const TouchablePlaceholder = styled(Touchable)`
 const ListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-block-start: ${themeGet('space.1')}px;
   width: 100%;
   & > button {
     border-block-start: 1px solid ${themeGet('colors.azureish-grey')};
@@ -143,12 +137,14 @@ const ButtonWrapper = styled(Touchable)`
 
 Dropdown.propTypes = {
   onChangeOption: PropTypes.func.isRequired,
+  optionVerticalPadding: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]),
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeholder: PropTypes.string,
   selectedOption: PropTypes.string
 }
 
 Dropdown.defaultProps = {
+  optionVerticalPadding: 2,
   placeholder: 'Choose one option'
 }
 export default Dropdown
