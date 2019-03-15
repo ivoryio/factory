@@ -191,6 +191,7 @@ const ListWrapper = styled(Box)`
 
 const TouchableText = styled(Touchable)`
   width: 100%;
+  white-space: nowrap;
   &:first-of-type {
     z-index: 1;
   }
