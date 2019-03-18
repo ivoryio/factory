@@ -88,8 +88,10 @@ const Input = ({
     if (inputType.includes('password')) {
       return setInputType('text')
     }
-    return setInputType(type)
+    return _resetInputType()
   }
+
+  const _resetInputType = () => setInputType(type)
   return (
     <InputWrapper hasLabel={label} {...rest}>
       {label ? (
@@ -128,6 +130,7 @@ const Input = ({
             onMouseUp={_toggleShowPassword}
             onTouchStart={_toggleShowPassword}
             onTouchEnd={_toggleShowPassword}
+            handleDragAttempt={_resetInputType}
             position='absolute'
             right={8}
           >

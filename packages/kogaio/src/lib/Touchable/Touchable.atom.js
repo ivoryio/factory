@@ -24,6 +24,7 @@ import {
   width,
   zIndex
 } from 'styled-system'
+import { useBoolean } from '../utils'
 
 const Touchable = ({
   activeOpacity,
@@ -34,25 +35,44 @@ const Touchable = ({
   onMouseUp,
   onTouchStart,
   onTouchEnd,
+  handleDragAttempt,
   underlayColor,
   type,
   ...rest
-}) => (
-  <Wrapper
-    activeOpacity={activeOpacity}
-    effect={effect}
-    onClick={onClick}
-    onMouseDown={onMouseDown}
-    onMouseUp={onMouseUp}
-    onTouchStart={onTouchStart}
-    onTouchEnd={onTouchEnd}
-    type={type}
-    underlayColor={underlayColor}
-    {...rest}
-  >
-    {children}
-  </Wrapper>
-)
+}) => {
+  const { value: isHoldingClick, setValue: setIsHoldingClick } = useBoolean(false)
+
+  const _handleMouseDown = ev => {
+    setIsHoldingClick(true)
+    onMouseDown(ev)
+  }
+  const _handleMouseUp = ev => {
+    setIsHoldingClick(false)
+    onMouseUp(ev)
+  }
+  const _handleMouseLeave = () => {
+    if (isHoldingClick) {
+      return handleDragAttempt()
+    }
+  }
+  return (
+    <Wrapper
+      activeOpacity={activeOpacity}
+      effect={effect}
+      onClick={onClick}
+      onMouseDown={_handleMouseDown}
+      onMouseUp={_handleMouseUp}
+      onMouseLeave={_handleMouseLeave}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      type={type}
+      underlayColor={underlayColor}
+      {...rest}
+    >
+      {children}
+    </Wrapper>
+  )
+}
 
 const touchableWithEffect = css`
   ${props => {
