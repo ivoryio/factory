@@ -40,7 +40,9 @@ const Touchable = ({
   type,
   ...rest
 }) => {
-  const { value: isHoldingClick, setValue: setIsHoldingClick } = useBoolean(false)
+  const { value: isHoldingClick, setValue: setIsHoldingClick } = useBoolean(
+    false
+  )
 
   const _handleMouseDown = ev => {
     setIsHoldingClick(true)
@@ -60,11 +62,11 @@ const Touchable = ({
       activeOpacity={activeOpacity}
       effect={effect}
       onClick={onClick}
-      onMouseDown={!onClick && _handleMouseDown}
-      onMouseUp={!onClick && _handleMouseUp}
+      onMouseDown={onClick ? null : _handleMouseDown}
+      onMouseUp={onClick ? null : _handleMouseUp}
       onMouseLeave={_handleMouseLeave}
-      onTouchStart={!onClick && onTouchStart}
-      onTouchEnd={!onClick && onTouchEnd}
+      onTouchStart={onClick ? null : onTouchStart}
+      onTouchEnd={onClick ? null : onTouchEnd}
       type={type}
       underlayColor={underlayColor}
       {...rest}
