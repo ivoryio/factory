@@ -169,12 +169,18 @@ Modal.propTypes = {
     PropTypes.node
   ]),
   cancelButtonType: PropTypes.oneOf([
-    'primary, outline, validation, destructive'
+    'primary',
+    'outline',
+    'validation',
+    'destructive'
   ]),
   cancelButtonLabel: PropTypes.string,
   confirmActionFn: PropTypes.func.isRequired,
   confirmButtonType: PropTypes.oneOf([
-    'primary, outline, validation, destructive'
+    'primary',
+    'outline',
+    'validation',
+    'destructive'
   ]),
   confirmButtonLabel: PropTypes.string,
   className: PropTypes.string,
@@ -186,7 +192,7 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
   cancelButtonLabel: 'Cancel',
-  cancelButtonType: 'outlined',
+  cancelButtonType: 'outline',
   confirmButtonLabel: 'Confirm',
   confirmButtonType: 'validation'
 }
