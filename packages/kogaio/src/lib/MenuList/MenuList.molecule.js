@@ -140,10 +140,11 @@ const arrowSize = css`
 `
 
 const Container = styled(Box)`
+  align-items: ${alignContent};
   display: flex;
   flex-direction: column;
   justify-content: ${alignContent};
-  align-items: ${alignContent};
+  position: relative;
   ${alignItems}
   ${alignSelf}
   ${bottom}
@@ -162,9 +163,10 @@ const Container = styled(Box)`
 
 const ListWrapper = styled(Box)`
   border-radius: ${themeGet('radii.1')}px;
-  position: relative;
   display: flex;
   flex-direction: column;
+  position: absolute;
+  top: 100%;
   &:after {
     box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.35);
     background-color: ${themeGet('colors.white')};
@@ -172,10 +174,10 @@ const ListWrapper = styled(Box)`
     display: block;
     position: absolute;
     top: -${props => props.arrowSize / 2}px;
-    ${arrowSize};
     -moz-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
     ${alignArrow}
+    ${arrowSize}
   }
   & > :nth-child(n + 2) {
     border-top: ${themeGet('borders.1')} ${themeGet('colors.azureish-white')};
