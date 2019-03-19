@@ -4,7 +4,7 @@ const docgen = require('react-docgen')
 const docgenDisplayNameHandler = require('react-docgen-displayname-handler')
 module.exports = {
   // #region preferences
-  title: 'Ivory UI Factory',
+  title: 'Ivory Kogaio',
   assetsDir: `${root}/src/lib/assets`,
   template: {
     favicon: 'favicon.ico',

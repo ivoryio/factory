@@ -143,7 +143,7 @@ const defaultTheme = new function () {
     tight: '-0.05em',
     mega: '0.25em'
   }
-  this.radii = [0, 2, 4, 16, 9999, '100%']
+  this.radii = [0, 2, 4, 16, 32, '50%', '100%']
   this.space = [0, 4, 8, 16, 32, 64, 128, 256]
 
   this.buttons = buttonsFactory(this.colors, this.shadows)

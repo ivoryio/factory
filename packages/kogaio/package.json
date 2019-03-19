@@ -1,8 +1,8 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.2.13",
+  "version": "0.2.15",
   "author": "Ivory",
-  "description": "Ivory Component Library",
+  "description": "Ivory Kogaio",
   "main": "build/index.js",
   "module": "build/index.js",
   "license": "ISC",
