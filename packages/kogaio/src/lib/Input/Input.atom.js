@@ -52,6 +52,7 @@ const Input = ({
   autoComplete,
   className,
   cssLabel,
+  dataTestId,
   disabled,
   error,
   withErrorTooltip,
@@ -109,6 +110,7 @@ const Input = ({
           autoComplete={autoComplete}
           borderRadius={borderRadius}
           className={className}
+          data-testid={dataTestId}
           disabled={disabled}
           error={error}
           hasLabel={label}
@@ -292,7 +294,7 @@ Input.propTypes = {
   ...space.propTypes,
   ...width.propTypes,
   autoComplete: PropTypes.string,
-  dataTest: PropTypes.string,
+  dataTestId: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   onChange: PropTypes.func.isRequired,
