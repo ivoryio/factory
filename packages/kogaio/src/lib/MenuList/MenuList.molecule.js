@@ -76,7 +76,7 @@ const MenuList = ({
       {isMenuShown ? (
         <ListWrapper alignment={alignment} icSize={icSize} {...rest}>
           {listItems.map(item => (
-            <TouchableText key={item.id} onClick={_selectItem(item.name)}>
+            <TouchableText key={item.id} onClick={_selectItem(item.name)} data-testid={item.id}>
               <Typography
                 p={3}
                 color='dark-gunmetal'
