@@ -54,7 +54,7 @@ class Modal extends PureComponent {
       children,
       cancelButtonLabel,
       cancelButtonType,
-      confirmButtonTestID,
+      confirmButtonTestId,
       confirmButtonLabel,
       confirmActionFn,
       confirmButtonType,
@@ -75,7 +75,7 @@ class Modal extends PureComponent {
             <ChildWrapper>{children}</ChildWrapper>
             <ButtonsWrapper>
               <ModalButton
-                data-testid={confirmButtonTestID}
+                data-testid={confirmButtonTestId}
                 fontSize='1em'
                 onClick={confirmActionFn}
                 title={confirmButtonLabel}
@@ -185,7 +185,7 @@ Modal.propTypes = {
     'destructive'
   ]),
   confirmButtonLabel: PropTypes.string,
-  confirmButtonTestID: PropTypes.string,
+  confirmButtonTestId: PropTypes.string,
   className: PropTypes.string,
   Header: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
   Footer: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
