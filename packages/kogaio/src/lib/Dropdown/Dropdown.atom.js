@@ -96,7 +96,7 @@ const Dropdown = ({
         {isListShown ? (
           <ListWrapper animated={animated}>
             {options.map(option => (
-              <Option key={option.key} onClick={selectOption(option.name)}>
+              <Option data-testid={option.id} key={option.id} onClick={selectOption(option.name)}>
                 <Typography color='dark-gunmetal' fontSize='1em'>
                   {option.name}
                 </Typography>
