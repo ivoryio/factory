@@ -9,15 +9,15 @@ const selectOption = newOption =>
 
 const options = [
   {
-    key: 'option1',
+    id: 'option1',
     name: 'Option 1'
   },
   {
-    key: 'option2',
+    id: 'option2',
     name: 'Option 2'
   },
   {
-    key: 'option3',
+    id: 'option3',
     name: 'Option 3'
   }
 ]
