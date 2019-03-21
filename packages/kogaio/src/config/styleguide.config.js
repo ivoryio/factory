@@ -7,7 +7,7 @@ module.exports = {
   title: 'Ivory Kogaio',
   assetsDir: `${root}/src/lib/assets`,
   template: {
-    favicon: 'favicon.ico',
+    favicon: 'static/favicon.ico',
     trimWhitespace: true,
     head: {
       links: [

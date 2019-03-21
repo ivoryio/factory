@@ -1,4 +1,4 @@
-import { ivoryLogo, placeholder } from './image-assets'
+import { ivoryLogo, placeholder } from './static'
 
 export default {
   ivoryLogo,
