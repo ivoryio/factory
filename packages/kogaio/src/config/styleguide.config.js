@@ -49,7 +49,8 @@ module.exports = {
   // #region config
   compilerConfig: {
     transforms: {
-      dangerousTaggedTemplateString: true // Set this to use styled-components in mocks
+      modules: false,
+      dangerousTaggedTemplateString: true
     }
   },
   webpackConfig: require('react-scripts/config/webpack.config')('development'),
@@ -107,27 +108,23 @@ module.exports = {
       ]
     },
     {
-      name: 'UI Components',
+      name: 'Contents',
       content: `${root}/docs/ui.md`,
       sections: [
         {
           name: 'Atoms',
-          content: `${root}/docs/atomic_design.md`,
           components: `${root}/src/lib/*/+([a-zA-Z])*.+(atom).{js,jsx}`
         },
         {
           name: 'Molecules',
-          content: `${root}/docs/atomic_design.md`,
           components: `${root}/src/lib/*/+([a-zA-Z])*.+(molecule).{js,jsx}`
         },
         {
           name: 'Organisms',
-          content: `${root}/docs/atomic_design.md`,
           components: `${root}/src/lib/*/+([a-zA-Z])*.+(organism).{js,jsx}`
         },
         {
           name: 'Responsive',
-          content: `${root}/docs/atomic_design.md`,
           components: `${root}/src/lib/Responsive/+([a-zA-Z])*.{js,jsx}`
         }
       ],

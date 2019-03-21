@@ -1,6 +1,5 @@
-# `@ivoryio/hermes`
+# `@ivoryio/kogaio`
 
-Ivory's tool for event handling.
 ## Usage
 
 ```
