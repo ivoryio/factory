@@ -4,96 +4,61 @@ import {
   textStylesFactory,
   tooltipsFactory
 } from './variants'
-import { mergeDeep } from './helpers'
+import { mergeDeep, hexToRgbA } from '../utils/helpers'
 
 const defaultTheme = new function () {
   this.colors = {
-    brand: {
-      primary: '#00aeef',
-      complementary: '#009feb',
-      hover: {
-        primary: '#01a2de',
-        complementary: '#0197df'
-      },
-      disabled: {
-        background: '#b9e8fa',
-        border: '#92d3eb'
-      }
-    },
-    destructive: {
-      primary: '#e33719',
-      complementary: '#d63418',
-      border: '#bf0711',
-      hover: {
-        primary: '#d93518',
-        complementary: '#cc3216',
-        border: '#b50710'
-      },
-      disabled: {
-        border: '#db9586',
-        primary: '#fdac9a',
-        complementary: '#f2a594'
-      }
-    },
-    error: '#fb5607',
-    wispPink: '#fbeae5',
-    alert: '#f0c808',
-    validation: {
-      primary: '#83b700',
-      complementary: '#7dad03',
-      hover: {
-        border: '#699100',
-        primary: '#7bab00',
-        complementary: '#76a400'
-      },
-      disabled: {
-        border: '#bcd47c',
-        primary: '#dce19f',
-        complementary: '#d5eba0'
-      }
-    },
-    info: '#009fda',
-    white: '#fff',
+    brand: '#66bb6a',
+    'brand-hover': '#4caf50',
+    'brand-disabled': '#dfe9f2',
+    'outline-hover': '#43a047',
+    'outline-disabled': '#a5d6a7',
+    error: '#ff7043',
+    'error-hover': '#ff5722',
+    alert: '#fbc02d',
+    info: '#64b5f6',
+    success: '#66bb6a',
+    white: '#ffffff',
     'pale-white': '#fafcfd',
     'ghost-white': '#f6f9fb',
     'white-smoke': '#f2f6f9',
     'ice-white': '#dfe9f2',
-    'azureish-white': '#d8e2ed',
-    'azureish-grey': '#c4cdd5',
+    'azure-white': '#d8e2ed',
     'pastel-blue': '#b3c3d4',
     'light-gray': '#cdd3d9',
     manatee: '#979ca6',
     'paynes-gray': '#636f7c',
     independence: '#4f5767',
-    'gun-metal': '#243143',
+    gunmetal: '#243143',
     'dark-gunmetal': '#1b202f',
-    black: '#000',
-    'modal-background': 'rgba(36, 49, 67, 0.25)'
+    black: '#000000'
   }
   this.shadows = {
-    'button-basic': '0 1px 0 0 rgba(0, 0, 0, 0.05)',
-    'button-extended':
-      '0 1px 0 0 rgba(22, 29, 37, 0.1), inset 0 1px 0 1px rgba(255, 255, 255, 0.09)',
-    'input-basic': '0 1px 0 0 rgba(22, 29, 37, 0.05)'
+    'button-basic': `0 1px 0 0 ${hexToRgbA(this.colors.black, 0.05)}`,
+    'button-extended': `0 1px 0 0 ${hexToRgbA(
+      this.colors['dark-gunmetal'],
+      0.05
+    )}, 0 1px 0 0 ${hexToRgbA(this.colors['dark-gunmetal'], 0.1)}`,
+    'input-basic': `0 1px 0 0 ${hexToRgbA(this.colors['dark-gunmetal'], 0.05)}`,
+    'card-simple': `0 1px 1px 1px ${hexToRgbA(this.colors.black, 0.15)}`,
+    'card-highlight': `2px 0 10px 0 ${hexToRgbA(this.colors.black, 0.15)}`,
+    'menu-list': `0 1px 4px 0 ${hexToRgbA(this.colors['dark-gunmetal'], 0.35)}`
   }
 
   this.colorStyles = {
-    'outline-alt': {
-      border: `1px solid ${this.colors.independence}`,
-      color: `${this.colors.brand.primary}`
-    },
     'card-white': {
-      boxShadow: '5px 0 10px 0 rgba(0, 0, 0, 0.15)',
+      boxShadow: this.shadows['card-simple'],
       backgroundColor: this.colors.white
     },
     'card-gray': {
-      boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.2)',
-      backgroundColor: this.colors['ghost-white']
+      boxShadow: this.shadows['card-simple'],
+      backgroundColor: this.colors['pale-white']
     },
     'menu-list': {
-      boxShadow: '0 1px 4px 0 rgba(22, 29, 37, 0.35)',
+      boxShadow: this.shadows['menu-list'],
       backgroundColor: this.colors.white
-    }
+    },
+    'modal-background': `${hexToRgbA(this.colors['gunmetal'], 0.25)}`
   }
   this.gutter = '1em'
   this.breakpoints = {
@@ -114,8 +79,10 @@ const defaultTheme = new function () {
   ]
 
   this.fonts = {
-    serif: 'athelas, georgia, times, serif',
-    sansSerif: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
+    primary:
+      'Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif',
+    complementary:
+      'Rubik, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif'
   }
 
   this.fontSizes = [
@@ -143,7 +110,7 @@ const defaultTheme = new function () {
     tight: '-0.05em',
     mega: '0.25em'
   }
-  this.radii = [0, 2, 4, 16, 32, '50%', '100%']
+  this.radii = [0, 1, 2, 4, 16, 32, '50%', '100%']
   this.space = [0, 4, 8, 16, 32, 64, 128, 256]
 
   this.buttons = buttonsFactory(this.colors, this.shadows)

@@ -29,7 +29,10 @@ import {
   themeGet,
   width
 } from 'styled-system'
-import Typography from '../Typography'
+
+import Icon from './Icon'
+import ActivityIndicator from '../ActivityIndicator'
+import { Flex } from '../Responsive'
 
 const Button = ({
   alignSelf,
@@ -38,36 +41,77 @@ const Button = ({
   display,
   disabled,
   blockSize,
+  icon,
   isLoading,
   justifyContent,
+  Loading,
+  spinnerSize,
+  loadingText,
   onClick,
   title,
   type,
   variant,
   ...rest
-}) => (
-  <StyledBtn
-    data-test={dataTest}
-    className={className}
-    disabled={disabled}
-    display={display}
-    blockSize={blockSize}
-    justifyContent={justifyContent}
-    onClick={onClick}
-    type={type}
-    variant={variant}
-    {...rest}
-  >
-    {isLoading ? <Typography color='white' message='loading...' /> : title}
-  </StyledBtn>
-)
+}) => {
+  const spinnerColors = (() => {
+    switch (variant) {
+      case 'outline':
+        return {
+          background: 'white',
+          primary: 'brand'
+        }
+      case 'validation':
+        return {
+          background: 'success',
+          primary: 'white'
+        }
+      case 'destructive':
+        return {
+          background: 'error',
+          primary: 'white'
+        }
+      default:
+        return {
+          background: disabled ? 'brand-disabled' : 'brand',
+          primary: disabled ? 'pastel-blue' : 'white'
+        }
+    }
+  })()
+  return (
+    <StyledBtn
+      data-test={dataTest}
+      className={className}
+      disabled={disabled}
+      display={display}
+      blockSize={blockSize}
+      justifyContent={justifyContent}
+      onClick={onClick}
+      type={type}
+      variant={variant}
+      {...rest}
+    >
+      <Flex justifyContent='center' alignItems='center'>
+        {isLoading ? (
+          loadingText || (
+            <ActivityIndicator size={spinnerSize} colors={spinnerColors} />
+          )
+        ) : (
+          <>
+            {icon && <Icon icon={icon} variant={variant} />}
+            {title}
+          </>
+        )}
+      </Flex>
+    </StyledBtn>
+  )
+}
 
 /** @component */
 const StyledBtn = styled.button`
   border-radius: ${themeGet('radii.1')}px;
   cursor: pointer;
   font-size: 1rem;
-  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
+  font-family: ${themeGet('fonts.complementary')};
   font-weight: bold;
   font-style: normal;
   letter-spacing: normal;
@@ -75,6 +119,14 @@ const StyledBtn = styled.button`
   line-height: ${themeGet('lineHeights.button', 1.9)};
   text-transform: uppercase;
   width: 160px;
+
+  :active {
+    transform: scale(0.965);
+  }
+  :focus {
+    outline-style: none;
+    outline-color: transparent;
+  }
   
   ${buttonStyle}
   ${borders}
@@ -111,7 +163,9 @@ Button.propTypes = {
   dataTest: PropTypes.string,
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
+  Loading: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
   onClick: PropTypes.func,
+  spinnerSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   title: PropTypes.string.isRequired,
   type: PropTypes.string,
   variant: PropTypes.oneOf(['primary', 'outline', 'validation', 'destructive'])
@@ -123,5 +177,6 @@ Button.defaultProps = {
   type: 'button',
   variant: 'primary'
 }
+Button.displayName = 'Button'
 
 export default Button

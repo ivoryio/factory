@@ -1,11 +1,9 @@
 ```js
   const React = require('react')
   const { useState, useEffect } = React
-  const Box = require('../Responsive/Box').default
-  const Flex = require('../Responsive/Flex').default
 
   const InputExamples = () => {
-  const [formValues, setInputVal] = useState({ input1: '', input2: '' })
+  const [formValues, setInputVal] = useState({ input1: '', input2: 'mixedchars3' })
   const [error, setError] = useState(null)
 
   const handleValueChange = key => ev => {
@@ -27,7 +25,7 @@
 
   return (
     <Flex flexWrap='wrap'>
-      <Box px={2} width={{ xs: 1, md: 1/2 }}>
+      <Box px={2} width={{ xs: 1, lg: 1/2 }}>
         <form onSubmit={ev => ev.preventDefault()}>
           <Input
             autoComplete='current-email'
@@ -36,6 +34,7 @@
             label='Default'
             mt={1}
             name='email'
+            required
             type='password'
             value={formValues.input1}
           />
@@ -49,7 +48,7 @@
           />
         </form>
       </Box>
-      <Box px={2} width={{ xs: 1, md: 1/2 }}>
+      <Box px={2} width={{ xs: 1, lg: 1/2 }}>
         <Input
           autoComplete='your-text'
           label='Valid input'
@@ -57,7 +56,8 @@
           mt={1}
           name='error-input'
           variant='valid'
-          value='this is valid'
+          valid='Nicely done!'
+          value='A+B=3'
         />
          <Input
           autoComplete='your-text-here'

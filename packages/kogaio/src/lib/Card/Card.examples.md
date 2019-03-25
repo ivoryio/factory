@@ -1,7 +1,6 @@
 #### Empty cards
 ```js
-const { default: Flex } = require('../Responsive/Flex');
-const { default: Space } = require('../Responsive/Space');
+const Space = require('../Responsive/Space').default;
   <Flex justifyContent='center'>
     <Space mx={16} my={16}>
       <Card
@@ -21,7 +20,7 @@ const { default: Space } = require('../Responsive/Space');
 ```js
 const { useState } = React
 const { default: styled } = require('styled-components');
-const { Flex, Space } = require('../Responsive');
+const Space = require('../Responsive/Space').default;
 const Form = styled.form`width: 100%;`;
 
   const CardWithFormExample = () => {
@@ -68,7 +67,6 @@ const Form = styled.form`width: 100%;`;
             <Button
               onClick={() => console.log('Clicked!')}
               mt='12px'
-              variant='outline'
               title='Submit'
             />
           </Card>

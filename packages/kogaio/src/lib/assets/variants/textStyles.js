@@ -1,22 +1,21 @@
 export default function (colors, fontWeights) {
   return {
     h1: {
-      color: `${colors['gun-metal']}`,
-      fontSize: '1.75em',
-      lineHeight: 1.85
+      fontSize: '1.775em',
+      lineHeight: 1.83
     },
     h2: {
-      fontSize: '1.5em',
-      lineHeight: 1.45
+      fontSize: '1.575em',
+      lineHeight: 1.43
     },
     h3: {
-      fontSize: '1.25em',
-      lineHeight: 1.6
+      fontSize: '1.245em',
+      lineHeight: 1.61
     },
     link: {
       fontSize: '0.875em',
-      color: `${colors.info}`,
-      lineHeight: 1.7,
+      color: colors.info,
+      lineHeight: 1.71,
       fontWeight: fontWeights[8],
       '&:visited': {
         fontWeight: fontWeights[4]
@@ -26,26 +25,26 @@ export default function (colors, fontWeights) {
       fontSize: '0.875em',
       lineHeight: 2
     },
+    'input-label-gray': {
+      fontSize: '0.875em',
+      lineHeight: 2,
+      color: colors.manatee
+    },
     paragraph: {
       fontSize: '0.875em',
-      lineHeight: 1.7
+      lineHeight: 1.71
     },
     subtitle: {
       fontSize: '1em',
-      lineHeight: 1.5
+      lineHeight: 1.52
     },
     caption: {
-      fontSize: '0.8em',
+      fontSize: '0.775em',
       lineHeight: 1.8
     },
     list: {
       fontSize: '0.875em',
-      lineHeight: 2.5
-    },
-    error: {
-      fontSize: '0.875em',
-      lineHeight: 1.7,
-      color: `${colors.error}`
+      lineHeight: 2.43
     }
   }
 }

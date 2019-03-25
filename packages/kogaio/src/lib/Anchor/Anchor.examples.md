@@ -1,6 +1,4 @@
 ```js
-  const { default: Flex } = require('../Responsive/Flex.js');
-  
     <Flex width={1} px={2}>
       <Anchor
         href="https://www.ivory.io"

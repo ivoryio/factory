@@ -2,41 +2,41 @@ export default function (colors) {
   return {
     info: {
       border: `solid 1px ${colors.info}`,
-      backgroundColor: `${colors.white}`,
+      backgroundColor: colors.white,
       '& > div': {
         'i:first-of-type, .tooltip-text': {
-          color: `${colors.info}`
+          color: colors.info
         }
       },
       '&:after': {
-        borderColor: `${colors.info}`,
-        backgroundColor: `${colors.white}`
+        borderColor: colors.info,
+        backgroundColor: colors.white
       }
     },
     success: {
-      border: `solid 1px ${colors.validation.complementary}`,
-      backgroundColor: `${colors.white}`,
+      border: `solid 1px ${colors.brand}`,
+      backgroundColor: colors.white,
       '& > div': {
         'i:first-of-type, .tooltip-text': {
-          color: `${colors.validation.complementary}`
+          color: colors.brand
         }
       },
       '&:after': {
-        borderColor: `${colors.validation.complementary}`,
-        backgroundColor: `${colors.white}`
+        borderColor: colors.brand,
+        backgroundColor: colors.white
       }
     },
     error: {
       border: `solid 1px ${colors.error}`,
-      backgroundColor: `${colors.wispPink}`,
+      backgroundColor: colors.white,
       '& > div': {
-        'i, .tooltip-text': {
-          color: `${colors.error}`
+        'i:first-of-type, .tooltip-text': {
+          color: colors.error
         }
       },
       '&:after': {
-        backgroundColor: `${colors.wispPink}`,
-        borderColor: `${colors.error}`
+        borderColor: colors.error,
+        backgroundColor: colors.white
       }
     }
   }

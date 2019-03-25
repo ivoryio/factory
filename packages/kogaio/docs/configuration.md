@@ -35,8 +35,9 @@ Extend your web application with Kogaio's _themeFactory_ [^1]
 ```
 **NOTE**
 
-Kogaio's fallback theme kicks in when no parameters are passed to `themeFactory()`.
+> Kogaio's fallback theme kicks in when no parameters are passed to `themeFactory()`.
 
+[^1] _<span style="font-size: 14px;">`themeFactory` merges your custom theme with Kogaio's built-in theme.</span>_
 
 #### **Step 2**
 
@@ -72,5 +73,3 @@ Plug and play!
       </Flex>
     )
 ```
-
-[^1] _<span style="font-size: 14px;">`themeFactory` merges your custom theme with Kogaio's built-in theme.</span>_

@@ -138,5 +138,6 @@ Anchor.propTypes = {
 Anchor.defaultProps = {
   fontSize: '0.9rem'
 }
+Anchor.displayName = 'Anchor'
 
 export default Anchor

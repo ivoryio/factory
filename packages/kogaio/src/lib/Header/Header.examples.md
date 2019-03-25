@@ -2,17 +2,16 @@
 ```js
   const React = require('react')
   const { default: styled } = require('styled-components')
-  const Box = require('../Responsive/Box').default
   
   const HeaderExample = () => {
     const TextComponent = text => <TextContainer>
     <Typography message={text} />
     </TextContainer>
 
-    const TextContainer = styled(Box)`
+  const TextContainer = styled(Box)`
     flex: 1;
     text-align: center;
-    `
+  `
 
     return (
       <Header
@@ -87,7 +86,6 @@
   )
   const IconWrapper = () => (
     <Icon
-      alt='sign-out'
       fontSize={5}
       name='exit_to_app'
       position='absolute'

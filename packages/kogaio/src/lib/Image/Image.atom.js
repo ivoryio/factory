@@ -105,5 +105,6 @@ Image.defaultProps = {
   size: [80, 80],
   src: images.placeholder
 }
+Image.displayName = 'Image'
 
 export default Image

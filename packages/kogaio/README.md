@@ -2,8 +2,6 @@
 
 ## Introduction
 
----
-
 **[Kogaio][1]** is an independent open source project,
 designed and tailored to fit the needs of
   **[Ivory][2]** based web applications.
@@ -15,8 +13,6 @@ as well as to offer an opinionated solution for building and styling responsive 
 [2]: https://www.ivory.io/ "Ivory.io"
 
 ## Documentation
-
----
 
   Both the documentation and the structure of [Kogaio][1] are [atomic design][2] based; i.e. the purpose is to encourage, implicitly with examples, the substance of breaking the layout down into its basic components, which are then reused throughout the app.
 
@@ -38,9 +34,6 @@ as well as to offer an opinionated solution for building and styling responsive 
 
 ## Installation
 
----
-
-
 ~~~~
 npm i @ivoryio/kogaio
 ~~~~
@@ -51,8 +44,6 @@ yarn add @ivoryio/kogaio
 
 
 ## Configuration
-
----
 
 #### **Step 1**
 

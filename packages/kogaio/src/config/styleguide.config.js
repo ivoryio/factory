@@ -14,7 +14,7 @@ module.exports = {
         {
           rel: 'stylesheet',
           type: 'text/css',
-          href: 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto'
+          href: 'https://fonts.googleapis.com/css?family=Roboto|Rubik'
         },
         {
           rel: 'stylesheet',

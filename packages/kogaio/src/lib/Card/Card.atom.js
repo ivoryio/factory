@@ -104,5 +104,6 @@ Card.propTypes = {
 }
 
 Card.defaultProps = {}
+Card.displayName = 'Card'
 
 export default Card

@@ -89,14 +89,14 @@ const touchableWithEffect = css`
           `
       case 'highlight':
         return `
+          :hover {
+            background-color: ${underlayColor};
+            color: ${themeGet('colors.white')(props)}
+          }
           :active {
             opacity: ${activeOpacity};
             color: ${themeGet('colors.pale-white')(props)};
             background-color: ${underlayColor};
-          }
-          :hover {
-            background-color: ${themeGet('colors.brand.hover.primary')(props)};
-            color: ${themeGet('colors.white')(props)}
           }
           `
       default:
@@ -120,7 +120,7 @@ const Wrapper = styled.button`
     outline: none;
   }
   :active {
-    transform: scale(0.975);
+    transform: scale(0.985);
   }
   ${alignItems}
   ${alignSelf}
@@ -184,5 +184,6 @@ Touchable.defaultProps = {
   effect: 'no-feedback',
   type: 'button'
 }
+Touchable.displayName = 'Touchable'
 
 export default Touchable

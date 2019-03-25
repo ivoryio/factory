@@ -34,5 +34,6 @@ Box.propTypes = {
   ...fontFamily.propTypes,
   ...textAlign.propTypes
 }
+Box.displayName = 'Box'
 
 export default Box

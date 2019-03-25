@@ -85,7 +85,7 @@ const Tooltip = ({
           right='8px'
           onClick={hideTooltip}
         >
-          <Icon cursor='pointer' name='cancel' fontSize='1em' />
+          <Icon name='cancel' fontSize='1em' />
         </Touchable>
       </Body>
     </Container>
@@ -160,8 +160,8 @@ const animatedOpacity = keyframes`
 `
 
 const Container = styled(Box)`
-  border-radius: ${themeGet('radii.1')}px;
-  box-shadow: 0 1px 0 0 rgba(22, 29, 37, 0.05);
+  border-radius: ${themeGet('radii.2')}px;
+  box-shadow: ${themeGet('shadows.input-basic')};
   padding: ${themeGet('space.1')}px;
   position: relative;
   animation: ${animatedOpacity} 0.2s ease-in-out;
@@ -254,5 +254,6 @@ Tooltip.defaultProps = {
   icLeft: 'assignment',
   variant: 'error'
 }
+Tooltip.displayName = 'Tooltip'
 
 export default Tooltip

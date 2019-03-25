@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   color,
-  colorStyle,
   fontFamily,
   fontSize,
   fontWeight,
@@ -18,17 +17,18 @@ import {
   themeGet
 } from 'styled-system'
 
-const Typography = ({ children, message, ...rest }) => (
-  <StyledText {...rest}>{message || children}</StyledText>
+const Typography = ({ children, component, message, ...rest }) => (
+  <StyledText as={component} {...rest}>
+    {message || children}
+  </StyledText>
 )
 
 /** @component */
 const StyledText = styled.div`
-  color: ${themeGet('colors.dark-gunmetal', '#484848')};
-  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
+  color: ${themeGet('colors.dark-gunmetal', '#1b202f')};
+  font-family: ${themeGet('fonts.primary')};
   ${textStyle}
   ${color}
-  ${colorStyle}
   ${fontFamily}
   ${fontSize}
   ${fontWeight}
@@ -42,9 +42,47 @@ const StyledText = styled.div`
 `
 
 Typography.propTypes = {
+  ...textStyle.propTypes,
+  ...color.propTypes,
+  ...fontFamily.propTypes,
+  ...fontSize.propTypes,
+  ...fontWeight.propTypes,
+  ...fontStyle.propTypes,
+  ...letterSpacing.propTypes,
+  ...lineHeight.propTypes,
+  ...opacity.propTypes,
+  ...size.propTypes,
+  ...space.propTypes,
+  ...textAlign.propTypes,
+  textStyle: PropTypes.oneOf([
+    'h1',
+    'h2',
+    'h3',
+    'input-label',
+    'link',
+    'paragraph',
+    'subtitle',
+    'caption',
+    'list'
+  ]),
+  fontFamily: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  cursor: PropTypes.string,
+  component: PropTypes.oneOf([
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'span',
+    'div',
+    'p'
+  ]),
   message: PropTypes.string
 }
+
+Typography.defaultProps = {
+  component: 'div'
+}
+Typography.displayName = 'Typography'
 
 export default Typography

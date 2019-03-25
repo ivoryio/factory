@@ -25,5 +25,6 @@ StyledChildren.propTypes = {
   className: PropTypes.string,
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.node])
 }
+Space.displayName = 'Space'
 
 export default Space

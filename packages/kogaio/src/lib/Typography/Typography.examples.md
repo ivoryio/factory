@@ -57,13 +57,13 @@
 #### Paragraph
 ```js
   <>
-    <Typography textStyle='paragraph' fontWeight='bold'>
+    <Typography component='p' fontWeight='bold' textStyle='paragraph'>
       Pack my box with five dozen liquor jugs.
     </Typography>
-    <Typography textStyle='paragraph'>
+    <Typography component='p' textStyle='paragraph'>
       The quick brown fox jumps over the lazy dog.
     </Typography>
-    <Typography textStyle='paragraph' color='#979ca6'>
+    <Typography  color='manatee' component='p' textStyle='paragraph'>
       Sphinx of black quartz, judge my vow.
     </Typography>
   </>

@@ -1,4 +1,4 @@
-import React, { Fragment, useState, createRef } from 'react'
+import React, { useState, createRef } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
@@ -43,10 +43,10 @@ import {
 } from 'styled-system'
 
 import inputStyle from './inputStyle'
-import Icon from '../Icon'
-import Tooltip from '../Tooltip'
-import Touchable from '../Touchable'
+
 import Typography from '../Typography'
+import { InputSublabel } from './InputSublabel'
+import { PasswordToggler } from './PasswordToggler'
 
 const Input = ({
   autoComplete,
@@ -67,6 +67,7 @@ const Input = ({
   ref,
   required,
   type,
+  valid,
   value,
   variant,
   ...rest
@@ -84,22 +85,23 @@ const Input = ({
     return variant
   })()
 
-  const _toggleShowPassword = () => {
+  const togglePassword = () => {
     inputRef.current.focus()
     if (inputType.includes('password')) {
       return setInputType('text')
     }
-    return _resetInputType()
+    return resetInputType()
   }
 
-  const _resetInputType = () => setInputType(type)
+  const resetInputType = () => setInputType(type)
   return (
     <InputWrapper hasLabel={label} {...rest}>
       {label ? (
         <InputLabel
           cssLabel={cssLabel}
-          color={error ? 'error' : 'independence'}
+          color='gunmetal'
           htmlFor={id}
+          component='span'
           textStyle='input-label'
         >
           {label} {required && '*'}
@@ -127,55 +129,14 @@ const Input = ({
           {...rest}
         />
         {type === 'password' && value ? (
-          <Touchable
-            onMouseDown={_toggleShowPassword}
-            onMouseUp={_toggleShowPassword}
-            onTouchStart={_toggleShowPassword}
-            onTouchEnd={_toggleShowPassword}
-            handleDragAttempt={_resetInputType}
-            position='absolute'
-            right={8}
-          >
-            <Icon
-              color={error ? 'error' : 'light-gray'}
-              fontSize='1.25em'
-              name='visibility'
-            />
-          </Touchable>
+          <PasswordToggler
+            error={error}
+            resetInputType={resetInputType}
+            togglePassword={togglePassword}
+          />
         ) : null}
       </Row>
-      {withErrorTooltip ? (
-        <Tooltip
-          arrow={{ direction: 'top', alignment: 'right' }}
-          isShown={!!error}
-          mt={2}
-          variant='error'
-          width={1}
-        >
-          {error}
-        </Tooltip>
-      ) : (
-        <ErrorWrapper mt={1}>
-          {error ? (
-            <Fragment>
-              <Icon
-                color='error'
-                fontSize='0.85em'
-                name='error_outline'
-                pr={1}
-              />
-              <Typography
-                color='error'
-                fontSize={0}
-                width={1}
-                textStyle='error'
-              >
-                {error}
-              </Typography>
-            </Fragment>
-          ) : null}
-        </ErrorWrapper>
-      )}
+      <InputSublabel inputVariant={inputVariant} error={error} valid={valid} />
     </InputWrapper>
   )
 }
@@ -201,17 +162,16 @@ const InputLabel = styled(Typography)`
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
-  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
+  font-family: ${themeGet('fonts.complementary')};
   ${props => props.cssLabel};
   ${fontFamily}
 `
 
 const StyledInput = styled.input`
   width: 100%;
-  border-radius: ${themeGet('radii.2')}px;
-  /* padding-block-start: ${themeGet('space.2', 8)}px; */
+  border-radius: ${themeGet('radii.1')}px;
+  color: ${themeGet('colors.gunmetal', '#243143')};
   padding-inline-end: ${themeGet('space.4', 32)}px;
-  /* padding-block-end: ${themeGet('space.2', 8)}px; */
   padding-inline-start: ${themeGet('space.2', 8)}px;
   min-height: 36px;
   font-size: 0.875em;
@@ -220,11 +180,11 @@ const StyledInput = styled.input`
   outline: none;
   outline-style: none;
   outline-color: transparent;
-  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
+  font-family: ${themeGet('fonts.complementary')};
 
   &:focus {
     ~ button > i {
-      color: ${themeGet('colors.paynes-gray')};
+      color: ${themeGet('colors.gunmetal')};
     }
   }
 
@@ -273,13 +233,6 @@ const StyledInput = styled.input`
   ${props => !props.hasLabel && space}
 `
 
-const ErrorWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  height: 12px;
-  ${space}
-`
-
 Input.propTypes = {
   ...borderRadius.propTypes,
   ...borders.propTypes,
@@ -301,6 +254,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   type: PropTypes.string.isRequired,
+  valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -315,5 +269,6 @@ Input.defaultProps = {
   value: '',
   variant: 'default'
 }
+Input.displayName = 'Input'
 
 export default Input

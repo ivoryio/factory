@@ -32,5 +32,6 @@ Flex.propTypes = {
   ...justifyContent.propTypes,
   ...order.propTypes
 }
+Flex.displayName = 'Flex'
 
 export default Flex

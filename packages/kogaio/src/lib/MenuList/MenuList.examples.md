@@ -1,9 +1,6 @@
 #### Simple Menu List
 ```js
-const React = require('react')
-const { useState } = React
-const { default: Icon } = require('../Icon')
-
+const React = require('react');
 const MenuListExample = () => {
 const listItems = [
   {
@@ -19,13 +16,6 @@ const listItems = [
     name: 'Menu list item 3'
   }
 ]
-const MyCustomToggler = ({ onClick }) => (
-  <div
-    style={{ cursor: 'pointer', color: 'blue' }}
-    onClick={onClick}>
-      Test
-  </div>
-)
   return (
     <Flex>
       <Box width={{ xs: 1, sm: 1/2, lg: 1/3 }}>
@@ -33,7 +23,7 @@ const MyCustomToggler = ({ onClick }) => (
           alignment='left'
           arrowSize={10}
           icSize={24}
-          id='menu'
+          id='menulist-1'
           colors='menu-list'
           mt={2}
           fontSize='1rem'
@@ -47,7 +37,7 @@ const MyCustomToggler = ({ onClick }) => (
           arrowSize={10}
           icName='settings'
           icSize={24}
-          id='menu2'
+          id='menu-list-2'
           colors='menu-list'
           mt={2}
           fontSize='1rem'
@@ -61,7 +51,7 @@ const MyCustomToggler = ({ onClick }) => (
           arrowSize={10}
           icName='account_circle'
           icSize={24}
-          id='menu3'
+          id='menu-list-3'
           colors='menu-list'
           mt={2}
           fontSize='1rem'

@@ -1,7 +1,8 @@
 #### Simple Dropdown
 ```js
-const React = require('react')
-const { useState } = React
+const React = require('react');
+const { useState } = React;
+
 const DropdownExample = () => {
 const [selectedOption, setSelectedOption] = useState('')
 const selectOption = newOption =>

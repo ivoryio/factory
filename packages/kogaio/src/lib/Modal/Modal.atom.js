@@ -66,11 +66,7 @@ class Modal extends PureComponent {
     return ReactDOM.createPortal(
       <Body className={className}>
         <StyledCard colors='card-white' id='modal-body' {...rest}>
-          {Header ? (
-            <Row>
-              <Header />
-            </Row>
-          ) : null}
+          {Header ? <Row>{Header}</Row> : null}
           <Content>
             <ChildWrapper>{children}</ChildWrapper>
             <ButtonsWrapper>
@@ -89,11 +85,7 @@ class Modal extends PureComponent {
               />
             </ButtonsWrapper>
           </Content>
-          {Footer ? (
-            <Row>
-              <Footer />
-            </Row>
-          ) : null}
+          {Footer ? <Row>{Footer}</Row> : null}
         </StyledCard>
       </Body>,
       this.modalEl
@@ -107,7 +99,7 @@ const Body = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: ${themeGet('colors.modal-background')};
+  background-color: ${themeGet('colorStyles.modal-background')};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -199,5 +191,6 @@ Modal.defaultProps = {
   confirmButtonLabel: 'Confirm',
   confirmButtonType: 'validation'
 }
+Modal.displayName = 'Modal'
 
 export default Modal

@@ -15,15 +15,14 @@ import {
   space
 } from 'styled-system'
 
-const Icon = ({ className, name, ...rest }) => (
-  <StyledIcon className='material-icons' {...rest}>
+const Icon = ({ className = '', name, ...rest }) => (
+  <StyledIcon className={`material-icons${className}`} {...rest}>
     {name}
   </StyledIcon>
 )
 
 const StyledIcon = styled.i`
   user-select: none;
-  cursor: ${props => props.cursor};
   ${alignSelf}
   ${color}
   ${fontSize}
@@ -51,8 +50,10 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-  fontSize: '1.25rem',
-  name: 'image'
+  fontSize: '1em',
+  name: 'image',
+  color: 'gunmetal'
 }
+Icon.displayName = 'Icon'
 
 export default Icon

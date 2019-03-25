@@ -33,6 +33,7 @@ import Typography from '../Typography'
 const MenuList = ({
   alignment,
   CustomToggler,
+  icColor,
   icName,
   icSize,
   id,
@@ -43,7 +44,17 @@ const MenuList = ({
   // #region initialisation
   const [isMenuShown, showMenu] = useState(false)
   useEffect(() => {
+    const _handleDocumentBodyClick = ev => {
+      const bodyEl = document.getElementById(id)
+      if (bodyEl) {
+        const isClickInside = bodyEl.contains(ev.target)
+        if (!isClickInside) {
+          showMenu(false)
+        }
+      }
+    }
     window.addEventListener('click', _handleDocumentBodyClick)
+    return () => document.removeEventListener('click', _handleDocumentBodyClick)
   }, [])
   // #endregion
 
@@ -54,13 +65,6 @@ const MenuList = ({
     onSelectItem(item)
     _toggleMenuList()
   }
-  const _handleDocumentBodyClick = ev => {
-    const bodyEl = document.getElementById(id)
-    const isClickInside = bodyEl.contains(ev.target)
-    if (!isClickInside) {
-      showMenu(false)
-    }
-  }
   // #endregion
 
   // #region render
@@ -70,13 +74,17 @@ const MenuList = ({
         <CustomToggler onClick={_toggleMenuList} />
       ) : (
         <Touchable onClick={_toggleMenuList} px='6px'>
-          {<Icon name={icName} fontSize={`${icSize}px`} />}
+          {<Icon name={icName} color={icColor} fontSize={`${icSize}px`} />}
         </Touchable>
       )}
       {isMenuShown ? (
         <ListWrapper alignment={alignment} icSize={icSize} {...rest}>
           {listItems.map(item => (
-            <TouchableText key={item.id} onClick={_selectItem(item.name)} data-testid={item.id}>
+            <TouchableText
+              key={item.id}
+              onClick={_selectItem(item.name)}
+              data-testid={item.id}
+            >
               <Typography
                 p={3}
                 color='dark-gunmetal'
@@ -133,10 +141,9 @@ const alignArrow = css`
   }}
 `
 
-const arrowSize = css`
-  ${props =>
-    `width: ${props.arrowSize}px;
-    height: ${props.arrowSize}px;`}
+const arrowSize = ({ arrowSize }) => css`
+  ${`width: ${arrowSize}px;
+    height: ${arrowSize}px;`}
 `
 
 const Container = styled(Box)`
@@ -180,7 +187,7 @@ const ListWrapper = styled(Box)`
     ${arrowSize}
   }
   & > :nth-child(n + 2) {
-    border-top: ${themeGet('borders.1')} ${themeGet('colors.azureish-white')};
+    border-top: ${themeGet('borders.1')} ${themeGet('colors.azure-white')};
   }
   ${borderColor}
   ${borderRadius}
@@ -205,6 +212,7 @@ const TouchableText = styled(Touchable)`
 MenuList.propTypes = {
   alignment: PropTypes.oneOf(['left', 'center', 'right']),
   icName: PropTypes.string,
+  icColor: PropTypes.string,
   icSize: PropTypes.number,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   listItems: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -220,5 +228,6 @@ MenuList.defaultProps = {
   icName: 'notification_important',
   icSize: 24
 }
+MenuList.displayName = 'MenuList'
 
 export default MenuList

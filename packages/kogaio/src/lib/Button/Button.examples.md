@@ -1,15 +1,10 @@
 #### Button variants
 ```js
-  const React = require('react')
-  const { useState } = React
-  const { default: styled } = require('styled-components')
-  const Flex = require('../Responsive/Flex').default
-  const Box = require('../Responsive/Box.js').default
-  const Column = styled(Box)`
-    display: flex;
-    flex-direction: column;
-  `
-  const ButtonExample = () => {
+  const React = require('react');
+  const { useState } = React;
+  const { default: styled } = require('styled-components');
+
+  const ButtonExamples = () => {
     const [isLoading, setIsLoading] = useState(false)
     const toggleLoading = () => {
       setIsLoading(true)
@@ -19,12 +14,12 @@
     }
     return (
       <Flex flexWrap='wrap' justifyContent='space-between' width={1}>
-        <Column
+        <Flex
+          flexDirection='column'
           px={3}
           my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
-          Primary
           <Button
             fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
@@ -41,13 +36,13 @@
             mt={1}
             width='100%'
           />
-        </Column>
-        <Column
+        </Flex>
+        <Flex
+          flexDirection='column'
           px={3}
           my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
-          Outlined
           <Button
             fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
@@ -64,13 +59,13 @@
             disabled
             width='100%'
           />
-        </Column>
-        <Column
+        </Flex>
+        <Flex
+          flexDirection='column'
           px={3}
           my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
-          Success
           <Button
             fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
@@ -83,55 +78,37 @@
             fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             title='Button Label'
-            variant='validation'
             mt={1}
-            disabled
-            mr={3}
-            width='100%'
-          />
-        </Column>
-        <Column
-          px={3}
-          my={1}
-          width={{ xs: 1, sm: 1/2, md: 1/3 }}>
-          Destructive
-          <Button
-            fontSize={['0.9rem', '1rem']}
-            onClick={() => {}}
-            title='Button Label'
             variant='destructive'
             width='100%'
           />
-          <Button
-            border='solid 1px #699100'
-            fontSize={['0.9rem', '1rem']}
-            onClick={() => {}}
-            title='Button Label'
-            variant='destructive'
-            mt={1}
-            disabled
-            width='100%'
-          />
-        </Column>
-        <Column
+        </Flex>
+        <Flex
+          flexDirection='column'
           px={3}
           my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
-          Loading state
           <Button
             fontSize={['0.9rem', '1rem']}
             isLoading={isLoading}
-            disabled={isLoading}
             onClick={toggleLoading}
-            variant='primary'
-            title='Submit'
-            mr={3}
+            variant='outline'
+            title='Click me'
             width='100%'
           />
-        </Column>
+           <Button
+            fontSize={['0.9rem', '1rem']}
+            icon={{ name: 'visibility', size: 16 }}
+            mt={1}
+            onClick={() => {}}
+            title='Button Label'
+            variant='outline'
+            width='100%'
+          />
+        </Flex>
       </Flex>
     )
   }
-  <ButtonExample />
+  <ButtonExamples />
 ```

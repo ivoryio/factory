@@ -90,13 +90,17 @@ const Dropdown = ({
             alignSelf='center'
             color='independence'
             fontSize='1.5em'
-            name={isListShown ? 'arrow_drop_down' : 'arrow_drop_up'}
+            name={isListShown ? 'arrow_drop_up' : 'arrow_drop_down'}
           />
         </SelectedOption>
         {isListShown ? (
           <ListWrapper animated={animated}>
             {options.map(option => (
-              <Option data-testid={option.id} key={option.id} onClick={selectOption(option.name)}>
+              <Option
+                data-testid={option.id}
+                key={option.id}
+                onClick={selectOption(option.name)}
+              >
                 <Typography color='dark-gunmetal' fontSize='1em'>
                   {option.name}
                 </Typography>
@@ -109,9 +113,8 @@ const Dropdown = ({
   )
 }
 
-const animated = css`
-  ${props =>
-    props.animated &&
+const animated = ({ animated }) => css`
+  ${animated &&
     `
       animation: grow 0.3s linear;
       max-height: ${window.innerHeight / 2}px;
@@ -155,9 +158,7 @@ const Container = styled.div`
 const Body = styled(Box)`
   border: solid 1px
     ${props =>
-    props.error
-      ? themeGet('colors.error')
-      : themeGet('colors.azureish-grey')};
+    props.error ? themeGet('colors.error') : themeGet('colors.azure-white')};
   border-top-left-radius: ${themeGet('radii.2', 4)}px;
   border-top-right-radius: ${themeGet('radii.2', 4)}px;
   background-color: ${themeGet('colors.white')};
@@ -168,7 +169,7 @@ const DropdownLabel = styled(Typography)`
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
-  font-family: Roboto, sans-serif, -apple-system, BlinkMacSystemFont;
+  font-family: ${themeGet('fonts.complementary')};
   ${fontFamily}
   ${props => props.cssLabel};
 `
@@ -188,7 +189,7 @@ const SelectedOption = styled(Touchable)`
 const ListWrapper = styled.div`
   ${animated}
   background-color: ${themeGet('colors.white')};
-  border: solid 1px ${themeGet('colors.azureish-grey')};
+  border: solid 1px ${themeGet('colors.azure-white')};
   border-block-start: none;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
@@ -230,4 +231,6 @@ Dropdown.defaultProps = {
   animated: false,
   placeholder: 'Choose one option'
 }
+Dropdown.displayName = 'Dropdown'
+
 export default Dropdown

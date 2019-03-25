@@ -87,5 +87,6 @@ Header.propTypes = {
   middle: PropTypes.node,
   right: PropTypes.node
 }
+Header.displayName = 'Header'
 
 export default Header

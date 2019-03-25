@@ -4,11 +4,10 @@
     mx='auto'
     p={5}
     fontSize='1rem'
-    fontFamily='Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
     width={{ xs: 1, md: 1/2 }}
     color='white'
     textAlign='center'
-    bg='#2980b9'>
+    bg='brand'>
     Box
   </Box>
 ```
