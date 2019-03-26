@@ -1,50 +1,46 @@
 export default function (colors, fontWeights) {
   return {
     h1: {
-      fontSize: '1.775em',
-      lineHeight: 1.83
-    },
-    h2: {
-      fontSize: '1.575em',
-      lineHeight: 1.43
+      fontSize: '2em'
     },
     h3: {
-      fontSize: '1.245em',
-      lineHeight: 1.61
+      fontSize: '1.25em'
+    },
+    h4: {
+      fontSize: '1.125em'
+    },
+    h5: {
+      fontSize: '1em'
+    },
+    h6: {
+      fontSize: '0.875em'
     },
     link: {
       fontSize: '0.875em',
       color: colors.info,
-      lineHeight: 1.71,
       fontWeight: fontWeights[8],
       '&:visited': {
         fontWeight: fontWeights[4]
       }
     },
     'input-label': {
-      fontSize: '0.875em',
-      lineHeight: 2
+      fontSize: '0.875em'
     },
     'input-label-gray': {
       fontSize: '0.875em',
-      lineHeight: 2,
       color: colors.manatee
     },
     paragraph: {
-      fontSize: '0.875em',
-      lineHeight: 1.71
+      fontSize: '0.75em'
     },
     subtitle: {
-      fontSize: '1em',
-      lineHeight: 1.52
+      fontSize: '1em'
     },
     caption: {
-      fontSize: '0.775em',
-      lineHeight: 1.8
+      fontSize: '0.75em'
     },
     list: {
-      fontSize: '0.875em',
-      lineHeight: 2.43
+      fontSize: '0.875em'
     }
   }
 }
