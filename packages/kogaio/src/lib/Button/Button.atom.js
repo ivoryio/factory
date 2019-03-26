@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
@@ -96,10 +96,10 @@ const Button = ({
             <ActivityIndicator size={spinnerSize} colors={spinnerColors} />
           )
         ) : (
-          <>
+          <Fragment>
             {icon && <Icon icon={icon} variant={variant} />}
             {title}
-          </>
+          </Fragment>
         )}
       </Flex>
     </StyledBtn>

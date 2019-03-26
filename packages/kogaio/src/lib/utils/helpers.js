@@ -41,3 +41,12 @@ export function hexToRgbA (hex, alpha) {
     return `rgb(${r}, ${g}, ${b})`
   }
 }
+
+export function isObjectEmpty (arg) {
+  if (typeof arg !== 'object') {
+    throw new Error(
+      `* Unexpected argument passed. Expected an object but received a ${typeof arg}`
+    )
+  }
+  return !Object.keys(arg).length
+}
