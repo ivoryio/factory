@@ -4,9 +4,9 @@ import {
   textStylesFactory,
   tooltipsFactory
 } from './variants'
-import { mergeDeep, hexToRgbA } from '../utils/helpers'
+import { mergeDeep, hexToRgbA, isObjectEmpty } from '../utils/helpers'
 
-const defaultTheme = new function () {
+export const defaultTheme = new function () {
   this.colors = {
     brand: '#66bb6a',
     'brand-hover': '#4caf50',
@@ -44,7 +44,6 @@ const defaultTheme = new function () {
     'card-highlight': `2px 0 10px 0 ${hexToRgbA(this.colors.black, 0.15)}`,
     'menu-list': `0 1px 4px 0 ${hexToRgbA(this.colors['dark-gunmetal'], 0.35)}`
   }
-
   this.colorStyles = {
     'card-white': {
       boxShadow: this.shadows['card-simple'],
@@ -60,7 +59,6 @@ const defaultTheme = new function () {
     },
     'modal-background': `${hexToRgbA(this.colors['gunmetal'], 0.25)}`
   }
-  this.gutter = '1em'
   this.breakpoints = {
     xs: '20em',
     sm: '30em',
@@ -119,35 +117,27 @@ const defaultTheme = new function () {
   this.tooltips = tooltipsFactory(this.colors)
 }()
 
-function themeFactory (customTheme) {
-  if (!customTheme) {
-    return defaultTheme
-  }
-  const updatedStyles = Object.assign(
-    {},
+export function themeFactory (customTheme) {
+  if (!customTheme || isObjectEmpty(customTheme)) return defaultTheme
+
+  const updatedTheme = Object.assign(
+    defaultTheme,
     ...Object.keys(customTheme).map(style => ({
       [style]: mergeDeep(defaultTheme[style], customTheme[style])
     }))
   )
 
-  const colors = updatedStyles.colors || defaultTheme.colors
-  const shadows = updatedStyles.shadows || defaultTheme.shadows
-
+  const { colors, shadows } = updatedTheme
   const buttons = buttonsFactory(colors, shadows)
   const inputs = inputsFactory(colors, shadows)
   const textStyles = textStylesFactory(colors, shadows)
   const tooltips = tooltipsFactory(colors, shadows)
 
-  const updatedTheme = {
-    ...defaultTheme,
-    ...updatedStyles,
-    shadows,
+  return {
+    ...updatedTheme,
     buttons,
     inputs,
     textStyles,
     tooltips
   }
-  return updatedTheme
 }
-
-export { defaultTheme, themeFactory }

@@ -5,7 +5,7 @@ import Box from '../lib/Responsive/Box'
 import { themeFactory } from '../lib/assets/theme'
 
 const Wrapper = ({ children }) => (
-  <ThemeProvider theme={themeFactory()}>
+  <ThemeProvider theme={themeFactory({})}>
     <Container>{children}</Container>
   </ThemeProvider>
 )

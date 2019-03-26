@@ -109,7 +109,6 @@ module.exports = {
     },
     {
       name: 'Contents',
-      content: `${root}/docs/ui.md`,
       sections: [
         {
           name: 'Atoms',
@@ -130,6 +129,15 @@ module.exports = {
       ],
       exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
       usageMode: 'collapse' // 'hide' | 'collapse' | 'expand'
+    },
+    {
+      name: 'Footer',
+      sections: [
+        {
+          name: 'Theme Schema',
+          content: `${root}/docs/theme.md`
+        }
+      ]
     }
   ]
   // #endregion

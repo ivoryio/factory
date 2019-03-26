@@ -2,7 +2,7 @@
 
 ---
 
-Extend your web application with Kogaio's _themeFactory_ [^1]
+* Extend your web application with Kogaio's _themeFactory_ [^1]
 ```JSX
     import React from 'react'
     import { ThemeProvider } from 'styled-components'
@@ -11,18 +11,16 @@ Extend your web application with Kogaio's _themeFactory_ [^1]
 
     const myCustomTheme = {
       colors: {
-        brand: {
-          primary: '#00aeef',
-          complementary: '#009feb',
-          hover: {
-            primary: '#01a2de',
-            complementary: '#0197df'
-          },
-          disabled: {
-            background: '#b9e8fa',
-            border: '#92d3eb'
-          }
-        },
+        brand: '#66bb6a',
+        'brand-hover': '#4caf50',
+        'brand-disabled': '#dfe9f2',
+        'outline-hover': '#43a047',
+        'outline-disabled': '#a5d6a7',
+        error: '#ff7043',
+        'error-hover': '#ff5722',
+        alert: '#fbc02d',
+        info: '#64b5f6',
+        success: '#66bb6a'
       }
       {...}
     }
@@ -43,7 +41,7 @@ Extend your web application with Kogaio's _themeFactory_ [^1]
 
 ---
 
-Plug and play!
+* Plug and play!
 ```JSX
    import React from 'react'
     import { Button, Card, Flex, Space, Typography } from '@ivoryio/kogaio'
