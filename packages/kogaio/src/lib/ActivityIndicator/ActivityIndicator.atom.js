@@ -118,6 +118,7 @@ const Spinner = styled.div`
 `
 
 ActivityIndicator.propTypes = {
+  /** colors: { background: String, primary: String } */
   colors: PropTypes.object,
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }

@@ -3,7 +3,7 @@
  * @param item
  * @returns {boolean}
  */
-export function isObject (item) {
+function isObject (item) {
   return item && typeof item === 'object' && !Array.isArray(item)
 }
 
@@ -37,16 +37,28 @@ export function hexToRgbA (hex, alpha) {
 
   if (alpha) {
     return `rgba(${r},${g},${b},${alpha})`
-  } else {
-    return `rgb(${r}, ${g}, ${b})`
   }
+  return `rgb(${r}, ${g}, ${b})`
 }
 
+/**
+ * Simple object check.
+ * @param arg
+ * @returns {boolean}
+ */
 export function isObjectEmpty (arg) {
-  if (typeof arg !== 'object') {
+  if (!isObject(arg)) {
     throw new Error(
       `* Unexpected argument passed. Expected an object but received a ${typeof arg}`
     )
   }
   return !Object.keys(arg).length
+}
+
+export const mapProps = mapper => func => {
+  const next = props => func(mapper(props))
+  for (const key in func) {
+    next[key] = func[key]
+  }
+  return next
 }

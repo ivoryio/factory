@@ -150,12 +150,11 @@ SideMenu.propTypes = {
   ...width.propTypes,
   ...zIndex.propTypes,
   imgSrc: PropTypes.string,
-  imgSize: PropTypes.arrayOf(PropTypes.number),
   list: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 SideMenu.defaultProps = {
-  imgSize: [40]
+  imgSize: 40
 }
 SideMenu.displayName = 'SideMenu'
 

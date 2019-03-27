@@ -7,7 +7,7 @@ const listItems = [
 ];
   <SideMenu
     imgSrc={images.ivoryLogo}
-    imgSize={[64]}
+    imgSize={64}
     list={listItems}
     minWidth='264px'
     title='Full name'

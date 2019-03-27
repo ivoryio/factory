@@ -1,4 +1,5 @@
 ```js
+const { Space } = require('../Responsive');
 const listItems = [
   {
     id: 'list-item1',
@@ -13,40 +14,52 @@ const listItems = [
     name: 'Menu list item 3'
   }
 ];
-const CustomMenuLeft = (() => (
-  <MenuList
-    alignment='left'
-    arrowSize={10}
-    icSize={24}
-    id='custom-topbar-menu-left'
-    icName='menu'
-    colors='menu-list'
-    icColor='white'
-    fontSize='1em'
-    onSelectItem={item => console.log(`Selected ${item}`)}
-    listItems={listItems}
-  />
-))();
-const CustomMenuRight = (() => (
-  <MenuList
-    alignment='right'
-    arrowSize={10}
-    icSize={24}
-    id='custom-topbar-menu-right'
-    icName='notifications'
-    colors='menu-list'
-    icColor='white'
-    fontSize='1em'
-    onSelectItem={item => console.log(`Selected ${item}`)}
-    listItems={listItems}
-  />
-))();
+const logo = {
+  alt: 'Company Logo',
+  src: 'https://www.ivory.io/static/logo-1ba65a72f395ca84702664a4bb7aa315.png',
+  dimensions: [96, '100%']
+};
   <TopBar
     color='white'
     bg='independence'
-    IconLeft={CustomMenuLeft}
-    IconRight={CustomMenuRight}
     icSize='1.5em'
-    title='My App Bar'
-  />
+    height='56px'
+    width='50%'
+    alignItems='center'
+    justifyContent='space-between'
+    >
+     <Touchable>
+        <Image
+          src={logo.src}
+          alt={logo.alt || 'Logo placeholder'}
+          dimensions={logo.dimensions || [120, 40]}
+        />
+      </Touchable>
+      <Flex>
+        <Space p={2}>
+          <IconButton
+            color='pastel-blue'
+            fontSize={3}
+            name='shopping_cart'
+            onClick={() => console.log('Clicked!')}
+          />
+        </Space>
+        <Space p={2}>
+          <IconButton
+            color='pastel-blue'
+            fontSize={3}
+            name='account_circle'
+            onClick={() => console.log('Clicked!')}
+          />
+        </Space>
+        <Space p={2}>
+          <IconButton
+            color='pastel-blue'
+            fontSize={3}
+            name='exit_to_app'
+            onClick={() => console.log('Clicked!')}
+          />
+        </Space>
+      </Flex>
+  </TopBar>
 ```
