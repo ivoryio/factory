@@ -65,6 +65,7 @@ Image.propTypes = {
 
 Image.defaultProps = {
   alt: 'image placeholder',
+  size: 120,
   src: images.placeholder
 }
 Image.displayName = 'Image'

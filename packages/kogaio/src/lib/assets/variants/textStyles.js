@@ -3,6 +3,9 @@ export default function (colors, fontWeights) {
     h1: {
       fontSize: '2em'
     },
+    h2: {
+      fontSize: '1.5em'
+    },
     h3: {
       fontSize: '1.25em'
     },
