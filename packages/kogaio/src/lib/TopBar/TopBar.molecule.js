@@ -18,6 +18,7 @@ import {
   flexBasis,
   flexDirection,
   flexWrap,
+  height,
   justifyContent,
   justifyItems,
   justifySelf,
@@ -32,67 +33,20 @@ import {
   size,
   space,
   textAlign,
-  themeGet,
   top,
   width,
   zIndex
 } from 'styled-system'
-import BarIcon from './BarIcon'
-import Typography from '../Typography'
-import { Flex, Space } from '../Responsive'
+import { Flex } from '../Responsive'
 
-const TopBar = ({
-  color,
-  IconLeft,
-  icLeft,
-  IconRight,
-  icRight,
-  icSize,
-  onClickLeft,
-  onClickRight,
-  title,
-  ...rest
-}) => (
-  <Space p={3}>
-    <Container
-      color={color}
-      alignItems='center'
-      justifyContent='space-between'
-      {...rest}
-    >
-      <Left>
-        {IconLeft || (
-          <BarIcon
-            color={color}
-            name={icLeft}
-            fontSize={icSize}
-            onClick={onClickLeft}
-          />
-        )}
-        <Space px={3}>
-          <Typography color={color} textStyle='h3'>
-            {title}
-          </Typography>
-        </Space>
-      </Left>
-      <Right>
-        {IconRight || (
-          <BarIcon
-            color={color}
-            name={icRight}
-            fontSize={icSize}
-            onClick={onClickRight}
-          />
-        )}
-      </Right>
-    </Container>
-  </Space>
+const TopBar = ({ color, children, ...rest }) => (
+  <Container color={color} {...rest}>
+    {children}
+  </Container>
 )
 
 const Container = styled(Flex)`
-  background-color: ${themeGet('colors.independence', '#4f5767')};
-  color: ${themeGet('colors.white')};
-  width: 360px;
+  width: 100%;
   ${alignContent}
   ${alignItems}
   ${alignSelf}
@@ -109,6 +63,7 @@ const Container = styled(Flex)`
   ${flexBasis}
   ${flexDirection}
   ${flexWrap}
+  ${height}
   ${justifyContent}
   ${justifyItems}
   ${justifySelf}
@@ -128,14 +83,6 @@ const Container = styled(Flex)`
   ${zIndex}
 `
 
-const Left = styled(Flex)`
-  align-items: center;
-`
-
-const Right = styled(Flex)`
-  align-items: center;
-`
-
 TopBar.propTypes = {
   ...alignContent.propTypes,
   ...alignItems.propTypes,
@@ -153,6 +100,7 @@ TopBar.propTypes = {
   ...flexBasis.propTypes,
   ...flexDirection.propTypes,
   ...flexWrap.propTypes,
+  ...height.propTypes,
   ...justifyContent.propTypes,
   ...justifyItems.propTypes,
   ...justifySelf.propTypes,
@@ -170,19 +118,13 @@ TopBar.propTypes = {
   ...top.propTypes,
   ...width.propTypes,
   ...zIndex.propTypes,
-  color: PropTypes.string,
-  icLeft: PropTypes.string,
-  IconLeft: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
-  icRight: PropTypes.string,
-  IconRight: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
-  icSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  title: PropTypes.string
+  color: PropTypes.string
 }
 
 TopBar.defaultProps = {
-  color: 'white',
-  icSize: '1.5em',
-  title: 'Dummy title'
+  color: 'pastel-blue',
+  bg: 'gunmetal',
+  p: 3
 }
 TopBar.displayName = 'TopBar'
 
