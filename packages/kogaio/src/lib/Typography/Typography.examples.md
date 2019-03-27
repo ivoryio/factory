@@ -16,10 +16,27 @@
 );
   <TextExamples />
 ```
-
-#### H3
+#### H2
 ```js
   const message = 'The quick brown fox jumps over the lazy dog.';
+  const TextExamples = () => (
+    <>
+      <Typography
+        fontWeight='bold'
+        message={message}
+        textStyle='h2'
+      />
+      <Typography
+        textStyle='h2'>
+        {message}
+      </Typography>
+    </>
+);
+  <TextExamples />
+```
+#### H3
+```js
+  const message = 'How razorback-jumping frogs can level six piqued gymnasts!';
   const TextExamples = () => {
     return (
     <>
@@ -44,7 +61,7 @@
 
 #### H4
 ```js
-  const message = 'How razorback-jumping frogs can level six piqued gymnasts!';
+  const message = 'Sphinx of black quartz, judge my vow';
   const TextExamples = () => (
     <>
       <Typography fontWeight='bold' message={message} textStyle='h4' />
@@ -56,7 +73,7 @@
 
 #### H5
 ```js
-  const message = 'Sphinx of black quartz, judge my vow';
+  const message = 'The quick brown fox jumps over the lazy dog.';
   const TextExamples = () => (
     <>
       <Typography fontWeight='bold' message={message} textStyle='h5' />
@@ -68,7 +85,7 @@
 
 #### H6
 ```js
-  const message = 'The quick brown fox jumps over the lazy dog.';
+  const message = 'How razorback-jumping frogs can level six piqued gymnasts!';
   const TextExamples = () => (
     <>
       <Typography fontWeight='bold' message={message} textStyle='h6' />
