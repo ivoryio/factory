@@ -25,6 +25,7 @@ import {
   opacity,
   size,
   textAlign,
+  textStyle,
   top,
   space,
   themeGet,
@@ -107,15 +108,10 @@ const Button = ({
   )
 }
 
-/** @component */
 const StyledBtn = styled.button`
   border-radius: ${themeGet('radii.1')}px;
+  border: none;
   cursor: pointer;
-  font-size: 1rem;
-  font-family: ${themeGet('fonts.complementary')};
-  font-weight: bold;
-  font-style: normal;
-  letter-spacing: normal;
   min-height: 36px;
   text-transform: uppercase;
   width: 160px;
@@ -151,6 +147,7 @@ const StyledBtn = styled.button`
   ${right}
   ${size}
   ${textAlign}
+  ${textStyle}
   ${space}
   ${top}
   ${width}
@@ -179,6 +176,7 @@ Button.propTypes = {
   ...right.propTypes,
   ...size.propTypes,
   ...textAlign.propTypes,
+  ...textStyle.propTypes,
   ...space.propTypes,
   ...top.propTypes,
   ...width.propTypes,
@@ -198,6 +196,7 @@ Button.propTypes = {
 Button.defaultProps = {
   disabled: false,
   isLoading: false,
+  textStyle: 'buttonLabel',
   type: 'button',
   variant: 'primary'
 }

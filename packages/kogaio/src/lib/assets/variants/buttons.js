@@ -3,7 +3,7 @@ export default function (colors, shadows, ...args) {
     primary: {
       color: colors.white,
       backgroundColor: colors.brand,
-      boxShadow: `${shadows['button-basic']}`,
+      boxShadow: `${shadows['button-shadow']}`,
       '&:hover': {
         backgroundColor: colors['brand-hover']
       },
@@ -24,6 +24,7 @@ export default function (colors, shadows, ...args) {
       },
       '&:disabled': {
         border: `1px solid ${colors['outline-disabled']}`,
+        color: colors['outline-disabled'],
         cursor: 'not-allowed',
         transform: 'scale(1)',
         '&:hover': {
@@ -33,7 +34,7 @@ export default function (colors, shadows, ...args) {
     },
     validation: {
       color: colors.white,
-      boxShadow: shadows['button-extended'],
+      boxShadow: shadows['button-shadow'],
       backgroundColor: colors.success,
       '&:hover': {
         backgroundColor: colors['brand-hover']
@@ -41,7 +42,7 @@ export default function (colors, shadows, ...args) {
     },
     destructive: {
       backgroundColor: colors.error,
-      boxShadow: shadows['button-extended'],
+      boxShadow: shadows['button-shadow'],
       color: `${colors.white}`,
       '&:hover': {
         backgroundColor: colors['error-hover']

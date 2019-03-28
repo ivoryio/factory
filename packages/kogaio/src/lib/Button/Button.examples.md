@@ -21,14 +21,12 @@
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
           <Button
-            fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             variant='primary'
             title='Primary'
             width='100%'
           />
           <Button
-            fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             variant='primary'
             title='Primary disabled'
@@ -44,14 +42,12 @@
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
           <Button
-            fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             title='Outline'
             variant='outline'
             width='100%'
           />
           <Button
-            fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             title='Outline disabled'
             variant='outline'
@@ -67,7 +63,6 @@
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
           <Button
-            fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             title='Validation'
             variant='validation'
@@ -75,7 +70,6 @@
             width='100%'
           />
           <Button
-            fontSize={['0.9rem', '1rem']}
             onClick={() => {}}
             title='Destructive'
             mt={1}
@@ -90,7 +84,6 @@
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
           <Button
-            fontSize={['0.9rem', '1rem']}
             isLoading={isLoading}
             onClick={toggleLoading}
             variant='outline'
@@ -98,7 +91,6 @@
             width='100%'
           />
            <Button
-            fontSize={['0.9rem', '1rem']}
             icon={{ name: 'visibility', size: 16 }}
             mt={1}
             onClick={() => {}}
@@ -113,8 +105,7 @@
           my={2}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
-          <Button
-          fontSize={['0.9rem', '1rem']}
+        <Button
           onClick={() => {}}
           variant='outline'
           colors='button-outline-alt'
@@ -123,7 +114,6 @@
         />
           <Box bg='gunmetal' p={2} mt={1}>
             <Button
-              fontSize={['0.9rem', '1rem']}
               mt={1}
               onClick={() => {}}
               title='Outline alt dark'

@@ -36,6 +36,7 @@ import {
   size,
   space,
   textAlign,
+  textStyle,
   themeGet,
   top,
   width,
@@ -102,7 +103,7 @@ const Input = ({
           color='gunmetal'
           htmlFor={id}
           component='span'
-          textStyle='input-label'
+          textStyle='inputLabel'
         >
           {label} {required && '*'}
         </InputLabel>
@@ -162,9 +163,8 @@ const InputLabel = styled(Typography)`
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
-  font-family: ${themeGet('fonts.complementary')};
   ${props => props.cssLabel};
-  ${fontFamily}
+  ${textStyle}
 `
 
 const StyledInput = styled.input`
@@ -180,7 +180,7 @@ const StyledInput = styled.input`
   outline: none;
   outline-style: none;
   outline-color: transparent;
-  font-family: ${themeGet('fonts.complementary')};
+  font-family: ${themeGet('fonts.primary')};
 
   &:focus {
     ~ button > i {
@@ -245,6 +245,7 @@ Input.propTypes = {
   ...position.propTypes,
   ...size.propTypes,
   ...space.propTypes,
+  ...textStyle.propTypes,
   ...width.propTypes,
   autoComplete: PropTypes.string,
   dataTestId: PropTypes.string,
@@ -265,6 +266,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   placeholder: 'Search...',
+  textStyle: 'inputLabel',
   type: 'text',
   value: '',
   variant: 'default'

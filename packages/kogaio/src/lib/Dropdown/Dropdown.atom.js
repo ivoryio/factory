@@ -77,7 +77,7 @@ const Dropdown = ({
         color={error ? 'error' : 'independence'}
         cssLabel={cssLabel}
         htmlFor={id}
-        textStyle='input-label'
+        textStyle='inputLabel'
       >
         {label} {required && '*'}
       </DropdownLabel>
@@ -172,7 +172,7 @@ const DropdownLabel = styled(Typography)`
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
-  font-family: ${themeGet('fonts.complementary')};
+  font-family: ${themeGet('fonts.primary')};
   ${fontFamily}
   ${props => props.cssLabel};
 `

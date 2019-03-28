@@ -28,7 +28,6 @@ import {
   right,
   space,
   textAlign,
-  themeGet,
   top,
   verticalAlign,
   zIndex
@@ -53,12 +52,6 @@ const Anchor = ({
 )
 
 const StyledAnchor = styled.a`
-  box-shadow: 0 1px 0 ${themeGet('colors.brand.primary', '#3498db')};
-  letter-spacing: normal;
-  text-align: center;
-  text-decoration: none;
-  border-block-end: 1px solid ${themeGet('colors.brand.primary', '#3498db')};
-
   :hover {
     transform: scale(1.02);
     font-weight: normal;

@@ -1,7 +1,7 @@
 #### Placeholder
 ```js
   <Box alignItems='center'>
-    <Image />
+    <Image size={120} />
   </Box>
 ```
 

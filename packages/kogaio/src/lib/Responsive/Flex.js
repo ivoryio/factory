@@ -6,7 +6,8 @@ import {
   flexDirection,
   flexWrap,
   justifyContent,
-  order
+  order,
+  position
 } from 'styled-system'
 import Box from './Box'
 
@@ -20,6 +21,7 @@ const StyledFlex = styled(Box)`
   ${flex}
   ${justifyContent}
   ${order}
+  ${position}
 `
 
 Flex.displayName = 'Flex'
@@ -30,7 +32,8 @@ Flex.propTypes = {
   ...flexDirection.propTypes,
   ...alignItems.propTypes,
   ...justifyContent.propTypes,
-  ...order.propTypes
+  ...order.propTypes,
+  ...position.propTypes
 }
 Flex.displayName = 'Flex'
 

@@ -34,11 +34,7 @@ export const defaultTheme = new function () {
     black: '#000000'
   }
   this.shadows = {
-    'button-basic': `0 1px 0 0 ${hexToRgbA(this.colors.black, 0.05)}`,
-    'button-extended': `0 1px 0 0 ${hexToRgbA(
-      this.colors['dark-gunmetal'],
-      0.05
-    )}, 0 1px 0 0 ${hexToRgbA(this.colors['dark-gunmetal'], 0.1)}`,
+    'button-shadow': `0 1px 0 0 ${hexToRgbA(this.colors.black, 0.05)}`,
     'input-basic': `0 1px 0 0 ${hexToRgbA(this.colors['dark-gunmetal'], 0.05)}`,
     'card-simple': `0 1px 1px 1px ${hexToRgbA(this.colors.black, 0.15)}`,
     'card-highlight': `2px 0 10px 0 ${hexToRgbA(this.colors.black, 0.15)}`,
@@ -92,20 +88,20 @@ export const defaultTheme = new function () {
 
   this.fonts = {
     primary:
-      'Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif',
+      'Rubik, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif',
     complementary:
-      'Rubik, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif'
+      '"Open Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif'
   }
 
   this.fontSizes = [
-    '0.75rem',
-    '0.875rem',
-    '1rem',
-    '1.25rem',
-    '1.5rem',
-    '2rem',
-    '3rem',
-    '4rem'
+    '0.75em',
+    '0.875em',
+    '1em',
+    '1.25em',
+    '1.5em',
+    '2em',
+    '3em',
+    '4em'
   ]
   this.fontWeights = [100, 200, 300, 400, 500, 600, 700, 800, 900]
   this.lineHeights = {
@@ -127,7 +123,7 @@ export const defaultTheme = new function () {
 
   this.buttons = buttonsFactory(this.colors, this.shadows)
   this.inputs = inputsFactory(this.colors, this.shadows)
-  this.textStyles = textStylesFactory(this.colors, this.fontWeights)
+  this.textStyles = textStylesFactory(this.colors, this.fonts, this.fontWeights)
   this.tooltips = tooltipsFactory(this.colors)
 }()
 
@@ -141,10 +137,10 @@ export function themeFactory (customTheme) {
     }))
   )
 
-  const { colors, shadows } = updatedTheme
+  const { colors, fonts, shadows } = updatedTheme
   const buttons = buttonsFactory(colors, shadows)
   const inputs = inputsFactory(colors, shadows)
-  const textStyles = textStylesFactory(colors, shadows)
+  const textStyles = textStylesFactory(colors, fonts, shadows)
   const tooltips = tooltipsFactory(colors, shadows)
 
   return {

@@ -229,8 +229,7 @@ Seek the comments below for recommendations.
   radii = [0, 1, 2, 4, 16, 32, '50%', '100%']
   space = [0, 4, 8, 16, 32, 64, 128, 256]
   shadows: {
-    'button-basic',
-    'button-extended',
+    'button-shadow',
     'input-basic',
     'card-simple',
     'card-highlight',

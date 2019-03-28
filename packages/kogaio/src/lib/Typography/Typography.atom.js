@@ -27,6 +27,10 @@ const Typography = ({ children, component, message, ...rest }) => (
 const StyledText = styled.div`
   color: ${themeGet('colors.dark-gunmetal', '#1b202f')};
   font-family: ${themeGet('fonts.primary')};
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+
   ${textStyle}
   ${color}
   ${fontFamily}
@@ -61,8 +65,7 @@ Typography.propTypes = {
     'h4',
     'h5',
     'h6',
-    'input-label',
-    'input-label-gray',
+    'inputLabel',
     'link',
     'paragraph',
     'subtitle',
