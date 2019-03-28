@@ -56,7 +56,7 @@ const SideMenu = ({ imgSrc, imgSize, list, title, subtitle, ...rest }) => (
           </Column>
         </Space>
       </Top>
-      <Space mt={4}>
+      <Space mt={3} mb={1}>
         <Column justifyContent='center'>
           {list.map(item => (
             <ListItem

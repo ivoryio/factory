@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "author": "Ivory",
   "description": "Ivory Kogaio",
   "main": "build/index.js",
@@ -61,5 +61,10 @@
       "eslint --fix",
       "git add ."
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

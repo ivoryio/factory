@@ -164,6 +164,9 @@ const Body = styled(Box)`
   background-color: ${themeGet('colors.white')};
   display: flex;
   flex-direction: column;
+  &:hover {
+    border: 1px solid ${themeGet('colors.gunmetal', '#243143')};
+  }
 `
 const DropdownLabel = styled(Typography)`
   font-weight: normal;

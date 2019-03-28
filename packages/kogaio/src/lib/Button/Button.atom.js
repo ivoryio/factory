@@ -7,6 +7,7 @@ import {
   boxShadow,
   buttonStyle,
   color,
+  colorStyle,
   display,
   fontSize,
   fontFamily,
@@ -116,7 +117,6 @@ const StyledBtn = styled.button`
   font-style: normal;
   letter-spacing: normal;
   min-height: 36px;
-  line-height: ${themeGet('lineHeights.button', 1.9)};
   text-transform: uppercase;
   width: 160px;
 
@@ -133,6 +133,7 @@ const StyledBtn = styled.button`
   ${bottom}
   ${boxShadow}
   ${color}
+  ${colorStyle}
   ${display}
   ${fontSize}
   ${fontFamily}
@@ -155,9 +156,32 @@ const StyledBtn = styled.button`
   ${width}
 `
 Button.propTypes = {
+  ...buttonStyle.propTypes,
+  ...borders.propTypes,
+  ...bottom.propTypes,
+  ...boxShadow.propTypes,
   ...color.propTypes,
-  ...space.propTypes,
+  ...colorStyle.propTypes,
+  ...display.propTypes,
+  ...fontSize.propTypes,
+  ...fontFamily.propTypes,
+  ...fontWeight.propTypes,
+  ...justifyContent.propTypes,
   ...height.propTypes,
+  ...left.propTypes,
+  ...letterSpacing.propTypes,
+  ...minHeight.propTypes,
+  ...maxHeight.propTypes,
+  ...minWidth.propTypes,
+  ...maxWidth.propTypes,
+  ...position.propTypes,
+  ...opacity.propTypes,
+  ...right.propTypes,
+  ...size.propTypes,
+  ...textAlign.propTypes,
+  ...space.propTypes,
+  ...top.propTypes,
+  ...width.propTypes,
   bg: PropTypes.string,
   color: PropTypes.string,
   dataTest: PropTypes.string,

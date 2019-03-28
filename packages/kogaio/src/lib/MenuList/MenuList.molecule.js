@@ -73,7 +73,7 @@ const MenuList = ({
       {CustomToggler ? (
         <CustomToggler onClick={_toggleMenuList} />
       ) : (
-        <Touchable onClick={_toggleMenuList} px='6px'>
+        <Touchable effect='opacity' onClick={_toggleMenuList} px='6px'>
           {<Icon name={icName} color={icColor} fontSize={`${icSize}px`} />}
         </Touchable>
       )}
@@ -89,7 +89,7 @@ const MenuList = ({
                 p={3}
                 color='dark-gunmetal'
                 fontSize='1em'
-                textAlign='left'
+                textAlign={alignment}
               >
                 {item.name}
               </Typography>

@@ -14,6 +14,7 @@ import {
   bottom,
   color,
   colorStyle,
+  display,
   flex,
   flexBasis,
   flexDirection,
@@ -39,8 +40,8 @@ import {
 } from 'styled-system'
 import { Flex } from '../Responsive'
 
-const TopBar = ({ color, children, ...rest }) => (
-  <Container color={color} {...rest}>
+const TopBar = ({ as, color, children, ...rest }) => (
+  <Container as={as} color={color} {...rest}>
     {children}
   </Container>
 )
@@ -59,6 +60,7 @@ const Container = styled(Flex)`
   ${bottom}
   ${color}
   ${colorStyle}
+  ${display}
   ${flex}
   ${flexBasis}
   ${flexDirection}
@@ -118,13 +120,15 @@ TopBar.propTypes = {
   ...top.propTypes,
   ...width.propTypes,
   ...zIndex.propTypes,
+  as: PropTypes.oneOf(['header', 'div', 'span']),
   color: PropTypes.string
 }
 
 TopBar.defaultProps = {
   color: 'pastel-blue',
   bg: 'gunmetal',
-  p: 3
+  px: 2,
+  py: 3
 }
 TopBar.displayName = 'TopBar'
 

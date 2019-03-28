@@ -57,7 +57,21 @@ export const defaultTheme = new function () {
       boxShadow: this.shadows['menu-list'],
       backgroundColor: this.colors.white
     },
-    'modal-background': `${hexToRgbA(this.colors['gunmetal'], 0.25)}`
+    'modal-background': `${hexToRgbA(this.colors.gunmetal, 0.25)}`,
+    'button-outline-alt': {
+      color: this.colors.gunmetal,
+      border: `1px solid ${this.colors.gunmetal}`,
+      '&:hover': {
+        border: `1px solid ${this.colors.gunmetal}`
+      }
+    },
+    'button-outline-dark': {
+      color: this.colors.white,
+      border: `1px solid ${this.colors.alert}`,
+      '&:hover': {
+        border: `1px solid ${this.colors.alert}`
+      }
+    }
   }
   this.breakpoints = {
     xs: '20em',

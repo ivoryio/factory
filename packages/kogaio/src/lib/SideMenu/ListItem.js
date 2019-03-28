@@ -7,14 +7,16 @@ import Typography from '../Typography'
 import { Flex, Space } from '../Responsive'
 
 const ListItem = ({ icon, title, onClick }) => (
-  <Touchable onClick={onClick}>
-    <Flex alignItems='center'>
-      <Icon name={icon} fontSize='1.5em' />
-      <Space px={3}>
-        <Typography textStyle='list'>{title}</Typography>
-      </Space>
-    </Flex>
-  </Touchable>
+  <Space py={1}>
+    <Touchable effect='opacity' onClick={onClick}>
+      <Flex alignItems='center'>
+        <Icon name={icon} fontSize='1.5em' />
+        <Space px={3}>
+          <Typography textStyle='list'>{title}</Typography>
+        </Space>
+      </Flex>
+    </Touchable>
+  </Space>
 )
 
 ListItem.propTypes = {

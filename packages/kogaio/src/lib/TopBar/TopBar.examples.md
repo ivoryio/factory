@@ -17,7 +17,7 @@ const iconButtons = [
 const logo = {
   alt: 'Company Logo',
   src: 'https://www.ivory.io/static/logo-1ba65a72f395ca84702664a4bb7aa315.png',
-  dimensions: [96, '100%']
+  dimensions: [96, 'auto']
 };
   <TopBar
     height='56px'
@@ -30,6 +30,7 @@ const logo = {
           src={logo.src}
           alt={logo.alt || 'Logo placeholder'}
           dimensions={logo.dimensions || [120, 40]}
+          objectFit='contain'
         />
       </Touchable>
       <Flex>

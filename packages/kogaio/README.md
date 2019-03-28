@@ -178,7 +178,21 @@ Seek the comments below for recommendations.
       boxShadow,
       backgroundColor
     },
-    'modal-background'
+    'modal-background',
+    'button-outline-alt': {
+      color,
+      border,
+      '&:hover': {
+        border
+      }
+    },
+    'button-outline-dark': {
+      color,
+      border,
+      '&:hover': {
+        border
+      }
+    }
   }
   fonts = {
     primary:
