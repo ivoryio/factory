@@ -1,6 +1,10 @@
 {
   "name": "@ivoryio/kogaio",
+<<<<<<< HEAD
   "version": "0.3.7",
+=======
+  "version": "0.3.6",
+>>>>>>> 80b9aee8c9a328a9cff81c23c633057585bc03d3
   "author": "Ivory",
   "description": "Ivory Kogaio",
   "main": "build/index.js",

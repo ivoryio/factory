@@ -22,7 +22,15 @@ import { dimensions } from '../utils'
 
 import images from '../assets/images'
 
-const Image = ({ alt, className, dimensions, objectFit, src, ...rest }) => (
+const Image = ({
+  alt,
+  children,
+  className,
+  dimensions,
+  objectFit,
+  src,
+  ...rest
+}) => (
   <StyledImage
     alt={alt}
     className={className}
@@ -30,7 +38,9 @@ const Image = ({ alt, className, dimensions, objectFit, src, ...rest }) => (
     objectFit={objectFit}
     src={src || images.placeholder}
     {...rest}
-  />
+  >
+    {children}
+  </StyledImage>
 )
 
 const StyledImage = styled.img`
@@ -72,6 +82,10 @@ Image.propTypes = {
     'none',
     'scale-down'
   ]),
+<<<<<<< HEAD
+=======
+  children: PropTypes.node,
+>>>>>>> 80b9aee8c9a328a9cff81c23c633057585bc03d3
   dataTest: PropTypes.string,
   /** [width, height] */
   dimensions: PropTypes.oneOfType([PropTypes.array, PropTypes.number]),
