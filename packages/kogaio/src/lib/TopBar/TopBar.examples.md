@@ -21,6 +21,7 @@ const logo = {
 };
   <TopBar
     height='56px'
+    px={2}
     width='50%'
     alignItems='center'
     justifyContent='space-between'

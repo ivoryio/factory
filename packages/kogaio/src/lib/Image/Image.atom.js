@@ -4,21 +4,33 @@ import styled from 'styled-components'
 
 import {
   borderRadius,
+  bottom,
   height,
+  left,
   maxHeight,
   maxWidth,
   minHeight,
   minWidth,
   position,
+  right,
   size,
   space,
+  top,
   width
 } from 'styled-system'
 import { dimensions } from '../utils'
 
 import images from '../assets/images'
 
-const Image = ({ alt, className, dimensions, objectFit, src, ...rest }) => (
+const Image = ({
+  alt,
+  children,
+  className,
+  dimensions,
+  objectFit,
+  src,
+  ...rest
+}) => (
   <StyledImage
     alt={alt}
     className={className}
@@ -26,20 +38,26 @@ const Image = ({ alt, className, dimensions, objectFit, src, ...rest }) => (
     objectFit={objectFit}
     src={src || images.placeholder}
     {...rest}
-  />
+  >
+    {children}
+  </StyledImage>
 )
 
 const StyledImage = styled.img`
   object-fit: ${props => props.objectFit};
   ${borderRadius}
+  ${bottom}
   ${height}
+  ${left}
   ${maxHeight}
   ${maxWidth}
   ${minHeight}
   ${minWidth}
   ${position}
+  ${right}
   ${size}
   ${space}
+  ${top}
   ${width}
   ${dimensions}
 
@@ -57,6 +75,14 @@ Image.propTypes = {
   ...space.propTypes,
   ...width.propTypes,
   alt: PropTypes.string.isRequired,
+  objectFit: PropTypes.oneOf([
+    'fill',
+    'contain',
+    'cover',
+    'none',
+    'scale-down'
+  ]),
+  children: PropTypes.node,
   dataTest: PropTypes.string,
   /** [width, height] */
   dimensions: PropTypes.oneOfType([PropTypes.array, PropTypes.number]),
