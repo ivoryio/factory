@@ -25,7 +25,7 @@
 
   return (
     <Flex flexWrap='wrap'>
-      <Box px={2} width={{ xs: 1, lg: 1/2 }}>
+      <Box px={2} width={{ xs: 1, md: 1/2 }}>
         <form onSubmit={ev => ev.preventDefault()}>
           <Input
             autoComplete='current-email'
@@ -48,7 +48,7 @@
           />
         </form>
       </Box>
-      <Box px={2} width={{ xs: 1, lg: 1/2 }}>
+      <Box px={2} width={{ xs: 1, md: 1/2 }}>
         <Input
           autoComplete='your-text'
           label='Valid input'

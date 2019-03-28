@@ -127,7 +127,6 @@ TopBar.propTypes = {
 TopBar.defaultProps = {
   color: 'pastel-blue',
   bg: 'gunmetal',
-  px: 2,
   py: 3
 }
 TopBar.displayName = 'TopBar'
