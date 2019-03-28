@@ -82,10 +82,6 @@ Image.propTypes = {
     'none',
     'scale-down'
   ]),
-<<<<<<< HEAD
-=======
-  children: PropTypes.node,
->>>>>>> 80b9aee8c9a328a9cff81c23c633057585bc03d3
   dataTest: PropTypes.string,
   /** [width, height] */
   dimensions: PropTypes.oneOfType([PropTypes.array, PropTypes.number]),
