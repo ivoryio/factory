@@ -73,7 +73,7 @@ Typography.propTypes = {
     'list'
   ]),
   fontFamily: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  children: PropTypes.node,
   component: PropTypes.oneOf([
     'h1',
     'h2',

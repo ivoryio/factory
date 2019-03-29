@@ -1,6 +1,6 @@
 import React, { useState, createRef } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   alignContent,
   alignItems,
@@ -47,6 +47,7 @@ import inputStyle from './inputStyle'
 
 import Typography from '../Typography'
 import { InputSublabel } from './InputSublabel'
+import { Flex } from '..//Responsive'
 import { PasswordToggler } from './PasswordToggler'
 
 const Input = ({
@@ -67,6 +68,7 @@ const Input = ({
   placeholderTextColor,
   ref,
   required,
+  textIndent,
   type,
   valid,
   value,
@@ -96,7 +98,7 @@ const Input = ({
 
   const resetInputType = () => setInputType(type)
   return (
-    <InputWrapper hasLabel={label} {...rest}>
+    <InputWrapper flexDirection='column' hasLabel={label} width={1} {...rest}>
       {label ? (
         <InputLabel
           cssLabel={cssLabel}
@@ -124,6 +126,7 @@ const Input = ({
           placeholderTextColor={placeholderTextColor}
           ref={inputRef}
           required={required}
+          textIndent={textIndent}
           type={inputType}
           value={value}
           variant={inputVariant}
@@ -142,18 +145,12 @@ const Input = ({
   )
 }
 
-const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  position: relative;
+const InputWrapper = styled(Flex)`
   ${props => props.hasLabel && space};
 `
 
-const Row = styled.div`
+const Row = styled(Flex)`
   width: 100%;
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   position: relative;
@@ -167,20 +164,27 @@ const InputLabel = styled(Typography)`
   ${textStyle}
 `
 
+const inputSize = css`
+  ${({ type, minHeight, ...rest }) => {
+    const pl = `${themeGet('space.2', 8)(rest)}px`
+    const pr = `${themeGet('space.4', 32)(rest)}px`
+    return `
+      min-height: ${minHeight || 36}px;
+      padding-inline-start: ${pl};
+      width: ${`calc(100% - ${pl} - ${pr})`};
+      padding-inline-end: ${pr};
+    `
+  }}
+`
+
 const StyledInput = styled.input`
-  width: 100%;
+  background-color: ${themeGet('colors.white')};
   border-radius: ${themeGet('radii.1')}px;
   color: ${themeGet('colors.gunmetal', '#243143')};
-  padding-inline-end: ${themeGet('space.4', 32)}px;
-  padding-inline-start: ${themeGet('space.2', 8)}px;
-  min-height: 36px;
-  font-size: 0.875em;
-  line-height: ${themeGet('lineHeights.input', 2)};
-  background-color: ${themeGet('colors.white')};
-  outline: none;
-  outline-style: none;
-  outline-color: transparent;
   font-family: ${themeGet('fonts.primary')};
+  font-size: ${themeGet('fontSizes.1', '0.875em')};
+  outline: none;
+  ${inputSize}
 
   &:focus {
     ~ button > i {

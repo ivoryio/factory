@@ -6,11 +6,11 @@ import Touchable from '../Touchable'
 
 export const PasswordToggler = ({ togglePassword, resetInputType, error }) => (
   <Touchable
+    handleDragAttempt={resetInputType}
     onMouseDown={togglePassword}
     onMouseUp={togglePassword}
     onTouchStart={togglePassword}
     onTouchEnd={togglePassword}
-    handleDragAttempt={resetInputType}
     position='absolute'
     right={8}
   >
