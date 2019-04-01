@@ -14,7 +14,6 @@ const confirmAction = () => {
     <>
     <Button
       title='Show modal'
-      border='1px solid #d3d3d3'
       onClick={toggleModal}
       variant='outline'
       />
@@ -71,7 +70,6 @@ return (
   <>
   <Button
     title='Show modal'
-    border='1px solid #d3d3d3'
     onClick={toggleModal}
     variant='outline'
   />

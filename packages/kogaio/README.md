@@ -91,7 +91,7 @@ yarn add @ivoryio/kogaio
 
     const MyScreen = () => (
       <Flex justifyContent='center'>
-        <Space m={16}>
+        <Space m={4}>
           <Card
             alignItems="center"
             colors='card-white'
@@ -196,9 +196,9 @@ Seek the comments below for recommendations.
   }
   fonts = {
     primary:
-      'Roboto, sans-serif',
+      'Rubik, sans-serif',
     complementary:
-      'Rubik, sans-serif'
+      '"Open+Sans", sans-serif'
   }
   // #endregion
   fontSizes = [
@@ -227,7 +227,7 @@ Seek the comments below for recommendations.
     mega: '0.25em'
   }
   radii = [0, 1, 2, 4, 16, 32, '50%', '100%']
-  space = [0, 4, 8, 16, 32, 64, 128, 256]
+  space = [0, 4, 8, 12, 16, 24, 32, 40, 48, 64, 72, 84, 96, 128, 256]
   shadows: {
     'button-shadow',
     'input-basic',

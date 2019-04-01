@@ -1,4 +1,4 @@
-import { compose, height, width } from 'styled-system'
+import { compose, height, style, width } from 'styled-system'
 import { mapProps } from './helpers'
 
 export const dimensions = mapProps(({ dimensions, ...rest }) => {
@@ -21,3 +21,7 @@ export const dimensions = mapProps(({ dimensions, ...rest }) => {
     height
   )
 )
+
+export const visibility = style({
+  prop: 'visibility'
+})

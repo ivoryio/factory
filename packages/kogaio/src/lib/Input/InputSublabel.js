@@ -35,7 +35,7 @@ export const InputSublabel = ({ inputVariant, error, valid }) => (
 const ErrorWrapper = styled.div`
   display: flex;
   align-items: center;
-  height: 12px;
+  height: 14px;
   ${space}
 `
 

@@ -109,14 +109,14 @@ const Body = styled.div`
 const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-inline-start: ${themeGet('space.3')}px;
-  padding-inline-end: ${themeGet('space.3')}px;
-  margin-block-start: ${themeGet('space.4')}px;
+  padding-inline-start: ${themeGet('space.4')}px;
+  padding-inline-end: ${themeGet('space.4')}px;
+  margin-block-start: ${themeGet('space.6')}px;
 `
 const ChildWrapper = styled.div`
   font-size: 1em;
-  padding-inline-start: ${themeGet('space.3')}px;
-  padding-inline-end: ${themeGet('space.3')}px;
+  padding-inline-start: ${themeGet('space.4')}px;
+  padding-inline-end: ${themeGet('space.4')}px;
   text-align: center;
 `
 const Content = styled.div`

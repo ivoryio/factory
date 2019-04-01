@@ -23,7 +23,7 @@ const Space = styled(StyledChildren)`
 StyledChildren.propTypes = {
   ...space.propTypes,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.node])
+  children: PropTypes.node
 }
 Space.displayName = 'Space'
 

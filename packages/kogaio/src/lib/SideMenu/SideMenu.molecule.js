@@ -45,18 +45,18 @@ import ListItem from './ListItem'
 import Typography from '../Typography'
 
 const SideMenu = ({ imgSrc, imgSize, list, title, subtitle, ...rest }) => (
-  <Space p={3}>
+  <Space p={4}>
     <Container colors='card-white' {...rest}>
       <Top alignItems='center'>
         <Image size={imgSize} src={imgSrc} />
-        <Space px={3}>
+        <Space px={4}>
           <Column>
             <Typography textStyle='h3'>{title}</Typography>
             <Typography textStyle='paragraph'>{subtitle}</Typography>
           </Column>
         </Space>
       </Top>
-      <Space mt={3} mb={1}>
+      <Space mt={4} mb={1}>
         <Column justifyContent='center'>
           {list.map(item => (
             <ListItem

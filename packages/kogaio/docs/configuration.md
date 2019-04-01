@@ -48,7 +48,7 @@
 
     const MyScreen = () => (
       <Flex justifyContent='center'>
-        <Space m={16}>
+        <Space m={4}>
           <Card
             alignItems="center"
             colors='card-white'

@@ -86,7 +86,7 @@ const MenuList = ({
               data-testid={item.id}
             >
               <Typography
-                p={3}
+                p={4}
                 color='dark-gunmetal'
                 fontSize='1em'
                 textAlign={alignment}

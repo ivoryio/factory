@@ -167,7 +167,7 @@ const InputLabel = styled(Typography)`
 const inputSize = css`
   ${({ type, minHeight, ...rest }) => {
     const pl = `${themeGet('space.2', 8)(rest)}px`
-    const pr = `${themeGet('space.4', 32)(rest)}px`
+    const pr = `${themeGet('space.6', 32)(rest)}px`
     return `
       min-height: ${minHeight || 36}px;
       padding-inline-start: ${pl};
@@ -193,7 +193,7 @@ const StyledInput = styled.input`
   }
 
   &::placeholder {
-      color: ${themeGet('colors.manatee')};
+      color: ${themeGet('colors.pastel-blue')};
     }
   }
   

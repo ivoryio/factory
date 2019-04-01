@@ -27,7 +27,7 @@ module.exports = {
   styles: {
     StyleGuide: {
       '@global body': {
-        fontFamily: 'Roboto, sans-serif, -apple-system, BlinkMacSystemFont'
+        fontFamily: 'Rubik, sans-serif, -apple-system, BlinkMacSystemFont'
       }
     }
   },

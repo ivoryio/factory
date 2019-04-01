@@ -71,7 +71,7 @@ const Tooltip = ({
         />
         <Typography
           className='tooltip-text'
-          px={4}
+          px={6}
           py={2}
           fontSize={fontSize}
           textStyle='paragraph'

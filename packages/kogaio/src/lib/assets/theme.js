@@ -119,7 +119,7 @@ export const defaultTheme = new function () {
     mega: '0.25em'
   }
   this.radii = [0, 1, 2, 4, 16, 32, '50%', '100%']
-  this.space = [0, 4, 8, 16, 32, 64, 128, 256]
+  this.space = [0, 4, 8, 12, 16, 24, 32, 40, 48, 64, 72, 84, 96, 128, 256]
 
   this.buttons = buttonsFactory(this.colors, this.shadows)
   this.inputs = inputsFactory(this.colors, this.shadows)

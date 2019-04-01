@@ -11,7 +11,7 @@ const ListItem = ({ icon, title, onClick }) => (
     <Touchable effect='opacity' onClick={onClick}>
       <Flex alignItems='center'>
         <Icon name={icon} fontSize='1.5em' />
-        <Space px={3}>
+        <Space px={4}>
           <Typography textStyle='list'>{title}</Typography>
         </Space>
       </Flex>

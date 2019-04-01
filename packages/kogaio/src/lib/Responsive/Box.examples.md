@@ -2,7 +2,7 @@
   <Box
     alignSelf='center'
     mx='auto'
-    p={5}
+    p={8}
     fontSize='1rem'
     width={{ xs: 1, md: 1/2 }}
     color='white'

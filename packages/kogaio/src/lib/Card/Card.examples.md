@@ -2,7 +2,7 @@
 ```js
 const Space = require('../Responsive/Space').default;
   <Flex justifyContent='center'>
-    <Space mx={16} my={16}>
+    <Space mx={4} my={4}>
       <Card
         width='350px'
         height='350px'
@@ -28,14 +28,14 @@ const Form = styled.form`width: 100%;`;
     const _changeInputValue = ev => setInputVal(ev.target.value)
     return (
       <Flex justifyContent='center'>
-        <Space mx={16} my={16}>
+        <Space mx={4} my={4}>
           <Card
             alignItems='center'
             colors='card-gray'
             display='flex'
             flexDirection='column'
             width='350px'
-            p={4}
+            p={6}
           >
             <Typography
               message='Card title'

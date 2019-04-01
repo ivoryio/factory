@@ -16,7 +16,7 @@
       <Flex flexWrap='wrap' justifyContent='space-between' width={1}>
         <Flex
           flexDirection='column'
-          px={3}
+          px={4}
           my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
@@ -37,7 +37,7 @@
         </Flex>
         <Flex
           flexDirection='column'
-          px={3}
+          px={4}
           my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
@@ -58,7 +58,7 @@
         </Flex>
         <Flex
           flexDirection='column'
-          px={3}
+          px={4}
           my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
@@ -66,7 +66,7 @@
             onClick={() => {}}
             title='Validation'
             variant='validation'
-            mr={3}
+            mr={4}
             width='100%'
           />
           <Button
@@ -79,7 +79,7 @@
         </Flex>
         <Flex
           flexDirection='column'
-          px={3}
+          px={4}
           my={2}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
@@ -101,7 +101,7 @@
         </Flex>
         <Flex 
           flexDirection='column'
-          px={3}
+          px={4}
           my={2}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         >
@@ -125,7 +125,7 @@
         </Flex>
         <Flex
           flexDirection='column'
-          px={3}
+          px={4}
           my={2}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
         />
