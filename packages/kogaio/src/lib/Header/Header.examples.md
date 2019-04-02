@@ -1,7 +1,7 @@
 #### Basic Header
 ```js
-  const React = require('react')
-  const { default: styled } = require('styled-components')
+  import styled from 'styled-components';
+  import { Box, Typography } from '../'
   
   const HeaderExample = () => {
     const TextComponent = text => <TextContainer>
@@ -28,9 +28,9 @@
 
 #### Ivory Header
 ```js
-  const React = require('react')
-  const { default: styled, keyframes } = require('styled-components')
-  const { default: images } = require('assets/images')
+  import styled, { keyframes } from 'styled-components';
+  import images from 'assets/images';
+  import { Icon } from '../'
 
   const scaleLogo = keyframes`
     0% {

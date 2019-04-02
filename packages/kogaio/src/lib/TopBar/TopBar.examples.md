@@ -1,5 +1,5 @@
 ```js
-const { Space } = require('../Responsive');
+import { Flex, IconButton, Image, Space, Touchable } from '../';
 const iconButtons = [
   {
     id: 'cart',

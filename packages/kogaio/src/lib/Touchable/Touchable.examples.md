@@ -1,5 +1,6 @@
 ####
 ```js
+import { Box, Icon, Flex }  from '../';
   <Flex alignItems='center'>
     <Box width={{ sm: 1, md: 1/2, lg: 1/3 }}>
       <Touchable effect='no-feedback' p='12px' onClick={() => {}}>

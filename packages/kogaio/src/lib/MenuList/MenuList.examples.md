@@ -1,6 +1,6 @@
 #### Simple Menu List
 ```js
-const React = require('react');
+import { Box, Flex } from '../'
 const MenuListExample = () => {
 const listItems = [
   {

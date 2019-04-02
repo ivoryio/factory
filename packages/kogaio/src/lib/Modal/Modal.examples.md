@@ -1,8 +1,7 @@
 #### Simple modal
 ```js
-const React = require('react');
-const { useState } = React;
-
+import { useState } from 'react';
+import { Button } from '../';
 const ModalExample2 = () => {
 const [isModalShown, setModalShown] = useState(false)
 const toggleModal = () => setModalShown(!isModalShown)
@@ -43,9 +42,9 @@ const confirmAction = () => {
 
 #### Modal with custom header and footer
 ```js
-const React = require('react')
-const { useState } = React
-const { default: styled } = require('styled-components')
+import { useState } from 'react';
+import styled from 'styled-components';
+import { Button } from '../';
 
 const ModalExample1 = () => {
 const [isModalShown, setModalShown] = useState(false)

@@ -1,8 +1,8 @@
 #### Button variants
 ```js
-  const React = require('react');
-  const { useState } = React;
-  const { default: styled } = require('styled-components');
+  import { useState } from 'react';
+  import styled from 'styled-components';
+  import { Box, Flex } from '../';
 
   const ButtonExamples = () => {
     const [isLoading, setIsLoading] = useState(false)

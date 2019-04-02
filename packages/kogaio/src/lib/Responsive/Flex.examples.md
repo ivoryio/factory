@@ -1,6 +1,7 @@
 #### Responsive container
 ###### Drag to resize
 ```js
+import { Box, Typography } from '../';
 <Flex flexWrap='wrap' mx={-2}>
   <Box
     px={2}

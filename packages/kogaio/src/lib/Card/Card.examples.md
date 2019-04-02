@@ -1,6 +1,7 @@
 #### Empty cards
 ```js
-const Space = require('../Responsive/Space').default;
+  import { Flex, Space } from '../';
+
   <Flex justifyContent='center'>
     <Space mx={4} my={4}>
       <Card
@@ -18,9 +19,10 @@ const Space = require('../Responsive/Space').default;
 ```
 #### Card with content
 ```js
-const { useState } = React
-const { default: styled } = require('styled-components');
-const Space = require('../Responsive/Space').default;
+import { useState } from 'react';
+import styled from 'styled-components';
+import { Button, Flex, Input, Space, Typography } from '../';
+
 const Form = styled.form`width: 100%;`;
 
   const CardWithFormExample = () => {

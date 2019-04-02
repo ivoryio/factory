@@ -1,4 +1,6 @@
 ```js
+import { Flex } from '../';
+
   <Flex justifyContent='space-evenly' alignItems='center'>
     <ActivityIndicator colors={{ background: 'white', primary: 'gunmetal' }} size='64px' />  
     <ActivityIndicator colors={{ background: 'white', primary: 'success' }} size='4em' />

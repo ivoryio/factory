@@ -1,5 +1,6 @@
 #### Placeholder
 ```js
+import { Box } from '../';
   <Box alignItems='center'>
     <Image size={120} />
   </Box>
@@ -7,7 +8,8 @@
 
 #### Custom Images
 ```js
-  const { default: styled } = require('styled-components');
+  import styled from 'styled-components';
+  import { Box, Flex } from '../';
   const images = [
       { id: 'alt1', src: 'https://placeimg.com/120/120/any', size: 120 },
       { id: 'alt2', src: 'https://placeimg.com/96/96/any', size: 96 },

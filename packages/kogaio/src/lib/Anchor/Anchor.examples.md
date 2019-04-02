@@ -1,4 +1,6 @@
 ```js
+  import { Flex } from '../';
+
     <Flex width={1} px={2}>
       <Anchor
         href="https://www.ivory.io"

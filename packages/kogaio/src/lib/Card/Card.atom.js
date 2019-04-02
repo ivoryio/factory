@@ -32,7 +32,6 @@ import {
   order,
   overflow,
   position,
-  ratio,
   right,
   size,
   space,
@@ -82,7 +81,6 @@ const StyledCard = styled.div`
   ${order}
   ${overflow}
   ${position}
-  ${ratio}
   ${right}
   ${size}
   ${space}

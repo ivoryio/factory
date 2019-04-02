@@ -3,7 +3,7 @@
 ---
 
 * Extend your web application with Kogaio's _themeFactory_ [^1]
-```JSX
+```jsx static
     import React from 'react'
     import { ThemeProvider } from 'styled-components'
     import { themeFactory } from '@ivoryio/kogaio'
@@ -42,7 +42,7 @@
 ---
 
 * Plug and play!
-```JSX
+```jsx static
    import React from 'react'
     import { Button, Card, Flex, Space, Typography } from '@ivoryio/kogaio'
 
