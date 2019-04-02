@@ -2,10 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import {
   alignSelf,
+  borders,
   color,
   fontFamily,
   fontSize,
   height,
+  maxHeight,
+  maxWidth,
   minHeight,
   minWidth,
   space,
@@ -17,9 +20,12 @@ const Box = props => <StyledBox {...props} />
 
 const StyledBox = styled.div`
   box-sizing: border-box;
+  ${borders}
   ${space}
   ${color}
   ${height}
+  ${maxHeight}
+  ${maxWidth}
   ${minHeight}
   ${minWidth}
   ${width}
@@ -30,12 +36,13 @@ const StyledBox = styled.div`
   ${props => props.css}
 `
 
-Box.displayName = 'Box'
-
 Box.propTypes = {
+  ...borders.propTypes,
   ...space.propTypes,
   ...color.propTypes,
   ...height.propTypes,
+  ...maxHeight.propTypes,
+  ...maxWidth.propTypes,
   ...minHeight.propTypes,
   ...minWidth.propTypes,
   ...width.propTypes,

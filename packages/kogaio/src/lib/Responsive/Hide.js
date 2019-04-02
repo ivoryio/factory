@@ -36,7 +36,7 @@ const md = hidden('md')
 const lg = hidden('lg')
 const xlg = hidden('xlg')
 
-const HiddenOnScreen = styled.div([], xs, sm, md, lg, xlg)
+const HiddenOnScreen = styled.div([], 'display: contents;', xs, sm, md, lg, xlg)
 
 Hide.propTypes = {
   children: PropTypes.node,
