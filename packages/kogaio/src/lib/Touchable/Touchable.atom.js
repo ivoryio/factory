@@ -53,7 +53,7 @@ const Touchable = ({
     typeof onMouseUp === 'function' && onMouseUp(ev)
   }
   const _handleMouseLeave = () => {
-    if (isHoldingClick) {
+    if (isHoldingClick && typeof handleDragAttempt === 'function') {
       return handleDragAttempt()
     }
   }

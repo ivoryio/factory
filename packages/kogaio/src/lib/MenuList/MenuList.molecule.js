@@ -78,7 +78,12 @@ const MenuList = ({
         </Touchable>
       )}
       {isMenuShown ? (
-        <ListWrapper alignment={alignment} icSize={icSize} {...rest}>
+        <ListWrapper
+          alignment={alignment}
+          colors='menu-list'
+          icSize={icSize}
+          {...rest}
+        >
           {listItems.map(item => (
             <TouchableText
               key={item.id}
@@ -174,6 +179,7 @@ const ListWrapper = styled(Box)`
   flex-direction: column;
   position: absolute;
   top: 100%;
+  z-index: 3;
   &:after {
     box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.35);
     background-color: ${themeGet('colors.white')};

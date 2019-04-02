@@ -1,8 +1,8 @@
 {
   "presets": [
-    "react",
-    "env",
-    "stage-2"
+    "@babel/preset-react",
+    "@babel/preset-env",
+    "@babel/preset-stage-2"
   ],
   "plugins": [
     "babel-plugin-styled-components"

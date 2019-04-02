@@ -4,6 +4,7 @@ import {
   alignSelf,
   borders,
   color,
+  colorStyle,
   fontFamily,
   fontSize,
   height,
@@ -23,6 +24,7 @@ const StyledBox = styled.div`
   ${borders}
   ${space}
   ${color}
+  ${colorStyle}
   ${height}
   ${maxHeight}
   ${maxWidth}
@@ -40,6 +42,7 @@ Box.propTypes = {
   ...borders.propTypes,
   ...space.propTypes,
   ...color.propTypes,
+  ...colorStyle.propTypes,
   ...height.propTypes,
   ...maxHeight.propTypes,
   ...maxWidth.propTypes,

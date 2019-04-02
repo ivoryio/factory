@@ -192,6 +192,9 @@ Seek the comments below for recommendations.
       '&:hover': {
         border
       }
+    },
+    overlay: {
+      'background-color'
     }
   }
   fonts = {

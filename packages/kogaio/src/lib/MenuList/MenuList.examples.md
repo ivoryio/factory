@@ -24,7 +24,6 @@ const listItems = [
           arrowSize={10}
           icSize={24}
           id='menulist-1'
-          colors='menu-list'
           mt={2}
           fontSize='1rem'
           onSelectItem={item => console.log(`Selected ${item}`)}
@@ -38,7 +37,6 @@ const listItems = [
           icName='settings'
           icSize={24}
           id='menu-list-2'
-          colors='menu-list'
           mt={2}
           fontSize='1rem'
           onSelectItem={item => console.log(`Selected ${item}`)}
@@ -52,7 +50,6 @@ const listItems = [
           icName='account_circle'
           icSize={24}
           id='menu-list-3'
-          colors='menu-list'
           mt={2}
           fontSize='1rem'
           onSelectItem={item => console.log(`Selected ${item}`)}
