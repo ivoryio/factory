@@ -2,7 +2,7 @@
 For a painless experience with **Kogaio**, we do not encourage overwriting the entire theme. 
 
 Seek the comments below for recommendations.
-```JSX
+```jsx static
   breakpoints = {
     xs: '20em',
     sm: '30em',
