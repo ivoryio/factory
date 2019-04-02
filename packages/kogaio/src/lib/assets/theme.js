@@ -67,6 +67,9 @@ export const defaultTheme = new function () {
       '&:hover': {
         border: `1px solid ${this.colors.alert}`
       }
+    },
+    overlay: {
+      'background-color': hexToRgbA(this.colors.gunmetal, 0.6)
     }
   }
   this.breakpoints = {

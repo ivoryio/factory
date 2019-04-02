@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "author": "Ivory",
   "description": "Ivory Kogaio",
   "main": "build/index.js",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-plugin-styled-components": "^1.10.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
