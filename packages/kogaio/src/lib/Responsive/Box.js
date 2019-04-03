@@ -12,6 +12,7 @@ import {
   maxWidth,
   minHeight,
   minWidth,
+  position,
   space,
   textAlign,
   width
@@ -35,6 +36,7 @@ const StyledBox = styled.div`
   ${fontSize}
   ${alignSelf}
   ${textAlign}
+  ${position}
   ${props => props.css}
 `
 
@@ -51,6 +53,7 @@ Box.propTypes = {
   ...width.propTypes,
   ...fontSize.propTypes,
   ...fontFamily.propTypes,
+  ...position.propTypes,
   ...textAlign.propTypes
 }
 Box.displayName = 'Box'

@@ -40,8 +40,8 @@ import {
 } from 'styled-system'
 import { Flex } from '../Responsive'
 
-const TopBar = ({ as, color, children, ...rest }) => (
-  <Container as={as} color={color} {...rest}>
+const TopBar = ({ as, children, ...rest }) => (
+  <Container as={as} {...rest}>
     {children}
   </Container>
 )

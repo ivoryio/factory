@@ -36,6 +36,7 @@ const ErrorWrapper = styled.div`
   display: flex;
   align-items: center;
   height: 14px;
+  text-transform: capitalize;
   ${space}
 `
 

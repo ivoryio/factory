@@ -9,10 +9,10 @@ const Hide = ({ children, rule, ...rest }) => (
 )
 
 const getMediaQueries = ({ xs, sm, md, lg, xlg }) => ({
-  xs: `@media screen and (max-width: ${xs})`,
-  sm: `@media screen and (min-width: ${xs}) and (max-width: ${sm})`,
-  md: `@media screen and (min-width: ${sm}) and (max-width: ${md})`,
-  lg: `@media screen and (min-width: ${md}) and (max-width: ${lg})`,
+  xs: `@media screen and (min-width: ${xs}) and (max-width: ${sm})`,
+  sm: `@media screen and (min-width: ${sm}) and (max-width: ${md})`,
+  md: `@media screen and (min-width: ${md}) and (max-width: ${lg})`,
+  lg: `@media screen and (min-width: ${lg}) and (max-width: ${xlg})`,
   xlg: `@media screen and (min-width: ${xlg})`
 })
 

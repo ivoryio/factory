@@ -124,7 +124,11 @@ ActivityIndicator.propTypes = {
 }
 
 ActivityIndicator.defaultProps = {
-  size: '2em'
+  size: '2em',
+  colors: {
+    background: 'white',
+    primary: 'gunmetal'
+  }
 }
 ActivityIndicator.displayName = 'ActivityIndicator'
 
