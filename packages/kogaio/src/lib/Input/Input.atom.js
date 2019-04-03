@@ -169,10 +169,12 @@ const inputSize = css`
     const pl = `${themeGet('space.2', 8)(rest)}px`
     const pr = `${themeGet('space.6', 32)(rest)}px`
     return `
-      min-height: ${minHeight || 36}px;
+      min-height: ${minHeight}px;
+      padding-block-start: 0;
+      padding-block-end: 0;
       padding-inline-start: ${pl};
-      width: ${`calc(100% - ${pl} - ${pr})`};
       padding-inline-end: ${pr};
+      width: ${`calc(100% - ${pl} - ${pr})`};
     `
   }}
 `
@@ -269,6 +271,7 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
+  minHeight: 34,
   placeholder: 'Search...',
   textStyle: 'inputLabel',
   type: 'text',
