@@ -31,7 +31,7 @@ export function mergeDeep (target, ...sources) {
 }
 
 export function hexToRgbA (hex, alpha) {
-  let r, g, b, a
+  let r, g, b, a = alpha
   hex = hex.replace('#', '')
   switch (hex.length) {
     case 3:
@@ -61,25 +61,18 @@ export function hexToRgbA (hex, alpha) {
       return ''
   }
   if (typeof a === 'undefined') {
-    a = alpha || 'ff'
+    a = 'ff'
   }
-  if (r.length === 1) {
-    r += r
-  }
-  if (g.length === 1) {
-    g += g
-  }
-  if (b.length === 1) {
-    b += b
-  }
-  if (a.length === 1) {
-    a += a
-  }
+  [r, g, b, a].forEach(item => item.length === 1 ? selfIncrement(item) : null)
   r = parseInt(r, 16)
   g = parseInt(g, 16)
   b = parseInt(b, 16)
-  a = parseInt(a, 16) / 255
+  a = typeof a === 'number' ? a : parseInt(a, 16) / 255
   return `rgba(${r},${g},${b},${a})`
+
+  function selfIncrement (item) {
+    item += item
+  }
 }
 
 /**
