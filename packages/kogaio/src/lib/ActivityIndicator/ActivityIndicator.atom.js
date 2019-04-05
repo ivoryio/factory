@@ -17,7 +17,7 @@ const backgroundColour = (() => ({ background }) =>
 const primaryColour = (() => ({ primary }) => themeGet(`colors.${primary}`))()
 const complementaryColour = (() => ({ background, ...props }) => {
   const hex = themeGet(`colors.${background}`)(props) || background
-  return hexToRgbA(hex, 0)
+  return hex.charAt(0) === '#' ? hexToRgbA(hex, 0) : hex
 })()
 
 const spinnerSize = css`

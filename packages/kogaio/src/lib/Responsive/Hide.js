@@ -9,12 +9,14 @@ const Hide = ({ children, rule, ...rest }) => (
 )
 
 const getMediaQueries = ({ xs, sm, md, lg, xlg }) => ({
-  xs: `@media screen and (min-width: ${xs}) and (max-width: ${sm})`,
-  sm: `@media screen and (min-width: ${sm}) and (max-width: ${md})`,
-  md: `@media screen and (min-width: ${md}) and (max-width: ${lg})`,
-  lg: `@media screen and (min-width: ${lg}) and (max-width: ${xlg})`,
-  xlg: `@media screen and (min-width: ${xlg})`
+  xs: `@media only screen and (max-width: ${maxWidth(sm)})`,
+  sm: `@media only screen and (min-width: ${sm}) and (max-width: ${maxWidth(md)})`,
+  md: `@media only screen and (min-width: ${md}) and (max-width: ${maxWidth(lg)})`,
+  lg: `@media only screen and (min-width: ${lg}) and (max-width: ${maxWidth(xlg)})`,
+  xlg: `@media only screen and (min-width: ${xlg})`
 })
+
+const maxWidth = bp => `${Number(bp.replace('em', '')) - Math.pow(10, -3)}`.concat('em')
 
 const hidden = key => ({ theme: { breakpoints }, rule, ...props }) => {
   const bps = getMediaQueries(breakpoints)

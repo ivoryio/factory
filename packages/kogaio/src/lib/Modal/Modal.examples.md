@@ -21,7 +21,7 @@ const confirmAction = () => {
           confirmActionFn={confirmAction}
           display='flex'
           flexDirection='column'
-          fontSize='1rem'
+          fontSize='1em'
           hideModal={toggleModal}
           minWidth='20em'
           maxWidth='35em'
@@ -54,15 +54,15 @@ const confirmAction = () => {
   console.log('Success!')
 }
 
+const Header = styled.div`
+  font-size: 1em;
+`
 const Footer = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  font-size: 1rem;
-`
-const Header = styled.div`
-  font-size: 1rem;
+  font-size: 1em;
 `
 
 return (
@@ -80,7 +80,7 @@ return (
         confirmActionFn={confirmAction}
         display='flex'
         flexDirection='column'
-        fontSize='1rem'
+        fontSize='1em'
         hideModal={toggleModal}
         minWidth='25em'
         maxWidth='35em'

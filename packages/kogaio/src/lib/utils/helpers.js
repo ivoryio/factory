@@ -31,14 +31,55 @@ export function mergeDeep (target, ...sources) {
 }
 
 export function hexToRgbA (hex, alpha) {
-  const r = parseInt(hex.slice(1, 3), 16)
-  const g = parseInt(hex.slice(3, 5), 16)
-  const b = parseInt(hex.slice(5, 7), 16)
-
-  if (alpha) {
-    return `rgba(${r},${g},${b},${alpha})`
+  let r, g, b, a
+  hex = hex.replace('#', '')
+  switch (hex.length) {
+    case 3:
+      r = hex.charAt(0)
+      g = hex.charAt(1)
+      b = hex.charAt(2)
+      break
+    case 4:
+      r = hex.charAt(0)
+      g = hex.charAt(1)
+      b = hex.charAt(2)
+      a = hex.charAt(3)
+      break
+    case 6:
+      r = hex.substring(0, 2)
+      g = hex.substring(2, 4)
+      b = hex.substring(4, 6)
+      break
+    case 8:
+      r = hex.substring(0, 2)
+      g = hex.substring(2, 4)
+      b = hex.substring(4, 6)
+      a = hex.substring(6, 8)
+      break
+    default:
+      console.error(`* Unexpected ${hex} hex string format passed.`)
+      return ''
   }
-  return `rgb(${r}, ${g}, ${b})`
+  if (typeof a === 'undefined') {
+    a = alpha || 'ff'
+  }
+  if (r.length === 1) {
+    r += r
+  }
+  if (g.length === 1) {
+    g += g
+  }
+  if (b.length === 1) {
+    b += b
+  }
+  if (a.length === 1) {
+    a += a
+  }
+  r = parseInt(r, 16)
+  g = parseInt(g, 16)
+  b = parseInt(b, 16)
+  a = parseInt(a, 16) / 255
+  return `rgba(${r},${g},${b},${a})`
 }
 
 /**
