@@ -13,7 +13,7 @@ const IconButton = ({
   width,
   ...rest
 }) => (
-  <Touchable effect={effect} onClick={onClick} width={width}>
+  <Touchable display='flex' effect={effect} onClick={onClick} width={width}>
     <Icon color={color} name={name} fontSize={fontSize} {...rest} />
   </Touchable>
 )
