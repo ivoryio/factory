@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
@@ -17,14 +16,7 @@ import {
   themeGet
 } from 'styled-system'
 
-const Typography = ({ children, component, message, ...rest }) => (
-  <StyledText as={component} {...rest}>
-    {message || children}
-  </StyledText>
-)
-
-/** @component */
-const StyledText = styled.div`
+const Typography = styled.div`
   color: ${themeGet('colors.dark-gunmetal', '#1b202f')};
   font-family: ${themeGet('fonts.primary')};
   font-style: normal;
@@ -93,4 +85,5 @@ Typography.defaultProps = {
 }
 Typography.displayName = 'Typography'
 
+/** @component */
 export default Typography

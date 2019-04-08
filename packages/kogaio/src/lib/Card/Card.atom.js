@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import {
   alignContent,
@@ -43,13 +42,7 @@ import {
 } from 'styled-system'
 import PropTypes from 'prop-types'
 
-const Card = ({ className, children, ...rest }) => (
-  <StyledCard className={className} {...rest}>
-    {children}
-  </StyledCard>
-)
-
-const StyledCard = styled.div`
+const Card = styled.div`
   ${alignContent}
   ${alignItems}
   ${alignSelf}
@@ -104,4 +97,6 @@ Card.propTypes = {
 Card.defaultProps = {}
 Card.displayName = 'Card'
 
+
+/** @component */
 export default Card

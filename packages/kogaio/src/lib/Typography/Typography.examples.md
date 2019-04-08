@@ -98,13 +98,13 @@
 #### Paragraph
 ```js
   <>
-    <Typography component='p' fontWeight='bold' textStyle='paragraph'>
+    <Typography as='p' fontWeight='bold' textStyle='paragraph'>
       Pack my box with five dozen liquor jugs.
     </Typography>
-    <Typography component='p' textStyle='paragraph'>
+    <Typography as='p' textStyle='paragraph'>
       The quick brown fox jumps over the lazy dog.
     </Typography>
-    <Typography  color='manatee' component='p' textStyle='paragraph'>
+    <Typography  color='manatee' as='p' textStyle='paragraph'>
       Sphinx of black quartz, judge my vow.
     </Typography>
   </>

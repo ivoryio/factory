@@ -1,4 +1,3 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -22,28 +21,7 @@ import { dimensions } from '../utils'
 
 import images from '../assets/images'
 
-const Image = ({
-  alt,
-  children,
-  className,
-  dimensions,
-  objectFit,
-  src,
-  ...rest
-}) => (
-  <StyledImage
-    alt={alt}
-    className={className}
-    dimensions={dimensions}
-    objectFit={objectFit}
-    src={src || images.placeholder}
-    {...rest}
-  >
-    {children}
-  </StyledImage>
-)
-
-const StyledImage = styled.img`
+const Image = styled.img`
   object-fit: ${props => props.objectFit};
   ${borderRadius}
   ${bottom}
@@ -60,7 +38,6 @@ const StyledImage = styled.img`
   ${top}
   ${width}
   ${dimensions}
-
 `
 
 Image.propTypes = {
@@ -94,4 +71,6 @@ Image.defaultProps = {
 }
 Image.displayName = 'Image'
 
+
+/** @component */
 export default Image

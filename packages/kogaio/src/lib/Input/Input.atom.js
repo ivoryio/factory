@@ -104,7 +104,7 @@ const Input = ({
           cssLabel={cssLabel}
           color='gunmetal'
           htmlFor={id}
-          component='span'
+          as='span'
           textStyle='inputLabel'
         >
           {label} {required && '*'}

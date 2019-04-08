@@ -1,61 +1,92 @@
-import React from 'react'
 import styled from 'styled-components'
 import {
-  alignSelf,
+  background,
+  backgroundImage,
+  backgroundSize,
+  backgroundPosition,
+  backgroundRepeat,
   borders,
+  bottom,
   color,
   colorStyle,
+  display,
   fontFamily,
   fontSize,
   height,
+  left,
   maxHeight,
   maxWidth,
   minHeight,
   minWidth,
+  overflow,
   position,
+  right,
   space,
   textAlign,
-  width
+  top,
+  width,
+  zIndex
 } from 'styled-system'
 
-const Box = props => <StyledBox {...props} />
-
-const StyledBox = styled.div`
+const Box = styled.div`
   box-sizing: border-box;
+  ${background}
+  ${backgroundImage}
+  ${backgroundSize}
+  ${backgroundPosition}
+  ${backgroundRepeat}
   ${borders}
-  ${space}
-  ${color}
+  ${bottom}
   ${colorStyle}
+  ${color}
+  ${display}
+  ${fontFamily}
+  ${fontSize}
   ${height}
+  ${left}
   ${maxHeight}
   ${maxWidth}
   ${minHeight}
   ${minWidth}
-  ${width}
-  ${fontFamily}
-  ${fontSize}
-  ${alignSelf}
-  ${textAlign}
+  ${overflow}
   ${position}
-  ${props => props.css}
+  ${right}
+  ${space}
+  ${textAlign}
+  ${top}
+  ${width}
+  ${zIndex}
 `
 
 Box.propTypes = {
+  ...background.propTypes,
+  ...backgroundImage.propTypes,
+  ...backgroundSize.propTypes,
+  ...backgroundPosition.propTypes,
+  ...backgroundRepeat.propTypes,
   ...borders.propTypes,
-  ...space.propTypes,
+  ...bottom.propTypes,
   ...color.propTypes,
   ...colorStyle.propTypes,
+  ...display.propTypes,
+  ...fontFamily.propTypes,
+  ...fontSize.propTypes,
   ...height.propTypes,
+  ...left.propTypes,
   ...maxHeight.propTypes,
   ...maxWidth.propTypes,
   ...minHeight.propTypes,
   ...minWidth.propTypes,
-  ...width.propTypes,
-  ...fontSize.propTypes,
-  ...fontFamily.propTypes,
+  ...overflow.propTypes,
   ...position.propTypes,
-  ...textAlign.propTypes
+  ...right.propTypes,
+  ...space.propTypes,
+  ...textAlign.propTypes,
+  ...top.propTypes,
+  ...width.propTypes,
+  ...zIndex.propTypes
 }
 Box.displayName = 'Box'
 
+/** @component */
 export default Box

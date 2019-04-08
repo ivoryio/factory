@@ -19,7 +19,6 @@ const StyledChildren = ({ className, children, ...rest }) => {
 const Space = styled(StyledChildren)`
   ${space}
 `
-
 StyledChildren.propTypes = {
   ...space.propTypes,
   className: PropTypes.string,
@@ -27,4 +26,5 @@ StyledChildren.propTypes = {
 }
 Space.displayName = 'Space'
 
+/** @component */
 export default Space
