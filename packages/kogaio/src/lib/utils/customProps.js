@@ -25,3 +25,11 @@ export const dimensions = mapProps(({ dimensions, ...rest }) => {
 export const visibility = style({
   prop: 'visibility'
 })
+
+export const flexGrow = style({
+  prop: 'flex-grow'
+})
+
+export const flexShrink = style({
+  prop: 'flex-shrink'
+})
