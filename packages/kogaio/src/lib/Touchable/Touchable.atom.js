@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import {
   alignItems,
   alignSelf,
+  borderRadius,
   borders,
   color,
   display,
@@ -124,6 +125,7 @@ const Wrapper = styled.button`
   }
   ${alignItems}
   ${alignSelf}
+  ${borderRadius}
   ${borders}
   ${color}
   ${display}
@@ -149,6 +151,7 @@ const Wrapper = styled.button`
 Touchable.propTypes = {
   ...alignItems.propTypes,
   ...alignSelf.propTypes,
+  ...borderRadius.propTypes,
   ...borders.propTypes,
   ...color.propTypes,
   ...display.propTypes,

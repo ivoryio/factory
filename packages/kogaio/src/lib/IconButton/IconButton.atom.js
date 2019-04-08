@@ -5,7 +5,10 @@ import Icon from '../Icon'
 import Touchable from '../Touchable'
 
 const IconButton = ({
+  alignItems,
   color,
+  display,
+  justifyContent,
   effect,
   name,
   fontSize,
@@ -13,14 +16,24 @@ const IconButton = ({
   width,
   ...rest
 }) => (
-  <Touchable display='flex' effect={effect} onClick={onClick} width={width}>
+  <Touchable
+    alignItems={alignItems}
+    display={display}
+    effect={effect}
+    justifyContent={justifyContent}
+    onClick={onClick}
+    width={width}
+  >
     <Icon color={color} name={name} fontSize={fontSize} {...rest} />
   </Touchable>
 )
 
 IconButton.propTypes = {
+  alignItems: PropTypes.string,
   color: PropTypes.string,
+  display: PropTypes.string,
   effect: PropTypes.oneOf(['opacity', 'highlight', 'no-feedback']),
+  justifyContent: PropTypes.string,
   fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   onClick: PropTypes.func.isRequired,
@@ -32,7 +45,10 @@ IconButton.propTypes = {
 }
 
 IconButton.defaultProps = {
+  alignItems: 'center',
   color: 'white',
+  display: 'flex',
+  justifyContent: 'center',
   effect: 'opacity',
   icSize: '1em'
 }
