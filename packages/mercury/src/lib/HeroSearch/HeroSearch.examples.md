@@ -4,10 +4,13 @@
     const _requestSearch = searchTerm => {
       console.info('I am searching for', searchTerm)
     };
-    <HeroSearch
-      subtitle='Feel free to explore and dare to make a change'
-      title='Welcome to the bold and daring world of Mercury. This is a dummy title.'
-      backgroundImage={background}
-      onSearch={_requestSearch}
-    />
+    <Space px={6} py={{ xs: 9, md: 12, lg: 13 }}>
+      <HeroSearch
+        subtitle='Feel free to explore and dare to make a change'
+        title='Welcome to the bold and daring world of Mercury. This is a dummy title.'
+        backgroundImage={background}
+        onSearch={_requestSearch}
+      />
+    </Space>
+
 ```

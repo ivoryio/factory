@@ -29,71 +29,69 @@ const HeroSearch = ({
     requestSearch(searchTerm)
   }
   return (
-    <Space px={6} py={{ xs: 9, md: 12, lg: 13 }}>
-      <Flex
-        alignItems='center'
-        justifyContent='center'
-        position='relative'
-        width={1}
-        {...props}
-      >
-        <Container backgroundImage={backgroundImage} theme={theme}>
-          <Space px={6}>
-            <Box width={1}>
+    <Flex
+      alignItems='center'
+      justifyContent='center'
+      position='relative'
+      width={1}
+      {...props}
+    >
+      <Container backgroundImage={backgroundImage} theme={theme}>
+        <Space px={6}>
+          <Box width={1}>
+            <Typography
+              color='white'
+              fontSize={{ xs: '1.625em', md: '2em' }}
+              fontWeight={2}
+              textAlign='center'
+              textStyle='h2'
+            >
+              {title}
+            </Typography>
+          </Box>
+        </Space>
+        <Space mt={6}>
+          <Flex flexWrap='wrap' justifyContent='center' width={1}>
+            <Box width={{ xs: 1, sm: 3 / 4, md: 2 / 3 }}>
               <Typography
                 color='white'
-                fontSize={{ xs: '1.625em', md: '2em' }}
                 fontWeight={2}
                 textAlign='center'
-                textStyle='h2'
+                textStyle='h3'
               >
-                {title}
+                {subtitle}
               </Typography>
             </Box>
-          </Space>
-          <Space mt={6}>
-            <Flex flexWrap='wrap' justifyContent='center' width={1}>
-              <Box width={{ xs: 1, sm: 3 / 4, md: 2 / 3 }}>
-                <Typography
-                  color='white'
-                  fontWeight={2}
-                  textAlign='center'
-                  textStyle='h3'
-                >
-                  {subtitle}
-                </Typography>
-              </Box>
-              <Space mt={4}>
-                <Flex
-                  flexWrap='wrap'
-                  width={{ xs: 1, md: 1, lg: 3 / 4 }}
-                  maxWidth='760px'
-                >
-                  <Space px={1}>
-                    <Box width={{ xs: 1, md: 2 / 3 }}>
-                      <Input
-                        onChange={_handleValueChange}
-                        placeholder='Search...'
-                        value={searchTerm}
-                      />
-                    </Box>
-                    <Box width={{ xs: 1, md: 1 / 3 }}>
-                      <Button
-                        title={button.title}
-                        height='36px'
-                        onClick={_search}
-                        variant={button.variant}
-                        width={1}
-                      />
-                    </Box>
-                  </Space>
-                </Flex>
-              </Space>
-            </Flex>
-          </Space>
-        </Container>
-      </Flex>
-    </Space>
+            <Space mt={4}>
+              <Flex
+                flexWrap='wrap'
+                width={{ xs: 1, md: 1, lg: 3 / 4 }}
+                maxWidth='760px'
+              >
+                <Space px={1}>
+                  <Box width={{ xs: 1, md: 2 / 3 }}>
+                    <Input
+                      onChange={_handleValueChange}
+                      placeholder='Search...'
+                      value={searchTerm}
+                    />
+                  </Box>
+                  <Box width={{ xs: 1, md: 1 / 3 }}>
+                    <Button
+                      title={button.title}
+                      height='36px'
+                      onClick={_search}
+                      variant={button.variant}
+                      width={1}
+                    />
+                  </Box>
+                </Space>
+              </Flex>
+            </Space>
+          </Flex>
+        </Space>
+      </Container>
+    </Flex>
   )
 }
 
@@ -134,15 +132,14 @@ HeroSearch.propTypes = {
   /** button: { title: String, variant: String['primary', 'destructive', 'outline', 'validation'] } */
   button: PropTypes.object,
   children: PropTypes.node,
-  onClick: PropTypes.func,
-  render: PropTypes.func,
+  onSearch: PropTypes.func.isRequired,
   subtitle: PropTypes.string,
+  theme: PropTypes.object,
   title: PropTypes.string
 }
 
 HeroSearch.defaultProps = {
   button: {
-    onClick: () => console.warn('Please add an onClick function to button'),
     title: 'Search',
     variant: 'primary'
   }

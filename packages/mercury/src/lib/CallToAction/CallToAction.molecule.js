@@ -7,6 +7,7 @@ const CallToAction = ({
   background,
   button,
   children,
+  colors,
   subtitle,
   theme,
   title,
@@ -37,7 +38,7 @@ const CallToAction = ({
           <Space mt={{ xs: 6, sm: 5, lg: 8 }}>
             <Box width={1 / 2} textAlign='center'>
               <Button
-                colors={button.variant === 'outline' && 'button-outline-dark'}
+                colors={colors}
                 onClick={button.onClick}
                 title={button.title}
                 variant={button.variant}
@@ -99,8 +100,10 @@ CallToAction.propTypes = {
   background: PropTypes.string,
   /** button: { title: String, variant: String, onClick: func } */
   button: PropTypes.object,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+  colors: PropTypes.string,
   subtitle: PropTypes.string,
+  theme: PropTypes.object,
   title: PropTypes.string
 }
 
@@ -108,7 +111,7 @@ CallToAction.defaultProps = {
   button: {
     title: 'Press me',
     variant: 'outline',
-    onClick: () => console.warn('Pass an onClick function to button')
+    onClick: () => console.warn('* Pass an onClick function to button')
   }
 }
 
