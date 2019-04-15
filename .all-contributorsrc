@@ -26,6 +26,15 @@
         "projectManagement",
         "review"
       ]
+    },
+    {
+      "login": "msal96",
+      "name": "Mihail Șalari",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/38893975?v=4",
+      "profile": "https://github.com/msal96",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
