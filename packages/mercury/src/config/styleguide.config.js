@@ -2,9 +2,11 @@ const path = require('path')
 const root = process.env.PWD
 const docgen = require('react-docgen')
 const docgenDisplayNameHandler = require('react-docgen-displayname-handler')
+const pkgVersion = require(`${root}/package.json`).version
+
 module.exports = {
   // #region preferences
-  title: 'Mercury',
+  title: `Mercury v${pkgVersion}`,
   assetsDir: `${root}/src/lib/assets`,
   template: {
     favicon: 'static/favicon.ico',
