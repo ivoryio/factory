@@ -4,7 +4,7 @@ const docgen = require('react-docgen')
 const docgenDisplayNameHandler = require('react-docgen-displayname-handler')
 module.exports = {
   // #region preferences
-  title: 'Kogaio',
+  title: 'Mercury',
   assetsDir: `${root}/src/lib/assets`,
   template: {
     favicon: 'static/favicon.ico',
@@ -14,7 +14,8 @@ module.exports = {
         {
           rel: 'stylesheet',
           type: 'text/css',
-          href: 'https://fonts.googleapis.com/css?family=Rubik:300,400,700|Open+Sans:300,400'
+          href:
+            'https://fonts.googleapis.com/css?family=Rubik:300,400,700|Open+Sans:300,400'
         },
         {
           rel: 'stylesheet',
@@ -43,7 +44,7 @@ module.exports = {
     const fileName = dir.includes('Responsive')
       ? `{ ${name} }`
       : `${trimmedName}`
-    return `import ${fileName} from @ivoryio/kogaio/${dir}`
+    return `import ${fileName} from @ivoryio/mercury/${dir}`
   },
   // #endregion
   // #region config
@@ -111,33 +112,16 @@ module.exports = {
       name: 'Contents',
       sections: [
         {
-          name: 'Atoms',
-          components: `${root}/src/lib/*/+([a-zA-Z])*.+(atom).{js,jsx}`
-        },
-        {
           name: 'Molecules',
           components: `${root}/src/lib/*/+([a-zA-Z])*.+(molecule).{js,jsx}`
         },
         {
           name: 'Organisms',
           components: `${root}/src/lib/*/+([a-zA-Z])*.+(organism).{js,jsx}`
-        },
-        {
-          name: 'Responsive',
-          components: `${root}/src/lib/Responsive/+([a-zA-Z])*.{js,jsx}`
         }
       ],
       exampleMode: 'expand', // 'hide' | 'collapse' | 'expand'
       usageMode: 'collapse' // 'hide' | 'collapse' | 'expand'
-    },
-    {
-      name: 'Footer',
-      sections: [
-        {
-          name: 'Theme Schema',
-          content: `${root}/docs/theme.md`
-        }
-      ]
     }
   ]
   // #endregion
