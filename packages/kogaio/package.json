@@ -23,7 +23,7 @@
 		"build:lib": "NODE_ENV=production && rm -rf build && mkdir build && npx babel ./src/lib --out-dir ./build --ignore \"**/*.test.js,**/*.examples.md,favicon.ico\" --copy-files",
 		"publish:lib": "yarn build:lib && cp package.json build && cp README.md build && cd ./build && yarn publish --access public",
 		"build:styleg": "rm -rf build && npx styleguidist build --config src/config/styleguide.config.js",
-		"publish:styleg": "aws s3 sync ./build s3://kogaio.ivory.io --profile default",
+		"publish:styleg": "yarn build:styleg && aws s3 sync ./build s3://kogaio.ivory.io --profile default",
 		"lint": "node_modules/.bin/eslint ./",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
