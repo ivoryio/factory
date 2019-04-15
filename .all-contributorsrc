@@ -13,6 +13,19 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "BvmvB",
+      "name": "Bogdan Balan",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/4242365?v=4",
+      "profile": "https://github.com/BvmvB",
+      "contributions": [
+        "fundingFinding",
+        "ideas",
+        "infra",
+        "projectManagement",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
