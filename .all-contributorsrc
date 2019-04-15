@@ -6,15 +6,6 @@
   "commit": false,
   "contributors": [
     {
-      "login": "dan-puscaru",
-      "name": "dan-puscaru",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/47970392?v=4",
-      "profile": "https://github.com/dan-puscaru",
-      "contributions": [
-        "design"
-      ]
-    },
-    {
       "login": "BvmvB",
       "name": "Bogdan Balan",
       "avatar_url": "https://avatars1.githubusercontent.com/u/4242365?v=4",
@@ -34,6 +25,15 @@
       "profile": "https://github.com/msal96",
       "contributions": [
         "code"
+      ]
+    },
+        {
+      "login": "dan-puscaru",
+      "name": "dan-puscaru",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/47970392?v=4",
+      "profile": "https://github.com/dan-puscaru",
+      "contributions": [
+        "design"
       ]
     }
   ],
