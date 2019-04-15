@@ -27,13 +27,34 @@
         "code"
       ]
     },
-        {
+    {
       "login": "dan-puscaru",
       "name": "dan-puscaru",
       "avatar_url": "https://avatars2.githubusercontent.com/u/47970392?v=4",
       "profile": "https://github.com/dan-puscaru",
       "contributions": [
         "design"
+      ]
+    },
+    {
+      "login": "mihai-ro",
+      "name": "Mihai R.",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/15910058?v=4",
+      "profile": "http://www.github.com/mihai-ro",
+      "contributions": [
+        "code",
+        "content",
+        "doc",
+        "example",
+        "ideas",
+        "infra",
+        "maintenance",
+        "plugin",
+        "projectManagement",
+        "review",
+        "tool",
+        "tutorial",
+        "talk"
       ]
     }
   ],
