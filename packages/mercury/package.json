@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/mercury",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "start": "react-scripts start",
     "styleg": "npx styleguidist server --config src/config/styleguide.config.js",

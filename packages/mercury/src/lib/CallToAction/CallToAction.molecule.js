@@ -1,44 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { Box, Button, Flex, themeGet, Space, Typography } from '@ivoryio/kogaio'
+import { Box, Button, Flex, themeGet, Space } from '@ivoryio/kogaio'
 
 const CallToAction = ({
   background,
   button,
   children,
-  colors,
   subtitle,
   theme,
-  title,
+  Title,
   ...props
 }) => (
   <Flex position='relative' width={1} {...props}>
     <Container background={background} theme={theme}>
       {children || (
         <>
-          <Box width={{ xs: 1, md: 3 / 4 }}>
-            <Typography
-              color='white'
-              fontWeight={2}
-              textAlign='center'
-              textStyle='h2'
-            >
-              {title}
-              <Typography
-                color='white'
-                fontWeight={0}
-                textAlign='center'
-                textStyle='caption'
-              >
-                {subtitle}
-              </Typography>
-            </Typography>
-          </Box>
+          <Space px={4}>
+            <Box width={1}>{Title}</Box>
+          </Space>
           <Space mt={{ xs: 6, sm: 5, lg: 8 }}>
-            <Box width={1 / 2} textAlign='center'>
+            <Box width={1} textAlign='center'>
               <Button
-                colors={colors}
+                colors={button.colors}
                 onClick={button.onClick}
                 title={button.title}
                 variant={button.variant}
@@ -98,17 +82,18 @@ const Container = styled(Flex)`
 
 CallToAction.propTypes = {
   background: PropTypes.string,
-  /** button: { title: String, variant: String, onClick: func } */
+  /** button: { colors: String, onClick: func, title: String, variant: String } */
   button: PropTypes.object,
   children: PropTypes.node,
   colors: PropTypes.string,
   subtitle: PropTypes.string,
   theme: PropTypes.object,
-  title: PropTypes.string
+  Title: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
 }
 
 CallToAction.defaultProps = {
   button: {
+    colors: 'button-outline-dark',
     title: 'Press me',
     variant: 'outline',
     onClick: () => console.warn('* Pass an onClick function to button')
