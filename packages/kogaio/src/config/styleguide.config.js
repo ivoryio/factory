@@ -87,6 +87,12 @@ module.exports = {
   styleguideComponents: {
     Wrapper: path.join(root, 'src/components/Wrapper')
   },
+  ribbon: {
+    // Link to open on the ribbon click (required)
+    url: 'https://github.com/ivoryio/factory',
+    // Text to show on the ribbon (optional)
+    text: 'Find me on GitHub'
+  },
   // #endregion
   // #region sidemenu
   sections: [

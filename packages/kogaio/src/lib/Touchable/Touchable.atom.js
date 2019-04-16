@@ -91,13 +91,13 @@ const touchableWithEffect = css`
       case 'highlight':
         return `
           :hover {
-            background-color: ${underlayColor};
+            background-color: ${themeGet(`colors.${underlayColor}`)(props)};
             color: ${themeGet('colors.white')(props)}
           }
           :active {
             opacity: ${activeOpacity};
             color: ${themeGet('colors.pale-white')(props)};
-            background-color: ${underlayColor};
+            background-color: ${themeGet(`colors.${underlayColor}`)(props)};
           }
           `
       default:
