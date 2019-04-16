@@ -14,16 +14,11 @@
         "code",
         "content",
         "doc",
-        "example",
         "ideas",
-        "infra",
         "maintenance",
         "plugin",
         "projectManagement",
-        "review",
-        "tool",
-        "tutorial",
-        "talk"
+        "tool"
       ]
     },
     {
@@ -46,7 +41,7 @@
       "profile": "https://github.com/msal96",
       "contributions": [
         "code",
-        "talk"
+        "maintenance"
       ]
     },
     {
