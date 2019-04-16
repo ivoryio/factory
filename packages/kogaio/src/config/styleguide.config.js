@@ -88,7 +88,7 @@ module.exports = {
     Wrapper: path.join(root, 'src/components/Wrapper')
   },
   ribbon: {
-    url: 'https://github.com/ivoryio/factory',
+    url: 'https://github.com/ivoryio/factory/tree/master/packages/kogaio#introduction',
     text: 'Find me on GitHub'
   },
   // #endregion
