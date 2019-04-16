@@ -4,9 +4,7 @@
   "private": true,
   "license": "ISC",
   "scripts": {
-    "lint": "node_modules/.bin/eslint ./packages/**/src",
-    "publish:styleg": "cd packages/kogaio && yarn publish:styleg",
-    "publish:kogaio": "cd packages/kogaio && yarn publish:lib"
+    "lint": "node_modules/.bin/eslint ./packages/**/src"
   },
   "devDependencies": {
     "babel-eslint": "9.0.0",

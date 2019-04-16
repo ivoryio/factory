@@ -89,6 +89,10 @@ module.exports = {
   styleguideComponents: {
     Wrapper: path.join(root, 'src/components/Wrapper')
   },
+  ribbon: {
+    url: 'https://github.com/ivoryio/factory/tree/master/packages/mercury#introduction',
+    text: 'Find me on GitHub'
+  },
   // #endregion
   // #region sidemenu
   sections: [
