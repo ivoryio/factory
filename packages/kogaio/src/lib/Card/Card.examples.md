@@ -40,10 +40,11 @@ const Form = styled.form`width: 100%;`;
             p={6}
           >
             <Typography
-              message='Card title'
               fontWeight='bold'
               textStyle='h2'
-            />
+            >
+              Card title
+            </Typography>
             <Form>
               <Input
                 autoComplete='current-email'

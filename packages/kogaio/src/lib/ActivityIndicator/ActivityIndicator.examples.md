@@ -1,11 +1,41 @@
+#### Spinner
 ```js
-import { Flex } from '../';
-
-  <Flex justifyContent='space-evenly' alignItems='center'>
-    <ActivityIndicator colors={{ background: 'white', primary: 'gunmetal' }} size='64px' />  
-    <ActivityIndicator colors={{ background: 'white', primary: 'success' }} size='4em' />
-    <ActivityIndicator colors={{ background: 'white', primary: 'error' }} size={24} />
+import { Box, Card, Flex, Space } from '../';
+  <Flex alignItems='center' flexWrap='wrap'>
+    <Flex justifyContent='space-evenly' width={1}>
+      <ActivityIndicator colors={{ background: 'white', primary: 'pastel-blue' }} size='64px' />  
+      <ActivityIndicator colors={{ background: 'white', primary: 'success' }} size='4em' />
+      <ActivityIndicator colors={{ background: 'white', primary: 'error' }} size={24} />
+    </Flex>
   </Flex>
 ```
-**NOTE**
-Use theme colours for custom spinner colours.
+
+#### RunningBar
+```js
+  import { Card, Space } from '../';
+    <Space py={6} mx='auto'>
+      <Card width={1/2} colors='card-white' position='relative'>
+        <ActivityIndicator
+          colors={{ background: 'pale-white', primary: 'brand' }}
+          position='absolute'
+          bottom={0}
+          variant='runningbar'
+        />
+      </Card>
+    </Space>
+```
+
+#### LoadBar
+```js
+import { Card, Space } from '../';
+    <Space py={6} mx='auto'>
+      <Card width={1/2} colors='card-white' position='relative'>
+        <ActivityIndicator
+          colors={['info', 'alert', 'error']}
+          position='absolute'
+          top={0}
+          variant='loadbar'
+        />
+      </Card>
+    </Space>
+```

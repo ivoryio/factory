@@ -4,5 +4,5 @@ designed and tailored to fit the needs of
 
 Its primary concern is to expose for usage a set of niche UI components for marketplaces.
 
-[1]: https://ivoryio.github.io/factory/packages/mercury/#introduction "Mercury"
+[1]: https://github.com/ivoryio/factory/tree/master/packages/mercury#introduction "Mercury"
 [2]: https://www.ivory.io/ "Ivory.io"

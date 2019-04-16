@@ -1,6 +1,6 @@
 {
 	"name": "@ivoryio/kogaio",
-	"version": "0.3.24",
+	"version": "0.3.25",
 	"author": "Ivory",
 	"description": "Component library",
 	"main": "build/index.js",
@@ -9,7 +9,7 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"homepage": "https://ivoryio.github.io/factory/packages/kogaio#readme",
+	"homepage": "https://github.com/ivoryio/factory/tree/master/packages/kogaio#introduction",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/ivoryio/factory/tree/master/packages/kogaio"

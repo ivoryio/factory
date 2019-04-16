@@ -27,8 +27,7 @@ const Flex = styled(Box)`
   ${justifyContent}
   ${justifyItems}
   ${justifySelf}
-  ${order}
-  
+  ${order} 
 `
 
 Flex.displayName = 'Flex'
