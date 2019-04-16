@@ -942,9 +942,9 @@
   integrity sha512-4zAPlpDEh2VwXswwr/t8xGNDGg8RQiPxtxZ3qQEXyQsBV39ptTdESCjuBvGze1nLMVrxmTIKmnO/nAV8Tqjjzg==
 
 "@ivoryio/kogaio@^0.3.24":
-  version "0.3.24"
-  resolved "https://registry.yarnpkg.com/@ivoryio/kogaio/-/kogaio-0.3.24.tgz#f80dd5bdb519f0e2602fdcf2fa650c410c05c474"
-  integrity sha512-0VBX4XhP0LgBhc3Uxil5iXWsqHaxoB+nqfhxHaUeqUDs0TAZsMX9ZGwUzZOqzrcnehSgpk2TRmUWix+darNXGQ==
+  version "0.3.25"
+  resolved "https://registry.yarnpkg.com/@ivoryio/kogaio/-/kogaio-0.3.25.tgz#a437f53879aaf5ecdeec51de1c9c7de3453ef636"
+  integrity sha512-5G6BdtVt7tM0dUdmnTrXYk3HapcPclgiMsq+7If3yyGJU23X3NKUTY+svaql5z2jGM3y7XrGxL+4xhi2fCCu4Q==
   dependencies:
     styled-components "4.2.0"
     styled-system "^4.1.0"
@@ -9211,10 +9211,10 @@ react-simple-code-editor@^0.9.7:
   resolved "https://registry.yarnpkg.com/react-simple-code-editor/-/react-simple-code-editor-0.9.10.tgz#1ab5ea7215687ed918c6d0dae90736cf01890905"
   integrity sha512-80LJwRQS7Wi9Ugh/e6FRHWdcg4oQOpMBDFxyDpORILffrHdV3EIQ1IeX5x7488r05iFgLbVDV4nQ1LRKjgCm0g==
 
-react-styleguidist@^9.0.7:
-  version "9.0.7"
-  resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-9.0.7.tgz#6b44729f411b9c9b62e299d936ffb210505cd3f3"
-  integrity sha512-OQsnBoy+dP8Nu+YKqS8Tzq3ei4u2UYMbMdHZdg+/6GaamRjLFo8SpigIClfiWE8dnU8pPiAuD/BLN8NyPmarEg==
+react-styleguidist@^9.0.8:
+  version "9.0.8"
+  resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-9.0.8.tgz#615057eac7a2cc88d13087f2d8c37037fdbce9cb"
+  integrity sha512-N3JEspClgUCNkj05X14G2aGLyDE9Izv1X8BFPjQR+oVo2AoUGLE92vsA3XYD26kmAChwfBUEja7b5IZV+91DTQ==
   dependencies:
     "@vxna/mini-html-webpack-template" "^0.1.7"
     acorn "^6.1.1"
