@@ -13,7 +13,7 @@ import { Box, Card, Flex, Space } from '../';
 #### RunningBar
 ```js
   import { Card, Space } from '../';
-    <Space py={6} mx='auto'>
+    <Space py={8} mx='auto'>
       <Card width={1/2} colors='card-white' position='relative'>
         <ActivityIndicator
           colors={{ background: 'pale-white', primary: 'brand' }}
@@ -28,7 +28,7 @@ import { Box, Card, Flex, Space } from '../';
 #### LoadBar
 ```js
 import { Card, Space } from '../';
-    <Space py={6} mx='auto'>
+    <Space py={8} mx='auto'>
       <Card width={1/2} colors='card-white' position='relative'>
         <ActivityIndicator
           colors={['info', 'alert', 'error']}

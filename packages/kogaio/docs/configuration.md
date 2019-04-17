@@ -48,7 +48,7 @@
 
     const MyScreen = () => (
       <Flex justifyContent='center'>
-        <Space m={4}>
+        <Space px={4} py={2}>
           <Card
             alignItems="center"
             colors='card-white'
@@ -56,7 +56,7 @@
           >
           <Typography
             color='dark-gunmetal'
-            fontWeight={8}
+            fontWeight={3}
             textAlign='center'
             textStyle='h2' 
           >

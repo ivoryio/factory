@@ -159,8 +159,8 @@ const Body = styled(Box)`
   border: solid 1px
     ${props =>
     props.error ? themeGet('colors.error') : themeGet('colors.azure-white')};
-  border-top-left-radius: ${themeGet('radii.2', 4)}px;
-  border-top-right-radius: ${themeGet('radii.2', 4)}px;
+  border-top-left-radius: ${themeGet('radii.2', 2)}px;
+  border-top-right-radius: ${themeGet('radii.2', 2)}px;
   background-color: ${themeGet('colors.white')};
   display: flex;
   flex-direction: column;

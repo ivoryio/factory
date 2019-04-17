@@ -5,7 +5,7 @@
   const ActionTitle = () => (
     <Typography
       color='white'
-      fontWeight={2}
+      fontWeight={0}
       textAlign='center'
       textStyle='h2'>
         Call-to-Action that expects props. <br />
@@ -14,7 +14,7 @@
         </Space>
     </Typography>
   );
-  <Space py={{ xs: 8, md: 11, lg: 9 }}>
+  <Space py={{ xs: 12, md: 21, lg: 16 }}>
     <CallToAction
       background='https://www.omegawatches.com/media/gene-cms/h/o/home_se300m-21032422006001-large_12.jpg'
       button={{ title: 'Take me there', colors: 'button-outline-dark', variant: 'outline', onClick: mockClick }}
@@ -28,13 +28,13 @@
   import Typography from '@ivoryio/kogaio/Typography';
   import { Box, Flex, Space } from '@ivoryio/kogaio/Responsive';
   const backgroundImage='http://www.luxurybazaar.com/wp/wp-content/uploads/2018/05/homebanner4-700x210.jpg';
-  <Space mt={6} px={4} py={{ xs: 5, md: 6, lg: 3 }}>
+  <Space mt={8} px={4} py={{ xs: 6, md: 8, lg: 3 }}>
     <CallToAction>
       <Flex alignItems='center' flexWrap='wrap' width={1}>
         <Box width={{ xs: 1, md: 2 / 3 }}>
           <Typography
             color='white'
-            fontWeight={2}
+            fontWeight={0}
             textAlign='center'
             textStyle='subtitle'
           >

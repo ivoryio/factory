@@ -4,7 +4,7 @@
     const _requestSearch = searchTerm => {
       console.info('I am searching for', searchTerm)
     };
-    <Space px={6} py={{ xs: 9, md: 12, lg: 13 }}>
+    <Space px={8} py={{ xs: 16, md: 24, lg: 32 }}>
       <HeroSearch
         subtitle='Feel free to explore and dare to make a change'
         title='Welcome to the bold and daring world of Mercury. This is a dummy title.'

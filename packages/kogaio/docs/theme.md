@@ -3,22 +3,14 @@ For a painless experience with **Kogaio**, we do not encourage overwriting the e
 
 Seek the comments below for recommendations.
 ```jsx static
-  breakpoints = {
+    breakpoints = {
     xs: '20em',
     sm: '30em',
     md: '48em',
     lg: '80em',
     xlg: '120em'
   }
-  borders = [
-    0,
-    '1px solid',
-    '2px solid',
-    '4px solid',
-    '8px solid',
-    '16px solid',
-    '32px solid'
-  ]
+  borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
   colors = { 
     // #region recommended for overwriting
     brand,
@@ -84,7 +76,7 @@ Seek the comments below for recommendations.
     primary:
       'Rubik, sans-serif',
     complementary:
-      '"Open Sans", sans-serif'
+      '"Open+Sans", sans-serif'
   }
   // #endregion
   fontSizes = [
@@ -97,7 +89,7 @@ Seek the comments below for recommendations.
     '3rem',
     '4rem'
   ]
-  fontWeights = [100, 200, 300, 400, 500, 600, 700, 800, 900]
+  fontWeights = ['lighter', 'regular', 'bold']
   lineHeights = {
     solid: 1,
     title: 1.25,
@@ -112,8 +104,8 @@ Seek the comments below for recommendations.
     tight: '-0.05em',
     mega: '0.25em'
   }
-  radii = [0, 1, 2, 4, 16, 32, '50%', '100%']
-  space = [0, 4, 8, 12, 16, 24, 32, 40, 48, 64, 72, 84, 96, 128, 256]
+  radii = [0, 1, 2, 3, 4, '50%']
+  space = [0, 4, 8, 12, 16, 20, 24, ..., 256]
   shadows: {
     'button-shadow',
     'input-basic',

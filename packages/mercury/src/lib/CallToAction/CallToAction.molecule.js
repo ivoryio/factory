@@ -19,7 +19,7 @@ const CallToAction = ({
           <Space px={4}>
             <Box width={1}>{Title}</Box>
           </Space>
-          <Space mt={{ xs: 6, sm: 5, lg: 8 }}>
+          <Space mt={{ xs: 8, sm: 6, lg: 12 }}>
             <Box width={1} textAlign='center'>
               <Button
                 colors={button.colors}
