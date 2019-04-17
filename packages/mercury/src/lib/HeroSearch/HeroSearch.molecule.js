@@ -37,12 +37,12 @@ const HeroSearch = ({
       {...props}
     >
       <Container backgroundImage={backgroundImage} theme={theme}>
-        <Space px={6}>
+        <Space px={8}>
           <Box width={1}>
             <Typography
               color='white'
               fontSize={{ xs: '1.625em', md: '2em' }}
-              fontWeight={2}
+              fontWeight={0}
               textAlign='center'
               textStyle='h2'
             >
@@ -50,12 +50,12 @@ const HeroSearch = ({
             </Typography>
           </Box>
         </Space>
-        <Space mt={6}>
+        <Space mt={8}>
           <Flex flexWrap='wrap' justifyContent='center' width={1}>
             <Box width={{ xs: 1, sm: 3 / 4, md: 2 / 3 }}>
               <Typography
                 color='white'
-                fontWeight={2}
+                fontWeight={0}
                 textAlign='center'
                 textStyle='h3'
               >

@@ -79,15 +79,7 @@ export const defaultTheme = new function () {
     lg: '80em',
     xlg: '120em'
   }
-  this.borders = [
-    0,
-    '1px solid',
-    '2px solid',
-    '4px solid',
-    '8px solid',
-    '16px solid',
-    '32px solid'
-  ]
+  this.borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
 
   this.fonts = {
     primary:
@@ -106,7 +98,7 @@ export const defaultTheme = new function () {
     '3em',
     '4em'
   ]
-  this.fontWeights = [100, 200, 300, 400, 500, 600, 700, 800, 900]
+  this.fontWeights = ['lighter', 'regular', 'bold']
   this.lineHeights = {
     solid: 1,
     title: 1.25,
@@ -121,13 +113,18 @@ export const defaultTheme = new function () {
     tight: '-0.05em',
     mega: '0.25em'
   }
-  this.radii = [0, 1, 2, 4, 16, 32, '50%', '100%']
-  this.space = [0, 4, 8, 12, 16, 24, 32, 40, 48, 64, 72, 84, 96, 128, 256]
+  this.radii = [0, 1, 2, 3, 4, '50%']
 
+  this.gutter = 4
+  this.space = generateSpaces(this.gutter)
   this.buttons = buttonsFactory(this.colors, this.shadows)
   this.inputs = inputsFactory(this.colors, this.shadows)
   this.textStyles = textStylesFactory(this.colors, this.fonts, this.fontWeights)
   this.tooltips = tooltipsFactory(this.colors)
+
+  function generateSpaces (gridUnit = 4) {
+    return Array.from({ length: 100 }, (v, ix) => ix * gridUnit)
+  }
 }()
 
 export function themeFactory (customTheme) {

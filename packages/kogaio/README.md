@@ -91,7 +91,7 @@ yarn add @ivoryio/kogaio
 
     const MyScreen = () => (
       <Flex justifyContent='center'>
-        <Space m={4}>
+        <Space px={4} py={2}>
           <Card
             alignItems="center"
             colors='card-white'
@@ -99,7 +99,7 @@ yarn add @ivoryio/kogaio
           >
           <Typography
             color='dark-gunmetal'
-            fontWeight={8}
+            fontWeight={3}
             textAlign='center'
             textStyle='h2' 
           >
@@ -127,15 +127,7 @@ Seek the comments below for recommendations.
     lg: '80em',
     xlg: '120em'
   }
-  borders = [
-    0,
-    '1px solid',
-    '2px solid',
-    '4px solid',
-    '8px solid',
-    '16px solid',
-    '32px solid'
-  ]
+  borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
   colors = { 
     // #region recommended for overwriting
     brand,
@@ -214,7 +206,7 @@ Seek the comments below for recommendations.
     '3rem',
     '4rem'
   ]
-  fontWeights = [100, 200, 300, 400, 500, 600, 700, 800, 900]
+  fontWeights = ['lighter', 'regular', 'bold']
   lineHeights = {
     solid: 1,
     title: 1.25,
@@ -229,8 +221,8 @@ Seek the comments below for recommendations.
     tight: '-0.05em',
     mega: '0.25em'
   }
-  radii = [0, 1, 2, 4, 16, 32, '50%', '100%']
-  space = [0, 4, 8, 12, 16, 24, 32, 40, 48, 64, 72, 84, 96, 128, 256]
+  radii = [0, 1, 2, 3, 4, '50%']
+  space = [0, 4, 8, 12, 16, 20, 24, ..., 256]
   shadows: {
     'button-shadow',
     'input-basic',

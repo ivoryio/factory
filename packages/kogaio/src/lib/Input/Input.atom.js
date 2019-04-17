@@ -181,7 +181,7 @@ const inputSize = css`
 
 const StyledInput = styled.input`
   background-color: ${themeGet('colors.white')};
-  border-radius: ${themeGet('radii.1')}px;
+  border-radius: ${themeGet('radii.1', 1)}px;
   color: ${themeGet('colors.gunmetal', '#243143')};
   font-family: ${themeGet('fonts.primary')};
   font-size: ${themeGet('fontSizes.1', '0.875em')};

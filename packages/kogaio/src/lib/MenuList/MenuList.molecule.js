@@ -174,7 +174,7 @@ const Container = styled(Box)`
 `
 
 const ListWrapper = styled(Box)`
-  border-radius: ${themeGet('radii.1')}px;
+  border-radius: ${themeGet('radii.1', 1)}px;
   display: flex;
   flex-direction: column;
   position: absolute;

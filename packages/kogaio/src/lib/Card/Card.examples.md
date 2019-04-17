@@ -37,7 +37,7 @@ const Form = styled.form`width: 100%;`;
             display='flex'
             flexDirection='column'
             width='350px'
-            p={6}
+            p={8}
           >
             <Typography
               fontWeight='bold'

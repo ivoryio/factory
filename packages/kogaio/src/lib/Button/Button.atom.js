@@ -33,8 +33,8 @@ import {
 } from 'styled-system'
 
 import Icon from './Icon'
+import Flex from '../Responsive/Flex'
 import ActivityIndicator from '../ActivityIndicator'
-import { Flex } from '../Responsive'
 
 const Button = ({
   alignSelf,
@@ -90,9 +90,8 @@ const Button = ({
       onClick={onClick}
       type={type}
       variant={variant}
-      {...rest}
-    >
-      <Flex justifyContent='center' alignItems='center'>
+      {...rest}>
+      <Flex justifyContent="center" alignItems="center">
         {isLoading ? (
           loadingText || (
             <ActivityIndicator size={spinnerSize} colors={spinnerColors} />

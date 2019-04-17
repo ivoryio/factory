@@ -71,7 +71,7 @@ const Tooltip = ({
         />
         <Typography
           className='tooltip-text'
-          px={6}
+          px={8}
           py={2}
           fontSize={fontSize}
           textStyle='paragraph'
@@ -160,7 +160,7 @@ const animatedOpacity = keyframes`
 `
 
 const Container = styled(Box)`
-  border-radius: ${themeGet('radii.2')}px;
+  border-radius: ${themeGet('radii.2', 2)}px;
   box-shadow: ${themeGet('shadows.input-basic')};
   padding: ${themeGet('space.1')}px;
   position: relative;

@@ -24,16 +24,16 @@ export default function (colors, fonts, fontWeights) {
       fontFamily: fonts.primary,
       fontSize: '0.75em',
       lineHeight: 2,
-      fontWeight: fontWeights[8]
+      fontWeight: fontWeights[2]
     },
     link: {
       color: colors.brand,
       fontFamily: fonts.complementary,
       fontSize: '0.875em',
-      fontWeight: fontWeights[8],
+      fontWeight: fontWeights[2],
       textDecoration: 'underline',
       '&:visited': {
-        fontWeight: fontWeights[4]
+        fontWeight: fontWeights[1]
       }
     },
     inputLabel: {
