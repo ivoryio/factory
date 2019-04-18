@@ -41,6 +41,7 @@ import {
   zIndex
 } from 'styled-system'
 import PropTypes from 'prop-types'
+import cardStyle from './cardStyle'
 
 const Card = styled.div`
   ${alignContent}
@@ -53,6 +54,7 @@ const Card = styled.div`
   ${borders}
   ${bottom}
   ${boxShadow}
+  ${cardStyle}
   ${color}
   ${colorStyle}
   ${display}
@@ -85,18 +87,52 @@ const Card = styled.div`
 `
 
 Card.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.object,
-    PropTypes.element,
-    PropTypes.node
-  ]),
+  ...alignContent.propTypes,
+  ...alignItems.propTypes,
+  ...alignSelf.propTypes,
+  ...backgroundImage.propTypes,
+  ...background.propTypes,
+  ...borderColor.propTypes,
+  ...borderRadius.propTypes,
+  ...borders.propTypes,
+  ...bottom.propTypes,
+  ...boxShadow.propTypes,
+  ...cardStyle.propTypes,
+  ...color.propTypes,
+  ...colorStyle.propTypes,
+  ...display.propTypes,
+  ...flexBasis.propTypes,
+  ...flexDirection.propTypes,
+  ...flexWrap.propTypes,
+  ...flex.propTypes,
+  ...fontFamily.propTypes,
+  ...height.propTypes,
+  ...justifyContent.propTypes,
+  ...justifyItems.propTypes,
+  ...justifySelf.propTypes,
+  ...left.propTypes,
+  ...maxHeight.propTypes,
+  ...maxWidth.propTypes,
+  ...minHeight.propTypes,
+  ...minWidth.propTypes,
+  ...opacity.propTypes,
+  ...order.propTypes,
+  ...overflow.propTypes,
+  ...position.propTypes,
+  ...right.propTypes,
+  ...size.propTypes,
+  ...space.propTypes,
+  ...textAlign.propTypes,
+  ...top.propTypes,
+  ...verticalAlign.propTypes,
+  ...width.propTypes,
+  ...zIndex.propTypes,
+  children: PropTypes.node,
   className: PropTypes.string
 }
 
 Card.defaultProps = {}
 Card.displayName = 'Card'
-
 
 /** @component */
 export default Card

@@ -1,4 +1,5 @@
-export default function (colors) {
+export default function (theme) {
+  const { colors } = theme
   return {
     info: {
       border: `solid 1px ${colors.info}`,

@@ -44,7 +44,7 @@ const HeroSearch = ({
               fontSize={{ xs: '1.625em', md: '2em' }}
               fontWeight={0}
               textAlign='center'
-              textStyle='h2'
+              variant='h2'
             >
               {title}
             </Typography>
@@ -57,7 +57,7 @@ const HeroSearch = ({
                 color='white'
                 fontWeight={0}
                 textAlign='center'
-                textStyle='h3'
+                variant='h3'
               >
                 {subtitle}
               </Typography>

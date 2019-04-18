@@ -65,20 +65,20 @@ class Modal extends PureComponent {
     } = this.props
     return ReactDOM.createPortal(
       <Body className={className}>
-        <StyledCard colors='card-white' id='modal-body' {...rest}>
+        <StyledCard id="modal-body" variant="white" {...rest}>
           {Header ? <Row>{Header}</Row> : null}
           <Content>
             <ChildWrapper>{children}</ChildWrapper>
             <ButtonsWrapper>
               <ModalButton
                 data-testid={confirmButtonTestId}
-                fontSize='1em'
+                fontSize="1em"
                 onClick={confirmActionFn}
                 title={confirmButtonLabel}
                 variant={confirmButtonType}
               />
               <ModalButton
-                fontSize='1em'
+                fontSize="1em"
                 onClick={hideModal}
                 title={cancelButtonLabel}
                 variant={cancelButtonType}

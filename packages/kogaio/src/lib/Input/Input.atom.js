@@ -98,15 +98,14 @@ const Input = ({
 
   const resetInputType = () => setInputType(type)
   return (
-    <InputWrapper flexDirection='column' hasLabel={label} width={1} {...rest}>
+    <InputWrapper flexDirection="column" hasLabel={label} width={1} {...rest}>
       {label ? (
         <InputLabel
           cssLabel={cssLabel}
-          color='gunmetal'
+          color="gunmetal"
           htmlFor={id}
-          as='span'
-          textStyle='inputLabel'
-        >
+          as="span"
+          variant="inputLabel">
           {label} {required && '*'}
         </InputLabel>
       ) : null}
@@ -184,7 +183,7 @@ const StyledInput = styled.input`
   border-radius: ${themeGet('radii.1', 1)}px;
   color: ${themeGet('colors.gunmetal', '#243143')};
   font-family: ${themeGet('fonts.primary')};
-  font-size: ${themeGet('fontSizes.1', '0.875em')};
+  font-size: ${themeGet('fontSizes.1', '0.875rem')};
   outline: none;
   ${inputSize}
 
@@ -273,7 +272,6 @@ Input.propTypes = {
 Input.defaultProps = {
   minHeight: 34,
   placeholder: 'Search...',
-  textStyle: 'inputLabel',
   type: 'text',
   value: '',
   variant: 'default'

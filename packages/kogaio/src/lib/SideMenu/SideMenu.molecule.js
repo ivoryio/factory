@@ -46,13 +46,13 @@ import Typography from '../Typography'
 
 const SideMenu = ({ imgSrc, imgSize, list, title, subtitle, ...rest }) => (
   <Space p={4}>
-    <Container colors='card-white' {...rest}>
+    <Container variant='white' {...rest}>
       <Top alignItems='center'>
         <Image size={imgSize} src={imgSrc} />
         <Space px={4}>
           <Column>
-            <Typography textStyle='h3'>{title}</Typography>
-            <Typography textStyle='paragraph'>{subtitle}</Typography>
+            <Typography variant='h3'>{title}</Typography>
+            <Typography variant='paragraph'>{subtitle}</Typography>
           </Column>
         </Space>
       </Top>

@@ -941,10 +941,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.3.tgz#6310a047f12d21a1036fb031317219892440416f"
   integrity sha512-4zAPlpDEh2VwXswwr/t8xGNDGg8RQiPxtxZ3qQEXyQsBV39ptTdESCjuBvGze1nLMVrxmTIKmnO/nAV8Tqjjzg==
 
-"@ivoryio/kogaio@^0.3.24":
-  version "0.3.25"
-  resolved "https://registry.yarnpkg.com/@ivoryio/kogaio/-/kogaio-0.3.25.tgz#a437f53879aaf5ecdeec51de1c9c7de3453ef636"
-  integrity sha512-5G6BdtVt7tM0dUdmnTrXYk3HapcPclgiMsq+7If3yyGJU23X3NKUTY+svaql5z2jGM3y7XrGxL+4xhi2fCCu4Q==
+"@ivoryio/kogaio@^0.3.26":
+  version "0.3.26"
+  resolved "https://registry.yarnpkg.com/@ivoryio/kogaio/-/kogaio-0.3.26.tgz#89c98ec2eab54d4e661dd6f7d0c6fa421e6a1521"
+  integrity sha512-/NWw05N3bQwQQwkMRB7A3LK/hAaszWr303ULfXi7dRbLoozPbeyw2vm8o9kKbntZnirlZPCmKuSmtHwJEX7mtg==
   dependencies:
     styled-components "4.2.0"
     styled-system "^4.1.0"

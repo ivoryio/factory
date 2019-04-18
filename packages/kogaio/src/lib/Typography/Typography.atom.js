@@ -15,6 +15,7 @@ import {
   textStyle,
   themeGet
 } from 'styled-system'
+import typography from './typographyStyle'
 
 const Typography = styled.div`
   color: ${themeGet('colors.dark-gunmetal', '#1b202f')};
@@ -23,7 +24,6 @@ const Typography = styled.div`
   font-stretch: normal;
   letter-spacing: normal;
 
-  ${textStyle}
   ${color}
   ${fontFamily}
   ${fontSize}
@@ -35,6 +35,8 @@ const Typography = styled.div`
   ${size}
   ${space}
   ${textAlign}
+  ${textStyle}
+  ${typography}
 `
 
 Typography.propTypes = {
@@ -50,13 +52,14 @@ Typography.propTypes = {
   ...size.propTypes,
   ...space.propTypes,
   ...textAlign.propTypes,
-  textStyle: PropTypes.oneOf([
+  variant: PropTypes.oneOf([
     'h1',
     'h2',
     'h3',
     'h4',
     'h5',
     'h6',
+    'buttonLabel',
     'inputLabel',
     'link',
     'paragraph',
@@ -64,24 +67,14 @@ Typography.propTypes = {
     'caption',
     'list'
   ]),
+  as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'div', 'p']),
   fontFamily: PropTypes.string,
   children: PropTypes.node,
-  component: PropTypes.oneOf([
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'span',
-    'div',
-    'p'
-  ]),
   message: PropTypes.string
 }
 
 Typography.defaultProps = {
-  component: 'div'
+  as: 'div'
 }
 Typography.displayName = 'Typography'
 
