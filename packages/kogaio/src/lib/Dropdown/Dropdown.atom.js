@@ -77,7 +77,7 @@ const Dropdown = ({
         color={error ? 'error' : 'independence'}
         cssLabel={cssLabel}
         htmlFor={id}
-        textStyle='inputLabel'
+        variant='inputLabel'
       >
         {label} {required && '*'}
       </DropdownLabel>

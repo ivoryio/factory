@@ -1,4 +1,5 @@
-export default function (colors, shadows, ...args) {
+export default function (theme) {
+  const { colors, shadows } = theme
   return {
     default: {
       backgroundColor: `${colors.white}`,

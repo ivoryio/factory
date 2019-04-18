@@ -74,7 +74,7 @@ const Tooltip = ({
           px={8}
           py={2}
           fontSize={fontSize}
-          textStyle='paragraph'
+          variant='paragraph'
         >
           {children}
         </Typography>

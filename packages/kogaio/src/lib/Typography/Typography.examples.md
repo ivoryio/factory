@@ -6,10 +6,10 @@
       <Typography
         fontWeight='bold'
         message={message}
-        textStyle='h1'
+        variant='h1'
       />
       <Typography
-        textStyle='h1'>
+        variant='h1'>
         {message}
       </Typography>
     </>
@@ -24,10 +24,10 @@
       <Typography
         fontWeight='bold'
         message={message}
-        textStyle='h2'
+        variant='h2'
       />
       <Typography
-        textStyle='h2'>
+        variant='h2'>
         {message}
       </Typography>
     </>
@@ -42,14 +42,14 @@
     <>
       <Typography
         message={message}
-        textStyle='h3'
+        variant='h3'
         fontWeight='bold'
         letterSpacing={2}
       />
       <Typography
         colors='info'
         letterSpacing={2}
-        textStyle='h3'>
+        variant='h3'>
         {message}
       </Typography>
     </>
@@ -64,8 +64,8 @@
   const message = 'Sphinx of black quartz, judge my vow';
   const TextExamples = () => (
     <>
-      <Typography fontWeight='bold' message={message} textStyle='h4' />
-      <Typography textStyle='h4'>{message}</Typography>
+      <Typography fontWeight='bold' message={message} variant='h4' />
+      <Typography variant='h4'>{message}</Typography>
     </>
   );
   <TextExamples />
@@ -76,8 +76,8 @@
   const message = 'The quick brown fox jumps over the lazy dog.';
   const TextExamples = () => (
     <>
-      <Typography fontWeight='bold' message={message} textStyle='h5' />
-      <Typography textStyle='h5'>{message}</Typography>
+      <Typography fontWeight='bold' message={message} variant='h5' />
+      <Typography variant='h5'>{message}</Typography>
     </>
   );
   <TextExamples />
@@ -88,8 +88,8 @@
   const message = 'How razorback-jumping frogs can level six piqued gymnasts!';
   const TextExamples = () => (
     <>
-      <Typography fontWeight='bold' message={message} textStyle='h6' />
-      <Typography textStyle='h6'>{message}</Typography>
+      <Typography fontWeight='bold' message={message} variant='h6' />
+      <Typography variant='h6'>{message}</Typography>
     </>
   );
   <TextExamples />
@@ -98,13 +98,13 @@
 #### Paragraph
 ```js
   <>
-    <Typography as='p' fontWeight='bold' textStyle='paragraph'>
+    <Typography as='p' fontWeight='bold' variant='paragraph'>
       Pack my box with five dozen liquor jugs.
     </Typography>
-    <Typography as='p' textStyle='paragraph'>
+    <Typography as='p' variant='paragraph'>
       The quick brown fox jumps over the lazy dog.
     </Typography>
-    <Typography  color='manatee' as='p' textStyle='paragraph'>
+    <Typography  color='manatee' as='p' variant='paragraph'>
       Sphinx of black quartz, judge my vow.
     </Typography>
   </>

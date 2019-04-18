@@ -122,6 +122,6 @@ Spinner.defaultProps = {
     background: 'white',
     primary: 'gunmetal'
   },
-  size: '2em'
+  size: '2rem'
 }
 export default Spinner

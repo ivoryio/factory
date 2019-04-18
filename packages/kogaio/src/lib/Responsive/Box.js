@@ -7,6 +7,7 @@ import {
   backgroundRepeat,
   borders,
   bottom,
+  boxShadow,
   color,
   colorStyle,
   display,
@@ -37,6 +38,7 @@ const Box = styled.div`
   ${backgroundRepeat}
   ${borders}
   ${bottom}
+  ${boxShadow}
   ${colorStyle}
   ${color}
   ${display}
@@ -66,6 +68,7 @@ Box.propTypes = {
   ...backgroundRepeat.propTypes,
   ...borders.propTypes,
   ...bottom.propTypes,
+  ...boxShadow.propTypes,
   ...color.propTypes,
   ...colorStyle.propTypes,
   ...display.propTypes,

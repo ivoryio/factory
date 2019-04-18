@@ -51,14 +51,14 @@
         <Space px={4} py={2}>
           <Card
             alignItems="center"
-            colors='card-white'
+            variant='white'
             width={{ xs: 1, sm: 2 / 3, md: 3 / 4, lg: 1 / 3 }}
           >
           <Typography
             color='dark-gunmetal'
             fontWeight={3}
             textAlign='center'
-            textStyle='h2' 
+            variant='h2' 
           >
             Hello world!
           </Typography>

@@ -1,12 +1,15 @@
-import {
-  buttonsFactory,
-  inputsFactory,
-  textStylesFactory,
-  tooltipsFactory
-} from './variants'
+import { buttonFn, cardFn, inputFn, typographyFn, tooltipFn } from './variants'
 import { mergeDeep, hexToRgbA, isObjectEmpty } from '../utils/helpers'
 
 export const defaultTheme = new function () {
+  this.borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
+  this.breakpoints = {
+    xs: '20em',
+    sm: '30em',
+    md: '48em',
+    lg: '80em',
+    xlg: '120em'
+  }
   this.colors = {
     brand: '#66bb6a',
     'brand-hover': '#4caf50',
@@ -41,28 +44,24 @@ export const defaultTheme = new function () {
     'menu-list': `0 1px 4px 0 ${hexToRgbA(this.colors['dark-gunmetal'], 0.35)}`
   }
   this.colorStyles = {
-    'card-white': {
-      boxShadow: this.shadows['card-simple'],
-      backgroundColor: this.colors.white
-    },
-    'card-gray': {
-      boxShadow: this.shadows['card-simple'],
-      backgroundColor: this.colors['pale-white']
-    },
     'menu-list': {
       boxShadow: this.shadows['menu-list'],
       backgroundColor: this.colors.white
     },
     'modal-background': `${hexToRgbA(this.colors.gunmetal, 0.25)}`,
     'button-outline-alt': {
-      color: this.colors.gunmetal,
+      '*': {
+        color: this.colors.gunmetal
+      },
       border: `1px solid ${this.colors.gunmetal}`,
       '&:hover': {
         border: `1px solid ${this.colors.gunmetal}`
       }
     },
     'button-outline-dark': {
-      color: this.colors.white,
+      '*': {
+        color: this.colors.white
+      },
       border: `1px solid ${this.colors.alert}`,
       '&:hover': {
         border: `1px solid ${this.colors.alert}`
@@ -72,33 +71,35 @@ export const defaultTheme = new function () {
       'background-color': hexToRgbA(this.colors.gunmetal, 0.6)
     }
   }
-  this.breakpoints = {
-    xs: '20em',
-    sm: '30em',
-    md: '48em',
-    lg: '80em',
-    xlg: '120em'
+  this.textStyles = {
+    caps: {
+      textTransform: 'uppercase',
+      letterSpacing: '0.625em'
+    }
   }
-  this.borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
-
   this.fonts = {
     primary:
       'Rubik, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif',
     complementary:
       '"Open Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif'
   }
-
   this.fontSizes = [
-    '0.75em',
-    '0.875em',
-    '1em',
-    '1.25em',
-    '1.5em',
-    '2em',
-    '3em',
-    '4em'
+    '0.75rem',
+    '0.875rem',
+    '1rem',
+    '1.25rem',
+    '1.5rem',
+    '2rem',
+    '3rem',
+    '4rem'
   ]
   this.fontWeights = ['lighter', 'regular', 'bold']
+  this.letterSpacings = {
+    normal: 'normal',
+    tracked: '0.1rem',
+    tight: '-0.05rem',
+    mega: '0.25rem'
+  }
   this.lineHeights = {
     solid: 1,
     title: 1.25,
@@ -107,20 +108,9 @@ export const defaultTheme = new function () {
     button: 1.9,
     input: 2
   }
-  this.letterSpacings = {
-    normal: 'normal',
-    tracked: '0.1em',
-    tight: '-0.05em',
-    mega: '0.25em'
-  }
-  this.radii = [0, 1, 2, 3, 4, '50%']
-
   this.gutter = 4
+  this.radii = [0, 1, 2, 3, 4, '50%']
   this.space = generateSpaces(this.gutter)
-  this.buttons = buttonsFactory(this.colors, this.shadows)
-  this.inputs = inputsFactory(this.colors, this.shadows)
-  this.textStyles = textStylesFactory(this.colors, this.fonts, this.fontWeights)
-  this.tooltips = tooltipsFactory(this.colors)
 
   function generateSpaces (gridUnit = 4) {
     return Array.from({ length: 100 }, (v, ix) => ix * gridUnit)
@@ -128,26 +118,36 @@ export const defaultTheme = new function () {
 }()
 
 export function themeFactory (customTheme) {
-  if (!customTheme || isObjectEmpty(customTheme)) return defaultTheme
+  // #region initial theme
+  const initialTheme = updateComponentVariantsWith(defaultTheme)
+  if (!customTheme || isObjectEmpty(customTheme)) return initialTheme
+  // #endregion
 
+  // #region custom theme
   const updatedTheme = Object.assign(
-    defaultTheme,
+    {},
+    initialTheme,
     ...Object.keys(customTheme).map(style => ({
-      [style]: mergeDeep(defaultTheme[style], customTheme[style])
+      [style]: mergeDeep(initialTheme[style], customTheme[style])
     }))
   )
+  return updatedTheme
+  // #endregion
 
-  const { colors, fonts, shadows } = updatedTheme
-  const buttons = buttonsFactory(colors, shadows)
-  const inputs = inputsFactory(colors, shadows)
-  const textStyles = textStylesFactory(colors, fonts, shadows)
-  const tooltips = tooltipsFactory(colors, shadows)
-
-  return {
-    ...updatedTheme,
-    buttons,
-    inputs,
-    textStyles,
-    tooltips
+  function updateComponentVariantsWith (theme, components) {
+    const componentStyles = [
+      { key: 'buttons', fn: buttonFn },
+      { key: 'cards', fn: cardFn },
+      { key: 'inputs', fn: inputFn },
+      { key: 'tooltips', fn: tooltipFn },
+      { key: 'typography', fn: typographyFn }
+    ]
+    return Object.assign(
+      {},
+      theme,
+      ...componentStyles.map(({ key, fn: componentFn }) => ({
+        [key]: componentFn(theme)
+      }))
+    )
   }
 }

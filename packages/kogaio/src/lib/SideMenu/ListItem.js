@@ -12,7 +12,7 @@ const ListItem = ({ icon, title, onClick }) => (
       <Flex alignItems='center'>
         <Icon name={icon} fontSize='1.5em' />
         <Space px={4}>
-          <Typography textStyle='list'>{title}</Typography>
+          <Typography variant='list'>{title}</Typography>
         </Space>
       </Flex>
     </Touchable>

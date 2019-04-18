@@ -25,7 +25,6 @@ import {
   opacity,
   size,
   textAlign,
-  textStyle,
   top,
   space,
   themeGet,
@@ -34,6 +33,7 @@ import {
 
 import Icon from './Icon'
 import Flex from '../Responsive/Flex'
+import Typography from '../Typography'
 import ActivityIndicator from '../ActivityIndicator'
 
 const Button = ({
@@ -94,12 +94,14 @@ const Button = ({
       <Flex justifyContent="center" alignItems="center">
         {isLoading ? (
           loadingText || (
-            <ActivityIndicator size={spinnerSize} colors={spinnerColors} />
+            <ActivityIndicator colors={spinnerColors} size={spinnerSize} />
           )
         ) : (
           <Fragment>
             {icon && <Icon icon={icon} variant={variant} />}
-            {title}
+            <Typography color={variant} variant="buttonLabel">
+              {title}
+            </Typography>
           </Fragment>
         )}
       </Flex>
@@ -146,7 +148,6 @@ const StyledBtn = styled.button`
   ${right}
   ${size}
   ${textAlign}
-  ${textStyle}
   ${space}
   ${top}
   ${width}
@@ -175,7 +176,6 @@ Button.propTypes = {
   ...right.propTypes,
   ...size.propTypes,
   ...textAlign.propTypes,
-  ...textStyle.propTypes,
   ...space.propTypes,
   ...top.propTypes,
   ...width.propTypes,
@@ -195,7 +195,7 @@ Button.propTypes = {
 Button.defaultProps = {
   disabled: false,
   isLoading: false,
-  textStyle: 'buttonLabel',
+  spinnerSize: '1.5rem',
   type: 'button',
   variant: 'primary'
 }

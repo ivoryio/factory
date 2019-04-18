@@ -94,14 +94,14 @@ yarn add @ivoryio/kogaio
         <Space px={4} py={2}>
           <Card
             alignItems="center"
-            colors='card-white'
+            variant='white'
             width={{ xs: 1, sm: 2 / 3, md: 3 / 4, lg: 1 / 3 }}
           >
           <Typography
             color='dark-gunmetal'
             fontWeight={3}
             textAlign='center'
-            textStyle='h2' 
+            variant='h2' 
           >
             Hello world!
           </Typography>
@@ -120,6 +120,7 @@ For a painless experience with **Kogaio**, we do not encourage overwriting the e
 
 Seek the comments below for recommendations.
 ```JSX
+  borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
   breakpoints = {
     xs: '20em',
     sm: '30em',
@@ -127,7 +128,6 @@ Seek the comments below for recommendations.
     lg: '80em',
     xlg: '120em'
   }
-  borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
   colors = { 
     // #region recommended for overwriting
     brand,
@@ -158,14 +158,6 @@ Seek the comments below for recommendations.
   }
   // #region recommended for overwriting
   colorStyles: {
-    'card-white': {
-      boxShadow,
-      backgroundColor
-    },
-    'card-gray': {
-      boxShadow,
-      backgroundColor
-    },
     'menu-list': {
       boxShadow,
       backgroundColor

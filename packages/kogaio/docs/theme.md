@@ -3,6 +3,7 @@ For a painless experience with **Kogaio**, we do not encourage overwriting the e
 
 Seek the comments below for recommendations.
 ```jsx static
+    borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
     breakpoints = {
     xs: '20em',
     sm: '30em',
@@ -10,7 +11,6 @@ Seek the comments below for recommendations.
     lg: '80em',
     xlg: '120em'
   }
-  borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
   colors = { 
     // #region recommended for overwriting
     brand,
@@ -41,14 +41,6 @@ Seek the comments below for recommendations.
   }
   // #region recommended for overwriting
   colorStyles: {
-    'card-white': {
-      boxShadow,
-      backgroundColor
-    },
-    'card-gray': {
-      boxShadow,
-      backgroundColor
-    },
     'menu-list': {
       boxShadow,
       backgroundColor
@@ -100,9 +92,9 @@ Seek the comments below for recommendations.
   }
   letterSpacings = {
     normal: 'normal',
-    tracked: '0.1em',
-    tight: '-0.05em',
-    mega: '0.25em'
+    tracked: '0.1rem',
+    tight: '-0.05rem',
+    mega: '0.25rem'
   }
   radii = [0, 1, 2, 3, 4, '50%']
   space = [0, 4, 8, 12, 16, 20, 24, ..., 256]

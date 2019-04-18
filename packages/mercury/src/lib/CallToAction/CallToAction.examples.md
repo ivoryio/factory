@@ -7,7 +7,7 @@
       color='white'
       fontWeight={0}
       textAlign='center'
-      textStyle='h2'>
+      variant='h2'>
         Call-to-Action that expects props. <br />
         <Space mt={1}>
         <Typography color='white'>Expand the section above to see the available props</Typography>
@@ -36,7 +36,7 @@
             color='white'
             fontWeight={0}
             textAlign='center'
-            textStyle='subtitle'
+            variant='subtitle'
           >
             Start your 30-day free trial today. Cancel or upgrade anytime.
           </Typography>

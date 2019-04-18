@@ -45,7 +45,7 @@ const Anchor = ({
   ...rest
 }) => (
   <StyledAnchor href={href} target={target} rel={rel} {...rest}>
-    <Typography textStyle='link' fontSize={fontSize} fontWeight={fontWeight}>
+    <Typography fontSize={fontSize} fontWeight={fontWeight} variant="link">
       {children}
     </Typography>
   </StyledAnchor>
@@ -128,9 +128,6 @@ Anchor.propTypes = {
   zIndex
 }
 
-Anchor.defaultProps = {
-  fontSize: '0.9rem'
-}
 Anchor.displayName = 'Anchor'
 
 export default Anchor

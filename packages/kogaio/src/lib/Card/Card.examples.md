@@ -7,12 +7,12 @@
       <Card
         width='350px'
         height='350px'
-        colors='card-white'
+        variant='white'
       />
       <Card
         width='350px'
-        colors='card-gray'
         height='350px'
+        variant='light'
       />
     </Space>
   </Flex>
@@ -33,15 +33,15 @@ const Form = styled.form`width: 100%;`;
         <Space mx={4} my={4}>
           <Card
             alignItems='center'
-            colors='card-gray'
             display='flex'
             flexDirection='column'
+            variant='light'
             width='350px'
             p={8}
           >
             <Typography
               fontWeight='bold'
-              textStyle='h2'
+              variant='h2'
             >
               Card title
             </Typography>

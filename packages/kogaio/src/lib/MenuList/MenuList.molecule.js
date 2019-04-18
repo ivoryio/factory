@@ -91,10 +91,10 @@ const MenuList = ({
               data-testid={item.id}
             >
               <Typography
-                p={4}
                 color='dark-gunmetal'
-                fontSize='1em'
+                p={4}
                 textAlign={alignment}
+                variant='list'
               >
                 {item.name}
               </Typography>
