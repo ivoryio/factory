@@ -52,7 +52,7 @@ Typography.propTypes = {
   ...size.propTypes,
   ...space.propTypes,
   ...textAlign.propTypes,
-  variant: PropTypes.String,
+  variant: PropTypes.string,
   as: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'div', 'p']),
   fontFamily: PropTypes.string,
   children: PropTypes.node,
