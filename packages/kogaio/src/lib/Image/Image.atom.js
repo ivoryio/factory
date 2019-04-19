@@ -19,8 +19,6 @@ import {
 } from 'styled-system'
 import { dimensions } from '../utils'
 
-import images from '../assets/images'
-
 const Image = styled.img`
   object-fit: ${props => props.objectFit};
   ${borderRadius}
@@ -62,15 +60,15 @@ Image.propTypes = {
   dataTest: PropTypes.string,
   /** [width, height] */
   dimensions: PropTypes.oneOfType([PropTypes.array, PropTypes.number]),
-  src: PropTypes.string.isRequired
+  src: PropTypes.string,
+  srcSet: PropTypes.string
 }
 
 Image.defaultProps = {
   alt: 'image placeholder',
-  src: images.placeholder
+  src: 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg'
 }
 Image.displayName = 'Image'
-
 
 /** @component */
 export default Image

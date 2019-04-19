@@ -21,12 +21,6 @@ export default function (theme) {
     h6: {
       fontSize: '0.875rem'
     },
-    buttonLabel: {
-      fontFamily: fonts.primary,
-      fontSize: '0.75rem',
-      lineHeight: 2,
-      fontWeight: fontWeights[2]
-    },
     link: {
       color: colors.brand,
       fontFamily: fonts.complementary,
@@ -40,8 +34,10 @@ export default function (theme) {
     inputLabel: {
       fontFamily: fonts.primary,
       fontSize: '0.875rem',
-      fontWeight: 'normal',
-      lineHeight: 'normal'
+      fontWeight: fontWeights[1],
+      lineHeight: 'normal',
+      fontStyle: 'normal',
+      fontStretch: 'normal'
     },
     paragraph: {
       fontFamily: fonts.primary,

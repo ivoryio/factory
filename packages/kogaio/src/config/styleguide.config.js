@@ -6,9 +6,9 @@ const pkgVersion = require(`${root}/package.json`).version
 module.exports = {
   // #region preferences
   title: `Kogaio v${pkgVersion}`,
-  assetsDir: `${root}/src/lib/assets`,
+  assetsDir: `${root}/public`,
   template: {
-    favicon: 'static/favicon.ico',
+    favicon: 'favicon.ico',
     trimWhitespace: true,
     head: {
       links: [

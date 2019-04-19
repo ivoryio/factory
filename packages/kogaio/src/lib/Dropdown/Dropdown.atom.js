@@ -1,37 +1,13 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import {
-  alignItems,
-  alignSelf,
-  borderColor,
-  borderRadius,
-  borders,
-  bottom,
-  color,
-  colorStyle,
-  display,
-  flex,
-  flexBasis,
-  fontFamily,
-  fontSize,
-  justifyContent,
-  left,
-  opacity,
-  overflow,
-  position,
-  right,
-  themeGet,
-  top,
-  space,
-  width
-} from 'styled-system'
+import { fontFamily, fontSize, themeGet } from 'styled-system'
 
-import { useBoolean } from '../utils'
-import { Box } from '../Responsive'
 import Icon from '../Icon'
-import Typography from '../Typography'
 import Touchable from '../Touchable'
+import { useBoolean } from '../utils'
+import Typography from '../Typography'
+import { Box, Flex } from '../Responsive'
 
 const Dropdown = ({
   animated,
@@ -51,7 +27,6 @@ const Dropdown = ({
     setValue: setListShown,
     toggleValue: toggleList
   } = useBoolean(false)
-
   const selectOption = option => () => {
     onChangeOption(option)
     setListShown(false)
@@ -70,15 +45,13 @@ const Dropdown = ({
     document.addEventListener('click', _handleBackDropClick)
     return () => document.removeEventListener('click', _handleBackDropClick)
   }, [])
-
   return (
-    <Container {...rest}>
+    <Flex flexDirection="column" position="relative" {...rest}>
       <DropdownLabel
         color={error ? 'error' : 'independence'}
         cssLabel={cssLabel}
         htmlFor={id}
-        variant='inputLabel'
-      >
+        variant="inputLabel">
         {label} {required && '*'}
       </DropdownLabel>
       <Body id={id} error={error} isListShown={isListShown}>
@@ -87,21 +60,27 @@ const Dropdown = ({
             {selectedOption || placeholder}
           </Typography>
           <Icon
-            alignSelf='center'
-            color='independence'
-            fontSize='1.5em'
+            alignSelf="center"
+            color="independence"
+            fontSize="1.5em"
             name={isListShown ? 'arrow_drop_up' : 'arrow_drop_down'}
           />
         </SelectedOption>
         {isListShown ? (
-          <ListWrapper animated={animated}>
+          <ListWrapper
+            animated={animated}
+            boxSizing="border-box"
+            flexDirection="column"
+            left={0}
+            position="absolute"
+            width={1}>
             {options.map(option => (
               <Option
                 data-testid={option.id}
+                id={option.id}
                 key={option.id}
-                onClick={selectOption(option.name)}
-              >
-                <Typography color='dark-gunmetal' fontSize='1em'>
+                onClick={selectOption(option.name)}>
+                <Typography color="dark-gunmetal" fontSize="1em">
                   {option.name}
                 </Typography>
               </Option>
@@ -109,7 +88,7 @@ const Dropdown = ({
           </ListWrapper>
         ) : null}
       </Body>
-    </Container>
+    </Flex>
   )
 }
 
@@ -129,36 +108,10 @@ const animated = ({ animated }) => css`
   `}
 `
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  ${alignItems}
-  ${alignSelf}
-  ${borderColor}
-  ${borderRadius}
-  ${borders}
-  ${bottom}
-  ${color}
-  ${colorStyle}
-  ${display}
-  ${flex}
-  ${flexBasis}
-  ${justifyContent}
-  ${left}
-  ${opacity}
-  ${overflow}
-  ${position}
-  ${right}
-  ${space}
-  ${top}
-  ${width}
-`
-
 const Body = styled(Box)`
   border: solid 1px
     ${props =>
-    props.error ? themeGet('colors.error') : themeGet('colors.azure-white')};
+      props.error ? themeGet('colors.error') : themeGet('colors.azure-white')};
   border-top-left-radius: ${themeGet('radii.2', 2)}px;
   border-top-right-radius: ${themeGet('radii.2', 2)}px;
   background-color: ${themeGet('colors.white')};
@@ -189,19 +142,15 @@ const SelectedOption = styled(Touchable)`
   ${fontFamily}
   ${fontSize}
 `
-const ListWrapper = styled.div`
+
+const ListWrapper = styled(Flex)`
   ${animated}
   background-color: ${themeGet('colors.white')};
   border: solid 1px ${themeGet('colors.azure-white')};
   border-block-start: none;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  left: 0;
-  position: absolute;
   top: 100%;
-  width: calc(100% - 2px);
   
   & > button:nth-child(n + 1) {
     border-block-start: 1px solid ${themeGet('colors.light-gray')};
