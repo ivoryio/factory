@@ -20,7 +20,7 @@ const handleCheck = ev =>
 ```js
 import { useState } from 'react';
 import { Icon } from '../'
-const CustomIcon = () => (
+const CustomTick = () => (
   <Icon
     color='brand'
     fontSize={2}
@@ -33,16 +33,23 @@ const handleCheck = ev =>
   setIsChecked(ev.target.checked)
   return (
       <CheckBox
-        colors={{
-          active: 'brand',
+        checkbox={{
           background: 'ice-white',
-          label: 'brand',
-          unChecked: 'black'
+          size: 40,
+          checkedBorderColor: 'brand',
+          unCheckedBorderColor: 'black'
         }}
-        CustomIcon={CustomIcon}
+        label={{
+          title: 'Android',
+          color: 'brand'
+        }}
+        CustomTick={CustomTick}
         boxSize={40}
         fontSize={5}
-        label='Android'
+        label={{
+          color: 'brand',
+          title: 'Android'
+        }}
         isChecked={isChecked}
         handleCheck={handleCheck}
       />

@@ -8,36 +8,35 @@ import Icon from "../Icon";
 import Typography from "../Typography";
 
 const CheckBox = ({
-  boxSize,
-  colors,
-  CustomIcon,
+  checkbox,
+  defaultTick,
+  label,
+  CustomTick,
   isChecked,
   handleCheck,
-  tick,
-  label,
   ...props
 }) => (
   <Container {...props}>
     <CustomCheckbox
-      activeColor={colors.active}
-      boxSize={boxSize}
-      bgColor={colors.background}
+      activeColor={checkbox.checkedBorderColor}
+      boxSize={checkbox.size}
+      bgColor={checkbox.background}
       checked={isChecked}
-      unCheckedColor={colors.unChecked}
+      unCheckedColor={checkbox.unCheckedBorderColor}
     >
       <CheckboxInput
         type='checkbox'
         checked={isChecked}
         onChange={handleCheck}
       />
-      {isChecked && (CustomIcon ? <CustomIcon /> : <Icon color={colors.active} fontSize={1} name={tick} />)}
+      {isChecked && (CustomTick ? <CustomTick /> : <Icon color={defaultTick.color} fontSize={1} name={defaultTick.name} />)}
     </CustomCheckbox>
     <Space pl={{ xs: 1, md: 2 }}>
       <Typography
-        color={colors.label}
+        color={label.color}
         fontSize={2}
       >
-        {label}
+        {label.title}
       </Typography>
     </Space>
   </Container>
@@ -76,29 +75,33 @@ const CustomCheckbox = styled.label`
 `
 
 CheckBox.propTypes = {
-  boxSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  CustomIcon: PropTypes.oneOfType([
+  checkbox: PropTypes.objectOf(PropTypes.string),
+  defaultTick: PropTypes.objectOf(PropTypes.string),
+  CustomTick: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.func,
     PropTypes.object
   ]),
   handleCheck: PropTypes.func,
-  colors: PropTypes.objectOf(PropTypes.string),
-  tick: PropTypes.string,
   isChecked: PropTypes.bool,
-  label: PropTypes.string
+  label: PropTypes.objectOf(PropTypes.string)
 }
 
 CheckBox.defaultProps = {
-  boxSize: 14,
-  colors: {
-    active: "brand",
+  checkbox: {
+    size: 14,
     background: "white",
-    label: "gunmetal",
-    unChecked: "pastel-blue"
+    checkedBorderColor: "brand",
+    unCheckedBorderColor: "pastel-blue"
   },
-  tick: "check",
-  label: "Checkbox"
+  defaultTick: {
+    color: 'brand',
+    name: "check"
+  },
+  label: {
+    title: 'Checkbox',
+    color: 'gunmetal'
+  }
 }
 
 export default CheckBox
