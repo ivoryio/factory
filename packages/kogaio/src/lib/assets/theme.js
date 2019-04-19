@@ -105,7 +105,7 @@ export const defaultTheme = new function () {
     title: 1.25,
     copy: 1.5,
     tooltip: 1.6,
-    button: 1.9,
+    button: 2,
     input: 2
   }
   this.gutter = 4

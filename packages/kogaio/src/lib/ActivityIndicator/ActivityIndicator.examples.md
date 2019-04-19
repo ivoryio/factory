@@ -3,8 +3,8 @@
 import { Box, Card, Flex, Space } from '../';
   <Flex alignItems='center' flexWrap='wrap'>
     <Flex justifyContent='space-evenly' width={1}>
-      <ActivityIndicator colors={{ background: 'white', primary: 'pastel-blue' }} size='64px' />  
-      <ActivityIndicator colors={{ background: 'white', primary: 'success' }} />
+      <ActivityIndicator colors={{ background: 'white', primary: 'info' }} size='64px' />  
+      <ActivityIndicator colors={{ background: 'white', primary: 'alert' }} size='3rem' />
       <ActivityIndicator colors={{ background: 'white', primary: 'error' }} size={24} />
     </Flex>
   </Flex>

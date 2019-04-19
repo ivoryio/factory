@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 import { size, textAlign } from 'styled-system'
 import { Flex } from '../Responsive'
 
@@ -11,8 +10,7 @@ const TopBar = styled(Flex)`
 
 TopBar.propTypes = {
   ...size.propTypes,
-  ...textAlign.propTypes,
-  as: PropTypes.oneOf(['header', 'div', 'span'])
+  ...textAlign.propTypes
 }
 
 TopBar.defaultProps = {
