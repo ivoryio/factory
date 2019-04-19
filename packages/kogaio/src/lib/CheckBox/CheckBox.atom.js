@@ -8,95 +8,97 @@ import Icon from "../Icon";
 import Typography from "../Typography";
 
 const CheckBox = ({
-  activeColor,
-  bgColor,
-  disabledColor,
   boxSize,
+  colors,
+  CustomIcon,
   isChecked,
   handleCheck,
-  iconName,
+  tick,
   label,
-  labelColor,
   ...props
 }) => (
-  <CheckboxContainer {...props}>
-    <Label>
-      <HiddenCheckbox checked={isChecked} onChange={handleCheck} />
-      <StyledCheckbox
-        activeColor={activeColor}
-        bgColor={bgColor}
-        disabledColor={disabledColor}
-        boxSize={boxSize}
+  <Container {...props}>
+    <CustomCheckbox
+      activeColor={colors.active}
+      boxSize={boxSize}
+      bgColor={colors.background}
+      checked={isChecked}
+      unCheckedColor={colors.unChecked}
+    >
+      <CheckboxInput
+        type='checkbox'
         checked={isChecked}
-      >
-        {isChecked && <Icon color={activeColor} fontSize={1} name={iconName} />}
-      </StyledCheckbox>
-    </Label>
+        onChange={handleCheck}
+      />
+      {isChecked && (CustomIcon ? <CustomIcon /> : <Icon color={colors.active} fontSize={1} name={'check'} />)}
+    </CustomCheckbox>
     <Space pl={{ xs: 1, md: 2 }}>
       <Typography
-        color={labelColor}
+        color={colors.label}
         fontSize={2}
       >
         {label}
       </Typography>
     </Space>
-  </CheckboxContainer>
+  </Container>
 )
 
-const _pickBorder = ({ activeColor, disabledColor, checked, ...props }) => css`
+const _pickBorder = ({ activeColor, unCheckedColor, checked, ...props }) => css`
   ${ checked
     ? `border: ${themeGet('borders.1')(props)} ${themeGet(`colors.${activeColor}`)(props)}`
-      : `border: ${themeGet('borders.1')(props)} ${themeGet(`colors.${disabledColor}`)(props)}`
+      : `border: ${themeGet('borders.1')(props)} ${themeGet(`colors.${unCheckedColor}`)(props)}`
   }
 `
-
-const CheckboxContainer = styled.div`
+const Container = styled.div`
   display: flex;
   align-items: center;
   ${fontSize}
   ${space}
-`;
-
-const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
-  display: none;
-`;
-const Label = styled.label``;
-const StyledCheckbox = styled.div`
+`
+const CheckboxInput = styled.input`
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+`
+const CustomCheckbox = styled.label`
+  position: relative;
+  cursor: pointer;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
+  box-shadow: 0px 1px 0px 0px rgba(22, 29, 37, 0.05);
   background: ${props => themeGet(`colors.${props.bgColor}`)};
   border-radius: ${themeGet("radii.1")}px;
-  transition: all 150ms;
   width: ${props => props.boxSize}px;
   height: ${props => props.boxSize}px;
   ${_pickBorder}
 
-  ${HiddenCheckbox}:focus + & {
-    box-shadow: 0px 1px 0px 0px rgba(22, 29, 37, 0.05);
-  }
-`;
+`
 
 CheckBox.propTypes = {
   boxSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  bgColor: PropTypes.string,
-  disabledColor: PropTypes.string,
+  CustomIcon: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.func,
+    PropTypes.object
+  ]),
   handleCheck: PropTypes.func,
-  activeColor: PropTypes.string,
-  iconName: PropTypes.string,
+  colors: PropTypes.objectOf(PropTypes.string),
+  tick: PropTypes.string,
   isChecked: PropTypes.bool,
-  label: PropTypes.string,
-  labelColor: PropTypes.string
+  label: PropTypes.string
 }
 
 CheckBox.defaultProps = {
   boxSize: 14,
-  activeColor: "brand",
-  bgColor: "white",
-  disabledColor: "pastel-blue",
-  iconName: "check",
-  labelColor: "gunmetal"
+  colors: {
+    active: "brand",
+    background: "white",
+    label: "gunmetal",
+    unChecked: "pastel-blue"
+  },
+  tick: "check",
+  label: "Checkbox"
 }
 
 export default CheckBox
