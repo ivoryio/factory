@@ -20,7 +20,7 @@ const ButtonIcon = ({ icon, variant }) => {
 
 ButtonIcon.propTypes = {
   icon: PropTypes.object,
-  variant: PropTypes.oneOf(['primary', 'outline', 'validation', 'destructive'])
+  variant: PropTypes.string
 }
 
 export default ButtonIcon

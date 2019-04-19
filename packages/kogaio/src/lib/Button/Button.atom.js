@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
@@ -33,7 +33,6 @@ import {
 
 import Icon from './Icon'
 import Flex from '../Responsive/Flex'
-import Typography from '../Typography'
 import ActivityIndicator from '../ActivityIndicator'
 
 const Button = ({
@@ -97,12 +96,10 @@ const Button = ({
             <ActivityIndicator colors={spinnerColors} size={spinnerSize} />
           )
         ) : (
-          <Fragment>
+          <>
             {icon && <Icon icon={icon} variant={variant} />}
-            <Typography color={variant} variant="buttonLabel">
-              {title}
-            </Typography>
-          </Fragment>
+            {title}
+          </>
         )}
       </Flex>
     </StyledBtn>
@@ -112,10 +109,16 @@ const Button = ({
 const StyledBtn = styled.button`
   border-radius: ${themeGet('radii.1')}px;
   border: none;
+  box-sizing: border-box;
   cursor: pointer;
   min-height: 36px;
   text-transform: uppercase;
   width: 160px;
+
+  font-family: ${themeGet('fonts.primary')};
+  font-size: ${themeGet('fontSizes.0', '0.75rem')};
+  font-weight: ${themeGet('fontWeights.2', 'bold')};
+  line-height: ${themeGet('lineHeights.button', 2)};
 
   :active {
     transform: scale(0.965);
@@ -189,7 +192,7 @@ Button.propTypes = {
   spinnerSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   title: PropTypes.string.isRequired,
   type: PropTypes.string,
-  variant: PropTypes.oneOf(['primary', 'outline', 'validation', 'destructive'])
+  variant: PropTypes.string
 }
 
 Button.defaultProps = {

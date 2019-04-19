@@ -31,7 +31,10 @@ export function mergeDeep (target, ...sources) {
 }
 
 export function hexToRgbA (hex, alpha) {
-  let r, g, b, a = alpha
+  let r,
+    g,
+    b,
+    a = alpha
   hex = hex.replace('#', '')
   switch (hex.length) {
     case 3:
@@ -63,7 +66,9 @@ export function hexToRgbA (hex, alpha) {
   if (typeof a === 'undefined') {
     a = 'ff'
   }
-  [r, g, b, a].forEach(item => item.length === 1 ? selfIncrement(item) : null)
+  [r, g, b, a].forEach(item =>
+    item.length === 1 ? selfIncrement(item) : null
+  )
   r = parseInt(r, 16)
   g = parseInt(g, 16)
   b = parseInt(b, 16)
@@ -95,4 +100,27 @@ export const mapProps = mapper => func => {
     next[key] = func[key]
   }
   return next
+}
+
+export const isOutOfViewport = componentId => {
+  const elem = document.querySelector(`#${componentId}`)
+  if (!elem) {
+    return null
+  }
+
+  // Get element's bounding
+  const bounding = elem.getBoundingClientRect()
+  // Check if it's out of the viewport on each side
+  let out = {}
+  out.top = bounding.top < 0
+  out.left = bounding.left < 0
+  out.bottom =
+    bounding.bottom >
+    (window.innerHeight || document.documentElement.clientHeight)
+  out.right =
+    bounding.right > (window.innerWidth || document.documentElement.clientWidth)
+  out.any = out.top || out.left || out.bottom || out.right
+  out.all = out.top && out.left && out.bottom && out.right
+
+  return out
 }

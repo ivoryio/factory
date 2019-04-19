@@ -1,6 +1,6 @@
 import React, { useState, createRef } from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import {
   alignContent,
   alignItems,
@@ -47,13 +47,12 @@ import inputStyle from './inputStyle'
 
 import Typography from '../Typography'
 import { InputSublabel } from './InputSublabel'
-import { Flex } from '..//Responsive'
+import { Flex } from '../Responsive'
 import { PasswordToggler } from './PasswordToggler'
 
 const Input = ({
   autoComplete,
   className,
-  cssLabel,
   dataTestId,
   disabled,
   error,
@@ -101,7 +100,6 @@ const Input = ({
     <InputWrapper flexDirection="column" hasLabel={label} width={1} {...rest}>
       {label ? (
         <InputLabel
-          cssLabel={cssLabel}
           color="gunmetal"
           htmlFor={id}
           as="span"
@@ -156,37 +154,24 @@ const Row = styled(Flex)`
 `
 
 const InputLabel = styled(Typography)`
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  ${props => props.cssLabel};
   ${textStyle}
 `
 
-const inputSize = css`
-  ${({ type, minHeight, ...rest }) => {
-    const pl = `${themeGet('space.2', 8)(rest)}px`
-    const pr = `${themeGet('space.6', 32)(rest)}px`
-    return `
-      min-height: ${minHeight}px;
-      padding-block-start: 0;
-      padding-block-end: 0;
-      padding-inline-start: ${pl};
-      padding-inline-end: ${pr};
-      width: ${`calc(100% - ${pl} - ${pr})`};
-    `
-  }}
+const addHorizontalPadding = () => props => `
+  padding-inline-start: ${themeGet('space.2', 8)(props)}px;
+  padding-inline-end: ${themeGet('space.8', 32)(props)}px;
 `
-
 const StyledInput = styled.input`
+  ${addHorizontalPadding}
   background-color: ${themeGet('colors.white')};
   border-radius: ${themeGet('radii.1', 1)}px;
+  box-sizing: border-box;
   color: ${themeGet('colors.gunmetal', '#243143')};
   font-family: ${themeGet('fonts.primary')};
   font-size: ${themeGet('fontSizes.1', '0.875rem')};
   outline: none;
-  ${inputSize}
-
+  width: 100%;
+  
   &:focus {
     ~ button > i {
       color: ${themeGet('colors.gunmetal')};
@@ -266,11 +251,11 @@ Input.propTypes = {
     PropTypes.number,
     PropTypes.object
   ]),
-  variant: PropTypes.oneOf(['default', 'valid', 'error', 'disabled'])
+  variant: PropTypes.string
 }
 
 Input.defaultProps = {
-  minHeight: 34,
+  minHeight: 36,
   placeholder: 'Search...',
   type: 'text',
   value: '',
