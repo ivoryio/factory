@@ -7,9 +7,9 @@ const pkgVersion = require(`${root}/package.json`).version
 module.exports = {
   // #region preferences
   title: `Mercury v${pkgVersion}`,
-  assetsDir: `${root}/src/lib/assets`,
+  assetsDir: `${root}/public`,
   template: {
-    favicon: 'static/favicon.ico',
+    favicon: 'favicon.ico',
     trimWhitespace: true,
     head: {
       links: [
@@ -90,7 +90,8 @@ module.exports = {
     Wrapper: path.join(root, 'src/components/Wrapper')
   },
   ribbon: {
-    url: 'https://github.com/ivoryio/factory/tree/master/packages/mercury#introduction',
+    url:
+      'https://github.com/ivoryio/factory/tree/master/packages/mercury#introduction',
     text: 'Find me on GitHub'
   },
   // #endregion
