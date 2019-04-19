@@ -30,7 +30,7 @@ const CheckBox = ({
         checked={isChecked}
         onChange={handleCheck}
       />
-      {isChecked && (CustomIcon ? <CustomIcon /> : <Icon color={colors.active} fontSize={1} name={'check'} />)}
+      {isChecked && (CustomIcon ? <CustomIcon /> : <Icon color={colors.active} fontSize={1} name={tick} />)}
     </CustomCheckbox>
     <Space pl={{ xs: 1, md: 2 }}>
       <Typography
