@@ -2,7 +2,7 @@
 ```js
   import { useState } from 'react';
   import styled from 'styled-components';
-  import { Box, Flex } from '../';
+  import { Box, Flex } from '@ivoryio/kogaio/Responsive';
 
   const ButtonExamples = () => {
     const [isLoading, setIsLoading] = useState(false)

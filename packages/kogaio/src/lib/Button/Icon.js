@@ -4,16 +4,12 @@ import PropTypes from 'prop-types'
 import Icon from '../Icon'
 import { Space } from '../Responsive'
 
-const ButtonIcon = ({ icon, variant }) => {
+const ButtonIcon = ({ icon: { color, name, size }, variant }) => {
   const fallbackColor = (() =>
     variant.includes('outline') ? 'brand' : 'white')()
   return (
     <Space ml={-1} mr={1}>
-      <Icon
-        name={icon.name}
-        fontSize={icon.size || 16}
-        color={icon.color || fallbackColor}
-      />
+      <Icon name={name} fontSize={size || 16} color={color || fallbackColor} />
     </Space>
   )
 }

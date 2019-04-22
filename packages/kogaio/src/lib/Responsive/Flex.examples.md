@@ -1,7 +1,8 @@
 #### Responsive container
-###### Drag to resize
+###### Resize window for result
 ```js
-import { Box, Typography } from '../';
+import { Box } from '@ivoryio/kogaio/Responsive';
+import Typography from '@ivoryio/kogaio/Typography';
 <Flex flexWrap='wrap' mx={-2}>
   <Box
     px={2}

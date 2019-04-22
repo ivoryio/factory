@@ -5,17 +5,18 @@ const docgenDisplayNameHandler = require('react-docgen-displayname-handler')
 const pkgVersion = require(`${root}/package.json`).version
 module.exports = {
   // #region preferences
-  title: `Kogaio v${pkgVersion}`,
+  title: 'Kogaio',
+  version: `v${pkgVersion}`,
   assetsDir: `${root}/public`,
   template: {
     favicon: 'favicon.ico',
-    trimWhitespace: true,
     head: {
       links: [
         {
           rel: 'stylesheet',
           type: 'text/css',
-          href: 'https://fonts.googleapis.com/css?family=Rubik:300,400,700|Open+Sans:300,400'
+          href:
+            'https://fonts.googleapis.com/css?family=Rubik:300,400,700|Open+Sans:300,400'
         },
         {
           rel: 'stylesheet',
@@ -23,7 +24,8 @@ module.exports = {
           href: 'https://fonts.googleapis.com/icon?family=Material+Icons'
         }
       ]
-    }
+    },
+    trimWhitespace: true
   },
   styles: {
     StyleGuide: {
@@ -55,30 +57,32 @@ module.exports = {
     }
   },
   webpackConfig: require('react-scripts/config/webpack.config')('development'),
+  moduleAliases: {
+    '@ivoryio/kogaio': path.resolve(root, 'src/lib')
+  },
   handlers: componentPath =>
-    docgen.defaultHandlers.concat(
+    require('react-docgen').defaultHandlers.concat(
       (documentation, path) => {
+        const {
+          value: { type, id },
+          parentPath
+        } = path
         // Calculate a display name for components based upon the declared class name.
-        if (
-          path.value.type === 'ClassDeclaration' &&
-          path.value.id.type === 'Identifier'
-        ) {
-          documentation.set('displayName', path.value.id.name)
+        if (type === 'ClassDeclaration' && type === 'Identifier') {
+          documentation.set('displayName', id.name)
 
           // Calculate the key required to find the component in the module exports
-          if (path.parentPath.value.type === 'ExportNamedDeclaration') {
-            documentation.set('path', path.value.id.name)
+          if (parentPath.value.type === 'ExportNamedDeclaration') {
+            documentation.set('path', id.name)
           }
         }
 
         // The component is the default export
-        if (path.parentPath.value.type === 'ExportDefaultDeclaration') {
+        if (parentPath.value.type === 'ExportDefaultDeclaration') {
           documentation.set('path', 'default')
         }
       },
-      require('react-docgen-displayname-handler').createDisplayNameHandler(
-        componentPath
-      ),
+      require('react-docgen-external-proptypes-handler')(componentPath),
       docgenDisplayNameHandler.createDisplayNameHandler(componentPath)
     ),
   propsParser (filePath, source, resolver, handlers) {
@@ -88,7 +92,8 @@ module.exports = {
     Wrapper: path.join(root, 'src/components/Wrapper')
   },
   ribbon: {
-    url: 'https://github.com/ivoryio/factory/tree/master/packages/kogaio#introduction',
+    url:
+      'https://github.com/ivoryio/factory/tree/master/packages/kogaio#introduction',
     text: 'Find me on GitHub'
   },
   // #endregion

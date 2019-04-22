@@ -1,6 +1,6 @@
 #### Simple Menu List
 ```js
-import { Box, Flex } from '../'
+import { Box, Flex } from '@ivoryio/kogaio/Responsive'
 const MenuListExample = () => {
 const listItems = [
   {

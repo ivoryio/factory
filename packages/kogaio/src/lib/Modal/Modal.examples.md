@@ -1,7 +1,7 @@
 #### Simple modal
 ```js
 import { useState } from 'react';
-import { Button } from '../';
+import Button from '@ivoryio/kogaio/Button';
 const ModalExample2 = () => {
 const [isModalShown, setModalShown] = useState(false)
 const toggleModal = () => setModalShown(!isModalShown)
@@ -44,7 +44,7 @@ const confirmAction = () => {
 ```js
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Button } from '../';
+import Button from '@ivoryio/kogaio/Button';
 
 const ModalExample1 = () => {
 const [isModalShown, setModalShown] = useState(false)

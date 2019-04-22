@@ -6,11 +6,11 @@ const pkgVersion = require(`${root}/package.json`).version
 
 module.exports = {
   // #region preferences
-  title: `Mercury v${pkgVersion}`,
+  title: 'Mercury',
+  version: `v${pkgVersion}`,
   assetsDir: `${root}/public`,
   template: {
     favicon: 'favicon.ico',
-    trimWhitespace: true,
     head: {
       links: [
         {
@@ -25,7 +25,8 @@ module.exports = {
           href: 'https://fonts.googleapis.com/icon?family=Material+Icons'
         }
       ]
-    }
+    },
+    trimWhitespace: true
   },
   styles: {
     StyleGuide: {
@@ -57,30 +58,32 @@ module.exports = {
     }
   },
   webpackConfig: require('react-scripts/config/webpack.config')('development'),
+  moduleAliases: {
+    '@ivoryio/mercury': path.resolve(root, 'src/lib')
+  },
   handlers: componentPath =>
-    docgen.defaultHandlers.concat(
+    require('react-docgen').defaultHandlers.concat(
       (documentation, path) => {
+        const {
+          value: { type, id },
+          parentPath
+        } = path
         // Calculate a display name for components based upon the declared class name.
-        if (
-          path.value.type === 'ClassDeclaration' &&
-          path.value.id.type === 'Identifier'
-        ) {
-          documentation.set('displayName', path.value.id.name)
+        if (type === 'ClassDeclaration' && type === 'Identifier') {
+          documentation.set('displayName', id.name)
 
           // Calculate the key required to find the component in the module exports
-          if (path.parentPath.value.type === 'ExportNamedDeclaration') {
-            documentation.set('path', path.value.id.name)
+          if (parentPath.value.type === 'ExportNamedDeclaration') {
+            documentation.set('path', id.name)
           }
         }
 
         // The component is the default export
-        if (path.parentPath.value.type === 'ExportDefaultDeclaration') {
+        if (parentPath.value.type === 'ExportDefaultDeclaration') {
           documentation.set('path', 'default')
         }
       },
-      require('react-docgen-displayname-handler').createDisplayNameHandler(
-        componentPath
-      ),
+      require('react-docgen-external-proptypes-handler')(componentPath),
       docgenDisplayNameHandler.createDisplayNameHandler(componentPath)
     ),
   propsParser (filePath, source, resolver, handlers) {

@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/mercury",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "start": "react-scripts start",
     "styleg": "npx styleguidist server --config src/config/styleguide.config.js",
@@ -29,6 +29,7 @@
     "husky": "^1.3.1",
     "lint-staged": "^8.1.5",
     "react": "^16.8.6",
+    "react-docgen-external-proptypes-handler": "^1.0.2",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
     "react-styleguidist": "^9.0.8"

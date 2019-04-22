@@ -1,6 +1,7 @@
 #### Hide examples
 ```js
-  import { Box, Button, Flex, Space } from '../';
+  import Button from '@ivoryio/kogaio/Button';
+  import { Box, Flex, Space } from '@ivoryio/kogaio/Responsive';
   <Flex flexWrap='wrap' flexDirection='column'>
     <Box width={{ xs: 1, md: 1 / 2, lg: 1 / 3 }}>
       <Button title='Button1' width={1} />
