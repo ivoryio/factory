@@ -941,10 +941,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.3.tgz#6310a047f12d21a1036fb031317219892440416f"
   integrity sha512-4zAPlpDEh2VwXswwr/t8xGNDGg8RQiPxtxZ3qQEXyQsBV39ptTdESCjuBvGze1nLMVrxmTIKmnO/nAV8Tqjjzg==
 
-"@ivoryio/kogaio@^0.4.0":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@ivoryio/kogaio/-/kogaio-0.4.1.tgz#097d73d06701a681153d17577761c561b4798a31"
-  integrity sha512-VmmM4MnDxYA2QX2bBClUkUIaVB+qz0v0mgSO7vn7kP9qyG/nhRsDpBqGb1+DgTWuzpuaADiVNoE/B0iRDyi46Q==
+"@ivoryio/kogaio@^0.4.1":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@ivoryio/kogaio/-/kogaio-0.4.2.tgz#6c6fbf6bf8199afa20f64ee45b9a73b2a07a9e28"
+  integrity sha512-2w640J7JzfqlXIjNkn5M2BZ1NsnpxJlXU589FddE99kNsE7mMCuCxbNeGERUqDvzA5D4Qa3TpiTcnefnLi/A9Q==
   dependencies:
     styled-components "4.2.0"
     styled-system "^4.1.0"
@@ -9094,6 +9094,11 @@ react-docgen-displayname-handler@^2.1.1:
   integrity sha512-Dmu+WnQt5TRDokaQ6uGvgcxrIh92c6uhuljsuueEphTcy/1nKh8/Ep6RUmpd77G1iN2rqg5+4ztGAT7LJjVdpg==
   dependencies:
     ast-types "0.11.5"
+
+react-docgen-external-proptypes-handler@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-docgen-external-proptypes-handler/-/react-docgen-external-proptypes-handler-1.0.2.tgz#457d3e82a6899695482f4912036cc940577ab0aa"
+  integrity sha512-vr8sXRp5hBmaEP0kdBED9p7mdnVX6LTRODNcGhUXUh1hBbGW2rgjm24e0eA4zVJs4cqCcA2pS0dEHujJ9rg3rw==
 
 react-docgen@3.0.0-rc.2:
   version "3.0.0-rc.2"

@@ -1,6 +1,7 @@
 ####
 ```js
-import { Box, Icon, Flex }  from '../';
+import Icon from '@ivoryio/kogaio/Icon';
+import { Box, Flex }  from '@ivoryio/kogaio/Responsive';
   <Flex alignItems='center'>
     <Box width={{ sm: 1, md: 1/2, lg: 1/3 }}>
       <Touchable effect='no-feedback' p='12px' onClick={() => {}}>

@@ -1,5 +1,9 @@
 ```js
-import { Flex, IconButton, Image, Space, Touchable } from '../';
+import Image from '@ivoryio/kogaio/Image';
+import { Flex, Space } from '@ivoryio/kogaio';
+import Touchable from '@ivoryio/kogaio/Touchable';
+import IconButton from '@ivoryio/kogaio/IconButton';
+
 const iconButtons = [
   {
     id: 'cart',

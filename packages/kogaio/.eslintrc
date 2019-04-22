@@ -80,6 +80,7 @@
     "no-invalid-regexp": "error",
     "prefer-template": "warn",
     "react/no-deprecated": 2,
+    "react/forbid-foreign-prop-types": 0,
     "react/no-did-mount-set-state": 2,
     "react/no-redundant-should-component-update": 2,
     "react/no-did-update-set-state": 2,

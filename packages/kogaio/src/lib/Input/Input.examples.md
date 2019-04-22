@@ -1,6 +1,6 @@
 ```js
   import { useState, useEffect } from 'react';
-  import { Box, Flex } from '../'
+  import { Box, Flex } from '@ivoryio/kogaio';
   const InputExamples = () => {
   const [formValues, setInputVal] = useState({ input1: '', input2: 'mixedchars3' })
   const [error, setError] = useState(null)

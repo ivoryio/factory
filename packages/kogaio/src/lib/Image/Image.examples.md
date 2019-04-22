@@ -1,6 +1,6 @@
 #### Placeholder
 ```js
-import { Box } from '../';
+import { Box } from '@ivoryio/kogaio/Responsive';
   <Box alignItems='center'>
     <Image size={120} />
   </Box>
@@ -9,7 +9,8 @@ import { Box } from '../';
 #### Custom Images
 ```js
   import styled from 'styled-components';
-  import { Box, Flex } from '../';
+  import { Flex, Space } from '@ivoryio/kogaio/Responsive';
+
   const images = [
       { id: 'alt1', src: 'https://placeimg.com/120/120/any', size: 120 },
       { id: 'alt2', src: 'https://placeimg.com/96/96/any', size: 96 },
@@ -19,19 +20,17 @@ import { Box } from '../';
     ];
   const ImageExamples = () => {
     return (
-      <Flex>
-        <Box width={1} mt={4}>
-          {images.map(img => (
+      <Flex alignItems='center' width={1}>
+        {images.map(img => (
+          <Space key={img.id} ml={4}>
             <Image
               alt={img.id}
-              borderRadius='50%' 
-              key={img.id}
-              ml={4}
+              borderRadius={5}
               size={img.size}
               src={img.src}
             />
-          ))}
-        </Box>
+          </Space>
+        ))}
       </Flex>
     )
   }

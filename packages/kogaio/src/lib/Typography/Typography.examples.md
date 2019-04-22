@@ -1,98 +1,53 @@
 #### H1
 ```js
-  const message = 'Sphinx of black quartz, judge my vow';
-  const TextExamples = () => (
-    <>
-      <Typography
-        fontWeight='bold'
-        message={message}
-        variant='h1'
-      />
-      <Typography
-        variant='h1'>
-        {message}
-      </Typography>
-    </>
-);
-  <TextExamples />
+  const message = 'Sphinx of black quartz, judge my vow!';
+  <>
+    <Typography fontWeight={2} variant='h1'>{message}</Typography>
+    <Typography variant='h1'>{message}</Typography>
+  </>
 ```
 #### H2
 ```js
   const message = 'The quick brown fox jumps over the lazy dog.';
-  const TextExamples = () => (
-    <>
-      <Typography
-        fontWeight='bold'
-        message={message}
-        variant='h2'
-      />
-      <Typography
-        variant='h2'>
-        {message}
-      </Typography>
-    </>
-);
-  <TextExamples />
+  <>
+    <Typography fontWeight={2} variant='h2'>{message}</Typography>
+    <Typography variant='h2'>{message}</Typography>
+  </>
 ```
 #### H3
 ```js
   const message = 'How razorback-jumping frogs can level six piqued gymnasts!';
-  const TextExamples = () => {
-    return (
-    <>
-      <Typography
-        message={message}
-        variant='h3'
-        fontWeight='bold'
-        letterSpacing={2}
-      />
-      <Typography
-        colors='info'
-        letterSpacing={2}
-        variant='h3'>
-        {message}
-      </Typography>
-    </>
-    )
-  }
-
-  <TextExamples />
+  <>
+    <Typography variant='h3' fontWeight={2}>{message}</Typography>
+    <Typography colors='info' variant='h3'>{message}</Typography>
+  </>
 ```
 
 #### H4
 ```js
-  const message = 'Sphinx of black quartz, judge my vow';
-  const TextExamples = () => (
-    <>
-      <Typography fontWeight='bold' message={message} variant='h4' />
-      <Typography variant='h4'>{message}</Typography>
-    </>
-  );
-  <TextExamples />
+  const message = 'Sphinx of black quartz, judge my vow!';
+  <>
+    <Typography fontWeight='bold' variant='h4'>{message}</Typography>
+    <Typography variant='h4'>{message}</Typography>
+  </>
 ```
 
 #### H5
 ```js
   const message = 'The quick brown fox jumps over the lazy dog.';
-  const TextExamples = () => (
-    <>
-      <Typography fontWeight='bold' message={message} variant='h5' />
-      <Typography variant='h5'>{message}</Typography>
-    </>
-  );
-  <TextExamples />
+  <>
+    <Typography fontWeight='bold' variant='h5'>{message}</Typography>
+    <Typography variant='h5'>{message}</Typography>
+  </>
 ```
 
 #### H6
 ```js
   const message = 'How razorback-jumping frogs can level six piqued gymnasts!';
-  const TextExamples = () => (
-    <>
-      <Typography fontWeight='bold' message={message} variant='h6' />
-      <Typography variant='h6'>{message}</Typography>
-    </>
-  );
-  <TextExamples />
+  <>
+    <Typography fontWeight='bold' variant='h6'>{message}</Typography>
+    <Typography variant='h6'>{message}</Typography>
+  </>
 ```
 
 #### Paragraph
@@ -105,7 +60,7 @@
       The quick brown fox jumps over the lazy dog.
     </Typography>
     <Typography  color='manatee' as='p' variant='paragraph'>
-      Sphinx of black quartz, judge my vow.
+      Sphinx of black quartz, judge my vow!
     </Typography>
   </>
   

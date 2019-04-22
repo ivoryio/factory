@@ -1,6 +1,8 @@
 #### Spinner
 ```js
-import { Box, Card, Flex, Space } from '../';
+import Card from '@ivoryio/kogaio/Card';
+import { Box, Flex, Space } from '@ivoryio/kogaio';
+
   <Flex alignItems='center' flexWrap='wrap'>
     <Flex justifyContent='space-evenly' width={1}>
       <ActivityIndicator colors={{ background: 'white', primary: 'info' }} size='64px' />  
@@ -12,7 +14,8 @@ import { Box, Card, Flex, Space } from '../';
 
 #### RunningBar
 ```js
-  import { Card, Space } from '../';
+import Card from '@ivoryio/kogaio/Card';
+  import { Space } from '@ivoryio/kogaio/Responsive';
     <Space py={8} mx='auto'>
       <Card width={1 / 2} variant='white' position='relative'>
         <ActivityIndicator
@@ -27,7 +30,8 @@ import { Box, Card, Flex, Space } from '../';
 
 #### LoadBar
 ```js
-import { Card, Space } from '../';
+import Card from '@ivoryio/kogaio/Card';
+import { Space } from '@ivoryio/kogaio/Responsive';
     <Space py={8} mx='auto'>
       <Card width={1 / 2} variant='white' position='relative'>
         <ActivityIndicator

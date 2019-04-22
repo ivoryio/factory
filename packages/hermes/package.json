@@ -1,7 +1,7 @@
 {
 	"name": "@ivoryio/hermes",
 	"version": "0.0.1",
-	"author": "Ivory",
+	"author": "Ivory™",
 	"description": "Ivory messenger",
 	"main": "build/index.js",
 	"module": "build/index.js",

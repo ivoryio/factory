@@ -1,8 +1,7 @@
 ```js
-  import Box from './Box';
-  import Flex from './Flex';
-  import Button from '../Button';
-  import Typography from '../Typography';
+import Button from '@ivoryio/kogaio/Button';
+import Typography from '@ivoryio/kogaio/Typography';
+import { Box, Flex } from '@ivoryio/kogaio/Responsive';
 
   <Flex alignItems='center'>
     <Space px={4} py={3}>

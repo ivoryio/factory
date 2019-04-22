@@ -1,6 +1,6 @@
 ```js
-  import { Flex } from '../';
-
+  import { Flex } from '@ivoryio/kogaio/Responsive';
+  
     <Flex width={1} px={2}>
       <Anchor
         href="https://www.ivory.io"
