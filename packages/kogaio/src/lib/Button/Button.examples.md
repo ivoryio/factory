@@ -16,6 +16,7 @@
       <Flex flexWrap='wrap' justifyContent='space-between' width={1}>
         <Flex
           flexDirection='column'
+          color='lime'
           px={4}
           my={1}
           width={{ xs: 1, sm: 1/2, md: 1/3 }}
@@ -24,7 +25,7 @@
             onClick={() => {}}
             variant='primary'
             title='Primary'
-            width='100%'
+            width={1}
           />
           <Button
             onClick={() => {}}
@@ -32,7 +33,7 @@
             title='Primary disabled'
             disabled
             mt={1}
-            width='100%'
+            width={1}
           />
         </Flex>
         <Flex
@@ -45,7 +46,7 @@
             onClick={() => {}}
             title='Outline'
             variant='outline'
-            width='100%'
+            width={1}
           />
           <Button
             onClick={() => {}}
@@ -53,7 +54,7 @@
             variant='outline'
             mt={1}
             disabled
-            width='100%'
+            width={1}
           />
         </Flex>
         <Flex
@@ -67,14 +68,14 @@
             title='Validation'
             variant='validation'
             mr={4}
-            width='100%'
+            width={1}
           />
           <Button
             onClick={() => {}}
             title='Destructive'
             mt={1}
             variant='destructive'
-            width='100%'
+            width={1}
           />
         </Flex>
         <Flex
@@ -88,7 +89,7 @@
             onClick={toggleLoading}
             variant='outline'
             title='Outline with loader'
-            width='100%'
+            width={1}
           />
            <Button
             icon={{ name: 'visibility', size: 16 }}
@@ -96,7 +97,7 @@
             onClick={() => {}}
             title='Button with icon'
             variant='outline'
-            width='100%'
+            width={1}
           />
         </Flex>
         <Flex 
@@ -110,7 +111,7 @@
           variant='outline'
           colors='button-outline-alt'
           title='Outline alt'
-          width='100%'
+          width={1}
         />
           <Box bg='gunmetal' p={2} mt={1}>
             <Button
@@ -119,7 +120,7 @@
               title='Outline alt dark'
               variant='outline'
               colors='button-outline-dark'
-              width='100%'
+              width={1}
             />
           </Box>
         </Flex>

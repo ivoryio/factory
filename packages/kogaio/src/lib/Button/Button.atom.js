@@ -90,7 +90,7 @@ const Button = ({
       type={type}
       variant={variant}
       {...rest}>
-      <Flex justifyContent="center" alignItems="center">
+      <Flex alignItems="center" justifyContent="center">
         {isLoading ? (
           loadingText || (
             <ActivityIndicator colors={spinnerColors} size={spinnerSize} />
@@ -135,13 +135,9 @@ const StyledBtn = styled.button`
   ${color}
   ${colorStyle}
   ${display}
-  ${fontSize}
-  ${fontFamily}
-  ${fontWeight}
   ${justifyContent}
   ${height}
   ${left}
-  ${letterSpacing}
   ${minHeight}
   ${maxHeight}
   ${minWidth}
@@ -154,7 +150,16 @@ const StyledBtn = styled.button`
   ${space}
   ${top}
   ${width}
+  
+  div:first-child {
+    ${color}
+    ${fontSize}
+    ${fontFamily}
+    ${fontWeight}
+    ${letterSpacing}
+  }
 `
+
 Button.propTypes = {
   ...buttonStyle.propTypes,
   ...borders.propTypes,
