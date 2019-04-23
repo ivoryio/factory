@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import {
@@ -22,126 +22,106 @@ import {
   width,
   zIndex
 } from 'styled-system'
-
+import { Box, Flex } from '../Responsive'
 const Checkbox = ({
   checkboxPosition,
+  checked,
+  color,
   disabled,
-  isChecked,
+  id,
   label,
+  labelColor,
   onChange,
   size,
   ...rest
-}) => {
-  const [checked, setIsChecked] = useState(isChecked)
-  const _handleCheckboxChange = ({ target }) => {
-    setIsChecked(target.checked)
-    onChange(target.checked)
-  }
-  return (
-    <Container disabled={disabled} {...rest}>
-      <CheckboxInput
+}) => (
+  <Flex alignItems="center" {...rest}>
+    <Wrapper color={color} checkboxPosition={checkboxPosition}>
+      <Input
         checked={checked}
         disabled={disabled}
-        onChange={_handleCheckboxChange}
+        id={id}
+        onChange={onChange}
         type="checkbox"
       />
-      <Checkmark
-        checkboxPosition={checkboxPosition}
-        disabled={disabled}
-        size={size}
-      />
+      <Placeholder color={color} disabled={disabled} size={size} />
+    </Wrapper>
+    <Label color={labelColor} disabled={disabled} htmlFor={id}>
       {label}
-    </Container>
-  )
-}
+    </Label>
+  </Flex>
+)
 
 const cursor = css`
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `
-const Container = styled.label`
-  align-items: center;
-  color: ${({ disabled }) =>
-    disabled
-      ? themeGet('colors.pastel-blue', '#b3c3d4')
-      : themeGet('colors.gunmetal', '#243143')};
-  
-  display: flex;
-  font-size: ${themeGet('fontSizes.1', '1rem')};
-  position: relative
-  user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
+const size = ({ size }) => css`
+  width: ${typeof size === 'number' ? `${size}px` : size};
+  height: ${typeof size === 'number' ? `${size}px` : size};
+`
+const checkboxPosition = ({ checkboxPosition, ...props }) => css`
+  order: ${checkboxPosition === 'right' ? 1 : 0};
+  ${checkboxPosition === 'right' &&
+    `margin-inline-start: ${themeGet('space.2', 8)(props)}px;`}
+  ${checkboxPosition === 'left' &&
+    `margin-inline-end: ${themeGet('space.2', 8)(props)}px;`}
+`
+
+const Wrapper = styled(Box)`
+  position: relative;
 
   :hover input ~ span {
-    border: ${themeGet('borders.1', '1px solid')} ${({ disabled }) =>
-  disabled
-    ? themeGet('colors.pastel-blue', '#b3c3d4')
-    : themeGet('colors.paynes-gray', '#4f5767')};
+    border: ${themeGet('borders.1', '1px solid')}
+      ${({ disabled }) =>
+        disabled
+          ? themeGet('colors.pastel-blue', '#b3c3d4')
+          : themeGet('colors.paynes-gray', '#4f5767')};
   }
 
   input:checked ~ span {
-    border: ${themeGet('borders.1', '1px solid')} ${themeGet(
-  'colors.brand',
-  '#66bb6a'
-)};
+    border: ${themeGet('borders.1', '1px solid')}
+      ${({ color }) => themeGet(`colors.${color}`, color)};
   }
 
   input:checked ~ span:after {
     display: flex;
   }
 
-  ${bottom}
+  ${checkboxPosition}
+`
+
+const Label = styled.label`
+  color: ${({ disabled }) =>
+    disabled
+      ? themeGet('colors.pastel-blue', '#b3c3d4')
+      : themeGet('colors.gunmetal', '#243143')};
+  
+  font-size: ${themeGet('fontSizes.1', '1rem')};
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+
   ${color}
   ${cursor}
   ${fontFamily}
   ${fontSize}
   ${fontStyle}
   ${fontWeight}
-  ${left}
   ${letterSpacing}
   ${lineHeight}
-  ${opacity}
-  ${position}
-  ${right}
-  ${space}
-  ${top}
-  ${width}
-  ${zIndex}
 `
 
-const CheckboxInput = styled.input`
+const Input = styled.input`
   position: absolute;
   opacity: 0;
-  height: 0;
-  width: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
   ${cursor}
 `
 
-const size = css`
-  ${({ size }) =>
-    typeof size === 'number'
-      ? `
-  width: ${size}px;
-  height: ${size}px;
-`
-      : `
-  width: ${size};
-  height: ${size};
-`}
-`
-const checkboxPosition = ({ checkboxPosition, ...props }) => css`
-  ${checkboxPosition === 'right'
-    ? `
-    margin-inline-start: ${themeGet('space.2', 8)(props)}px;
-    order: 1;
-  `
-    : `
-    margin-inline-end: ${themeGet('space.2', 8)(props)}px;
-    order: 0;
-  `}
-`
-const Checkmark = styled.span`
+const Placeholder = styled.span`
   align-items: center;
   background-color: ${({ disabled }) =>
     disabled
@@ -153,20 +133,17 @@ const Checkmark = styled.span`
   box-shadow: ${themeGet('shadows.input-basic')};
   display: flex;
   justify-content: center;
-  position: relative;
-  ${checkboxPosition}
-  ${borders}
-  ${color}
+  pointer-events: none;
+
   ${cursor}
   ${size}
-
 
   :after {
     content: '';
     display: none;
     width: 25%;
     height: 50%;
-    border: solid ${themeGet('colors.brand', '#66bb6a')};
+    border: solid ${({ color }) => themeGet(`colors.${color}`, color)};
     border-width: 0 2px 2px 0;
     -webkit-transform: translate(10%, -10%) rotate(45deg);
     -ms-transform: translate(10%, -10%) rotate(45deg);
@@ -194,7 +171,9 @@ Checkbox.propTypes = {
   ...bottom.propTypes,
   ...left.propTypes,
   checkboxPosition: PropTypes.oneOf(['left', 'right']),
+  color: PropTypes.string,
   disabled: PropTypes.bool,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isChecked: PropTypes.bool.isRequired,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
@@ -203,12 +182,13 @@ Checkbox.propTypes = {
 
 Checkbox.defaultProps = {
   checkboxPosition: 'left',
+  color: 'brand',
   disabled: false,
   isChecked: false,
   label: 'Checkbox',
   onChange: () =>
-    console.warn(
-      '* Heads up! You forgot to add an onChange functino to Checkbox />'
+    console.error(
+      '* Heads up! You forgot to add an onChange function to <Checkbox />'
     ),
   size: 16
 }

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ReactDOM from 'react-dom'
 
-import Button from '../Button'
 import Card from '../Card'
+import Button from '../Button'
+
 import {
   color,
   display,
