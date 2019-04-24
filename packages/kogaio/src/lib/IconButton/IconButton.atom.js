@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Icon from '../Icon'
 import Touchable from '../Touchable'
+import { effects } from '../Touchable/Touchable.atom'
 
 const IconButton = ({
   alignItems,
@@ -22,8 +23,7 @@ const IconButton = ({
     effect={effect}
     justifyContent={justifyContent}
     onClick={onClick}
-    width={width}
-  >
+    width={width}>
     <Icon color={color} name={name} fontSize={fontSize} {...rest} />
   </Touchable>
 )
@@ -32,7 +32,7 @@ IconButton.propTypes = {
   alignItems: PropTypes.string,
   color: PropTypes.string,
   display: PropTypes.string,
-  effect: PropTypes.oneOf(['opacity', 'highlight', 'no-feedback']),
+  effect: PropTypes.oneOf(effects),
   justifyContent: PropTypes.string,
   fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,

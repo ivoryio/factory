@@ -70,8 +70,7 @@ const Touchable = ({
       onTouchEnd={onClick ? null : onTouchEnd}
       type={type}
       underlayColor={underlayColor}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </Wrapper>
   )
@@ -145,8 +144,9 @@ const Wrapper = styled.button`
   ${width}
   ${zIndex}
   ${touchableWithEffect}
-
 `
+
+export const effects = ['opacity', 'highlight', 'no-feedback']
 
 Touchable.propTypes = {
   ...alignItems.propTypes,
@@ -177,7 +177,7 @@ Touchable.propTypes = {
   onTouchStart: PropTypes.func,
   onTouchEnd: PropTypes.func,
   activeOpacity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  effect: PropTypes.oneOf(['opacity', 'highlight', 'no-feedback']).isRequired,
+  effect: PropTypes.oneOf(effects).isRequired,
   type: PropTypes.string,
   underlayColor: PropTypes.string
 }
