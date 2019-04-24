@@ -16,7 +16,7 @@ import {
 } from 'styled-system'
 
 const Icon = ({ className = '', name, ...rest }) => (
-  <StyledIcon className={`material-icons${className}`} {...rest}>
+  <StyledIcon className={`material-icons${' '}${className}`} {...rest}>
     {name}
   </StyledIcon>
 )

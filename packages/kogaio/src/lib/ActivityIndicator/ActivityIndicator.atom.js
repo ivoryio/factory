@@ -17,12 +17,13 @@ const ActivityIndicator = ({ variant, ...props }) => {
   return <Component {...props} />
 }
 
+export const activityIndicators = ['spinner', 'loadbar', 'runningbar']
 ActivityIndicator.propTypes = {
   colors: PropTypes.oneOfType([
     PropTypes.objectOf(PropTypes.string),
     PropTypes.arrayOf(PropTypes.string)
   ]),
-  variant: PropTypes.oneOf(['spinner', 'loadbar', 'runningbar'])
+  variant: PropTypes.oneOf(activityIndicators)
 }
 
 ActivityIndicator.defaultProps = {
