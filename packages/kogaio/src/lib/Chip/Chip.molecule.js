@@ -47,9 +47,13 @@ const ChipBase = ({
     if (!onDismiss) {
       return null
     }
-    const StyledDismissIcon = cloneElement(DismissIcon || Icon, {
-      color,
-      fontSize: '100%'
+    const ActionIcon = DismissIcon ? DismissIcon : <Icon />
+    const externalProps = DismissIcon && { ...DismissIcon.props }
+    const StyledDismiss = cloneElement(ActionIcon, {
+      name: 'cancel',
+      ...externalProps,
+      fontSize: '100%',
+      color
     })
     return (
       <Space pr={1}>
@@ -59,11 +63,7 @@ const ChipBase = ({
             effect="opacity"
             fontSize="100%"
             onClick={onDismiss}>
-            {!DismissIcon ? (
-              <Icon name="cancel" color={color} />
-            ) : (
-              StyledDismissIcon
-            )}
+            {StyledDismiss}
           </Touchable>
         </Flex>
       </Space>
@@ -71,7 +71,7 @@ const ChipBase = ({
   }
   return (
     <ChipContainer
-      borderRadius={isRounded ? '16px' : 'none'}
+      borderRadius={isRounded ? '16' : 'none'}
       justifyContent={!Avatar ? 'flex-start' : 'center'}
       height="24px"
       {...rest}>

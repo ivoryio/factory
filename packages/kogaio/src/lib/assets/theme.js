@@ -115,6 +115,7 @@ export const defaultTheme = new function () {
     '2': 2,
     '3': 3,
     '4': 4,
+    '8': 8,
     '16': 16,
     round: '50%'
   }
