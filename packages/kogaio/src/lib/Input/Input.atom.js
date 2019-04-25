@@ -42,13 +42,16 @@ import {
   width,
   zIndex
 } from 'styled-system'
+import { variant } from 'styled-system'
 
-import inputStyle from './inputStyle'
-
+import { Flex } from '../Responsive'
 import Typography from '../Typography'
 import { InputSublabel } from './InputSublabel'
-import { Flex } from '../Responsive'
 import { PasswordToggler } from './PasswordToggler'
+
+const inputStyle = variant({
+  key: 'inputs'
+})
 
 const Input = ({
   autoComplete,

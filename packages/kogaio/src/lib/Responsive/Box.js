@@ -6,6 +6,7 @@ import {
   backgroundPosition,
   backgroundRepeat,
   borders,
+  borderRadius,
   bottom,
   boxShadow,
   color,
@@ -37,6 +38,7 @@ const Box = styled.div`
   ${backgroundPosition}
   ${backgroundRepeat}
   ${borders}
+  ${borderRadius}
   ${bottom}
   ${boxShadow}
   ${colorStyle}
@@ -67,6 +69,7 @@ Box.propTypes = {
   ...backgroundPosition.propTypes,
   ...backgroundRepeat.propTypes,
   ...borders.propTypes,
+  ...borderRadius.propTypes,
   ...bottom.propTypes,
   ...boxShadow.propTypes,
   ...color.propTypes,

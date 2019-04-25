@@ -15,7 +15,11 @@ import {
   textStyle,
   themeGet
 } from 'styled-system'
-import typography from './typographyStyle'
+import { variant } from 'styled-system'
+
+const typographyStyle = variant({
+  key: 'typography'
+})
 
 const Typography = styled.div`
   color: ${themeGet('colors.dark-gunmetal', '#1b202f')};
@@ -36,7 +40,7 @@ const Typography = styled.div`
   ${space}
   ${textAlign}
   ${textStyle}
-  ${typography}
+  ${typographyStyle}
 `
 
 Typography.propTypes = {

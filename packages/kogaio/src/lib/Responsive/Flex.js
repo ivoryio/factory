@@ -12,7 +12,7 @@ import {
   justifySelf,
   order
 } from 'styled-system'
-
+import { flexGrow, flexShrink } from '../utils'
 import Box from './Box'
 
 const Flex = styled(Box)`
@@ -22,6 +22,8 @@ const Flex = styled(Box)`
   ${alignSelf}
   ${flexBasis}
   ${flexDirection}
+  ${flexGrow}
+  ${flexShrink}
   ${flexWrap}
   ${flex}
   ${justifyContent}

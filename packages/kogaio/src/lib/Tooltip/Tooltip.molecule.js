@@ -22,10 +22,10 @@ import {
   width,
   zIndex
 } from 'styled-system'
+import { variant } from 'styled-system'
 
 import Box from '../Responsive/Box'
 import { Icon, Typography, Touchable } from '../'
-import tooltipStyle from './tooltipStyle'
 
 const Tooltip = ({
   arrow,
@@ -38,12 +38,9 @@ const Tooltip = ({
 }) => {
   // #region initialisation
   const [showTooltip, setTooltipShown] = useState(false)
-  useEffect(
-    () => {
-      setTooltipShown(isShown)
-    },
-    [isShown]
-  )
+  useEffect(() => {
+    setTooltipShown(isShown)
+  }, [isShown])
   // #endregion
   // #region functions
   const leftIcon = (() => {
@@ -60,32 +57,30 @@ const Tooltip = ({
   // #endregion
   // #region render
   return showTooltip ? (
-    <Container arrow={arrow} className='iv-tooltip' variant={variant} {...rest}>
+    <Container arrow={arrow} className="iv-tooltip" variant={variant} {...rest}>
       <Body>
         <Icon
           name={leftIcon}
-          fontSize='1em'
-          position='absolute'
-          top='8px'
-          left='8px'
+          fontSize="1em"
+          position="absolute"
+          top="8px"
+          left="8px"
         />
         <Typography
-          className='tooltip-text'
+          className="tooltip-text"
           px={8}
           py={2}
           fontSize={fontSize}
-          variant='paragraph'
-        >
+          variant="paragraph">
           {children}
         </Typography>
         <Touchable
-          effect='opacity'
-          position='absolute'
-          top='8px'
-          right='8px'
-          onClick={hideTooltip}
-        >
-          <Icon name='cancel' fontSize='1em' />
+          effect="opacity"
+          position="absolute"
+          top="8px"
+          right="8px"
+          onClick={hideTooltip}>
+          <Icon name="cancel" fontSize="1em" />
         </Touchable>
       </Body>
     </Container>
@@ -158,6 +153,9 @@ const animatedOpacity = keyframes`
     opacity: 1;
   }
 `
+const tooltipStyle = variant({
+  key: 'tooltips'
+})
 
 const Container = styled(Box)`
   border-radius: ${themeGet('radii.2', 2)}px;
