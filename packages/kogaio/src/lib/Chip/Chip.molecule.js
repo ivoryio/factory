@@ -1,7 +1,6 @@
 import React, { cloneElement } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { variant } from 'styled-system'
 
 import Icon from '../Icon'
 import Touchable from '../Touchable'
@@ -98,16 +97,11 @@ const Chip = ({ onClick, touchEffect, ...props }) => {
   )
 }
 
-const chipStyle = variant({
-  key: 'chips'
-})
-
 const ChipContainer = styled(Flex)`
   white-space: nowrap;
   align-items: center;
   position: relative;
   width: fit-content;
-  ${chipStyle}
 `
 ChipBase.propTypes = {
   Avatar: PropTypes.element,
