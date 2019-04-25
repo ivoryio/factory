@@ -41,7 +41,11 @@ import {
   zIndex
 } from 'styled-system'
 import PropTypes from 'prop-types'
-import cardStyle from './cardStyle'
+import { variant } from 'styled-system'
+
+const cardStyle = variant({
+  key: 'cards'
+})
 
 const Card = styled.div`
   ${alignContent}

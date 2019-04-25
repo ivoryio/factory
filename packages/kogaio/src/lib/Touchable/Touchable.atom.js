@@ -29,6 +29,7 @@ import { useBoolean } from '../utils'
 
 const Touchable = ({
   activeOpacity,
+  as,
   children,
   effect,
   onClick,
@@ -61,6 +62,7 @@ const Touchable = ({
   return (
     <Wrapper
       activeOpacity={activeOpacity}
+      as={as}
       effect={effect}
       onClick={onClick}
       onMouseDown={onClick ? null : _handleMouseDown}
@@ -77,8 +79,7 @@ const Touchable = ({
 }
 
 const touchableWithEffect = css`
-  ${props => {
-    const { effect, activeOpacity, underlayColor } = props
+  ${({ effect, activeOpacity, underlayColor, ...rest }) => {
     switch (effect) {
       case 'opacity':
         return `
@@ -90,13 +91,13 @@ const touchableWithEffect = css`
       case 'highlight':
         return `
           :hover {
-            background-color: ${themeGet(`colors.${underlayColor}`)(props)};
-            color: ${themeGet('colors.white')(props)}
+            background-color: ${themeGet(`colors.${underlayColor}`)(rest)};
+            color: ${themeGet('colors.white')(rest)}
           }
           :active {
             opacity: ${activeOpacity};
-            color: ${themeGet('colors.pale-white')(props)};
-            background-color: ${themeGet(`colors.${underlayColor}`)(props)};
+            color: ${themeGet('colors.pale-white')(rest)};
+            background-color: ${themeGet(`colors.${underlayColor}`)(rest)};
           }
           `
       default:

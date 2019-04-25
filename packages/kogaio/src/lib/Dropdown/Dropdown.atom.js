@@ -148,8 +148,8 @@ const ListWrapper = styled(Flex)`
   background-color: ${themeGet('colors.white')};
   border: solid 1px ${themeGet('colors.azure-white')};
   border-block-start: none;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: ${themeGet('radii.5', 4)}px;
+  border-bottom-right-radius: ${themeGet('radii.5', 4)}px;
   top: 100%;
   
   & > button:nth-child(n + 1) {

@@ -109,7 +109,16 @@ export const defaultTheme = new function () {
     input: 2
   }
   this.gutter = 4
-  this.radii = [0, 1, 2, 3, 4, '50%']
+  this.radii = {
+    none: 0,
+    '1': 1,
+    '2': 2,
+    '3': 3,
+    '4': 4,
+    '8': 8,
+    '16': 16,
+    round: '50%'
+  }
   this.space = generateSpaces(this.gutter)
 
   function generateSpaces (gridUnit = 4) {

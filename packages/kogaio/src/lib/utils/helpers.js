@@ -124,3 +124,6 @@ export const isOutOfViewport = componentId => {
 
   return out
 }
+
+export const ConditionalWrap = ({ condition, wrap, children }) =>
+  condition ? wrap(children) : children

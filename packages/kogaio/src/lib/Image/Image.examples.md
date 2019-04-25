@@ -25,7 +25,7 @@ import { Box } from '@ivoryio/kogaio/Responsive';
           <Space key={img.id} ml={4}>
             <Image
               alt={img.id}
-              borderRadius={5}
+              borderRadius='round'
               size={img.size}
               src={img.src}
             />

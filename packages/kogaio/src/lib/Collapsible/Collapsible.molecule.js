@@ -20,19 +20,24 @@ const Collapsible = ({
   title,
   trigger,
   triggerEffect,
+  underlayColor,
   ...rest
 }) => {
   const { value: isOpen, toggleValue: toggleContainer } = useBoolean(isExpanded)
   return (
     <Box bg="transparent" {...rest}>
-      <Touchable effect={triggerEffect} onClick={toggleContainer} width={1}>
+      <Touchable
+        effect={triggerEffect}
+        onClick={toggleContainer}
+        underlayColor={underlayColor}
+        width={1}>
         {trigger || (
           <Flex justifyContent="space-between" alignItems="center" width={1}>
             <Typography color={color} fontSize={fontSize}>
               {title}
             </Typography>
             <ToggleIcon
-              color={color || icon.color}
+              color={icon.color || color}
               fontSize={fontSize || icon.size}
               name={icon.name || 'arrow_drop_down_circle'}
               isOpen={isOpen}
@@ -75,7 +80,8 @@ Collapsible.propTypes = {
   title: PropTypes.string,
   /** custom triggering component. can be anything */
   trigger: PropTypes.node,
-  triggerEffect: PropTypes.oneOf(effects)
+  triggerEffect: PropTypes.oneOf(effects),
+  underlayColor: PropTypes.string
 }
 
 Collapsible.defaultProps = {
