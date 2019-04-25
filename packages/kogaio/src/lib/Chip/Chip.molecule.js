@@ -134,4 +134,8 @@ Chip.propTypes = {
   touchEffect: PropTypes.oneOf(effects)
 }
 
+Chip.defaultProps = {
+  touchEffect: 'opacity'
+}
+
 export default Chip
