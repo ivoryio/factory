@@ -55,7 +55,7 @@ const MenuList = ({
     }
     window.addEventListener('click', _handleDocumentBodyClick)
     return () => document.removeEventListener('click', _handleDocumentBodyClick)
-  }, [])
+  }, [id])
   // #endregion
 
   // #region functions
@@ -73,29 +73,26 @@ const MenuList = ({
       {CustomToggler ? (
         <CustomToggler onClick={_toggleMenuList} />
       ) : (
-        <Touchable effect='opacity' onClick={_toggleMenuList} px='6px'>
+        <Touchable effect="opacity" onClick={_toggleMenuList} px="6px">
           {<Icon name={icName} color={icColor} fontSize={`${icSize}px`} />}
         </Touchable>
       )}
       {isMenuShown ? (
         <ListWrapper
           alignment={alignment}
-          colors='menu-list'
+          colors="menu-list"
           icSize={icSize}
-          {...rest}
-        >
+          {...rest}>
           {listItems.map(item => (
             <TouchableText
               key={item.id}
               onClick={_selectItem(item.name)}
-              data-testid={item.id}
-            >
+              data-testid={item.id}>
               <Typography
-                color='dark-gunmetal'
+                color="dark-gunmetal"
                 p={4}
                 textAlign={alignment}
-                variant='list'
-              >
+                variant="list">
                 {item.name}
               </Typography>
             </TouchableText>
