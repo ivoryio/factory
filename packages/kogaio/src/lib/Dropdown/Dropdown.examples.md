@@ -1,38 +1,46 @@
 #### Simple Dropdown
+
 ```js
-import { useState } from 'react';
-
+import { useState } from 'react'
+import Option from './Option'
 const DropdownExample = () => {
-const [selectedOption, setSelectedOption] = useState('')
-const selectOption = newOption =>
-  setSelectedOption(newOption)
+  const options = [
+    {
+      id: 1,
+      label: 'Option 1',
+      value: 'opt1'
+    },
+    {
+      id: 2,
+      label: 'Option 2',
+      value: 'opt2'
+    },
+    {
+      id: 3,
+      label: 'Option 3',
+      value: 'opt3'
+    }
+  ]
+  const [selectedOption, setSelectedOption] = useState({})
+  const selectOption = newOption => setSelectedOption(newOption)
 
-const options = [
-  {
-    id: 'option1',
-    name: 'Option 1'
-  },
-  {
-    id: 'option2',
-    name: 'Option 2'
-  },
-  {
-    id: 'option3',
-    name: 'Option 3'
-  }
-]
   return (
-      <Dropdown
-        colors='dropdown-white'
-        id='example-dropdown'
-        mx='auto'
-        label='Dropdown label'
-        onChangeOption={selectOption}
-        options={options}
-        selectedOption={selectedOption}
-        width={{ xs: 1/2, md: 1/3 }}
-      />
+    <Dropdown
+      colors='dropdown-white'
+      id='example-dropdown'
+      mx='auto'
+      label='Dropdown label'
+      onChange={selectOption}
+      placeholder='Select custom value'
+      value={selectedOption.label}
+      width={{ xs: 1 / 2, md: 1 / 3 }}>
+      {options.map(option => (
+        <Option key={option.id} value={option}>
+          {option.label}
+        </Option>
+      ))}
+    </Dropdown>
   )
 }
-  <DropdownExample />
+;<DropdownExample />
 ```
