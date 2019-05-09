@@ -11,6 +11,7 @@ import {
   flex,
   flexDirection,
   fontSize,
+  height,
   justifyContent,
   maxHeight,
   maxWidth,
@@ -111,10 +112,11 @@ const touchableWithEffect = css`
 const Wrapper = styled.button`
   background: transparent;
   border: none;
+  box-sizing: border-box;
   font-size: inherit;
   margin: 0;
   padding: 0;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   box-shadow: none;
 
   &:focus {
@@ -132,6 +134,7 @@ const Wrapper = styled.button`
   ${flex}
   ${flexDirection}
   ${fontSize}
+  ${height}
   ${justifyContent}
   ${maxHeight}
   ${maxWidth}
@@ -159,6 +162,7 @@ Touchable.propTypes = {
   ...flex.propTypes,
   ...flexDirection.propTypes,
   ...fontSize.propTypes,
+  ...height.propTypes,
   ...justifyContent.propTypes,
   ...maxHeight.propTypes,
   ...maxWidth.propTypes,
@@ -172,6 +176,7 @@ Touchable.propTypes = {
   ...width.propTypes,
   ...zIndex.propTypes,
   children: PropTypes.node,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
   onMouseDown: PropTypes.func,
   onMouseUp: PropTypes.func,
@@ -185,6 +190,7 @@ Touchable.propTypes = {
 
 Touchable.defaultProps = {
   activeOpacity: 0.7,
+  disabled: false,
   effect: 'no-feedback',
   type: 'button'
 }

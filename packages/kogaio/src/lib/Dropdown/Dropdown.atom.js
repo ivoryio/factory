@@ -6,17 +6,22 @@ import { themeGet } from 'styled-system'
 import { useBoolean } from '../utils'
 
 import Icon from '../Icon'
-import { ListItem } from './Option'
+import Touchable from '../Touchable'
 import Typography from '../Typography'
-import { Box, Flex } from '../Responsive'
+import { Flex, Space } from '../Responsive'
+
 const Dropdown = ({
+  autoFocus,
   children,
+  disabled,
   error,
   id,
   label,
+  multiple,
   onChange: handleSelect,
   placeholder,
   required,
+  size,
   value,
   ...rest
 }) => {
@@ -25,16 +30,16 @@ const Dropdown = ({
     setValue: setListOpen,
     toggleValue: toggle
   } = useBoolean(false)
-
-  const selectOption = option => () => {
-    handleSelect(option)
-    setListOpen(false)
-  }
+  useEffect(() => {
+    if (autoFocus) {
+      setListOpen(true)
+    }
+  }, [autoFocus, setListOpen])
 
   useEffect(() => {
     const _handleBackdropClick = ev => {
       const dropdownEl = document.getElementById(id)
-      if (dropdownEl) {
+      if (dropdownEl && isListOpen) {
         const isClickInside = dropdownEl.contains(ev.target)
         if (!isClickInside) {
           setListOpen(false)
@@ -43,7 +48,23 @@ const Dropdown = ({
     }
     document.addEventListener('click', _handleBackdropClick)
     return () => document.removeEventListener('click', _handleBackdropClick)
-  }, [id, setListOpen])
+  }, [id, isListOpen, setListOpen])
+
+  const selectOption = option => () => {
+    if (multiple) {
+      return handleSelect(option)
+    }
+    handleSelect(option)
+    setListOpen(false)
+  }
+
+  const toggleDropdown = ev => {
+    if (disabled) {
+      return ev.preventDefault()
+    }
+    toggle()
+  }
+  const selectedValue = typeof value === 'object' ? value.join(', ') : value
   return (
     <Flex flexDirection="column" position="relative" {...rest}>
       {label && (
@@ -55,89 +76,115 @@ const Dropdown = ({
           {label} {required && '*'}
         </Typography>
       )}
-      <Header id={id} error={error} isListShown={isListOpen} onClick={toggle}>
-        <SelectedItem>
-          <Typography color={value ? 'dark-gunmetal' : 'manatee'}>
-            {value || placeholder}
-          </Typography>
-          <Icon
-            alignSelf="center"
-            color="independence"
-            fontSize="1.5em"
-            name={isListOpen ? 'arrow_drop_up' : 'arrow_drop_down'}
-          />
-        </SelectedItem>
-      </Header>
+      <Touchable disabled={disabled} onClick={toggleDropdown}>
+        <Header error={error}>
+          <Space px={2}>
+            <SelectedItem>
+              <SelectedLabel
+                color={selectedValue ? 'dark-gunmetal' : 'manatee'}>
+                {selectedValue || placeholder}
+              </SelectedLabel>
+              <Icon
+                alignSelf="center"
+                color="independence"
+                fontSize="1.5em"
+                name={isListOpen ? 'arrow_drop_up' : 'arrow_drop_down'}
+              />
+            </SelectedItem>
+          </Space>
+        </Header>
+      </Touchable>
       {isListOpen ? (
-        <List
-          as="ul"
-          boxSizing="border-box"
-          flexDirection="column"
-          position="absolute"
-          width={1}>
-          {Children.toArray(children).map(child =>
-            cloneElement(child, {
-              selectOption
-            })
-          )}
-        </List>
+        <Space m={0} p={0}>
+          <List
+            as="ul"
+            id={id}
+            isOpen={isListOpen}
+            numOfElements={children.length}
+            size={size}
+            width={1}>
+            {Children.toArray(children).map(child =>
+              cloneElement(child, {
+                selectOption,
+                isSelected: selectedValue.includes(child.props.value)
+              })
+            )}
+          </List>
+        </Space>
       ) : null}
     </Flex>
   )
 }
 
-const Header = styled(Box)`
+const Header = styled(Flex)`
+  background-color: ${themeGet('colors.white', '#fff')};
   border: solid 1px
     ${({ error }) =>
       error ? themeGet('colors.error') : themeGet('colors.azure-white')};
   border-top-left-radius: ${themeGet('radii.2', 2)}px;
   border-top-right-radius: ${themeGet('radii.2', 2)}px;
-  background-color: ${themeGet('colors.white')};
-  display: flex;
   justify-content: space-between;
 `
+const calcSize = () => ({ numOfElements, size }) => {
+  const GUTTER = 4
+  const ITEM_HEIGHT = 36
+  if (numOfElements <= size) {
+    return `max-height: ${size * ITEM_HEIGHT + GUTTER}px;`
+  }
+  return `max-height: ${size * ITEM_HEIGHT + GUTTER * 2}px; overflow-y: auto;`
+}
 const List = styled(Flex)`
   background-color: ${themeGet('colors.white')};
   border: solid 1px ${themeGet('colors.azure-white')};
   border-block-start: none;
   border-bottom-left-radius: ${themeGet('radii.2', 2)}px;
   border-bottom-right-radius: ${themeGet('radii.2', 2)}px;
+  box-sizing: border-box;
+  flex-direction: column;
   list-style-type: none;
-  margin: 0;
-  padding-inline-start: 0;
+  position: absolute;
   top: 100%;
   z-index: 2;
-
-  & > button:nth-child(n + 1) {
-    border-block-start: 1px solid ${themeGet('colors.light-gray')};
-  }
-  & > button:first-of-type {
-    border-block-start: none;
-  }
+  ${calcSize}
 `
 
-const SelectedItem = styled(ListItem)`
+export const SelectedItem = styled(Flex)`
+  align-items: center;
+  background-color: ${({ isSelected }) => isSelected && 'pink'};
+  font-size: ${themeGet('fontSizes.1')};
+  height: 36px;
+  justify-content: space-between;
+  text-align: left;
   width: 100%;
-  &:hover {
-    background-color: transparent;
-  }
+`
+
+const SelectedLabel = styled(Typography)`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 Dropdown.propTypes = {
+  autoFocus: PropTypes.bool,
   children: PropTypes.arrayOf(PropTypes.element),
+  disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   label: PropTypes.string,
+  multiple: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   size: PropTypes.number,
-  value: PropTypes.string
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
 }
 Dropdown.defaultProps = {
+  autoFocus: false,
   children: [],
+  disabled: false,
+  multiple: false,
   onChange: () => console.warn('* Dropdown expects an onChange function'),
-  placeholder: 'Select an option',
+  placeholder: 'Select an option...',
   required: false,
   size: 5
 }
