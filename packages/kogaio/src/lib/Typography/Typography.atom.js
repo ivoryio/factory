@@ -21,12 +21,20 @@ const typographyStyle = variant({
   key: 'typography'
 })
 
+const handleTruncate = () => ({ truncate }) =>
+  truncate &&
+  `
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+`
 const Typography = styled.div`
   color: ${themeGet('colors.dark-gunmetal', '#1b202f')};
   font-family: ${themeGet('fonts.primary')};
   font-style: normal;
   font-stretch: normal;
   letter-spacing: normal;
+  ${handleTruncate}
 
   ${color}
   ${fontFamily}
@@ -56,7 +64,6 @@ Typography.propTypes = {
   ...size.propTypes,
   ...space.propTypes,
   ...textAlign.propTypes,
-  variant: PropTypes.string,
   as: PropTypes.oneOf([
     'h1',
     'h2',
@@ -67,11 +74,13 @@ Typography.propTypes = {
     'label',
     'span',
     'div',
-    'p'
+    'p',
+    'pre'
   ]),
-  fontFamily: PropTypes.string,
   children: PropTypes.node,
-  message: PropTypes.string
+  fontFamily: PropTypes.string,
+  truncate: PropTypes.bool,
+  variant: PropTypes.string
 }
 
 Typography.defaultProps = {

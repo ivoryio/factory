@@ -77,9 +77,11 @@ const DropdownMulti = () => {
   const [selectedOptions, setSelectedOptions] = useState([])
   const selectOptions = newOption => {
     if (selectedOptions.includes(newOption)) {
-      return setSelectedOptions(selectedOptions.filter(op => op !== newOption))
+      return setSelectedOptions(prevSelected =>
+        prevSelected.filter(op => op !== newOption)
+      )
     }
-    setSelectedOptions(selectedOptions.concat(newOption))
+    setSelectedOptions(prevSelected => prevSelected.concat(newOption))
   }
   return (
     <Dropdown
@@ -89,7 +91,7 @@ const DropdownMulti = () => {
       multiple
       mx='auto'
       onChange={selectOptions}
-      value={selectedOptions}
+      value={selectedOptions.join(', ')}
       width={{ xs: 1 / 2, md: 1 / 3 }}>
       {options.map(option => (
         <Option key={option.id} value={option.label}>

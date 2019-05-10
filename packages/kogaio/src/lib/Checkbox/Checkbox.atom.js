@@ -36,7 +36,10 @@ const Checkbox = ({
   ...rest
 }) => (
   <Flex alignItems="center" {...rest}>
-    <Wrapper color={color} checkboxPosition={checkboxPosition}>
+    <Wrapper
+      color={color}
+      disabled={disabled}
+      checkboxPosition={checkboxPosition}>
       <Input
         checked={checked}
         disabled={disabled}

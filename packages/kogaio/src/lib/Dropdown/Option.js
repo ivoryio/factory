@@ -6,40 +6,65 @@ import PropTypes from 'prop-types'
 import Touchable from '../Touchable'
 import { Space } from '../Responsive'
 import Typography from '../Typography'
-import { SelectedItem } from './Dropdown.atom'
+import { ConditionalWrap } from '../utils'
+import { DropdownItem } from './Dropdown.atom'
 
 const Option = ({
   children,
+  color,
+  fontSize,
   isSelected,
   label,
   selectOption,
+  selectedColor,
+  shouldShow,
   value,
   ...props
-}) => (
-  <ItemWrapper height="fit-content" onClick={selectOption(value)} {...props}>
-    <Space m={0} px={2}>
-      <ListItem isSelected={isSelected}>
-        {['number', 'string'].includes(typeof children) ? (
-          <Typography color="dark-gunmetal" fontSize="1em">
-            {children || label}
-          </Typography>
-        ) : (
-          children
-        )}
-      </ListItem>
-    </Space>
-  </ItemWrapper>
-)
+}) => {
+  if (!shouldShow) {
+    return null
+  }
+  return (
+    <ItemWrapper height="fit-content" onClick={selectOption(value)}>
+      <Space m={0} px={2}>
+        <ListItem
+          as="li"
+          className="dropdown-item"
+          isSelected={isSelected}
+          selectedColor={selectedColor}
+          {...props}>
+          <ConditionalWrap
+            condition={
+              (children && ['string', 'number'].includes(typeof children)) ||
+              label
+            }
+            wrap={() => (
+              <Typography
+                color={color}
+                fontSize={fontSize}
+                truncate
+                variant="list">
+                {label || children}
+              </Typography>
+            )}>
+            {children}
+          </ConditionalWrap>
+        </ListItem>
+      </Space>
+    </ItemWrapper>
+  )
+}
 
 const ItemWrapper = styled(Touchable)`
   &:nth-of-type(n + 2) {
-    border-block-start: 1px solid ${themeGet('colors.light-gray')};
+    border-block-start: ${themeGet('borders.1')}
+      ${themeGet('colors.light-gray')};
   }
 `
 
-export const ListItem = styled(SelectedItem)`
-  background-color: ${({ isSelected }) =>
-    isSelected && themeGet('colors.ghost-white', '#f6f9fb')};
+export const ListItem = styled(DropdownItem)`
+  background-color: ${({ isSelected, selectedColor }) =>
+    isSelected && themeGet(`colors.${selectedColor}`, selectedColor)};
   &:hover {
     background-color: ${themeGet('colors.white-smoke')};
   }
@@ -47,9 +72,17 @@ export const ListItem = styled(SelectedItem)`
 
 Option.propTypes = {
   children: PropTypes.node,
+  color: PropTypes.string,
+  fontSize: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.array
+  ]),
   isSelected: PropTypes.bool,
   label: PropTypes.string,
+  selectedColor: PropTypes.string,
   selectOption: PropTypes.func,
+  shouldShow: PropTypes.bool,
   value: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.string,
@@ -59,7 +92,8 @@ Option.propTypes = {
 
 Option.defaultProps = {
   isSelected: false,
-  label: 'Option placeholder'
+  selectedColor: 'ghost-white',
+  shouldShow: false
 }
 
 /** @component */

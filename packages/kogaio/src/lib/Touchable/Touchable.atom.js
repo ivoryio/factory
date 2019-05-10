@@ -112,7 +112,6 @@ const touchableWithEffect = css`
 const Wrapper = styled.button`
   background: transparent;
   border: none;
-  box-sizing: border-box;
   font-size: inherit;
   margin: 0;
   padding: 0;

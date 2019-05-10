@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
 import {
@@ -24,6 +24,8 @@ import {
 } from 'styled-system'
 import { variant } from 'styled-system'
 
+import { useBoolean } from '../utils'
+
 import Box from '../Responsive/Box'
 import { Icon, Typography, Touchable } from '../'
 
@@ -37,10 +39,10 @@ const Tooltip = ({
   ...rest
 }) => {
   // #region initialisation
-  const [showTooltip, setTooltipShown] = useState(false)
+  const { value: showTooltip, setValue: setTooltipShown } = useBoolean(false)
   useEffect(() => {
     setTooltipShown(isShown)
-  }, [isShown])
+  }, [isShown, setTooltipShown])
   // #endregion
   // #region functions
   const leftIcon = (() => {
