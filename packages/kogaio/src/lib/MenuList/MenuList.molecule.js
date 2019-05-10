@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import {
@@ -25,6 +25,8 @@ import {
   width
 } from 'styled-system'
 
+import { useBoolean } from '../utils'
+
 import Icon from '../Icon'
 import { Box } from '../Responsive'
 import Touchable from '../Touchable'
@@ -42,7 +44,7 @@ const MenuList = ({
   ...rest
 }) => {
   // #region initialisation
-  const [isMenuShown, showMenu] = useState(false)
+  const { value: isMenuShown, setValue: showMenu } = useBoolean(false)
   useEffect(() => {
     const _handleDocumentBodyClick = ev => {
       const bodyEl = document.getElementById(id)
@@ -55,7 +57,7 @@ const MenuList = ({
     }
     window.addEventListener('click', _handleDocumentBodyClick)
     return () => document.removeEventListener('click', _handleDocumentBodyClick)
-  }, [id])
+  }, [id, showMenu])
   // #endregion
 
   // #region functions

@@ -1,6 +1,6 @@
 import React, { Children, cloneElement, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { themeGet } from 'styled-system'
 
 import { useBoolean } from '../utils'
@@ -11,6 +11,7 @@ import Typography from '../Typography'
 import { Flex, Space } from '../Responsive'
 
 const Dropdown = ({
+  animated,
   autoFocus,
   children,
   disabled,
@@ -64,7 +65,6 @@ const Dropdown = ({
     }
     toggle()
   }
-  const selectedValue = typeof value === 'object' ? value.join(', ') : value
   return (
     <Flex flexDirection="column" position="relative" {...rest}>
       {label && (
@@ -77,94 +77,121 @@ const Dropdown = ({
         </Typography>
       )}
       <Touchable disabled={disabled} onClick={toggleDropdown}>
-        <Header error={error}>
-          <Space px={2}>
-            <SelectedItem>
-              <SelectedLabel
-                color={selectedValue ? 'dark-gunmetal' : 'manatee'}>
-                {selectedValue || placeholder}
-              </SelectedLabel>
-              <Icon
-                alignSelf="center"
-                color="independence"
-                fontSize="1.5em"
-                name={isListOpen ? 'arrow_drop_up' : 'arrow_drop_down'}
-              />
-            </SelectedItem>
-          </Space>
-        </Header>
-      </Touchable>
-      {isListOpen ? (
-        <Space m={0} p={0}>
-          <List
-            as="ul"
-            id={id}
-            isOpen={isListOpen}
-            numOfElements={children.length}
-            size={size}
-            width={1}>
-            {Children.toArray(children).map(child =>
-              cloneElement(child, {
-                selectOption,
-                isSelected: selectedValue.includes(child.props.value)
-              })
-            )}
-          </List>
+        <Space px={2}>
+          <SelectedItem
+            as="li"
+            className="dropdown-selected-item"
+            error={error}>
+            <Typography
+              color={value ? 'dark-gunmetal' : 'manatee'}
+              truncate
+              variant="list">
+              {value || placeholder}
+            </Typography>
+            <DropdownChevron
+              color="independence"
+              fontSize="1.5em"
+              isOpen={isListOpen}
+              name="arrow_drop_down"
+            />
+          </SelectedItem>
         </Space>
-      ) : null}
+      </Touchable>
+      <Space m={0} p={0}>
+        <List
+          animated={animated}
+          as="ul"
+          id={id}
+          isOpen={isListOpen}
+          numOfElements={children.length}
+          size={size}
+          width={1}>
+          {Children.toArray(children).map(child =>
+            cloneElement(child, {
+              selectOption,
+              shouldShow: isListOpen,
+              isSelected: value.includes(child.props.value)
+            })
+          )}
+        </List>
+      </Space>
     </Flex>
   )
 }
 
-const Header = styled(Flex)`
-  background-color: ${themeGet('colors.white', '#fff')};
-  border: solid 1px
-    ${({ error }) =>
-      error ? themeGet('colors.error') : themeGet('colors.azure-white')};
-  border-top-left-radius: ${themeGet('radii.2', 2)}px;
-  border-top-right-radius: ${themeGet('radii.2', 2)}px;
-  justify-content: space-between;
-`
-const calcSize = () => ({ numOfElements, size }) => {
+const calcSize = () => ({ isOpen, numOfElements, size }) => {
   const GUTTER = 4
   const ITEM_HEIGHT = 36
+  if (!isOpen) {
+    return `max-height: 0; visibility: hidden;`
+  }
   if (numOfElements <= size) {
     return `max-height: ${size * ITEM_HEIGHT + GUTTER}px;`
   }
-  return `max-height: ${size * ITEM_HEIGHT + GUTTER * 2}px; overflow-y: auto;`
+  return `
+    max-height: ${size * ITEM_HEIGHT + GUTTER * 2}px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  `
+}
+const animateDrop = () => ({ animated, isOpen }) => {
+  if (!animated) {
+    return null
+  }
+  return `
+  transform: ${
+    !isOpen
+      ? `
+      translateY(-12px);
+      z-index: -1;
+    `
+      : `translateY(0);
+        z-index: 2;`
+  };
+  transition: transform 0.3s ease;
+  `
 }
 const List = styled(Flex)`
   background-color: ${themeGet('colors.white')};
-  border: solid 1px ${themeGet('colors.azure-white')};
+  border: ${({ isOpen }) => themeGet(`borders.${isOpen ? 1 : 0}`)}
+    ${themeGet('colors.azure-white')};
   border-block-start: none;
   border-bottom-left-radius: ${themeGet('radii.2', 2)}px;
   border-bottom-right-radius: ${themeGet('radii.2', 2)}px;
-  box-sizing: border-box;
   flex-direction: column;
   list-style-type: none;
   position: absolute;
   top: 100%;
-  z-index: 2;
+  z-index: 1;
   ${calcSize}
+  ${animateDrop}
 `
-
-export const SelectedItem = styled(Flex)`
+export const DropdownItem = styled(Flex)`
   align-items: center;
-  background-color: ${({ isSelected }) => isSelected && 'pink'};
-  font-size: ${themeGet('fontSizes.1')};
   height: 36px;
   justify-content: space-between;
   text-align: left;
   width: 100%;
 `
-
-const SelectedLabel = styled(Typography)`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+const SelectedItem = styled(DropdownItem)`
+  background-color: ${themeGet('colors.white', '#fff')};
+  border: ${themeGet('borders.1')}
+    ${({ error }) => themeGet(`colors.${error ? 'error' : 'azure-white'}`)};
+  border-top-left-radius: ${themeGet('radii.2', 2)}px;
+  border-top-right-radius: ${themeGet('radii.2', 2)}px;
+  z-index: 3;
+`
+const rotate = css`
+  ${({ isOpen }) =>
+    `transition: transform 0.25s ease;
+      transform: rotate(${!isOpen ? '0deg' : '180deg'})`}
+`
+const DropdownChevron = styled(Icon)`
+  ${rotate}
 `
 
 Dropdown.propTypes = {
+  animated: PropTypes.bool,
   autoFocus: PropTypes.bool,
   children: PropTypes.arrayOf(PropTypes.element),
   disabled: PropTypes.bool,
@@ -176,9 +203,10 @@ Dropdown.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   size: PropTypes.number,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+  value: PropTypes.string.isRequired
 }
 Dropdown.defaultProps = {
+  animated: false,
   autoFocus: false,
   children: [],
   disabled: false,
@@ -186,7 +214,8 @@ Dropdown.defaultProps = {
   onChange: () => console.warn('* Dropdown expects an onChange function'),
   placeholder: 'Select an option...',
   required: false,
-  size: 5
+  size: 5,
+  value: ''
 }
 Dropdown.displayName = 'Dropdown'
 

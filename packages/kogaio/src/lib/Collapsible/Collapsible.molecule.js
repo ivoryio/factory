@@ -54,7 +54,7 @@ const Collapsible = ({
 
 const rotate = css`
   ${({ isOpen }) =>
-    `transition: transform 0.25s ease-in; transform: rotate(${
+    `transition: transform 0.25s ease; transform: rotate(${
       !isOpen ? '0deg' : '180deg'
     })`}
 `
