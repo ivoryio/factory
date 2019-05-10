@@ -25,7 +25,7 @@ const Option = ({
     return null
   }
   return (
-    <ItemWrapper height="fit-content" onClick={selectOption(value)}>
+    <Touchable onClick={selectOption(value)}>
       <Space m={0} px={2}>
         <ListItem
           as="li"
@@ -51,22 +51,19 @@ const Option = ({
           </ConditionalWrap>
         </ListItem>
       </Space>
-    </ItemWrapper>
+    </Touchable>
   )
 }
-
-const ItemWrapper = styled(Touchable)`
-  &:nth-of-type(n + 2) {
-    border-block-start: ${themeGet('borders.1')}
-      ${themeGet('colors.light-gray')};
-  }
-`
 
 export const ListItem = styled(DropdownItem)`
   background-color: ${({ isSelected, selectedColor }) =>
     isSelected && themeGet(`colors.${selectedColor}`, selectedColor)};
   &:hover {
     background-color: ${themeGet('colors.white-smoke')};
+  }
+  &:nth-of-type(n + 2) {
+    border-block-start: ${themeGet('borders.1')}
+      ${themeGet('colors.light-gray')};
   }
 `
 
