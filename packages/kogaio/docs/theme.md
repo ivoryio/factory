@@ -1,7 +1,9 @@
-##### *The snippet below is a peek into the default theme.*
-For a painless experience with **Kogaio**, we do not encourage overwriting the entire theme. 
+##### _The snippet below is a peek into the default theme._
+
+For a painless experience with **Kogaio**, we do not encourage overwriting the entire theme.
 
 Seek the comments below for recommendations.
+
 ```jsx static
     borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
     breakpoints = {
@@ -11,7 +13,7 @@ Seek the comments below for recommendations.
     lg: '80em',
     xlg: '120em'
   }
-  colors = { 
+  colors = {
     // #region recommended for overwriting
     brand,
     'brand-hover',
@@ -96,7 +98,16 @@ Seek the comments below for recommendations.
     tight: '-0.05rem',
     mega: '0.25rem'
   }
-  radii = [0, 1, 2, 3, 4, '50%']
+  radii = {
+    none: 0,
+    '1': 1,
+    '2': 2,
+    '3': 3,
+    '4': 4,
+    '8': 8,
+    '16': 16,
+    round: '50%'
+  }
   space = [0, 4, 8, 12, 16, 20, 24, ..., 256]
   shadows: {
     'button-shadow',

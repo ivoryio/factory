@@ -15,7 +15,7 @@ import {
   space
 } from 'styled-system'
 
-const Icon = ({ className = '', name, ...rest }) => (
+const Icon = ({ className, name, ...rest }) => (
   <StyledIcon className={`material-icons${' '}${className}`} {...rest}>
     {name}
   </StyledIcon>
@@ -50,6 +50,7 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
+  className: '',
   fontSize: '1em',
   name: 'image',
   color: 'gunmetal'

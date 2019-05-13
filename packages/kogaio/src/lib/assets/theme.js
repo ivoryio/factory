@@ -1,7 +1,7 @@
 import { buttonFn, cardFn, inputFn, typographyFn, tooltipFn } from './variants'
 import { mergeDeep, hexToRgbA, isObjectEmpty } from '../utils/helpers'
 
-export const defaultTheme = new function () {
+export const defaultTheme = new (function () {
   this.borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
   this.breakpoints = {
     xs: '20em',
@@ -124,7 +124,7 @@ export const defaultTheme = new function () {
   function generateSpaces (gridUnit = 4) {
     return Array.from({ length: 100 }, (v, ix) => ix * gridUnit)
   }
-}()
+})()
 
 export function themeFactory (customTheme) {
   // #region initial theme

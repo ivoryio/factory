@@ -1,38 +1,105 @@
-#### Simple Dropdown
+#### Dropdown
+
 ```js
-import { useState } from 'react';
-
-const DropdownExample = () => {
-const [selectedOption, setSelectedOption] = useState('')
-const selectOption = newOption =>
-  setSelectedOption(newOption)
-
-const options = [
-  {
-    id: 'option1',
-    name: 'Option 1'
-  },
-  {
-    id: 'option2',
-    name: 'Option 2'
-  },
-  {
-    id: 'option3',
-    name: 'Option 3'
-  }
-]
+import { useState } from 'react'
+import { Option } from '@ivoryio/kogaio/Dropdown'
+const DropdownSingle = () => {
+  const options = [
+    {
+      id: 1,
+      label: 'Option 1'
+    },
+    {
+      id: 2,
+      label: 'Option 2'
+    },
+    {
+      id: 3,
+      label: 'Option 3'
+    },
+    {
+      id: 4,
+      label: 'Option 4'
+    },
+    {
+      id: 5,
+      label: 'Option 5'
+    },
+    {
+      id: 6,
+      label: 'Option 6'
+    }
+  ]
+  const [selectedOption, setSelectedOption] = useState('')
+  const selectOption = newOption => setSelectedOption(newOption)
   return (
-      <Dropdown
-        colors='dropdown-white'
-        id='example-dropdown'
-        mx='auto'
-        label='Dropdown label'
-        onChangeOption={selectOption}
-        options={options}
-        selectedOption={selectedOption}
-        width={{ xs: 1/2, md: 1/3 }}
-      />
+    <Dropdown
+      colors='dropdown-white'
+      id='example-dropdown-single'
+      label='Single value'
+      mx='auto'
+      onChange={selectOption}
+      value={selectedOption}
+      width={{ xs: 1 / 2, md: 1 / 3 }}>
+      {options.map(option => (
+        <Option key={option.id} value={option.label}>
+          {option.label}
+        </Option>
+      ))}
+    </Dropdown>
   )
 }
-  <DropdownExample />
+;<DropdownSingle />
+```
+
+```js
+import { useState } from 'react'
+import { Option } from '@ivoryio/kogaio/Dropdown'
+const DropdownMulti = () => {
+  const options = [
+    {
+      id: 1,
+      label: 'Option 1'
+    },
+    {
+      id: 2,
+      label: 'Option 2'
+    },
+    {
+      id: 3,
+      label: 'Option 3'
+    },
+    {
+      id: 4,
+      label: 'Option 4'
+    }
+  ]
+  const [selectedOptions, setSelectedOptions] = useState([])
+  const selectOptions = newOption => {
+    if (selectedOptions.includes(newOption)) {
+      return setSelectedOptions(prevSelected =>
+        prevSelected.filter(op => op !== newOption)
+      )
+    }
+    setSelectedOptions(prevSelected => prevSelected.concat(newOption))
+  }
+  return (
+    <Dropdown
+      colors='dropdown-white'
+      id='example-dropdown-multi'
+      label='Multiple values'
+      multiple
+      mx='auto'
+      onChange={selectOptions}
+      value={selectedOptions.join(', ')}
+      width={{ xs: 1 / 2, md: 1 / 3 }}>
+      {options.map(option => (
+        <Option key={option.id} value={option.label}>
+          {option.label}
+        </Option>
+      ))}
+    </Dropdown>
+  )
+}
+;<DropdownMulti />
 ```

@@ -36,18 +36,18 @@ const ChipBase = ({
       </Flex>
     )
   }
-  const Center = props => (
+  const Center = ({ color, label, ...props }) => (
     <Space px={3}>
       <Flex justifyContent={!Avatar ? 'flex-start' : 'center'} {...props}>
         <Typography color={color}>{label}</Typography>
       </Flex>
     </Space>
   )
-  const Right = ({ color, ...props }) => {
+  const Right = ({ color, onDismiss, ...props }) => {
     if (!onDismiss) {
       return null
     }
-    const ActionIcon = DismissIcon ? DismissIcon : <Icon />
+    const ActionIcon = DismissIcon || <Icon />
     const externalProps = DismissIcon && { ...DismissIcon.props }
     const StyledDismiss = cloneElement(ActionIcon, {
       name: 'cancel',
@@ -76,8 +76,8 @@ const ChipBase = ({
       height="24px"
       {...rest}>
       <Left isRounded={isRounded} />
-      <Center color={color} />
-      <Right color={color} />
+      <Center color={color} label={label} />
+      <Right color={color} onDismiss={onDismiss} />
     </ChipContainer>
   )
 }
@@ -100,7 +100,6 @@ const Chip = ({ onClick, touchEffect, ...props }) => {
 const ChipContainer = styled(Flex)`
   white-space: nowrap;
   align-items: center;
-  position: relative;
   width: fit-content;
 `
 ChipBase.propTypes = {

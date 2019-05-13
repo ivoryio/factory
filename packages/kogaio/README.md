@@ -4,44 +4,45 @@
 
 **[Kogaio][1]** is an independent open source project,
 designed and tailored to fit the needs of
-  **[Ivory][2]** based web applications.
+**[Ivory][2]** based web applications.
 
 Its primary concern is to expose for usage a set of primitive UI components,
 as well as to offer an opinionated solution for building and styling responsive web applications.
 
-[1]: https://ivoryio.github.io/factory/#introduction "Kogaio"
-[2]: https://www.ivory.io/ "Ivory.io"
+[1]: https://ivoryio.github.io/factory/#introduction 'Kogaio'
+[2]: https://www.ivory.io/ 'Ivory.io'
 
 ## Documentation
 
-  Both the documentation and the structure of [Kogaio][1] are [atomic design][2] based; i.e. the purpose is to encourage, implicitly with examples, the substance of breaking the layout down into its basic components, which are then reused throughout the app.
+Both the documentation and the structure of [Kogaio][1] are [atomic design][2] based; i.e. the purpose is to encourage, implicitly with examples, the substance of breaking the layout down into its basic components, which are then reused throughout the app.
 
-  Kogaio provides an inbuilt, assertive and extensible [style guide][6], along with a continuously growing set of primitives and examples of their usage.
-  It aims for sturdy design implementation, while soothing developers' front end development experience.
+Kogaio provides an inbuilt, assertive and extensible [style guide][6], along with a continuously growing set of primitives and examples of their usage.
+It aims for sturdy design implementation, while soothing developers' front end development experience.
 
-  There are a few indispensable libraries that act as dependencies for Kogaio; their purposes vary, from _documentation_ to _extensibility_ to _usability and painless development of responsive design systems_.
+There are a few indispensable libraries that act as dependencies for Kogaio; their purposes vary, from _documentation_ to _extensibility_ to _usability and painless development of responsive design systems_.
 
-  * [styled-components][3]
-  * [styled-system][4]
-  * [react-styleguidist][5]
+- [styled-components][3]
+- [styled-system][4]
+- [react-styleguidist][5]
 
-[1]: https://ivoryio.github.io/factory/#documentation "Ivory documentation"
-[2]: http://atomicdesign.bradfrost.com/chapter-2/ "Brad Frost - Atomic design"
-[3]: https://www.styled-components.com/docs "Styled components"
-[4]: https://styled-system.com/getting-started "Styled System"
-[5]: https://react-styleguidist.js.org/docs/getting-started.html "React Styleguidist"
-[6]: https://github.com/ivoryio/design-system "Ivory Design System"
+[1]: https://ivoryio.github.io/factory/#documentation 'Ivory documentation'
+[2]: http://atomicdesign.bradfrost.com/chapter-2/ 'Brad Frost - Atomic design'
+[3]: https://www.styled-components.com/docs 'Styled components'
+[4]: https://styled-system.com/getting-started 'Styled System'
+[5]: https://react-styleguidist.js.org/docs/getting-started.html 'React Styleguidist'
+[6]: https://github.com/ivoryio/design-system 'Ivory Design System'
 
 ## Installation
 
-~~~~
+```
 npm i @ivoryio/kogaio
-~~~~
-or
-~~~~
-yarn add @ivoryio/kogaio
-~~~~
+```
 
+or
+
+```
+yarn add @ivoryio/kogaio
+```
 
 ## Configuration
 
@@ -77,6 +78,7 @@ yarn add @ivoryio/kogaio
       </ThemeProvider>
     )
 ```
+
 **NOTE**
 
 > Kogaio's fallback theme kicks in when no parameters are passed to `themeFactory()`.
@@ -84,7 +86,9 @@ yarn add @ivoryio/kogaio
 [^1] _<span style="font-size: 14px;">`themeFactory` merges your custom theme with Kogaio's built-in theme.</span>_
 
 #### **Step 2**
+
 > Plug and play!
+
 ```JSX
    import React from 'react'
     import { Button, Card, Flex, Space, Typography } from '@ivoryio/kogaio'
@@ -101,7 +105,7 @@ yarn add @ivoryio/kogaio
             color='dark-gunmetal'
             fontWeight={3}
             textAlign='center'
-            variant='h2' 
+            variant='h2'
           >
             Hello world!
           </Typography>
@@ -115,10 +119,12 @@ yarn add @ivoryio/kogaio
     )
 ```
 
-##### *The snippet below is a peek into the default theme.*
-For a painless experience with **Kogaio**, we do not encourage overwriting the entire theme. 
+##### _The snippet below is a peek into the default theme._
+
+For a painless experience with **Kogaio**, we do not encourage overwriting the entire theme.
 
 Seek the comments below for recommendations.
+
 ```JSX
   borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
   breakpoints = {
@@ -128,7 +134,7 @@ Seek the comments below for recommendations.
     lg: '80em',
     xlg: '120em'
   }
-  colors = { 
+  colors = {
     // #region recommended for overwriting
     brand,
     'brand-hover',
@@ -213,7 +219,16 @@ Seek the comments below for recommendations.
     tight: '-0.05em',
     mega: '0.25em'
   }
-  radii = [0, 1, 2, 3, 4, '50%']
+    radii = {
+    none: 0,
+    '1': 1,
+    '2': 2,
+    '3': 3,
+    '4': 4,
+    '8': 8,
+    '16': 16,
+    round: '50%'
+  }
   space = [0, 4, 8, 12, 16, 20, 24, ..., 256]
   shadows: {
     'button-shadow',
@@ -225,4 +240,3 @@ Seek the comments below for recommendations.
 ```
 
 > **Happy coding!**
-

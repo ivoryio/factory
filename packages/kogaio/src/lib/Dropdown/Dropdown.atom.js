@@ -1,187 +1,221 @@
-import React, { useEffect } from 'react'
+import React, { Children, cloneElement, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { fontFamily, fontSize, themeGet } from 'styled-system'
+import { themeGet } from 'styled-system'
+
+import { useBoolean } from '../utils'
 
 import Icon from '../Icon'
 import Touchable from '../Touchable'
-import { useBoolean } from '../utils'
 import Typography from '../Typography'
-import { Box, Flex } from '../Responsive'
+import { Flex, Space } from '../Responsive'
 
 const Dropdown = ({
   animated,
-  cssLabel,
-  id,
+  autoFocus,
+  children,
+  disabled,
   error,
+  id,
   label,
-  onChangeOption,
-  options,
+  multiple,
+  onChange: handleSelect,
   placeholder,
   required,
-  selectedOption,
+  size,
+  value,
   ...rest
 }) => {
   const {
-    value: isListShown,
-    setValue: setListShown,
-    toggleValue: toggleList
+    value: isListOpen,
+    setValue: setListOpen,
+    toggleValue: toggle
   } = useBoolean(false)
-  const selectOption = option => () => {
-    onChangeOption(option)
-    setListShown(false)
-  }
+  useEffect(() => {
+    if (autoFocus) {
+      setListOpen(true)
+    }
+  }, [autoFocus, setListOpen])
 
   useEffect(() => {
-    const _handleBackDropClick = ev => {
+    const _handleBackdropClick = ev => {
       const dropdownEl = document.getElementById(id)
-      if (dropdownEl) {
+      if (dropdownEl && isListOpen) {
         const isClickInside = dropdownEl.contains(ev.target)
         if (!isClickInside) {
-          setListShown(false)
+          setListOpen(false)
         }
       }
     }
-    document.addEventListener('click', _handleBackDropClick)
-    return () => document.removeEventListener('click', _handleBackDropClick)
-  }, [])
+    document.addEventListener('click', _handleBackdropClick)
+    return () => document.removeEventListener('click', _handleBackdropClick)
+  }, [id, isListOpen, setListOpen])
+
+  const selectOption = option => () => {
+    if (multiple) {
+      return handleSelect(option)
+    }
+    handleSelect(option)
+    setListOpen(false)
+  }
+
+  const toggleDropdown = ev => {
+    if (disabled) {
+      return ev.preventDefault()
+    }
+    toggle()
+  }
   return (
     <Flex flexDirection="column" position="relative" {...rest}>
-      <DropdownLabel
-        color={error ? 'error' : 'independence'}
-        cssLabel={cssLabel}
-        htmlFor={id}
-        variant="inputLabel">
-        {label} {required && '*'}
-      </DropdownLabel>
-      <Body id={id} error={error} isListShown={isListShown}>
-        <SelectedOption onClick={toggleList}>
-          <Typography color={selectedOption ? 'dark-gunmetal' : 'manatee'}>
-            {selectedOption || placeholder}
-          </Typography>
-          <Icon
-            alignSelf="center"
-            color="independence"
-            fontSize="1.5em"
-            name={isListShown ? 'arrow_drop_up' : 'arrow_drop_down'}
-          />
-        </SelectedOption>
-        {isListShown ? (
-          <ListWrapper
-            animated={animated}
-            boxSizing="border-box"
-            flexDirection="column"
-            left={0}
-            position="absolute"
-            width={1}>
-            {options.map(option => (
-              <Option
-                data-testid={option.id}
-                id={option.id}
-                key={option.id}
-                onClick={selectOption(option.name)}>
-                <Typography color="dark-gunmetal" fontSize="1em">
-                  {option.name}
-                </Typography>
-              </Option>
-            ))}
-          </ListWrapper>
-        ) : null}
-      </Body>
+      {label && (
+        <Typography
+          as="label"
+          color={error ? 'error' : 'independence'}
+          htmlFor={id}
+          variant="inputLabel">
+          {label} {required && '*'}
+        </Typography>
+      )}
+      <Touchable disabled={disabled} onClick={toggleDropdown}>
+        <Space px={2}>
+          <SelectedItem
+            as="li"
+            className="dropdown-selected-item"
+            error={error}>
+            <Typography
+              color={value ? 'dark-gunmetal' : 'manatee'}
+              truncate
+              variant="list">
+              {value || placeholder}
+            </Typography>
+            <DropdownChevron
+              color="independence"
+              fontSize="1.5em"
+              isOpen={isListOpen}
+              name="arrow_drop_down"
+            />
+          </SelectedItem>
+        </Space>
+      </Touchable>
+      <Space m={0} p={0}>
+        <List
+          animated={animated}
+          as="ul"
+          id={id}
+          isOpen={isListOpen}
+          numOfElements={children.length}
+          size={size}
+          width={1}>
+          {Children.toArray(children).map(child =>
+            cloneElement(child, {
+              selectOption,
+              shouldShow: isListOpen,
+              isSelected: value.includes(child.props.value)
+            })
+          )}
+        </List>
+      </Space>
     </Flex>
   )
 }
 
-const animated = ({ animated }) => css`
-  ${animated &&
+const calcSize = () => ({ isOpen, numOfElements, size }) => {
+  const GUTTER = 4
+  const ITEM_HEIGHT = 36
+  if (!isOpen) {
+    return `max-height: 0; visibility: hidden;`
+  }
+  if (numOfElements <= size) {
+    return `max-height: ${size * ITEM_HEIGHT + GUTTER}px;`
+  }
+  return `
+    max-height: ${size * ITEM_HEIGHT + GUTTER * 2}px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  `
+}
+const animateDrop = () => ({ animated, isOpen }) => {
+  if (!animated) {
+    return null
+  }
+  return `
+  transform: ${
+    !isOpen
+      ? `
+      translateY(-12px);
+      z-index: -1;
     `
-      animation: grow 0.3s linear;
-      max-height: ${window.innerHeight / 2}px;
-      @keyframes grow {
-      from {
-        max-height: 0;
-      }
-      to {
-        max-height: ${window.innerHeight / 2}px;
-      }
-    }
-  `}
+      : `translateY(0);
+        z-index: 2;`
+  };
+  transition: transform 0.3s ease;
+  `
+}
+const List = styled(Flex)`
+  background-color: ${themeGet('colors.white')};
+  border: ${({ isOpen }) => themeGet(`borders.${isOpen ? 1 : 0}`)}
+    ${themeGet('colors.azure-white')};
+  border-block-start: none;
+  border-bottom-left-radius: ${themeGet('radii.2', 2)}px;
+  border-bottom-right-radius: ${themeGet('radii.2', 2)}px;
+  flex-direction: column;
+  list-style-type: none;
+  position: absolute;
+  top: 100%;
+  z-index: 1;
+  ${calcSize}
+  ${animateDrop}
 `
-
-const Body = styled(Box)`
-  border: solid 1px
-    ${props =>
-      props.error ? themeGet('colors.error') : themeGet('colors.azure-white')};
+export const DropdownItem = styled(Flex)`
+  align-items: center;
+  height: 36px;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+`
+const SelectedItem = styled(DropdownItem)`
+  background-color: ${themeGet('colors.white', '#fff')};
+  border: ${themeGet('borders.1')}
+    ${({ error }) => themeGet(`colors.${error ? 'error' : 'azure-white'}`)};
   border-top-left-radius: ${themeGet('radii.2', 2)}px;
   border-top-right-radius: ${themeGet('radii.2', 2)}px;
-  background-color: ${themeGet('colors.white')};
-  display: flex;
-  flex-direction: column;
-  &:hover {
-    border: 1px solid ${themeGet('colors.gunmetal', '#243143')};
-  }
+  z-index: 3;
 `
-const DropdownLabel = styled(Typography)`
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  font-family: ${themeGet('fonts.primary')};
-  ${fontFamily}
-  ${props => props.cssLabel};
+const rotate = css`
+  ${({ isOpen }) =>
+    `transition: transform 0.25s ease;
+      transform: rotate(${!isOpen ? '0deg' : '180deg'})`}
 `
-
-const SelectedOption = styled(Touchable)`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  font-size: ${themeGet('fontSizes.1')};
-  justify-content: space-between;
-  width: 100%;
-  padding: ${themeGet('space.2', 8)}px;
-  text-align: left;
-  ${fontFamily}
-  ${fontSize}
-`
-
-const ListWrapper = styled(Flex)`
-  ${animated}
-  background-color: ${themeGet('colors.white')};
-  border: solid 1px ${themeGet('colors.azure-white')};
-  border-block-start: none;
-  border-bottom-left-radius: ${themeGet('radii.5', 4)}px;
-  border-bottom-right-radius: ${themeGet('radii.5', 4)}px;
-  top: 100%;
-  
-  & > button:nth-child(n + 1) {
-    border-block-start: 1px solid ${themeGet('colors.light-gray')};
-  }
-  & > button:first-of-type {
-    border-block-start: none;
-  }
-`
-const Option = styled(SelectedOption)`
-  width: 100%;
-  &:hover {
-    background-color: ${themeGet('colors.white-smoke')};
-  }
+const DropdownChevron = styled(Icon)`
+  ${rotate}
 `
 
 Dropdown.propTypes = {
   animated: PropTypes.bool,
-  cssLabel: PropTypes.string,
+  autoFocus: PropTypes.bool,
+  children: PropTypes.arrayOf(PropTypes.element),
+  disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   label: PropTypes.string,
-  onChangeOption: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  multiple: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  selectedOption: PropTypes.string
+  size: PropTypes.number,
+  value: PropTypes.string.isRequired
 }
-
 Dropdown.defaultProps = {
   animated: false,
-  placeholder: 'Choose one option'
+  autoFocus: false,
+  children: [],
+  disabled: false,
+  multiple: false,
+  onChange: () => console.warn('* Dropdown expects an onChange function'),
+  placeholder: 'Select an option...',
+  required: false,
+  size: 5,
+  value: ''
 }
 Dropdown.displayName = 'Dropdown'
 

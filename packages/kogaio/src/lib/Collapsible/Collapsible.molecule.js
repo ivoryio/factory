@@ -32,7 +32,7 @@ const Collapsible = ({
         underlayColor={underlayColor}
         width={1}>
         {trigger || (
-          <Flex justifyContent="space-between" alignItems="center" width={1}>
+          <Flex alignItems="center" justifyContent="space-between" width={1}>
             <Typography color={color} fontSize={fontSize}>
               {title}
             </Typography>
@@ -54,7 +54,7 @@ const Collapsible = ({
 
 const rotate = css`
   ${({ isOpen }) =>
-    `transition: transform 0.25s ease-in; transform: rotate(${
+    `transition: transform 0.25s ease; transform: rotate(${
       !isOpen ? '0deg' : '180deg'
     })`}
 `
@@ -89,7 +89,6 @@ Collapsible.defaultProps = {
   color: 'pastel-blue',
   icon: {
     name: 'arrow_drop_down_circle',
-    color: 'pastel-blue',
     size: 4
   },
   isExpanded: false,
