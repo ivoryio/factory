@@ -47,7 +47,9 @@ Seek the comments below for recommendations.
       boxShadow,
       backgroundColor
     },
-    'modal-background',
+    'modal': {
+      'background-color'
+    },
     'button-outline-alt': {
       color,
       border,

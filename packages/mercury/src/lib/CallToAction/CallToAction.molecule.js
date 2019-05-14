@@ -82,10 +82,13 @@ const Container = styled(Flex)`
 
 CallToAction.propTypes = {
   background: PropTypes.string,
-  /** button: { colors: String, onClick: func, title: String, variant: String } */
-  button: PropTypes.object,
+  button: PropTypes.shape({
+    colors: PropTypes.string,
+    onClick: PropTypes.func.isRequired,
+    title: PropTypes.string,
+    variant: PropTypes.string
+  }),
   children: PropTypes.node,
-  colors: PropTypes.string,
   subtitle: PropTypes.string,
   theme: PropTypes.object,
   Title: PropTypes.oneOfType([PropTypes.element, PropTypes.func])

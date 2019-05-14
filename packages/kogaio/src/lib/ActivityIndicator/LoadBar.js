@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import Box from '../Responsive/Box'
 
 const LoadBar = ({ colors, ...props }) => (
-  <Box bg='pastel-blue' height='4px' position='relative' width={1} {...props}>
+  <Box bg="pastel-blue" height="4px" position="relative" width={1} {...props}>
     {colors.map(color => (
-      <Bar bg={color} key={color} />
+      <Bar bg={color} colourList={colors} key={color} />
     ))}
   </Box>
 )
@@ -28,6 +28,14 @@ const loading = keyframes`
   }
 `
 
+const loopColours = () => ({ colourList }) =>
+  colourList.map(
+    (color, ix) => css`
+      &:nth-child(n + ${ix + 1}) {
+        animation: ${loading} ${colourList.length}s linear ${ix}s infinite;
+      }
+    `
+  )
 const Bar = styled(Box)`
   content: '';
   display: inline;
@@ -37,16 +45,7 @@ const Bar = styled(Box)`
   text-align: center;
   width: 0;
 
-  &:nth-child(n + 1) {
-    animation: ${loading} 3s linear infinite;
-  }
-  &:nth-child(n + 2) {
-    animation: ${loading} 3s linear 1s infinite;
-  }
-  &:nth-child(n + 3) {
-    animation: ${loading} 3s linear 2s infinite;
-  }
-}
+  ${loopColours}
 `
 
 LoadBar.propTypes = {
