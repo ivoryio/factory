@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/display-name */
+import React, { useState, useEffect, useRef } from 'react'
 /**
  * Simple object check.
  * @param item
@@ -127,3 +130,29 @@ export const isOutOfViewport = componentId => {
 
 export const ConditionalWrap = ({ condition, wrap, children }) =>
   condition ? wrap(children) : children
+
+function usePrevious (value) {
+  const ref = useRef()
+  useEffect(() => {
+    ref.current = value
+  }, [value])
+  return ref.current
+}
+export function delayUnmounting (Component) {
+  return ({ isMounted, delayTime, ...props }) => {
+    const [shouldRender, setShouldRender] = useState(isMounted)
+    const prevProps = usePrevious({ isMounted, delayTime })
+    useEffect(() => {
+      if (prevProps) {
+        const { isMounted: wasMounted } = prevProps
+        if (wasMounted && !isMounted) {
+          setTimeout(() => setShouldRender(false), delayTime)
+        } else if (!wasMounted && isMounted) {
+          setShouldRender(true)
+        }
+      }
+    }, [delayTime, isMounted, prevProps])
+
+    return shouldRender ? <Component {...props} /> : null
+  }
+}

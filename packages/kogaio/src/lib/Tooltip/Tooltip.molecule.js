@@ -229,7 +229,11 @@ Tooltip.propTypes = {
   ...width.propTypes,
   ...zIndex.propTypes,
   /** describes tooltip arrow orientation, alignment and size */
-  arrow: PropTypes.object.isRequired,
+  arrow: PropTypes.shape({
+    alignment: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
+    direction: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
+    size: PropTypes.number
+  }).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,

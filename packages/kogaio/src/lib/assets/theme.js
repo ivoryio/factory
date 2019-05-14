@@ -48,7 +48,9 @@ export const defaultTheme = new (function () {
       boxShadow: this.shadows['menu-list'],
       backgroundColor: this.colors.white
     },
-    'modal-background': `${hexToRgbA(this.colors.gunmetal, 0.25)}`,
+    modal: {
+      'background-color': `${hexToRgbA(this.colors.gunmetal, 0.25)}`
+    },
     'button-outline-alt': {
       '& div:first-child': {
         color: this.colors.gunmetal

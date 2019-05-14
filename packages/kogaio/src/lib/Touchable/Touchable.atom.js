@@ -188,7 +188,7 @@ Touchable.propTypes = {
 }
 
 Touchable.defaultProps = {
-  activeOpacity: 0.7,
+  activeOpacity: 0.75,
   disabled: false,
   effect: 'no-feedback',
   type: 'button'

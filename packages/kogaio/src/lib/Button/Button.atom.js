@@ -191,6 +191,10 @@ Button.propTypes = {
   color: PropTypes.string,
   dataTest: PropTypes.string,
   disabled: PropTypes.bool,
+  icon: PropTypes.shape({
+    name: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  }),
   isLoading: PropTypes.bool,
   Loading: PropTypes.oneOfType([PropTypes.func, PropTypes.element]),
   onClick: PropTypes.func,
