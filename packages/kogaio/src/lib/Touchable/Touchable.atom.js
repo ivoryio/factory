@@ -49,7 +49,7 @@ const Touchable = ({
 
   const _handleMouseDown = ev => {
     setIsHoldingClick(true)
-    typeof onMouseUp === 'function' && onMouseDown(ev)
+    typeof onMouseDown === 'function' && onMouseDown(ev)
   }
   const _handleMouseUp = ev => {
     setIsHoldingClick(false)
