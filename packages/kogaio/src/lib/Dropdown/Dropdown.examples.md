@@ -2,7 +2,6 @@
 
 ```js
 import { useState } from 'react'
-import { Option } from '@ivoryio/kogaio/Dropdown'
 const DropdownSingle = () => {
   const options = [
     {
@@ -42,9 +41,9 @@ const DropdownSingle = () => {
       value={selectedOption}
       width={{ xs: 1 / 2, md: 1 / 3 }}>
       {options.map(option => (
-        <Option key={option.id} value={option.label}>
+        <Dropdown.Option key={option.id} value={option.label}>
           {option.label}
-        </Option>
+        </Dropdown.Option>
       ))}
     </Dropdown>
   )

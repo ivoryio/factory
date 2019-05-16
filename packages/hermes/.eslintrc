@@ -1,29 +1,11 @@
 {
-  "parser": "babel-eslint",
   "extends": [
     "react-app",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
-  "settings": {
-    "react": {
-      "createClass": "createReactClass",
-      "pragma": "React",
-      "version": "detect",
-      "flowVersion": "0.53"
-    },
-    "propWrapperFunctions": [
-      "forbidExtraProps",
-      {
-        "property": "freeze",
-        "object": "Object"
-      },
-      {
-        "property": "myFavoriteWrapper"
-      }
-    ]
-  },
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 9,
     "sourceType": "module",
@@ -40,11 +22,7 @@
       "experimentalObjectRestSpread": true
     }
   },
-  "plugins": [
-    "react",
-    "babel",
-    "jsx-a11y"
-  ],
+  "plugins": ["react", "babel", "jsx-a11y"],
   "env": {
     "es6": true,
     "node": true,
@@ -54,71 +32,48 @@
     "document": false
   },
   "rules": {
-    "strict": [
-      "error",
-      "global"
-    ],
+    "arrow-body-style": ["error", "as-needed"],
     "arrow-spacing": "warn",
-    "arrow-body-style": [
-      "error",
-      "as-needed"
-    ],
-    "new-cap": "off",
-    "semi": [
-      "error",
-      "never"
-    ],
-    "space-before-function-paren": "error",
-    "eqeqeq": "warn",
     "block-scoped-var": "error",
-    "no-return-await": "error",
-    "no-unused-expressions": ["error",
-      {
-        "allowShortCircuit": true,
-        "allowTernary": true
-      }
-    ],
-    "no-unused-vars": "error",
-    "no-console": ["error",
-      {
-        "allow": [
-          "info",
-          "warn",
-          "error"
-        ]
-      }
-    ],
-    "no-extra-boolean-cast": "error",
-    "no-dupe-keys": "error",
+    "new-cap": "off",
+    "eqeqeq": "warn",
+    "jsx-a11y/no-autofocus": 0,
+    "no-console": ["error", { "allow": ["info", "warn", "error"] }],
     "no-dupe-args": "error",
+    "no-dupe-keys": "error",
+    "no-duplicate-case": "error",
+    "no-extra-boolean-cast": "error",
     "no-extra-bind": "error",
     "no-extra-semi": "warn",
-    "no-unreachable": "error",
-    "no-duplicate-case": "error",
     "no-invalid-regexp": "error",
-    "prefer-template": "warn",
-    "react/no-deprecated": 2,
-    "react/no-did-mount-set-state": 2,
-    "react/no-redundant-should-component-update": 2,
-    "react/no-did-update-set-state": 2,
-    "react/no-this-in-sfc": 2,
-    "react/no-typos": 2,
-    "react/no-unused-state": 2,
-    "react/no-unused-prop-types": 1,
-    "react/no-unknown-property" : 1,
-    "react/require-render-return": 2,
-    "react/prefer-es6-class": [
+    "no-return-await": "error",
+    "no-unused-expressions": [
       "error",
-      "always"
+      { "allowShortCircuit": true, "allowTernary": true }
     ],
-    "react/no-array-index-key": 1,
-    "react/no-access-state-in-setstate": 2,
+    "no-unreachable": "error",
+    "no-unused-vars": "error",
+    "prefer-template": "warn",
+    "react/forbid-foreign-prop-types": 0,
     "react/jsx-uses-vars": "error",
     "react/jsx-uses-react": "error",
     "react/jsx-no-duplicate-props": "error",
-    "react/no-direct-mutation-state": [
-      "error",
-      "always"
-    ]
+    "react/no-access-state-in-setstate": 2,
+    "react/no-array-index-key": 1,
+    "react/no-deprecated": 2,
+    "react/no-did-mount-set-state": 2,
+    "react/no-did-update-set-state": 2,
+    "react/no-direct-mutation-state": ["error", "always"],
+    "react/no-redundant-should-component-update": 2,
+    "react/no-this-in-sfc": 2,
+    "react/no-typos": 2,
+    "react/no-unknown-property": 1,
+    "react/no-unused-prop-types": 1,
+    "react/no-unused-state": 2,
+    "react/prefer-es6-class": ["error", "always"],
+    "react/require-render-return": 2,
+    "semi": ["error", "never"],
+    "space-before-function-paren": "error",
+    "strict": ["error", "global"]
   }
 }

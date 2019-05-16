@@ -55,6 +55,7 @@ const inputStyle = variant({
 
 const Input = ({
   autoComplete,
+  autoFocus,
   className,
   dataTestId,
   disabled,
@@ -66,6 +67,7 @@ const Input = ({
   label,
   name,
   onChange,
+  passwordView,
   placeholder,
   placeholderTextColor,
   ref,
@@ -87,11 +89,17 @@ const Input = ({
     if (error) {
       return 'error'
     }
+    if (valid) {
+      return 'valid'
+    }
     return variant
   })()
 
-  const togglePassword = () => {
-    inputRef.current.focus()
+  const togglePassword = ev => {
+    ev.preventDefault()
+    if (document.activeElement !== inputRef.current) {
+      inputRef.current.focus()
+    }
     if (inputType.includes('password')) {
       return setInputType('text')
     }
@@ -113,6 +121,7 @@ const Input = ({
       <Row>
         <StyledInput
           autoComplete={autoComplete}
+          autoFocus={autoFocus}
           borderRadius={borderRadius}
           className={className}
           data-testid={dataTestId}
@@ -134,9 +143,11 @@ const Input = ({
         />
         {type === 'password' && value ? (
           <PasswordToggler
+            actionType={passwordView}
             error={error}
-            resetInputType={resetInputType}
-            togglePassword={togglePassword}
+            inputType={inputType}
+            onDragAttempt={resetInputType}
+            toggle={togglePassword}
           />
         ) : null}
       </Row>
@@ -241,11 +252,13 @@ Input.propTypes = {
   ...textStyle.propTypes,
   ...width.propTypes,
   autoComplete: PropTypes.string,
+  autoFocus: PropTypes.bool,
   dataTestId: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  passwordView: PropTypes.oneOf(['peek', 'toggle']),
   required: PropTypes.bool,
   type: PropTypes.string.isRequired,
   valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -258,7 +271,9 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
+  autoFocus: false,
   minHeight: 36,
+  passwordView: 'peek',
   placeholder: 'Search...',
   type: 'text',
   value: '',
