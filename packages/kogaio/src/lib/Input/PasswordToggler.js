@@ -1,30 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Icon from '../Icon'
-import Touchable from '../Touchable'
+import IconButton from '../IconButton'
 
-export const PasswordToggler = ({ togglePassword, resetInputType, error }) => (
-  <Touchable
-    display='flex'
-    handleDragAttempt={resetInputType}
-    onMouseDown={togglePassword}
-    onMouseUp={togglePassword}
-    onTouchStart={togglePassword}
-    onTouchEnd={togglePassword}
-    position='absolute'
+export const PasswordToggler = ({
+  actionType,
+  error,
+  inputType,
+  toggle,
+  ...props
+}) => (
+  <IconButton
+    color={error ? 'error' : 'light-gray'}
+    effect="no-feedback"
+    fontSize={3}
+    onMouseDown={toggle}
+    onMouseUp={actionType.includes('peek') ? toggle : null}
+    onTouchStart={toggle}
+    onTouchEnd={actionType.includes('peek') ? toggle : null}
+    name={inputType.includes('password') ? 'visibility_off' : 'visibility'}
+    position="absolute"
     right={8}
-  >
-    <Icon
-      color={error ? 'error' : 'light-gray'}
-      fontSize='1.25em'
-      name='visibility'
-    />
-  </Touchable>
+    {...props}
+  />
 )
 
+const passwordViewTypes = ['peek', 'toggle']
 PasswordToggler.propTypes = {
-  togglePassword: PropTypes.func.isRequired,
-  resetInputType: PropTypes.func.isRequired,
+  actionType: PropTypes.oneOf(passwordViewTypes),
+  toggle: PropTypes.func.isRequired,
+  inputType: PropTypes.string,
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
 }

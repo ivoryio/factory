@@ -126,7 +126,7 @@ const Dropdown = ({
             </Typography>
             <DropdownChevron
               color="independence"
-              fontSize="1.5em"
+              fontSize={4}
               isOpen={isListOpen}
               name="arrow_drop_down"
             />

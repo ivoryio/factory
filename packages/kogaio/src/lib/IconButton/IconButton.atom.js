@@ -11,9 +11,15 @@ const IconButton = ({
   display,
   justifyContent,
   effect,
+  height,
   name,
   fontSize,
   onClick,
+  onDragAttempt,
+  onMouseDown,
+  onMouseUp,
+  onTouchStart,
+  onTouchEnd,
   width,
   ...rest
 }) => (
@@ -21,8 +27,14 @@ const IconButton = ({
     alignItems={alignItems}
     display={display}
     effect={effect}
+    height={height}
     justifyContent={justifyContent}
     onClick={onClick}
+    onDragAttempt={onDragAttempt}
+    onMouseDown={onMouseDown}
+    onMouseUp={onMouseUp}
+    onTouchStart={onTouchStart}
+    onTouchEnd={onTouchEnd}
     width={width}>
     <Icon color={color} name={name} fontSize={fontSize} {...rest} />
   </Touchable>
@@ -33,10 +45,16 @@ IconButton.propTypes = {
   color: PropTypes.string,
   display: PropTypes.string,
   effect: PropTypes.oneOf(effects),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   justifyContent: PropTypes.string,
   fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  onDragAttempt: PropTypes.func,
+  onMouseDown: PropTypes.func,
+  onMouseUp: PropTypes.func,
+  onTouchStart: PropTypes.func,
+  onTouchEnd: PropTypes.func,
   width: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -49,7 +67,7 @@ IconButton.defaultProps = {
   color: 'white',
   display: 'flex',
   justifyContent: 'center',
-  effect: 'opacity',
+  // effect: 'opacity',
   icSize: '1em'
 }
 IconButton.displayName = 'IconButton'
