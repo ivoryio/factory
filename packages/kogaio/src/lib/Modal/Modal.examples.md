@@ -1,5 +1,3 @@
-#### Simple modal
-
 ```js
 import { useState } from 'react'
 import Button from '@ivoryio/kogaio/Button'

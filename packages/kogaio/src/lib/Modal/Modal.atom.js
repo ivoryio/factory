@@ -4,7 +4,7 @@ import styled, { css, keyframes } from 'styled-components'
 import ReactDOM from 'react-dom'
 
 import { Flex } from '../Responsive'
-
+import { randomiser } from '../utils'
 const Modal = ({
   children,
   colors,
@@ -14,13 +14,28 @@ const Modal = ({
   ...rest
 }) => {
   const [modalRoot] = useState(document.createElement('div'))
+
   useEffect(() => {
-    document.body.appendChild(modalRoot).setAttribute('id', 'modal-root')
+    const existingRoot = document.getElementById('modal-root')
+    if (document.body.contains(existingRoot)) {
+      existingRoot
+        .appendChild(modalRoot)
+        .setAttribute('id', `modal-${randomiser}`)
+    } else {
+      const rootEl = document.createElement('div')
+      document.body.appendChild(rootEl).setAttribute('id', 'modal-root')
+      document
+        .getElementById('modal-root')
+        .appendChild(modalRoot)
+        .setAttribute('id', `modal-${randomiser}`)
+    }
     return () => document.body.removeChild(modalRoot)
   }, [modalRoot])
+
   useEffect(() => {
     document.addEventListener('click', _handleBackdropClick)
     return () => document.removeEventListener('click', _handleBackdropClick)
+
     function _handleBackdropClick (ev) {
       if (!handleBackdropClick) {
         return ev.preventDefault()

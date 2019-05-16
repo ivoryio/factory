@@ -101,6 +101,7 @@ const Label = styled.label`
   
   font-size: ${themeGet('fontSizes.1', '1rem')};
   user-select: none;
+  pointer-events: auto;
   -ms-user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -190,9 +191,7 @@ Checkbox.defaultProps = {
   isChecked: false,
   label: 'Checkbox',
   onChange: () =>
-    console.error(
-      '* Heads up! You forgot to add an onChange function to <Checkbox />'
-    ),
+    console.error('* Checkbox component expects an onChange function'),
   size: 16
 }
 

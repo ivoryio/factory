@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
+import { usePrevious } from './hooks'
 /**
  * Simple object check.
  * @param item
@@ -9,6 +10,10 @@ import React, { useState, useEffect, useRef } from 'react'
 function isObject (item) {
   return item && typeof item === 'object' && !Array.isArray(item)
 }
+
+export const randomiser = Math.random()
+  .toString(36)
+  .substring(7)
 
 /**
  * Deep merge two objects.
@@ -131,13 +136,6 @@ export const isOutOfViewport = componentId => {
 export const ConditionalWrap = ({ condition, wrap, children }) =>
   condition ? wrap(children) : children
 
-function usePrevious (value) {
-  const ref = useRef()
-  useEffect(() => {
-    ref.current = value
-  }, [value])
-  return ref.current
-}
 export function delayUnmounting (Component) {
   return ({ isMounted, delayTime, ...props }) => {
     const [shouldRender, setShouldRender] = useState(isMounted)
@@ -155,4 +153,9 @@ export function delayUnmounting (Component) {
 
     return shouldRender ? <Component {...props} /> : null
   }
+}
+
+export function isMobileDevice () {
+  const hasOrientation = typeof window.orientation !== 'undefined'
+  return hasOrientation || navigator.userAgent.indexOf('IEMobile') !== -1
 }

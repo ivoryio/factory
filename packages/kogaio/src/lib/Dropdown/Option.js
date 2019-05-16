@@ -4,10 +4,9 @@ import { themeGet } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import Touchable from '../Touchable'
-import { Space } from '../Responsive'
+import { Flex, Space } from '../Responsive'
 import Typography from '../Typography'
-import { ConditionalWrap } from '../utils'
-import { DropdownItem } from './Dropdown.atom'
+import { ConditionalWrap, isMobileDevice } from '../utils'
 
 const Option = ({
   children,
@@ -24,8 +23,11 @@ const Option = ({
   if (!shouldShow) {
     return null
   }
+  const isMobile = isMobileDevice()
   return (
-    <Touchable onClick={selectOption(value)}>
+    <Touchable
+      onMouseUp={!isMobile ? selectOption(value) : null}
+      onTouchEnd={isMobile ? selectOption(value) : null}>
       <Space m={0} px={2}>
         <ListItem
           as="li"
@@ -55,7 +57,15 @@ const Option = ({
   )
 }
 
-export const ListItem = styled(DropdownItem)`
+export const DropdownItem = styled(Flex)`
+  align-items: center;
+  height: 36px;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+`
+
+const ListItem = styled(DropdownItem)`
   background-color: ${({ isSelected, selectedColor }) =>
     isSelected && themeGet(`colors.${selectedColor}`, selectedColor)};
   &:hover {
