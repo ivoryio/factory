@@ -38,25 +38,25 @@ const Touchable = ({
   onMouseUp,
   onTouchStart,
   onTouchEnd,
-  handleDragAttempt,
+  onDragAttempt: handleDragAttempt,
   underlayColor,
   type,
   ...rest
 }) => {
-  const { value: isHoldingClick, setValue: setIsHoldingClick } = useBoolean(
+  const { value: isBeingPressed, setValue: setIsBeingPressed } = useBoolean(
     false
   )
 
   const _handleMouseDown = ev => {
-    setIsHoldingClick(true)
+    setIsBeingPressed(true)
     typeof onMouseDown === 'function' && onMouseDown(ev)
   }
   const _handleMouseUp = ev => {
-    setIsHoldingClick(false)
+    setIsBeingPressed(false)
     typeof onMouseUp === 'function' && onMouseUp(ev)
   }
   const _handleMouseLeave = () => {
-    if (isHoldingClick && typeof handleDragAttempt === 'function') {
+    if (isBeingPressed && typeof handleDragAttempt === 'function') {
       return handleDragAttempt()
     }
   }
@@ -79,8 +79,13 @@ const Touchable = ({
   )
 }
 
-const touchableWithEffect = css`
-  ${({ effect, activeOpacity, underlayColor, ...rest }) => {
+const touchableWithEffect = ({
+  effect,
+  activeOpacity,
+  underlayColor,
+  ...rest
+}) => css`
+  ${() => {
     switch (effect) {
       case 'opacity':
         return `
@@ -96,7 +101,6 @@ const touchableWithEffect = css`
             color: ${themeGet('colors.white')(rest)}
           }
           :active {
-            opacity: ${activeOpacity};
             color: ${themeGet('colors.pale-white')(rest)};
             background-color: ${themeGet(`colors.${underlayColor}`)(rest)};
           }

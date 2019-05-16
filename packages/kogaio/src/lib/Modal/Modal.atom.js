@@ -27,10 +27,17 @@ const Modal = ({
       document
         .getElementById('modal-root')
         .appendChild(modalRoot)
-        .setAttribute('id', `modal-${randomiser}`)
+        .setAttribute('id', `modal-${id || randomiser}`)
     }
-    return () => document.body.removeChild(modalRoot)
-  }, [modalRoot])
+    return () => {
+      const rootEl = document.getElementById('modal-root')
+      if (rootEl.childNodes.length > 1) {
+        const targetChild = document.getElementById(`modal-${id || randomiser}`)
+        return document.getElementById('modal-root').removeChild(targetChild)
+      }
+      document.body.removeChild(rootEl)
+    }
+  }, [id, modalRoot])
 
   useEffect(() => {
     document.addEventListener('click', _handleBackdropClick)
