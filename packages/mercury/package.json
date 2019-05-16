@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
-    "@ivoryio/kogaio": "^0.5.0",
+    "@ivoryio/kogaio": "^0.5.3",
     "react": "^16.8.6",
     "react-docgen-external-proptypes-handler": "^1.0.2",
     "react-dom": "^16.8.6",
