@@ -56,8 +56,14 @@ const Modal = ({
   }, [handleBackdropClick, visible])
 
   return ReactDOM.createPortal(
-    <Overlay id={id} colors={colors} visible={visible} {...rest}>
-      <Flex height="fit-content" id="modal-body" width="fit-content">
+    <Overlay id={id} colors={colors} visible={visible}>
+      <Flex
+        alignItems="center"
+        id="modal-body"
+        justifyContent="center"
+        height="100%"
+        width={1}
+        {...rest}>
         {children}
       </Flex>
     </Overlay>,

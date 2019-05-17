@@ -11,11 +11,7 @@ const ModalExample = () => {
   return (
     <>
       <Button title='Show modal' onClick={toggleModal} variant='outline' />
-      <Modal
-        alignItems='center'
-        onBackdropClick={hideModal}
-        justifyContent='center'
-        visible={isModalShown}>
+      <Modal onBackdropClick={hideModal} visible={isModalShown}>
         <Space px={4} py={6}>
           <Box bg='white' textAlign='center'>
             <Typography variant='h4'>
@@ -25,7 +21,7 @@ const ModalExample = () => {
               </Typography>
             </Typography>
             <Flex alignItems='center' justifyContent='center'>
-              <Space mt={2} mx={1}>
+              <Space mt={3} mx={1}>
                 <Button
                   onClick={hideModal}
                   title='No, close'
