@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "author": "Ivory™",
   "description": "Component library",
   "main": "build/index.js",

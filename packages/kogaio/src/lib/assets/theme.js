@@ -135,13 +135,7 @@ export function themeFactory (customTheme) {
   // #endregion
 
   // #region custom theme
-  const updatedTheme = Object.assign(
-    {},
-    initialTheme,
-    ...Object.keys(customTheme).map(style => ({
-      [style]: mergeDeep(initialTheme[style], customTheme[style])
-    }))
-  )
+  const updatedTheme = mergeDeep(initialTheme, customTheme)
   return updatedTheme
   // #endregion
 
