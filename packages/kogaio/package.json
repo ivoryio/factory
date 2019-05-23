@@ -34,7 +34,7 @@
     "react-docgen-external-proptypes-handler": "^1.0.2",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1",
-    "react-styleguidist": "^9.1.0"
+    "react-styleguidist": "^9.1.2"
   },
   "dependencies": {
     "styled-components": "4.2.0",

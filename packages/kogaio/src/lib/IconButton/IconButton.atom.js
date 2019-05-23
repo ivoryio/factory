@@ -67,7 +67,7 @@ IconButton.defaultProps = {
   color: 'white',
   display: 'flex',
   justifyContent: 'center',
-  // effect: 'opacity',
+  effect: 'opacity',
   icSize: '1em'
 }
 IconButton.displayName = 'IconButton'
