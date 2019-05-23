@@ -12,7 +12,6 @@ export const PasswordToggler = ({
 }) => (
   <IconButton
     color={error ? 'error' : 'light-gray'}
-    effect="no-feedback"
     fontSize={3}
     onMouseDown={toggle}
     onMouseUp={actionType.includes('peek') ? toggle : null}

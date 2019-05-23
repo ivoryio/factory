@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "experimentalDecorators": true,
+    "paths": {
+      "@ivoryio/mercury": ["./lib"],
+      "@ivoryio/mercury/*": ["/lib/*"]
+    }
+  }
+}
