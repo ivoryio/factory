@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import Icon from '../Icon'
-import { Box, Flex } from '../Responsive'
-import Touchable from '../Touchable'
-import Typography from '../Typography'
-
 import { useBoolean } from '../utils'
 import { effects } from '../Touchable/Touchable.atom'
+
+import Icon from '../Icon'
+import Touchable from '../Touchable'
+import Typography from '../Typography'
+import { Box, Flex } from '../Responsive'
 
 const Collapsible = ({
   animationDuration,
@@ -23,7 +23,7 @@ const Collapsible = ({
   underlayColor,
   ...rest
 }) => {
-  const { value: isOpen, toggleValue: toggleContainer } = useBoolean(isExpanded)
+  const [isOpen, _, toggleContainer] = useBoolean(isExpanded) // eslint-disable-line no-unused-vars
   return (
     <Box bg="transparent" {...rest}>
       <Touchable
@@ -78,7 +78,6 @@ Collapsible.propTypes = {
   icon: PropTypes.object,
   isExpanded: PropTypes.bool,
   title: PropTypes.string,
-  /** custom triggering component. can be anything */
   trigger: PropTypes.node,
   triggerEffect: PropTypes.oneOf(effects),
   underlayColor: PropTypes.string

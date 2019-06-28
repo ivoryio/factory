@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { themeGet } from 'styled-system'
 import styled, { keyframes } from 'styled-components'
 
+import { themeGet } from '../utils'
 import Box from '../Responsive/Box'
 
 const RunningBar = ({ colors: { background, primary }, ...props }) => (
   <Bar
     bg={background}
-    height='4px'
-    overflow='hidden'
-    position='relative'
+    height="4px"
+    overflow="hidden"
+    position="relative"
     primary={primary}
     width={1}
     {...props}
@@ -39,7 +39,6 @@ const loading = keyframes`
   }
 `
 
-const barColour = () => ({ primary }) => themeGet(`colors.${primary}`, primary)
 const Bar = styled(Box)`
   :before {
     display: block;
@@ -48,7 +47,8 @@ const Bar = styled(Box)`
     left: -200px;
     width: 200px;
     height: 100%;
-    background-color: ${barColour};
+    background-color: ${({ primary }) =>
+      themeGet(`colors.${primary}`, primary)};
     animation: ${loading} 2s linear infinite;
   }
 `

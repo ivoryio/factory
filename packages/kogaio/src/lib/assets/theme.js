@@ -1,5 +1,5 @@
 import { buttonFn, cardFn, inputFn, typographyFn, tooltipFn } from './variants'
-import { mergeDeep, hexToRgbA, isObjectEmpty } from '../utils/helpers'
+import { mergeDeep, hexToRgbA, isObjectEmpty } from './helpers'
 
 export const defaultTheme = new (function () {
   this.borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
@@ -52,21 +52,17 @@ export const defaultTheme = new (function () {
       'background-color': `${hexToRgbA(this.colors.gunmetal, 0.25)}`
     },
     'button-outline-alt': {
-      '& div:first-child': {
-        color: this.colors.gunmetal
-      },
-      border: `1px solid ${this.colors.gunmetal}`,
+      color: this.colors.gunmetal,
+      border: `${this.borders[1]} ${this.colors.gunmetal}`,
       '&:hover': {
-        border: `1px solid ${this.colors.gunmetal}`
+        border: `${this.borders[1]} ${this.colors.gunmetal}`
       }
     },
     'button-outline-dark': {
-      '& div:first-child': {
-        color: this.colors.white
-      },
-      border: `1px solid ${this.colors.alert}`,
+      color: this.colors.white,
+      border: `${this.borders[1]} ${this.colors.alert}`,
       '&:hover': {
-        border: `1px solid ${this.colors.alert}`
+        border: `${this.borders[1]} ${this.colors.alert}`
       }
     },
     overlay: {
@@ -85,17 +81,8 @@ export const defaultTheme = new (function () {
     complementary:
       '"Open Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif'
   }
-  this.fontSizes = [
-    '0.75rem',
-    '0.875rem',
-    '1rem',
-    '1.25rem',
-    '1.5rem',
-    '2rem',
-    '3rem',
-    '4rem'
-  ]
-  this.fontWeights = ['lighter', 'regular', 'bold']
+  this.fontSizes = ['0.75rem', '0.875rem', '1rem', '1.25rem', '1.5rem', '2rem']
+  this.fontWeights = { lighter: 300, regular: 400, bold: 700 }
   this.letterSpacings = {
     normal: 'normal',
     tracked: '0.1rem',
@@ -105,12 +92,12 @@ export const defaultTheme = new (function () {
   this.lineHeights = {
     solid: 1,
     title: 1.25,
-    copy: 1.5,
+    paragraph: 1.5,
     tooltip: 1.6,
     button: 2,
-    input: 2
+    input: 2,
+    list: 2.5
   }
-  this.gutter = 4
   this.radii = {
     none: 0,
     '1': 1,
@@ -121,6 +108,7 @@ export const defaultTheme = new (function () {
     '16': 16,
     round: '50%'
   }
+  this.gutter = 4
   this.space = generateSpaces(this.gutter)
 
   function generateSpaces (gridUnit = 4) {
@@ -129,17 +117,13 @@ export const defaultTheme = new (function () {
 })()
 
 export function themeFactory (customTheme) {
-  // #region initial theme
   const initialTheme = updateComponentVariantsWith(defaultTheme)
   if (!customTheme || isObjectEmpty(customTheme)) return initialTheme
-  // #endregion
 
-  // #region custom theme
   const updatedTheme = mergeDeep(initialTheme, customTheme)
   return updatedTheme
-  // #endregion
 
-  function updateComponentVariantsWith (theme, components) {
+  function updateComponentVariantsWith (theme) {
     const componentStyles = [
       { key: 'buttons', fn: buttonFn },
       { key: 'cards', fn: cardFn },

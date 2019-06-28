@@ -20,6 +20,7 @@ const IconButton = ({
   onMouseUp,
   onTouchStart,
   onTouchEnd,
+  underlayColor,
   width,
   ...rest
 }) => (
@@ -35,6 +36,7 @@ const IconButton = ({
     onMouseUp={onMouseUp}
     onTouchStart={onTouchStart}
     onTouchEnd={onTouchEnd}
+    underlayColor={underlayColor}
     width={width}>
     <Icon color={color} name={name} fontSize={fontSize} {...rest} />
   </Touchable>
@@ -55,6 +57,7 @@ IconButton.propTypes = {
   onMouseUp: PropTypes.func,
   onTouchStart: PropTypes.func,
   onTouchEnd: PropTypes.func,
+  underlayColor: PropTypes.string,
   width: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -67,8 +70,7 @@ IconButton.defaultProps = {
   color: 'white',
   display: 'flex',
   justifyContent: 'center',
-  effect: 'opacity',
-  icSize: '1em'
+  effect: 'opacity'
 }
 IconButton.displayName = 'IconButton'
 

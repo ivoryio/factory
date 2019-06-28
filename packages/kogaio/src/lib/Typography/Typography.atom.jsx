@@ -2,23 +2,20 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   color,
-  fontFamily,
-  fontSize,
-  fontWeight,
-  fontStyle,
-  letterSpacing,
-  lineHeight,
-  opacity,
-  size,
+  compose,
+  layout,
   space,
-  textAlign,
   textStyle,
-  themeGet
+  typography,
+  variant
 } from 'styled-system'
-import { variant } from 'styled-system'
+import propTypes from '@styled-system/prop-types'
+
+import { themeGet } from '../utils'
 
 const typographyStyle = variant({
-  key: 'typography'
+  scale: 'typography',
+  prop: 'variant'
 })
 
 const handleTruncate = () => ({ truncate }) =>
@@ -36,47 +33,25 @@ const Typography = styled.div`
   letter-spacing: normal;
   ${handleTruncate}
 
-  ${color}
-  ${fontFamily}
-  ${fontSize}
-  ${fontWeight}
-  ${fontStyle}
-  ${letterSpacing}
-  ${lineHeight}
-  ${opacity}
-  ${size}
-  ${space}
-  ${textAlign}
-  ${textStyle}
+  ${compose(
+    color,
+    layout,
+    space,
+    textStyle,
+    typography,
+    variant
+  )}
   ${typographyStyle}
 `
 
 Typography.propTypes = {
-  ...textStyle.propTypes,
-  ...color.propTypes,
-  ...fontFamily.propTypes,
-  ...fontSize.propTypes,
-  ...fontWeight.propTypes,
-  ...fontStyle.propTypes,
-  ...letterSpacing.propTypes,
-  ...lineHeight.propTypes,
-  ...opacity.propTypes,
-  ...size.propTypes,
-  ...space.propTypes,
-  ...textAlign.propTypes,
-  as: PropTypes.oneOf([
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'label',
-    'span',
-    'div',
-    'p',
-    'pre'
-  ]),
+  ...propTypes.color,
+  ...propTypes.layout,
+  ...propTypes.space,
+  ...propTypes.textStyle,
+  ...propTypes.typography,
+  ...propTypes.variant,
+  as: PropTypes.string,
   children: PropTypes.node,
   fontFamily: PropTypes.string,
   truncate: PropTypes.bool,

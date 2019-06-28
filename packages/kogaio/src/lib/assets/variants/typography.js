@@ -1,61 +1,67 @@
-export default function (theme) {
-  const { colors, fonts, fontWeights } = theme
+export default function ({
+  colors,
+  fonts,
+  fontSizes,
+  fontWeights,
+  lineHeights,
+  ...theme
+}) {
   return {
     h1: {
-      fontSize: '2rem'
+      fontSize: fontSizes[5]
     },
     h2: {
-      fontSize: '1.5rem'
+      fontSize: fontSizes[4]
     },
     h3: {
-      fontSize: '1.25rem',
+      fontSize: fontSizes[3],
       fontFamily: fonts.complementary
     },
     h4: {
-      fontSize: '1.125rem'
+      fontSize: fontSizes[3]
     },
     h5: {
-      fontSize: '1rem',
+      fontSize: fontSizes[2],
       textTransform: 'uppercase'
     },
     h6: {
-      fontSize: '0.875rem'
+      fontSize: fontSizes[1]
     },
     link: {
       color: colors.brand,
       fontFamily: fonts.complementary,
-      fontSize: '0.875rem',
-      fontWeight: fontWeights[2],
+      fontSize: fontSizes[1],
+      fontWeight: fontWeights.bold,
       textDecoration: 'underline',
-      '&:visited': {
-        fontWeight: fontWeights[1]
+      ':visited': {
+        fontWeight: fontWeights.regular
       }
     },
     inputLabel: {
       fontFamily: fonts.primary,
-      fontSize: '0.875rem',
-      fontWeight: fontWeights[1],
+      fontSize: fontSizes[1],
+      fontWeight: fontWeights.regular,
       lineHeight: 'normal',
       fontStyle: 'normal',
       fontStretch: 'normal'
     },
     paragraph: {
       fontFamily: fonts.primary,
-      fontSize: '0.75rem',
-      lineHeight: 1.5
+      fontSize: fontSizes[0],
+      lineHeight: lineHeights.paragraph
     },
     subtitle: {
       fontFamily: fonts.complementary,
-      fontSize: '1rem'
+      fontSize: fontSizes[2]
     },
     caption: {
       fontFamily: fonts.primary,
-      fontSize: '0.75rem'
+      fontSize: fontSizes[0]
     },
     list: {
       fontFamily: fonts.primary,
-      lineHeight: 2.43,
-      fontSize: '0.875rem'
+      lineHeight: lineHeights.list,
+      fontSize: fontSizes[1]
     }
   }
 }

@@ -3,11 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 export function useBoolean (initialState) {
   const [value, setValue] = useState(initialState)
   const toggleValue = () => setValue(value => !value)
-  return {
-    value,
-    setValue,
-    toggleValue
-  }
+  return [value, setValue, toggleValue]
 }
 
 export function usePrevious (value) {

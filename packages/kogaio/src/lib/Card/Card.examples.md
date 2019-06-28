@@ -51,6 +51,7 @@ const Form = styled.form`
                   autoComplete='current-email'
                   placeholder='Placeholder...'
                   label='Email'
+                  id='current-email'
                   name='email'
                   onChange={() => {}}
                   type='email'
@@ -60,6 +61,7 @@ const Form = styled.form`
                 <Input
                   autoComplete='current-text'
                   label='Your name'
+                  id='current-password'
                   name='full-name'
                   onChange={_changeInputValue}
                   placeholder='Your text goes here...'

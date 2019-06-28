@@ -2,31 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import {
-  alignItems,
-  alignSelf,
-  borderRadius,
-  borders,
+  border,
   color,
-  display,
-  flex,
-  flexDirection,
-  fontSize,
-  height,
-  justifyContent,
-  maxHeight,
-  maxWidth,
-  minHeight,
-  minWidth,
+  compose,
+  flexbox,
+  layout,
   position,
-  right,
-  size,
   space,
-  themeGet,
-  top,
-  width,
-  zIndex
+  typography
 } from 'styled-system'
-import { useBoolean } from '../utils'
+import propTypes from '@styled-system/prop-types'
+
+import { themeGet, useBoolean } from '../utils'
 
 const Touchable = ({
   activeOpacity,
@@ -43,9 +30,7 @@ const Touchable = ({
   type,
   ...rest
 }) => {
-  const { value: isBeingPressed, setValue: setIsBeingPressed } = useBoolean(
-    false
-  )
+  const [isBeingPressed, setIsBeingPressed] = useBoolean(false)
 
   const _handleMouseDown = ev => {
     setIsBeingPressed(true)
@@ -97,12 +82,18 @@ const touchableWithEffect = ({
       case 'highlight':
         return `
           :hover {
-            background-color: ${themeGet(`colors.${underlayColor}`)(rest)};
+            background-color: ${themeGet(
+              `colors.${underlayColor}`,
+              underlayColor
+            )(rest)};
             color: ${themeGet('colors.white')(rest)}
           }
           :active {
             color: ${themeGet('colors.pale-white')(rest)};
-            background-color: ${themeGet(`colors.${underlayColor}`)(rest)};
+            background-color: ${themeGet(
+              `colors.${underlayColor}`,
+              underlayColor
+            )(rest)};
           }
           `
       default:
@@ -128,56 +119,28 @@ const Wrapper = styled.button`
   :active {
     transform: scale(0.985);
   }
-  ${alignItems}
-  ${alignSelf}
-  ${borderRadius}
-  ${borders}
-  ${color}
-  ${display}
-  ${flex}
-  ${flexDirection}
-  ${fontSize}
-  ${height}
-  ${justifyContent}
-  ${maxHeight}
-  ${maxWidth}
-  ${minHeight}
-  ${minWidth}
-  ${position}
-  ${right}
-  ${size}
-  ${space}
-  ${top}
-  ${width}
-  ${zIndex}
+  ${compose(
+    border,
+    color,
+    flexbox,
+    layout,
+    position,
+    space,
+    typography
+  )}
   ${touchableWithEffect}
 `
 
 export const effects = ['opacity', 'highlight', 'no-feedback']
 
 Touchable.propTypes = {
-  ...alignItems.propTypes,
-  ...alignSelf.propTypes,
-  ...borderRadius.propTypes,
-  ...borders.propTypes,
-  ...color.propTypes,
-  ...display.propTypes,
-  ...flex.propTypes,
-  ...flexDirection.propTypes,
-  ...fontSize.propTypes,
-  ...height.propTypes,
-  ...justifyContent.propTypes,
-  ...maxHeight.propTypes,
-  ...maxWidth.propTypes,
-  ...minHeight.propTypes,
-  ...minWidth.propTypes,
-  ...position.propTypes,
-  ...right.propTypes,
-  ...size.propTypes,
-  ...space.propTypes,
-  ...top.propTypes,
-  ...width.propTypes,
-  ...zIndex.propTypes,
+  ...propTypes.border,
+  ...propTypes.color,
+  ...propTypes.flexbox,
+  ...propTypes.layout,
+  ...propTypes.position,
+  ...propTypes.space,
+  ...propTypes.typography,
   as: PropTypes.string,
   children: PropTypes.node,
   disabled: PropTypes.bool,

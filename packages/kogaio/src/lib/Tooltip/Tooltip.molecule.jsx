@@ -2,32 +2,21 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
 import {
-  borders,
-  bottom,
-  boxShadow,
+  border,
   color,
-  height,
-  left,
-  maxHeight,
-  maxWidth,
-  minHeight,
-  minWidth,
-  opacity,
-  overflow,
+  compose,
+  layout,
   position,
-  right,
   space,
-  themeGet,
-  top,
-  width,
-  zIndex
+  variant,
+  shadow
 } from 'styled-system'
-import { variant } from 'styled-system'
+import propTypes from '@styled-system/prop-types'
 
-import { useBoolean } from '../utils'
+import { themeGet, useBoolean } from '../utils'
 
 import Box from '../Responsive/Box'
-import { Icon, Typography, Touchable } from '../'
+import { Icon, Typography, Touchable } from '..'
 
 const Tooltip = ({
   arrow,
@@ -39,7 +28,7 @@ const Tooltip = ({
   ...rest
 }) => {
   // #region initialisation
-  const { value: showTooltip, setValue: setTooltipShown } = useBoolean(false)
+  const [showTooltip, setTooltipShown] = useBoolean(false)
   useEffect(() => {
     setTooltipShown(isShown)
   }, [isShown, setTooltipShown])
@@ -177,24 +166,15 @@ const Container = styled(Box)`
   }
 
   ${tooltipStyle}
-  ${borders}
-  ${bottom}
-  ${boxShadow}
-  ${color}
-  ${height}
-  ${left}
-  ${maxHeight}
-  ${maxWidth}
-  ${minHeight}
-  ${minWidth}
-  ${opacity}
-  ${overflow}
-  ${position}
-  ${right}
-  ${space}
-  ${top}
-  ${width}
-  ${zIndex}
+  ${compose(
+    border,
+    color,
+    layout,
+    position,
+    space,
+    variant,
+    shadow
+  )}
 `
 
 const Body = styled.div`
@@ -210,24 +190,13 @@ const Body = styled.div`
 `
 
 Tooltip.propTypes = {
-  ...borders.propTypes,
-  ...bottom.propTypes,
-  ...boxShadow.propTypes,
-  ...color.propTypes,
-  ...height.propTypes,
-  ...left.propTypes,
-  ...maxHeight.propTypes,
-  ...maxWidth.propTypes,
-  ...minHeight.propTypes,
-  ...minWidth.propTypes,
-  ...opacity.propTypes,
-  ...overflow.propTypes,
-  ...position.propTypes,
-  ...right.propTypes,
-  ...space.propTypes,
-  ...top.propTypes,
-  ...width.propTypes,
-  ...zIndex.propTypes,
+  ...propTypes.border,
+  ...propTypes.color,
+  ...propTypes.layout,
+  ...propTypes.position,
+  ...propTypes.space,
+  ...propTypes.variant,
+  ...propTypes.shadow,
   /** describes tooltip arrow orientation, alignment and size */
   arrow: PropTypes.shape({
     alignment: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),

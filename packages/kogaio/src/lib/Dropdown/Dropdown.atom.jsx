@@ -1,14 +1,8 @@
-import React, { Children, cloneElement, useState, useEffect } from 'react'
+import React, { Children, cloneElement, isValidElement, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { themeGet } from 'styled-system'
 
-import {
-  ConditionalWrap,
-  randomiser,
-  useBoolean,
-  isMobileDevice
-} from '../utils'
+import { ConditionalWrap, isMobileDevice, themeGet, useBoolean } from '../utils'
 
 import Icon from '../Icon'
 import Modal from '../Modal'
@@ -18,7 +12,6 @@ import { Flex, Space } from '../Responsive'
 import Option, { DropdownItem } from './Option'
 
 const Dropdown = ({
-  animated,
   autoFocus,
   children,
   disabled,
@@ -33,39 +26,20 @@ const Dropdown = ({
   value,
   ...rest
 }) => {
-  const {
-    value: isListOpen,
-    setValue: setListOpen,
-    toggleValue: toggle
-  } = useBoolean(false)
-  const [updatedChildren, setUpdatedChildren] = useState(children)
+  const [isListOpen, setListOpen, toggle] = useBoolean(false)
 
   useEffect(() => {
-    if (autoFocus) {
-      setListOpen(true)
-    }
+    if (autoFocus) setListOpen(true)
   }, [autoFocus, setListOpen])
 
-  useEffect(() => {
-    const newChildren = Children.toArray(children).map(child =>
-      cloneElement(child, {
-        selectOption,
-        shouldShow: isListOpen,
-        isSelected: value.includes(child.props.value)
-      })
-    )
-    setUpdatedChildren(newChildren)
+  function selectOption (option) {
+    return () => {
+      if (multiple) return handleSelect(option)
 
-    function selectOption (option) {
-      return () => {
-        if (multiple) {
-          return handleSelect(option)
-        }
-        handleSelect(option)
-        setListOpen(false)
-      }
+      handleSelect(option)
+      setListOpen(false)
     }
-  }, [children, handleSelect, isListOpen, multiple, setListOpen, value])
+  }
 
   useEffect(() => {
     document.addEventListener('click', _handleBackdropClick)
@@ -75,42 +49,46 @@ const Dropdown = ({
       const dropdownEl = document.getElementById(id)
       if (dropdownEl && isListOpen) {
         const isClickOutside = !dropdownEl.contains(ev.target)
-        if (isClickOutside) {
-          setListOpen(false)
-        }
+        if (isClickOutside) setListOpen(false)
       }
     }
   }, [handleSelect, id, isListOpen, multiple, setListOpen])
 
   const toggleDropdown = ev => {
-    if (disabled) {
-      return ev.preventDefault()
-    }
+    if (disabled) return ev.preventDefault()
     toggle()
   }
 
   const DropdownList = props => (
     <Space m={0} p={0}>
       <List
-        animated={animated}
         as="ul"
+        className="dropdown-list"
         id={id}
         isOpen={isListOpen}
         numOfElements={children.length}
         size={size}
         {...props}>
-        {updatedChildren}
+        {Children.toArray(children).map(child =>
+          isValidElement(child)
+            ? cloneElement(child, {
+                selectOption,
+                shouldShow: isListOpen,
+                isSelected: value.includes(child.props.value)
+              })
+            : null
+        )}
       </List>
     </Space>
   )
 
   return (
     <Flex flexDirection="column" position="relative" {...rest}>
-      {label && (
+      {label ? (
         <Typography as="label" htmlFor={id} variant="inputLabel">
           {label} {required && '*'}
         </Typography>
-      )}
+      ) : null}
       <Touchable disabled={disabled} onClick={toggleDropdown}>
         <Space px={2}>
           <SelectedItem
@@ -134,7 +112,7 @@ const Dropdown = ({
         </Space>
       </Touchable>
       <ConditionalWrap
-        condition={isMobileDevice()}
+        condition={isMobileDevice}
         wrap={() => (
           <Modal visible={isListOpen}>
             <DropdownList isMobile />
@@ -149,27 +127,15 @@ const Dropdown = ({
 const calcSize = () => ({ isOpen, numOfElements, size }) => {
   const GUTTER = 4
   const ITEM_HEIGHT = 36
-  if (!isOpen) {
-    return `max-height: 0; visibility: hidden;`
-  }
-  if (numOfElements <= size) {
+  if (!isOpen) return `max-height: 0; visibility: hidden;`
+  if (numOfElements <= size)
     return `max-height: ${size * ITEM_HEIGHT + GUTTER}px;`
-  }
   return `
     max-height: ${size * ITEM_HEIGHT + GUTTER * 2}px;
     overflow-y: auto;
     scroll-behavior: smooth;
   `
 }
-const animateDrop = ({ animated, isOpen }) =>
-  animated
-    ? css`
-        transform: ${!isOpen
-          ? `translateY(-12px); z-index: -1;`
-          : `translateY(0); z-index: 2;`};
-        transition: transform 0.3s ease;
-      `
-    : null
 
 const responsiveListStyle = ({ isMobile }) => css`
   top: ${({ isMobile }) => (isMobile ? '50%' : '100%')};
@@ -191,10 +157,11 @@ const List = styled(Flex)`
   border-bottom-left-radius: ${themeGet('radii.2', 2)}px;
   border-bottom-right-radius: ${themeGet('radii.2', 2)}px;
   flex-direction: column;
+  height: auto;
   list-style-type: none;
-  z-index: 1;
+  z-index: 2;
+
   ${calcSize}
-  ${animateDrop}
   ${responsiveListStyle}
 `
 const selectedBorderStyle = ({ error, isActive }) => css`
@@ -208,7 +175,7 @@ const selectedBorderStyle = ({ error, isActive }) => css`
   }
 `
 const SelectedItem = styled(DropdownItem)`
-  background-color: ${themeGet('colors.white', '#fff')};
+  background-color: ${themeGet('colors.white')};
   z-index: 3;
   ${selectedBorderStyle}
 `
@@ -222,7 +189,6 @@ const DropdownChevron = styled(Icon)`
 `
 
 Dropdown.propTypes = {
-  animated: PropTypes.bool,
   autoFocus: PropTypes.bool,
   children: PropTypes.arrayOf(PropTypes.element),
   disabled: PropTypes.bool,
@@ -238,19 +204,18 @@ Dropdown.propTypes = {
 }
 
 Dropdown.defaultProps = {
-  animated: false,
   autoFocus: false,
   children: [],
   disabled: false,
-  id: `iv-dropdown-${randomiser}`,
+  id: 'iv-dropdown',
   multiple: false,
   onChange: () => console.warn('* Dropdown expects an onChange function'),
-  placeholder: 'Select an option...',
+  placeholder: 'Select an option',
   required: false,
   size: 5,
   value: ''
 }
 
-Dropdown.displayName = 'Dropdown'
 Dropdown.Option = Option
+Dropdown.displayName = 'Dropdown'
 export default Dropdown
