@@ -1,25 +1,24 @@
 ```js
-  import { useState, useEffect } from 'react';
-  import { Box, Flex } from '@ivoryio/kogaio';
-  const InputExamples = () => {
-  const [formValues, setInputVal] = useState({ input1: '', input2: 'mixedchars3' })
+import { useState, useEffect } from 'react'
+import { Box, Flex } from '@ivoryio/kogaio'
+const InputExamples = () => {
+  const [formValues, setInputVal] = useState({
+    input1: '',
+    input2: 'mixedchars3'
+  })
   const [error, setError] = useState(null)
 
-  const handleValueChange = key => ev => {
-    setInputVal({ [key]: ev.target.value })
-  }
+  const handleValueChange = key => ev => setInputVal({ [key]: ev.target.value })
 
   useEffect(() => {
     validateInput('input2')
   }, [formValues.input2])
 
- const validateInput = key => {
+  const validateInput = key => {
     const textRegex = /^[a-zA-Z ]*$/
-    if (!textRegex.test(formValues[key])) {
+    if (!textRegex.test(formValues[key]))
       setError('Invalid input. Expected letters only.')
-    } else {
-      setError(null)
-    }
+    else setError(null)
   }
 
   return (
@@ -29,6 +28,7 @@
           <Input
             autoComplete='current-email'
             placeholder='Email'
+            id='email'
             onChange={handleValueChange('input1')}
             label='Default'
             mt={1}
@@ -39,6 +39,7 @@
           />
           <Input
             autoComplete='your-text'
+            id='input-error'
             label='Input with error'
             onChange={handleValueChange('input2')}
             name='error-input'
@@ -47,10 +48,11 @@
           />
         </form>
       </Box>
-      <Box px={2} width={{ xs: 1, md: 1/2 }}>
+      <Box px={2} width={{ xs: 1, md: 1 / 2 }}>
         <Input
           autoComplete='your-text'
           label='Valid input'
+          id='input-valid'
           onChange={() => console.log('It is valid.')}
           mt={1}
           name='error-input'
@@ -58,9 +60,10 @@
           valid='Nicely done!'
           value='A+B=3'
         />
-         <Input
+        <Input
           autoComplete='your-text-here'
           label='Disabled'
+          id='input-disabled'
           placeholder='Disabled'
           name='disabled-input'
           onChange={() => {}}
@@ -70,6 +73,7 @@
         />
       </Box>
     </Flex>
-  )};
-  <InputExamples />
+  )
+}
+;<InputExamples />
 ```

@@ -1,137 +1,124 @@
 #### Button variants
-```js
-  import { useState } from 'react';
-  import styled from 'styled-components';
-  import { Box, Flex } from '@ivoryio/kogaio/Responsive';
 
-  const ButtonExamples = () => {
-    const [isLoading, setIsLoading] = useState(false)
-    const toggleLoading = () => {
-      setIsLoading(true)
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 3000)
-    }
-    return (
-      <Flex flexWrap='wrap' justifyContent='space-between' width={1}>
+```js
+import { useState } from 'react'
+import styled from 'styled-components'
+import { Box, Flex, Space } from '@ivoryio/kogaio/Responsive'
+
+const ButtonExamples = () => {
+  const [loading, setLoading] = useState(false)
+  const toggleLoading = () => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 3000)
+  }
+  return (
+    <Flex flexWrap='wrap' justifyContent='space-between' width={1}>
+      <Space px={4} my={2}>
         <Flex
           flexDirection='column'
           color='lime'
-          px={4}
-          my={1}
-          width={{ xs: 1, sm: 1/2, md: 1/3 }}
-        >
+          width={{ xs: 1, sm: 1 / 2, md: 1 / 3 }}>
           <Button
             onClick={() => {}}
             variant='primary'
             title='Primary'
             width={1}
           />
-          <Button
-            onClick={() => {}}
-            variant='primary'
-            title='Primary disabled'
-            disabled
-            mt={1}
-            width={1}
-          />
+          <Space mt={1}>
+            <Button
+              onClick={() => {}}
+              variant='primary'
+              title='Primary disabled'
+              disabled
+              width={1}
+            />
+          </Space>
         </Flex>
-        <Flex
-          flexDirection='column'
-          px={4}
-          my={1}
-          width={{ xs: 1, sm: 1/2, md: 1/3 }}
-        >
+        <Flex flexDirection='column' width={{ xs: 1, sm: 1 / 2, md: 1 / 3 }}>
           <Button
             onClick={() => {}}
             title='Outline'
             variant='outline'
             width={1}
           />
-          <Button
-            onClick={() => {}}
-            title='Outline disabled'
-            variant='outline'
-            mt={1}
-            disabled
-            width={1}
-          />
+          <Space mt={1}>
+            <Button
+              onClick={() => {}}
+              title='Outline disabled'
+              variant='outline'
+              disabled
+              width={1}
+            />
+          </Space>
         </Flex>
         <Flex
           flexDirection='column'
           px={4}
           my={1}
-          width={{ xs: 1, sm: 1/2, md: 1/3 }}
-        >
-          <Button
-            onClick={() => {}}
-            title='Validation'
-            variant='validation'
-            mr={4}
-            width={1}
-          />
-          <Button
-            onClick={() => {}}
-            title='Destructive'
-            mt={1}
-            variant='destructive'
-            width={1}
-          />
+          width={{ xs: 1, sm: 1 / 2, md: 1 / 3 }}>
+          <Space mr={4}>
+            <Button
+              onClick={() => {}}
+              title='Validation'
+              variant='validation'
+              width={1}
+            />
+          </Space>
+          <Space mt={1}>
+            <Button
+              onClick={() => {}}
+              title='Destructive'
+              variant='destructive'
+              width={1}
+            />
+          </Space>
         </Flex>
-        <Flex
-          flexDirection='column'
-          px={4}
-          my={2}
-          width={{ xs: 1, sm: 1/2, md: 1/3 }}
-        >
+        <Flex flexDirection='column' width={{ xs: 1, sm: 1 / 2, md: 1 / 3 }}>
           <Button
-            isLoading={isLoading}
+            loading={loading}
             onClick={toggleLoading}
             variant='outline'
             title='Outline with loader'
             width={1}
           />
-           <Button
-            icon={{ name: 'visibility', size: 16 }}
-            mt={1}
-            onClick={() => {}}
-            title='Button with icon'
-            variant='outline'
-            width={1}
-          />
-        </Flex>
-        <Flex 
-          flexDirection='column'
-          px={4}
-          my={2}
-          width={{ xs: 1, sm: 1/2, md: 1/3 }}
-        >
-        <Button
-          onClick={() => {}}
-          variant='outline'
-          colors='button-outline-alt'
-          title='Outline alt'
-          width={1}
-        />
-          <Box bg='gunmetal' p={2} mt={1}>
+          <Space mt={1}>
             <Button
-              mt={1}
+              icon={{ name: 'visibility', size: 16 }}
               onClick={() => {}}
-              title='Outline alt dark'
+              title='Button with icon'
               variant='outline'
-              colors='button-outline-dark'
               width={1}
             />
-          </Box>
+          </Space>
         </Flex>
-        <Flex
-          flexDirection='column'
-          px={4}
-          my={2}
-          width={{ xs: 1, sm: 1/2, md: 1/3 }}
-        />
-      </Flex>
-    )
-  }
-  <ButtonExamples />
+        <Flex flexDirection='column' width={{ xs: 1, sm: 1 / 2, md: 1 / 3 }}>
+          <Button
+            onClick={() => {}}
+            variant='outline'
+            colors='button-outline-alt'
+            title='Outline alt'
+            width={1}
+          />
+          <Space p={2} mt={1}>
+            <Box bg='gunmetal'>
+              <Space mt={1}>
+                <Button
+                  onClick={() => {}}
+                  title='Outline alt dark'
+                  variant='outline'
+                  colors='button-outline-dark'
+                  width={1}
+                />
+              </Space>
+            </Box>
+          </Space>
+        </Flex>
+        <Box width={{ xs: 1, sm: 1 / 2, md: 1 / 3 }} />
+      </Space>
+    </Flex>
+  )
+}
+;<ButtonExamples />
 ```

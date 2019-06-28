@@ -19,5 +19,5 @@ const CheckboxExamples = () => {
     </>
   )
 }
-<CheckboxExamples />
+;<CheckboxExamples />
 ```

@@ -1,9 +1,20 @@
-#### Clickable icon
 ```js
-   <IconButton
-      color='gunmetal'
-      fontSize={6}
-      name='account_circle'
-      onClick={() => console.warn('Clicked!')}
-    />
+import { Flex } from '@ivoryio/kogaio'
+
+;<Flex alignItems='center' justifyContent='center'>
+  <IconButton
+    effect='no-feedback'
+    color='gunmetal'
+    fontSize={5}
+    name='assignment_return'
+    onClick={() => console.warn('Clicked!')}
+  />
+  <IconButton
+    effect='opacity'
+    color='gunmetal'
+    fontSize={5}
+    name='assignment_returned'
+    onClick={() => console.warn('Clicked!')}
+  />
+</Flex>
 ```

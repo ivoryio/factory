@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.5.5",
+  "version": "0.6.4",
   "author": "Ivory™",
   "description": "Component library",
   "main": "build/index.js",
@@ -12,33 +12,37 @@
   "homepage": "https://github.com/ivoryio/factory/tree/master/packages/kogaio#introduction",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ivoryio/factory/tree/master/packages/kogaio"
+    "url": "https://github.com/ivoryio/factory/tree/master/packages/kogaio"
   },
   "bugs": {
     "url": "https://github.com/ivoryio/factory/issues"
   },
   "scripts": {
     "start": "react-scripts start",
-    "styleg": "npx styleguidist server --config src/config/styleguide.config.js",
-    "build:lib": "NODE_ENV=production && rm -rf build && mkdir build && npx babel ./src/lib --out-dir ./build --ignore \"**/*.test.js,**/*.examples.md\" --copy-files",
-    "publish:lib": "yarn build:lib && cp package.json build && cp README.md build && cd ./build && yarn publish --access public",
+    "styleg": "npx styleguidist server --config src/config/styleguide.config.js --open",
+    "build:lib": "NODE_ENV=production && rm -rf build && npx babel src/lib --out-dir build -i \"**/*.test.js,**/*.examples.md\" && cp package.json README.md build",
+    "publish:lib": "yarn build:lib && cd build && yarn publish --access public",
     "build:styleg": "rm -rf build && npx styleguidist build --config src/config/styleguide.config.js",
     "publish:styleg": "yarn build:styleg && aws s3 sync ./build s3://kogaio.ivory.io --profile default",
-    "lint": "eslint .",
+    "lint": "eslint '**/*.{js,jsx}'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
+    "@styled-system/prop-types": "^5.0.12",
     "react": "^16.8.6",
-    "react-docgen-external-proptypes-handler": "^1.0.2",
+    "react-docgen-external-proptypes-handler": "^1.0.3",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1",
-    "react-styleguidist": "^9.1.2"
+    "react-styleguidist": "^9.1.11",
+    "styled-components": "^4.3.2",
+    "styled-system": "^5.0.12"
   },
-  "dependencies": {
-    "styled-components": "4.2.0",
-    "styled-system": "^4.2.2"
+  "optionalDependencies": {
+    "@styled-system/prop-types": "^5.0.12",
+    "styled-components": "^4.3.2",
+    "styled-system": "^5.0.12"
   },
   "husky": {
     "hooks": {

@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
-import { themeGet } from 'styled-system'
 import styled, { css } from 'styled-components'
-import { hexToRgbA } from '../utils/helpers'
+
+import { themeGet } from '../utils'
+import { hexToRgbA } from '../assets/helpers'
 
 const backgroundColour = (() => ({ colors: { background } }) =>
   themeGet(`colors.${background}`, background))()
@@ -15,14 +16,11 @@ const complementaryColour = (() => ({ colors: { background }, ...props }) => {
 const spinnerSize = css`
   ${({ size }) => {
     const validSize = ['number', 'string']
-    if (!validSize.includes(typeof size)) {
+    if (!validSize.includes(typeof size))
       return console.error(
         `* Unexpected type of value ${size} passed to ActivityIndicator. Expected one of ${validSize}`
       )
-    }
-    if (typeof size === 'number') {
-      return `width: ${size}px; height: ${size}px;`
-    }
+    if (typeof size === 'number') return `width: ${size}px; height: ${size}px;`
     return `width: ${size}; height: ${size};`
   }}
 `

@@ -19,7 +19,8 @@ const ActivityIndicator = ({ variant, ...props }) => {
 
 export const activityIndicators = ['spinner', 'loadbar', 'runningbar']
 ActivityIndicator.propTypes = {
-  /** colors: { background: '', primary: '' }; colors: string[] */
+  /** spinner, runningbar -> colors: { background: '', primary: '' };
+   * loadbar -> colors: string[] */
   colors: PropTypes.oneOfType([
     PropTypes.shape({
       background: PropTypes.string.isRequired,
