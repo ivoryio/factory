@@ -103,6 +103,7 @@ const Input = ({
             inputType={inputType}
             onDragAttempt={resetInputType}
             toggle={togglePassword}
+            tabIndex='-1'
             viewOption={passwordView}
           />
         ) : null}

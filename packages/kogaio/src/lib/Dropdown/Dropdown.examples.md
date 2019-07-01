@@ -2,6 +2,7 @@
 
 ```js
 import { useState } from 'react'
+import Typography from '@ivoryio/kogaio/Typography'
 const DropdownSingle = () => {
   const options = [
     {
@@ -39,7 +40,8 @@ const DropdownSingle = () => {
       mx='auto'
       onChange={selectOption}
       value={selectedOption}
-      width={{ xs: 1 / 2, md: 1 / 3 }}>
+      width={{ xs: 1 / 2, md: 1 / 3 }}
+      renderFooter={props => <Typography>Test!</Typography>}>
       {options.map(option => (
         <Dropdown.Option key={option.id} value={option.label}>
           {option.label}

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import Touchable from '../Touchable'
-import { Flex } from '../Responsive'
+import { Flex, Space } from '../Responsive'
 import Typography from '../Typography'
 import { ConditionalWrap, isMobileDevice, themeGet } from '../utils'
 
@@ -22,33 +22,37 @@ const Option = ({
   if (!shouldShow) return null
 
   return (
-    <Touchable
-      onMouseUp={!isMobileDevice ? selectOption(value) : null}
-      onTouchEnd={isMobileDevice ? selectOption(value) : null}>
-      <ListItem
-        as="li"
-        className="dropdown-item"
-        isSelected={isSelected}
-        selectedColor={selectedColor}
-        {...props}>
-        <ConditionalWrap
-          condition={
-            (children && ['string', 'number'].includes(typeof children)) ||
-            label
-          }
-          wrap={() => (
-            <Typography
-              color={color}
-              fontSize={fontSize}
-              truncate
-              variant="list">
-              {label || children}
-            </Typography>
-          )}>
-          {children}
-        </ConditionalWrap>
-      </ListItem>
-    </Touchable>
+    <ListItem
+      as='li'
+      className='dropdown-item'
+      isSelected={isSelected}
+      selectedColor={selectedColor}
+      {...props}>
+      <Space m={0} px={2}>
+        <Touchable
+          onMouseUp={!isMobileDevice ? selectOption(value) : null}
+          onTouchEnd={isMobileDevice ? selectOption(value) : null}
+          textAlign='left'
+          width={1}>
+          <ConditionalWrap
+            condition={
+              (children && ['string', 'number'].includes(typeof children)) ||
+              label
+            }
+            wrap={() => (
+              <Typography
+                color={color}
+                fontSize={fontSize}
+                truncate
+                variant='list'>
+                {label || children}
+              </Typography>
+            )}>
+            {children}
+          </ConditionalWrap>
+        </Touchable>
+      </Space>
+    </ListItem>
   )
 }
 
@@ -63,16 +67,12 @@ export const DropdownItem = styled(Flex)`
 const ListItem = styled(DropdownItem)`
   background-color: ${({ isSelected, selectedColor }) =>
     isSelected && themeGet(`colors.${selectedColor}`, selectedColor)};
-  margin: 0;
-  padding-left: ${themeGet('space.2')}px;
-  padding-right: ${themeGet('space.2')}px;
 
-  :nth-of-type(n + 1) {
-    border-top: ${themeGet('borders.1')} ${themeGet('colors.light-gray')};
-  }
-
-  &:hover {
+  :hover {
     background-color: ${themeGet('colors.white-smoke')};
+  }
+  :nth-of-type(n + 2) {
+    border-top: ${themeGet('borders.1')} ${themeGet('colors.light-gray')};
   }
 `
 
