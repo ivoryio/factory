@@ -8,7 +8,7 @@
     "publish:lib": "yarn build:lib && cp package.json build && cp README.md build && cd ./build && yarn publish --access public",
     "build:styleg": "rm -rf build && npx styleguidist build --config src/config/styleguide.config.js",
     "publish:styleg": "yarn build:styleg && aws s3 sync ./build s3://mercury.ivory.io --profile default",
-    "lint": "eslint .",
+    "lint": "eslint '**/*.{js,jsx}'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -21,10 +21,10 @@
     "@babel/cli": "^7.4.4",
     "@ivoryio/kogaio": "^0.5.5",
     "react": "^16.8.6",
-    "react-docgen-external-proptypes-handler": "^1.0.2",
+    "react-docgen-external-proptypes-handler": "^1.0.3",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1",
-    "react-styleguidist": "^9.1.2"
+    "react-styleguidist": "^9.1.11"
   },
   "peerDependencies": {
     "@ivoryio/kogaio": "^0.5.5"

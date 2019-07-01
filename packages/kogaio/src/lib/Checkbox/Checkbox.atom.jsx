@@ -1,28 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import {
-  borders,
-  bottom,
-  color,
-  fontFamily,
-  fontSize,
-  fontStyle,
-  fontWeight,
-  left,
-  letterSpacing,
-  lineHeight,
-  opacity,
-  position,
-  right,
-  space,
-  textAlign,
-  themeGet,
-  top,
-  width,
-  zIndex
-} from 'styled-system'
+import propTypes from '@styled-system/prop-types'
+import { color, compose, typography } from 'styled-system'
+
+import { themeGet } from '../utils'
 import { Box, Flex } from '../Responsive'
+
 const Checkbox = ({
   checkboxPosition,
   checked,
@@ -31,8 +15,10 @@ const Checkbox = ({
   id,
   label,
   labelColor,
+  name,
   onChange,
   size,
+  value,
   ...rest
 }) => (
   <Flex alignItems="center" {...rest}>
@@ -44,12 +30,23 @@ const Checkbox = ({
         checked={checked}
         disabled={disabled}
         id={id}
+        name={name}
         onChange={onChange}
         type="checkbox"
+        value={value}
       />
-      <Placeholder color={color} disabled={disabled} size={size} />
+      <Placeholder
+        className="checkbox"
+        color={color}
+        disabled={disabled}
+        size={size}
+      />
     </Wrapper>
-    <Label color={labelColor} disabled={disabled} htmlFor={id}>
+    <Label
+      className="checkbox-label"
+      color={labelColor}
+      disabled={disabled}
+      htmlFor={id}>
       {label}
     </Label>
   </Flex>
@@ -64,10 +61,12 @@ const size = ({ size }) => css`
 `
 const checkboxPosition = ({ checkboxPosition, ...props }) => css`
   order: ${checkboxPosition === 'right' ? 1 : 0};
-  ${checkboxPosition === 'right' &&
-    `margin-inline-start: ${themeGet('space.2', 8)(props)}px;`}
-  ${checkboxPosition === 'left' &&
-    `margin-inline-end: ${themeGet('space.2', 8)(props)}px;`}
+  margin-left: ${checkboxPosition === 'right'
+    ? `${themeGet('space.2', 8)(props)}px`
+    : null};
+  margin-right: ${checkboxPosition === 'left'
+    ? `${themeGet('space.2', 8)(props)}px`
+    : null};
 `
 
 const Wrapper = styled(Box)`
@@ -98,7 +97,7 @@ const Label = styled.label`
     disabled
       ? themeGet('colors.pastel-blue', '#b3c3d4')
       : themeGet('colors.gunmetal', '#243143')};
-  
+
   font-size: ${themeGet('fontSizes.1', '1rem')};
   user-select: none;
   pointer-events: auto;
@@ -106,14 +105,11 @@ const Label = styled.label`
   -moz-user-select: none;
   -webkit-user-select: none;
 
-  ${color}
-  ${cursor}
-  ${fontFamily}
-  ${fontSize}
-  ${fontStyle}
-  ${fontWeight}
-  ${letterSpacing}
-  ${lineHeight}
+  ${compose(
+    color,
+    cursor,
+    typography
+  )}
 `
 
 const Input = styled.input`
@@ -139,7 +135,10 @@ const Placeholder = styled.span`
   justify-content: center;
   pointer-events: none;
 
-  ${cursor}
+  ${compose(
+    color,
+    cursor
+  )}
   ${size}
 
   :after {
@@ -156,43 +155,30 @@ const Placeholder = styled.span`
 `
 
 Checkbox.propTypes = {
-  ...space.propTypes,
-  ...width.propTypes,
-  ...fontSize.propTypes,
-  ...color.propTypes,
-  ...fontFamily.propTypes,
-  ...textAlign.propTypes,
-  ...lineHeight.propTypes,
-  ...fontWeight.propTypes,
-  ...fontStyle.propTypes,
-  ...letterSpacing.propTypes,
-  ...borders.propTypes,
-  ...opacity.propTypes,
-  ...position.propTypes,
-  ...zIndex.propTypes,
-  ...top.propTypes,
-  ...right.propTypes,
-  ...bottom.propTypes,
-  ...left.propTypes,
+  ...propTypes.color,
+  ...propTypes.typography,
   checkboxPosition: PropTypes.oneOf(['left', 'right']),
+  checked: PropTypes.bool.isRequired,
   color: PropTypes.string,
   disabled: PropTypes.bool,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  isChecked: PropTypes.bool.isRequired,
   label: PropTypes.string,
+  labelColor: PropTypes.string,
+  name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
 
 Checkbox.defaultProps = {
   checkboxPosition: 'left',
   color: 'brand',
   disabled: false,
-  isChecked: false,
-  label: 'Checkbox',
+  checked: false,
   onChange: () =>
     console.error('* Checkbox component expects an onChange function'),
   size: 16
 }
 
+Checkbox.displayName = 'Checkbox'
 export default Checkbox

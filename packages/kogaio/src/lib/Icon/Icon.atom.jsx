@@ -2,18 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import {
-  alignSelf,
   color,
-  fontSize,
-  justifySelf,
+  compose,
+  layout,
   position,
-  top,
-  right,
-  bottom,
-  left,
-  size,
-  space
+  space,
+  typography
 } from 'styled-system'
+import propTypes from '@styled-system/prop-types'
 
 const Icon = ({ className, name, ...rest }) => (
   <StyledIcon className={`material-icons${' '}${className}`} {...rest}>
@@ -23,27 +19,21 @@ const Icon = ({ className, name, ...rest }) => (
 
 const StyledIcon = styled.i`
   user-select: none;
-  ${alignSelf}
-  ${color}
-  ${fontSize}
-  ${justifySelf}
-  ${position}
-  ${size}
-  ${space}
-  ${top}
-  ${right}
-  ${bottom}
-  ${left}
+  ${compose(
+    color,
+    layout,
+    position,
+    space,
+    typography
+  )}
 `
 
 Icon.propTypes = {
-  ...alignSelf.propTypes,
-  ...justifySelf.propTypes,
-  ...fontSize.propTypes,
-  ...position.propTypes,
-  ...size.propTypes,
-  ...space.propTypes,
-  className: PropTypes.string,
+  ...propTypes.color,
+  ...propTypes.layout,
+  ...propTypes.position,
+  ...propTypes.space,
+  ...propTypes.typography,
   dataTest: PropTypes.string,
   onClick: PropTypes.func,
   src: PropTypes.string

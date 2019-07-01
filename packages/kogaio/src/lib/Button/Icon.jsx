@@ -9,7 +9,7 @@ const ButtonIcon = ({ icon: { color, name, size }, variant }) => {
     variant.includes('outline') ? 'brand' : 'white')()
   return (
     <Space ml={-1} mr={1}>
-      <Icon name={name} fontSize={size || 16} color={color || fallbackColor} />
+      <Icon name={name} fontSize={size || 5} color={color || fallbackColor} />
     </Space>
   )
 }

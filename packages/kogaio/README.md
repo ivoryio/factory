@@ -35,13 +35,13 @@ There are a few indispensable libraries that act as dependencies for Kogaio; the
 ## Installation
 
 ```
-npm i @ivoryio/kogaio
+npm i styled-components styled-system @ivoryio/kogaio
 ```
 
 or
 
 ```
-yarn add @ivoryio/kogaio
+yarn add styled-components styled-system @ivoryio/kogaio
 ```
 
 ## Configuration
@@ -202,18 +202,17 @@ Seek the comments below for recommendations.
     '1rem',
     '1.25rem',
     '1.5rem',
-    '2rem',
-    '3rem',
-    '4rem'
+    '2rem'
   ]
-  fontWeights = ['lighter', 'regular', 'bold']
+  fontWeights = { 'lighter': 300, 'regular': 400, 'bold': 700 }
   lineHeights = {
     solid: 1,
     title: 1.25,
-    copy: 1.5,
+    paragraph: 1.5,
     tooltip: 1.6,
     button: 1.9,
-    input: 2
+    input: 2,
+    lineHeights: 2.5
   }
   letterSpacings = {
     normal: 'normal',

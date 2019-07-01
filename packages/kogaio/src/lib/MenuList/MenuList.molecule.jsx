@@ -2,30 +2,18 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import {
-  alignItems,
-  alignSelf,
-  borderColor,
-  borderRadius,
-  borders,
-  bottom,
+  border,
+  compose,
   color,
   colorStyle,
-  display,
-  left,
-  maxHeight,
-  maxWidth,
-  minHeight,
-  minWidth,
-  opacity,
+  flexbox,
+  layout,
   position,
-  right,
-  themeGet,
-  top,
-  space,
-  width
+  space
 } from 'styled-system'
+import propTypes from '@styled-system/prop-types'
 
-import { useBoolean } from '../utils'
+import { themeGet, useBoolean } from '../utils'
 
 import Icon from '../Icon'
 import { Box } from '../Responsive'
@@ -44,7 +32,7 @@ const MenuList = ({
   ...rest
 }) => {
   // #region initialisation
-  const { value: isMenuShown, setValue: showMenu } = useBoolean(false)
+  const [isMenuShown, showMenu] = useBoolean(false)
   useEffect(() => {
     const _handleDocumentBodyClick = ev => {
       const bodyEl = document.getElementById(id)
@@ -86,10 +74,7 @@ const MenuList = ({
           icSize={icSize}
           {...rest}>
           {listItems.map(item => (
-            <TouchableText
-              key={item.id}
-              onClick={_selectItem(item.name)}
-              data-testid={item.id}>
+            <TouchableText key={item.id} onClick={_selectItem(item.name)}>
               <Typography
                 color="dark-gunmetal"
                 p={4}
@@ -156,20 +141,15 @@ const Container = styled(Box)`
   flex-direction: column;
   justify-content: ${alignContent};
   position: relative;
-  ${alignItems}
-  ${alignSelf}
-  ${bottom}
-  ${display}
-  ${left}
-  ${maxHeight}
-  ${maxWidth}
-  ${minHeight}
-  ${minWidth}
-  ${position}
-  ${right}
-  ${space}
-  ${top}
-  ${width}
+  ${compose(
+    flexbox,
+    border,
+    color,
+    colorStyle,
+    layout,
+    position,
+    space
+  )}
 `
 
 const ListWrapper = styled(Box)`
@@ -194,13 +174,12 @@ const ListWrapper = styled(Box)`
   & > :nth-child(n + 2) {
     border-top: ${themeGet('borders.1')} ${themeGet('colors.azure-white')};
   }
-  ${borderColor}
-  ${borderRadius}
-  ${borders}
-  ${color}
-  ${colorStyle}
-  ${opacity}
-  ${space}
+  ${compose(
+    border,
+    color,
+    colorStyle,
+    space
+  )}
 `
 
 const TouchableText = styled(Touchable)`
@@ -215,6 +194,14 @@ const TouchableText = styled(Touchable)`
 `
 
 MenuList.propTypes = {
+  ...propTypes.border,
+  ...propTypes.compose,
+  ...propTypes.color,
+  ...propTypes.colorStyle,
+  ...propTypes.flexbox,
+  ...propTypes.layout,
+  ...propTypes.position,
+  ...propTypes.space,
   alignment: PropTypes.oneOf(['left', 'center', 'right']),
   icName: PropTypes.string,
   icColor: PropTypes.string,

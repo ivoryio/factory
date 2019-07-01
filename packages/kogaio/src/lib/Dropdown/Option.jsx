@@ -1,12 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import { themeGet } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import Touchable from '../Touchable'
-import { Flex, Space } from '../Responsive'
+import { Flex } from '../Responsive'
 import Typography from '../Typography'
-import { ConditionalWrap, isMobileDevice } from '../utils'
+import { ConditionalWrap, isMobileDevice, themeGet } from '../utils'
 
 const Option = ({
   children,
@@ -14,45 +13,41 @@ const Option = ({
   fontSize,
   isSelected,
   label,
-  selectOption,
   selectedColor,
+  selectOption,
   shouldShow,
   value,
   ...props
 }) => {
-  if (!shouldShow) {
-    return null
-  }
-  const isMobile = isMobileDevice()
+  if (!shouldShow) return null
+
   return (
     <Touchable
-      onMouseUp={!isMobile ? selectOption(value) : null}
-      onTouchEnd={isMobile ? selectOption(value) : null}>
-      <Space m={0} px={2}>
-        <ListItem
-          as="li"
-          className="dropdown-item"
-          isSelected={isSelected}
-          selectedColor={selectedColor}
-          {...props}>
-          <ConditionalWrap
-            condition={
-              (children && ['string', 'number'].includes(typeof children)) ||
-              label
-            }
-            wrap={() => (
-              <Typography
-                color={color}
-                fontSize={fontSize}
-                truncate
-                variant="list">
-                {label || children}
-              </Typography>
-            )}>
-            {children}
-          </ConditionalWrap>
-        </ListItem>
-      </Space>
+      onMouseUp={!isMobileDevice ? selectOption(value) : null}
+      onTouchEnd={isMobileDevice ? selectOption(value) : null}>
+      <ListItem
+        as="li"
+        className="dropdown-item"
+        isSelected={isSelected}
+        selectedColor={selectedColor}
+        {...props}>
+        <ConditionalWrap
+          condition={
+            (children && ['string', 'number'].includes(typeof children)) ||
+            label
+          }
+          wrap={() => (
+            <Typography
+              color={color}
+              fontSize={fontSize}
+              truncate
+              variant="list">
+              {label || children}
+            </Typography>
+          )}>
+          {children}
+        </ConditionalWrap>
+      </ListItem>
     </Touchable>
   )
 }
@@ -68,12 +63,16 @@ export const DropdownItem = styled(Flex)`
 const ListItem = styled(DropdownItem)`
   background-color: ${({ isSelected, selectedColor }) =>
     isSelected && themeGet(`colors.${selectedColor}`, selectedColor)};
+  margin: 0;
+  padding-left: ${themeGet('space.2')}px;
+  padding-right: ${themeGet('space.2')}px;
+
+  :nth-of-type(n + 1) {
+    border-top: ${themeGet('borders.1')} ${themeGet('colors.light-gray')};
+  }
+
   &:hover {
     background-color: ${themeGet('colors.white-smoke')};
-  }
-  &:nth-of-type(n + 2) {
-    border-block-start: ${themeGet('borders.1')}
-      ${themeGet('colors.light-gray')};
   }
 `
 
@@ -103,5 +102,6 @@ Option.defaultProps = {
   shouldShow: false
 }
 
+Option.displayName = 'DropdownOption'
 /** @component */
 export default Option
