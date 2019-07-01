@@ -35,13 +35,13 @@ There are a few indispensable libraries that act as dependencies for Kogaio; the
 ## Installation
 
 ```
-npm i @ivoryio/kogaio
+npm i styled-components styled-system @ivoryio/kogaio
 ```
 
 or
 
 ```
-yarn add @ivoryio/kogaio
+yarn add styled-components styled-system @ivoryio/kogaio
 ```
 
 ## Configuration

@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "author": "Ivory™",
   "description": "Component library",
   "main": "build/index.js",
@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
-    "@styled-system/prop-types": "^5.0.12",
     "react": "^16.8.6",
     "react-docgen-external-proptypes-handler": "^1.0.3",
     "react-dom": "^16.8.6",
@@ -40,7 +39,11 @@
     "styled-system": "^5.0.12"
   },
   "dependencies": {
-    "@styled-system/prop-types": "^5.0.12",
+    "@styled-system/prop-types": "^5.0.12"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "styled-components": "^4.3.2",
     "styled-system": "^5.0.12"
   },
