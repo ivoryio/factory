@@ -1,15 +1,16 @@
-import React, { Children, cloneElement, isValidElement, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { ConditionalWrap, isMobileDevice, themeGet, useBoolean } from '../utils'
 
+import List from './List'
+import Option, { DropdownItem } from './Option'
 import Icon from '../Icon'
 import Modal from '../Modal'
 import Touchable from '../Touchable'
 import Typography from '../Typography'
 import { Flex, Space } from '../Responsive'
-import Option, { DropdownItem } from './Option'
 
 const Dropdown = ({
   autoFocus,
@@ -19,7 +20,7 @@ const Dropdown = ({
   id,
   label,
   multiple,
-  onChange: handleSelect,
+  onChange,
   placeholder,
   required,
   size,
@@ -32,81 +33,43 @@ const Dropdown = ({
     if (autoFocus) setListOpen(true)
   }, [autoFocus, setListOpen])
 
-  function selectOption (option) {
-    return () => {
-      if (multiple) return handleSelect(option)
+  const toggleDropdown = ev => (disabled ? ev.preventDefault() : toggle())
 
-      handleSelect(option)
-      setListOpen(false)
-    }
+  const listProps = {
+    handleSelect: onChange,
+    isListOpen: isListOpen,
+    listId: id,
+    multiple: multiple,
+    setListOpen: setListOpen,
+    size: size,
+    value: value
   }
-
-  useEffect(() => {
-    document.addEventListener('click', _handleBackdropClick)
-    return () => document.removeEventListener('click', _handleBackdropClick)
-
-    function _handleBackdropClick (ev) {
-      const dropdownEl = document.getElementById(id)
-      if (dropdownEl && isListOpen) {
-        const isClickOutside = !dropdownEl.contains(ev.target)
-        if (isClickOutside) setListOpen(false)
-      }
-    }
-  }, [handleSelect, id, isListOpen, multiple, setListOpen])
-
-  const toggleDropdown = ev => {
-    if (disabled) return ev.preventDefault()
-    toggle()
-  }
-
-  const DropdownList = props => (
-    <Space m={0} p={0}>
-      <List
-        as="ul"
-        className="dropdown-list"
-        id={id}
-        isOpen={isListOpen}
-        numOfElements={children.length}
-        size={size}
-        {...props}>
-        {Children.toArray(children).map(child =>
-          isValidElement(child)
-            ? cloneElement(child, {
-                selectOption,
-                shouldShow: isListOpen,
-                isSelected: value.includes(child.props.value)
-              })
-            : null
-        )}
-      </List>
-    </Space>
-  )
 
   return (
-    <Flex flexDirection="column" position="relative" {...rest}>
+    <Flex flexDirection='column' position='relative' {...rest}>
       {label ? (
-        <Typography as="label" htmlFor={id} variant="inputLabel">
+        <Typography as='label' htmlFor={id} variant='inputLabel'>
           {label} {required && '*'}
         </Typography>
       ) : null}
       <Touchable disabled={disabled} onClick={toggleDropdown}>
         <Space px={2}>
           <SelectedItem
-            as="li"
-            className="dropdown-selected-item"
+            as='li'
+            className='dropdown-selected-item'
             error={error}
             isActive={isListOpen}>
             <Typography
               color={value ? 'dark-gunmetal' : 'manatee'}
               truncate
-              variant="list">
+              variant='list'>
               {value || placeholder}
             </Typography>
             <DropdownChevron
-              color="independence"
+              color='independence'
               fontSize={4}
               isOpen={isListOpen}
-              name="arrow_drop_down"
+              name='arrow_drop_down'
             />
           </SelectedItem>
         </Space>
@@ -115,55 +78,21 @@ const Dropdown = ({
         condition={isMobileDevice}
         wrap={() => (
           <Modal visible={isListOpen}>
-            <DropdownList isMobile />
+            <Space m={0} p={0}>
+              <List isMobile {...listProps}>
+                {children}
+              </List>
+            </Space>
           </Modal>
         )}>
-        <DropdownList />
+        <Space m={0} p={0}>
+          <List {...listProps}>{children}</List>
+        </Space>
       </ConditionalWrap>
     </Flex>
   )
 }
 
-const calcSize = () => ({ isOpen, numOfElements, size }) => {
-  const GUTTER = 4
-  const ITEM_HEIGHT = 36
-  if (!isOpen) return `max-height: 0; visibility: hidden;`
-  if (numOfElements <= size)
-    return `max-height: ${size * ITEM_HEIGHT + GUTTER}px;`
-  return `
-    max-height: ${size * ITEM_HEIGHT + GUTTER * 2}px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-  `
-}
-
-const responsiveListStyle = ({ isMobile }) => css`
-  top: ${({ isMobile }) => (isMobile ? '50%' : '100%')};
-  position: ${({ isMobile }) => (isMobile ? 'fixed' : 'absolute')};
-  width: 100%;
-  ${isMobile
-    ? `
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-  `
-    : null};
-`
-const List = styled(Flex)`
-  background-color: ${themeGet('colors.white')};
-  border: ${({ isOpen }) => themeGet(`borders.${isOpen ? 1 : 0}`)}
-    ${themeGet('colors.azure-white')};
-  border-block-start: none;
-  border-bottom-left-radius: ${themeGet('radii.2', 2)}px;
-  border-bottom-right-radius: ${themeGet('radii.2', 2)}px;
-  flex-direction: column;
-  height: auto;
-  list-style-type: none;
-  z-index: 2;
-
-  ${calcSize}
-  ${responsiveListStyle}
-`
 const selectedBorderStyle = ({ error, isActive }) => css`
   border-top-left-radius: ${themeGet('radii.2', 2)}px;
   border-top-right-radius: ${themeGet('radii.2', 2)}px;
@@ -200,7 +129,7 @@ Dropdown.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   size: PropTypes.number,
-  value: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired,
 }
 
 Dropdown.defaultProps = {

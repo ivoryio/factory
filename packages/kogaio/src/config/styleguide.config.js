@@ -1,8 +1,9 @@
 const path = require('path')
 const root = process.env.PWD
 const docgen = require('react-docgen')
-const docgenDisplayNameHandler = require('react-docgen-displayname-handler')
 const pkgVersion = require(`${root}/package.json`).version
+const docgenDisplayNameHandler = require('react-docgen-displayname-handler')
+
 module.exports = {
   // #region preferences
   title: 'Kogaio',

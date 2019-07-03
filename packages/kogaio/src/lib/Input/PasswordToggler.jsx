@@ -6,6 +6,7 @@ import IconButton from '../IconButton'
 export const PasswordToggler = ({
   error,
   inputType,
+  tabIndex,
   toggle,
   viewOption,
   ...props
@@ -21,6 +22,7 @@ export const PasswordToggler = ({
     name={inputType === 'password' ? 'visibility_off' : 'visibility'}
     position="absolute"
     right={8}
+    tabIndex={tabIndex}
     {...props}
   />
 )
@@ -29,6 +31,7 @@ const toggleOptions = ['peek', 'toggle']
 PasswordToggler.propTypes = {
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   inputType: PropTypes.string,
+  tabIndex: PropTypes.string,
   toggle: PropTypes.func.isRequired,
   viewOption: PropTypes.oneOf(toggleOptions)
 }

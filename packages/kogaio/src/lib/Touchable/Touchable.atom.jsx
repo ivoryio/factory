@@ -26,6 +26,7 @@ const Touchable = ({
   onTouchStart,
   onTouchEnd,
   onDragAttempt: handleDragAttempt,
+  tabIndex,
   underlayColor,
   type,
   ...rest
@@ -56,6 +57,7 @@ const Touchable = ({
       onMouseLeave={_handleMouseLeave}
       onTouchStart={onClick ? null : onTouchStart}
       onTouchEnd={onClick ? null : onTouchEnd}
+      tabIndex={tabIndex}
       type={type}
       underlayColor={underlayColor}
       {...rest}>
@@ -141,17 +143,18 @@ Touchable.propTypes = {
   ...propTypes.position,
   ...propTypes.space,
   ...propTypes.typography,
+  activeOpacity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   as: PropTypes.string,
   children: PropTypes.node,
   disabled: PropTypes.bool,
+  effect: PropTypes.oneOf(effects).isRequired,
   onClick: PropTypes.func,
+  onDragAttempt: PropTypes.func,
   onMouseDown: PropTypes.func,
   onMouseUp: PropTypes.func,
-  onDragAttempt: PropTypes.func,
   onTouchStart: PropTypes.func,
   onTouchEnd: PropTypes.func,
-  activeOpacity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  effect: PropTypes.oneOf(effects).isRequired,
+  tabIndex: PropTypes.string,
   type: PropTypes.string,
   underlayColor: PropTypes.string
 }
