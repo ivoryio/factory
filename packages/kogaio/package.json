@@ -29,7 +29,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
+    "@babel/cli": "^7.5.0",
     "babel-plugin-styled-components": "^1.10.6",
     "react": "^16.8.6",
     "react-docgen-external-proptypes-handler": "^1.0.3",

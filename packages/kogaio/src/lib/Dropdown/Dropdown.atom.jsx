@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 
 import { ConditionalWrap, isMobileDevice, themeGet, useBoolean } from '../utils'
 
-import List from './List'
+import List, { dropdownStyle } from './List'
 import Option, { DropdownItem } from './Option'
 import Icon from '../Icon'
 import Modal from '../Modal'
@@ -24,6 +24,8 @@ const Dropdown = ({
   placeholder,
   required,
   size,
+  valid,
+  variant,
   value,
   ...rest
 }) => {
@@ -35,41 +37,56 @@ const Dropdown = ({
 
   const toggleDropdown = ev => (disabled ? ev.preventDefault() : toggle())
 
+  const dropdownVariant = (() => {
+    if (disabled) return 'disabled'
+    if (error) return 'error'
+    if (valid) return 'valid'
+    return 'default'
+  })()
+
   const listProps = {
     handleSelect: onChange,
-    isListOpen: isListOpen,
+    isListOpen,
     listId: id,
-    multiple: multiple,
-    setListOpen: setListOpen,
-    size: size,
-    value: value
+    multiple,
+    setListOpen,
+    size,
+    value,
+    variant: dropdownVariant
   }
 
   return (
-    <Flex flexDirection='column' position='relative' {...rest}>
+    <Flex flexDirection="column" position="relative" {...rest}>
       {label ? (
-        <Typography as='label' htmlFor={id} variant='inputLabel'>
+        <Typography
+          as="label"
+          htmlFor={id}
+          id="dropdown-label"
+          variant="inputLabel">
           {label} {required && '*'}
         </Typography>
       ) : null}
       <Touchable disabled={disabled} onClick={toggleDropdown}>
         <Space px={2}>
           <SelectedItem
-            as='li'
-            className='dropdown-selected-item'
+            as="li"
+            className={`dropdown-selected dropdown-${
+              isListOpen ? 'active' : 'inactive'
+            }`}
             error={error}
-            isActive={isListOpen}>
+            variant={dropdownVariant}>
             <Typography
-              color={value ? 'dark-gunmetal' : 'manatee'}
+              className={`dropdown-${value ? 'text' : 'placeholder'}`}
               truncate
-              variant='list'>
+              variant="list">
               {value || placeholder}
             </Typography>
             <DropdownChevron
-              color='independence'
+              color="independence"
+              className="dropdown-text"
               fontSize={4}
               isOpen={isListOpen}
-              name='arrow_drop_down'
+              name="arrow_drop_down"
             />
           </SelectedItem>
         </Space>
@@ -93,20 +110,15 @@ const Dropdown = ({
   )
 }
 
-const selectedBorderStyle = ({ error, isActive }) => css`
-  border-top-left-radius: ${themeGet('radii.2', 2)}px;
-  border-top-right-radius: ${themeGet('radii.2', 2)}px;
-  border: ${themeGet('borders.1')} ${themeGet('colors.azure-white')};
-  border-color: ${error && themeGet('colors.error')};
-  border-color: ${isActive && themeGet('colors.gunmetal')};
-  &:hover {
-    border: 1px solid ${themeGet('colors.gunmetal', '#243143')};
-  }
-`
 const SelectedItem = styled(DropdownItem)`
   background-color: ${themeGet('colors.white')};
   z-index: 3;
-  ${selectedBorderStyle}
+
+  .dropdown-placeholder {
+    color: ${themeGet('colors.manatee')};
+  }
+
+  ${dropdownStyle}
 `
 const rotate = css`
   ${({ isOpen }) =>
@@ -129,7 +141,9 @@ Dropdown.propTypes = {
   placeholder: PropTypes.string,
   required: PropTypes.bool,
   size: PropTypes.number,
+  valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   value: PropTypes.string.isRequired,
+  variant: PropTypes.string
 }
 
 Dropdown.defaultProps = {
@@ -142,7 +156,8 @@ Dropdown.defaultProps = {
   placeholder: 'Select an option',
   required: false,
   size: 5,
-  value: ''
+  value: '',
+  variant: 'default'
 }
 
 Dropdown.Option = Option

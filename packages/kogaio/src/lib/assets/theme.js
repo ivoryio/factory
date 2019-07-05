@@ -1,4 +1,4 @@
-import { buttonFn, cardFn, inputFn, typographyFn, tooltipFn } from './variants'
+import { buttonFn, cardFn, dropdownFn, inputFn, typographyFn, tooltipFn } from './variants'
 import { mergeDeep, hexToRgbA, isObjectEmpty } from './helpers'
 
 export const defaultTheme = new (function () {
@@ -127,6 +127,7 @@ export function themeFactory (customTheme) {
     const componentStyles = [
       { key: 'buttons', fn: buttonFn },
       { key: 'cards', fn: cardFn },
+      { key: 'dropdowns', fn: dropdownFn },
       { key: 'inputs', fn: inputFn },
       { key: 'tooltips', fn: tooltipFn },
       { key: 'typography', fn: typographyFn }

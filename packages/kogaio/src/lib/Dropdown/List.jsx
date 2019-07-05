@@ -1,10 +1,16 @@
 import React, { Children, cloneElement, isValidElement, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { variant } from 'styled-system'
 import styled, { css } from 'styled-components'
 
 import { themeGet } from '../utils'
 
 import { Flex } from '../Responsive'
+
+export const dropdownStyle = variant({
+  scale: 'dropdowns',
+  prop: 'variant'
+})
 
 const List = ({
   children,
@@ -98,6 +104,7 @@ const Container = styled(Flex)`
 
   ${calcSize}
   ${responsiveListStyle}
+  ${dropdownStyle}
 `
 
 List.propTypes = {

@@ -1,43 +1,42 @@
-export default function (theme) {
-  const { colors } = theme
+export default function ({ borders, colors, ...theme }) {
   return {
     info: {
-      border: `solid 1px ${colors.info}`,
-      backgroundColor: colors.white,
+      border: `${borders[1]} ${colors.info}`,
+      'background-color': colors.white,
       '& > div': {
         'i:first-of-type, .tooltip-text': {
           color: colors.info
         }
       },
-      '&:after': {
+      ':after': {
         borderColor: colors.info,
-        backgroundColor: colors.white
+        'background-color': colors.white
       }
     },
     success: {
-      border: `solid 1px ${colors.brand}`,
-      backgroundColor: colors.white,
+      border: `${borders[1]} ${colors.brand}`,
+      'background-color': colors.white,
       '& > div': {
         'i:first-of-type, .tooltip-text': {
           color: colors.brand
         }
       },
-      '&:after': {
+      ':after': {
         borderColor: colors.brand,
-        backgroundColor: colors.white
+        'background-color': colors.white
       }
     },
     error: {
-      border: `solid 1px ${colors.error}`,
-      backgroundColor: colors.white,
+      border: `${borders[1]} ${colors.error}`,
+      'background-color': colors.white,
       '& > div': {
         'i:first-of-type, .tooltip-text': {
           color: colors.error
         }
       },
-      '&:after': {
+      ':after': {
         borderColor: colors.error,
-        backgroundColor: colors.white
+        'background-color': colors.white
       }
     }
   }

@@ -1,14 +1,13 @@
-export default function (theme) {
-  const { colors, shadows } = theme
+export default function ({ borders, colors, shadows, ...theme }) {
   return {
     primary: {
       color: colors.white,
       'background-color': colors.brand,
-      'box-shadow': `${shadows['button-shadow']}`,
-      '&:hover': {
+      'box-shadow': shadows['button-shadow'],
+      ':hover': {
         'background-color': colors['brand-hover']
       },
-      '&:disabled': {
+      ':disabled': {
         color: colors['pastel-blue'],
         border: 'none',
         'background-color': colors['brand-disabled'],
@@ -18,17 +17,17 @@ export default function (theme) {
     },
     outline: {
       'background-color': 'transparent',
-      border: `1px solid ${colors.brand}`,
+      border: `${borders[1]} ${colors.brand}`,
       color: colors.brand,
-      '&:hover': {
-        border: `1px solid ${colors['outline-hover']}`
+      ':hover': {
+        border: `${borders[1]} ${colors['outline-hover']}`
       },
-      '&:disabled': {
-        border: `1px solid ${colors['outline-disabled']}`,
+      ':disabled': {
+        border: `${borders[1]} ${colors['outline-disabled']}`,
         color: colors['outline-disabled'],
         cursor: 'not-allowed',
         transform: 'scale(1)',
-        '&:hover': {
+        ':hover': {
           'background-color': 'transparent'
         }
       }
@@ -37,7 +36,7 @@ export default function (theme) {
       color: colors.white,
       'box-shadow': shadows['button-shadow'],
       'background-color': colors.success,
-      '&:hover': {
+      ':hover': {
         'background-color': colors['brand-hover']
       }
     },
@@ -45,7 +44,7 @@ export default function (theme) {
       'background-color': colors.error,
       'box-shadow': shadows['button-shadow'],
       color: colors.white,
-      '&:hover': {
+      ':hover': {
         'background-color': colors['error-hover']
       }
     }
