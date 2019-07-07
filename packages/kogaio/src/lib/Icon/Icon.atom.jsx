@@ -11,14 +11,19 @@ import {
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
-const Icon = ({ className, name, ...rest }) => (
-  <StyledIcon className={`material-icons${' '}${className}`} {...rest}>
+const Icon = ({ className, name, pointerEvents, tabIndex, ...rest }) => (
+  <StyledIcon
+    className={`material-icons${' '}${className}`}
+    pointerEvents={pointerEvents}
+    tabIndex={tabIndex}
+    {...rest}>
     {name}
   </StyledIcon>
 )
 
 const StyledIcon = styled.i`
   user-select: none;
+  pointer-events: ${({ pointerEvents }) => pointerEvents};
   ${compose(
     color,
     layout,
@@ -36,7 +41,9 @@ Icon.propTypes = {
   ...propTypes.typography,
   dataTest: PropTypes.string,
   onClick: PropTypes.func,
-  src: PropTypes.string
+  pointerEvents: PropTypes.string,
+  src: PropTypes.string,
+  tabIndex: PropTypes.string
 }
 
 Icon.defaultProps = {

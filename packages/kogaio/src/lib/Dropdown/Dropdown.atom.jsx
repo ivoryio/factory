@@ -22,6 +22,8 @@ const Dropdown = ({
   multiple,
   onChange,
   placeholder,
+  renderListFooter,
+  renderListHeader,
   required,
   size,
   valid,
@@ -49,6 +51,8 @@ const Dropdown = ({
     isListOpen,
     listId: id,
     multiple,
+    renderListFooter,
+    renderListHeader,
     setListOpen,
     size,
     value,
@@ -83,7 +87,7 @@ const Dropdown = ({
             </Typography>
             <DropdownChevron
               color="independence"
-              className="dropdown-text"
+              className="dropdown-text dropdown-chevron"
               fontSize={4}
               isOpen={isListOpen}
               name="arrow_drop_down"
@@ -139,6 +143,8 @@ Dropdown.propTypes = {
   multiple: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  renderListFooter: PropTypes.func,
+  renderListHeader: PropTypes.func,
   required: PropTypes.bool,
   size: PropTypes.number,
   valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),

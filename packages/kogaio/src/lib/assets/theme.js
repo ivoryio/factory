@@ -1,4 +1,12 @@
-import { buttonFn, cardFn, dropdownFn, inputFn, typographyFn, tooltipFn } from './variants'
+import {
+  buttonFn,
+  cardFn,
+  checkboxFn,
+  dropdownFn,
+  inputFn,
+  typographyFn,
+  tooltipFn
+} from './variants'
 import { mergeDeep, hexToRgbA, isObjectEmpty } from './helpers'
 
 export const defaultTheme = new (function () {
@@ -72,7 +80,7 @@ export const defaultTheme = new (function () {
   this.textStyles = {
     caps: {
       textTransform: 'uppercase',
-      letterSpacing: '0.625em'
+      letterSpacing: '0.2px'
     }
   }
   this.fonts = {
@@ -127,6 +135,7 @@ export function themeFactory (customTheme) {
     const componentStyles = [
       { key: 'buttons', fn: buttonFn },
       { key: 'cards', fn: cardFn },
+      { key: 'checkboxes', fn: checkboxFn },
       { key: 'dropdowns', fn: dropdownFn },
       { key: 'inputs', fn: inputFn },
       { key: 'tooltips', fn: tooltipFn },

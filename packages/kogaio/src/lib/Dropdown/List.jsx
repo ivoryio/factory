@@ -18,6 +18,8 @@ const List = ({
   isListOpen,
   listId,
   multiple,
+  renderListFooter,
+  renderListHeader,
   setListOpen,
   size,
   value,
@@ -44,13 +46,16 @@ const List = ({
   }
   return (
     <Container
-      as='ul'
-      className='dropdown-list'
+      as="ul"
+      className="dropdown-list"
       id={listId}
       isOpen={isListOpen}
       numOfElements={children.length}
       size={size}
       {...props}>
+      {typeof renderListHeader === 'function' && isListOpen
+        ? renderListHeader({ isListOpen, setListOpen })
+        : null}
       {Children.toArray(children).map(child =>
         isValidElement(child)
           ? cloneElement(child, {
@@ -60,6 +65,9 @@ const List = ({
             })
           : null
       )}
+      {typeof renderListFooter === 'function' && isListOpen
+        ? renderListFooter({ isListOpen, setListOpen })
+        : null}
     </Container>
   )
 }
@@ -113,6 +121,8 @@ List.propTypes = {
   isListOpen: PropTypes.bool.isRequired,
   listId: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
+  renderListFooter: PropTypes.func,
+  renderListHeader: PropTypes.func,
   setListOpen: PropTypes.func,
   size: PropTypes.number,
   value: PropTypes.string

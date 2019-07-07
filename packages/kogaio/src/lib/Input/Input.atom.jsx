@@ -1,6 +1,6 @@
 import React, { useState, createRef } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   border,
   color,
@@ -16,6 +16,7 @@ import propTypes from '@styled-system/prop-types'
 import { themeGet } from '../utils'
 
 import { Sublabel } from './Sublabel'
+import Icon from '../Icon'
 import Typography from '../Typography'
 import { Flex, Space } from '../Responsive'
 import { PasswordToggler } from './PasswordToggler'
@@ -31,6 +32,7 @@ const Input = ({
   className,
   disabled,
   error,
+  icLeft,
   id,
   label,
   name,
@@ -68,23 +70,25 @@ const Input = ({
   return (
     <Flex flexDirection="column" hasLabel={label} width={1} {...rest}>
       {label ? (
-        <InputLabel
+        <Typography
           as="label"
           className="input-label"
           color="gunmetal"
           htmlFor={id}
-          variant="inputLabel">
+          variant="inputLabel"
+          width="fit-content">
           {label} {required && '*'}
-        </InputLabel>
+        </Typography>
       ) : null}
       <Row>
         <InputComponent
           autoComplete={autoComplete}
           autoFocus={autoFocus}
-          className={`input ${className}`}
+          className="input"
           disabled={disabled}
           error={error}
           hasLabel={label}
+          hasIcLeft={icLeft}
           id={id}
           name={name}
           onChange={onChange}
@@ -97,13 +101,24 @@ const Input = ({
           variant={inputVariant}
           {...rest}
         />
+        {icLeft ? (
+          <Icon
+            className="input-icleft"
+            fontSize={3}
+            left={8}
+            name={icLeft}
+            pointerEvents="none"
+            position="absolute"
+            tabIndex="-1"
+          />
+        ) : null}
         {type === 'password' && value ? (
           <PasswordToggler
             error={error}
             inputType={inputType}
             onDragAttempt={resetInputType}
             toggle={togglePassword}
-            tabIndex='-1'
+            tabIndex="-1"
             viewOption={passwordView}
           />
         ) : null}
@@ -125,19 +140,17 @@ const Input = ({
 
 const Row = styled(Flex)`
   align-items: center;
-  justify-content: space-between;
   position: relative;
   width: 100%;
 `
 
-const InputLabel = styled(Typography)``
-
-const addHorizontalPadding = () => props => `
-  padding-left: ${themeGet('space.2', 8)(props)}px;
-  padding-right: ${themeGet('space.8', 32)(props)}px;
+const addSpaceAroundInputArea = css`
+  text-indent: ${({ hasIcLeft }) =>
+    hasIcLeft ? themeGet('space.8', 32) : themeGet('space.2', 8)}px;
+  padding-right: ${themeGet('space.8', 32)}px;
 `
 const InputComponent = styled.input`
-  ${addHorizontalPadding}
+  ${addSpaceAroundInputArea}
   border-radius: ${themeGet('radii.1', 1)}px;
   box-sizing: border-box;
   color: ${themeGet('colors.gunmetal', '#243143')};
@@ -146,14 +159,17 @@ const InputComponent = styled.input`
   outline: none;
   width: 100%;
   
-  &:focus {
-    ~ button > i {
-      color: ${themeGet('colors.gunmetal')};
-    }
-  }
-
-  &::placeholder {
+  ::placeholder {
       color: ${themeGet('colors.pastel-blue')};
+    }
+
+    ~.input-icleft {
+      color: ${themeGet('colors.pastel-blue')};
+    }
+
+  :focus {
+    ~ button > i, ~ .input-icleft {
+      color: ${themeGet('colors.gunmetal')};
     }
   }
   
@@ -190,6 +206,7 @@ Input.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  icLeft: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   label: PropTypes.string,
   name: PropTypes.string,

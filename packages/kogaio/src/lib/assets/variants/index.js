@@ -1,5 +1,6 @@
 export { default as buttonFn } from './buttons'
 export { default as cardFn } from './cards'
+export { default as checkboxFn } from './checkboxes'
 export { default as dropdownFn } from './dropdowns'
 export { default as inputFn } from './inputs'
 export { default as typographyFn } from './typography'

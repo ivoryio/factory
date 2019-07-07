@@ -27,6 +27,7 @@ const Button = ({
   dataTest,
   disabled,
   icon,
+  id,
   loading,
   onClick,
   spinnerSize,
@@ -63,6 +64,7 @@ const Button = ({
     <ButtonComponent
       data-test={dataTest}
       disabled={disabled}
+      id={id}
       onClick={onClick}
       type={type}
       variant={variant}
@@ -78,7 +80,11 @@ const Button = ({
       ) : (
         <>
           {icon && <ButtonIcon icon={icon} variant={variant} />}
-          {title || children}
+          <Space px={3}>
+            <label className="button-label" htmlFor={id}>
+              {title || children}
+            </label>
+          </Space>
         </>
       )}
     </ButtonComponent>
@@ -89,9 +95,7 @@ const ButtonIcon = ({ icon: { color, name, size }, variant }) => {
   const fallbackColor = (() =>
     variant.includes('outline') ? 'brand' : 'white')()
   return (
-    <Space ml={-1} mr={1}>
-      <Icon name={name} fontSize={size || 16} color={color || fallbackColor} />
-    </Space>
+    <Icon name={name} fontSize={size || 16} color={color || fallbackColor} />
   )
 }
 
@@ -102,6 +106,7 @@ const defaultFontStyle = css`
   line-height: ${themeGet('lineHeights.button', 2)};
 `
 const ButtonComponent = styled.button`
+  ${defaultFontStyle}
   align-items: center;
   border: none;
   border-radius: ${themeGet('radii.1')}px;
@@ -133,7 +138,6 @@ const ButtonComponent = styled.button`
     space,
     typography
   )}
-  ${defaultFontStyle}
 `
 
 Button.propTypes = {
@@ -158,7 +162,7 @@ Button.propTypes = {
   loading: PropTypes.bool,
   onClick: PropTypes.func,
   spinnerSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   type: PropTypes.string,
   variant: PropTypes.string
 }
