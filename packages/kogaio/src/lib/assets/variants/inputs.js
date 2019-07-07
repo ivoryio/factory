@@ -1,33 +1,32 @@
-export default function (theme) {
-  const { colors, shadows } = theme
+export default function ({ borders, colors, shadows, ...theme }) {
   return {
     default: {
-      backgroundColor: `${colors.white}`,
-      boxShadow: shadows['input-basic'],
-      border: `1px solid ${colors['pastel-blue']}`,
+      'background-color': colors.white,
+      border: `${borders[1]} ${colors['pastel-blue']}`,
+      'box-shadow': shadows['input-basic'],
       '&:focus': {
-        border: `1px solid ${colors['paynes-gray']}`
+        border: `${borders[1]} ${colors['paynes-gray']}`
       },
       '&:hover': {
-        border: `1px solid ${colors['paynes-gray']}`
+        border: `${borders[1]} ${colors['paynes-gray']}`
       }
     },
     disabled: {
-      backgroundColor: `${colors['ghost-white']}`,
-      border: `1px solid ${colors['ice-white']}`,
-      boxShadow: 'none',
+      'background-color': `${colors['ghost-white']}`,
+      border: `${borders[1]} ${colors['ice-white']}`,
+      'box-shadow': 'none',
       color: colors['manatee'],
       cursor: 'not-allowed'
     },
     valid: {
-      boxShadow: shadows['input-basic'],
-      border: `1px solid ${colors.brand}`,
-      backgroundColor: `${colors.white}`
+      'background-color': `${colors.white}`,
+      border: `${borders[1]} ${colors.brand}`,
+      'box-shadow': shadows['input-basic']
     },
     error: {
-      boxShadow: shadows['input-basic'],
-      border: `1px solid ${colors.error}`,
-      backgroundColor: `${colors.white}`
+      'background-color': `${colors.white}`,
+      border: `${borders[1]} ${colors.error}`,
+      'box-shadow': shadows['input-basic']
     }
   }
 }

@@ -45,7 +45,7 @@ module.exports = {
     const dir = path.dirname(componentPath).split('lib/')[1]
     const trimmedName = name.split('.')[0]
     const fileName = dir.includes('Responsive')
-      ? `{ ${name} }`
+      ? `{ ${trimmedName} }`
       : `${trimmedName}`
     return `import ${fileName} from @ivoryio/kogaio/${dir}`
   },

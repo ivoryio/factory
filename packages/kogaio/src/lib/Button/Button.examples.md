@@ -87,10 +87,10 @@ const ButtonExamples = () => {
             <Button
               icon={{ name: 'visibility', size: 16 }}
               onClick={() => {}}
-              title='Button with icon'
               variant='outline'
-              width={1}
-            />
+              width={1}>
+              Button with icon
+            </Button>
           </Space>
         </Flex>
         <Flex flexDirection='column' width={{ xs: 1, sm: 1 / 2, md: 1 / 3 }}>

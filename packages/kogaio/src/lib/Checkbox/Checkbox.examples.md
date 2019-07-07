@@ -1,6 +1,7 @@
 ```js
 import { useState } from 'react'
 import { Space } from '@ivoryio/kogaio'
+
 const CheckboxExamples = () => {
   const [checked, setChecked] = useState(true)
   const toggleCheckbox = ({ target }) => setChecked(target.checked)

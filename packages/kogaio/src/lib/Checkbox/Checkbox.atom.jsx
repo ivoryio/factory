@@ -2,60 +2,76 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import propTypes from '@styled-system/prop-types'
-import { color, compose, typography } from 'styled-system'
+import { color, compose, typography, variant } from 'styled-system'
 
 import { themeGet } from '../utils'
 import { Box, Flex } from '../Responsive'
+
+const checkboxStyle = variant({
+  scale: 'checkboxes',
+  prop: 'variant'
+})
 
 const Checkbox = ({
   checkboxPosition,
   checked,
   color,
   disabled,
+  error,
   id,
   label,
   labelColor,
   name,
   onChange,
   size,
+  valid,
   value,
+  variant,
   ...rest
-}) => (
-  <Flex alignItems="center" {...rest}>
-    <Wrapper
-      color={color}
-      disabled={disabled}
-      checkboxPosition={checkboxPosition}>
-      <Input
-        checked={checked}
-        disabled={disabled}
-        id={id}
-        name={name}
-        onChange={onChange}
-        type="checkbox"
-        value={value}
-      />
-      <Placeholder
-        className="checkbox"
+}) => {
+  const checkboxVariant = (() => {
+    if (disabled) return 'disabled'
+    if (error) return 'error'
+    if (valid) return 'valid'
+    return 'default'
+  })()
+  return (
+    <Flex alignItems='center' {...rest}>
+      <Wrapper
         color={color}
         disabled={disabled}
-        size={size}
-      />
-    </Wrapper>
-    <Label
-      className="checkbox-label"
-      color={labelColor}
-      disabled={disabled}
-      htmlFor={id}>
-      {label}
-    </Label>
-  </Flex>
-)
+        checkboxPosition={checkboxPosition}
+        variant={checkboxVariant}>
+        <Input
+          checked={checked}
+          disabled={disabled}
+          id={id}
+          name={name}
+          onChange={onChange}
+          type='checkbox'
+          value={value}
+        />
+        <Placeholder
+          className={`checkbox ${checked ? 'checked' : ''}`}
+          color={color}
+          disabled={disabled}
+          size={size}
+          variant={checkboxVariant}
+        />
+      </Wrapper>
+      <Label
+        className='checkbox-label'
+        color={labelColor}
+        disabled={disabled}
+        htmlFor={id}
+        variant={checkboxVariant}>
+        {label}
+      </Label>
+    </Flex>
+  )
+}
 
-const cursor = css`
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-`
-const size = ({ size }) => css`
+const checkboxSize = ({ size }) => css`
   width: ${typeof size === 'number' ? `${size}px` : size};
   height: ${typeof size === 'number' ? `${size}px` : size};
 `
@@ -72,14 +88,6 @@ const checkboxPosition = ({ checkboxPosition, ...props }) => css`
 const Wrapper = styled(Box)`
   position: relative;
 
-  :hover input ~ span {
-    border: ${themeGet('borders.1', '1px solid')}
-      ${({ disabled }) =>
-        disabled
-          ? themeGet('colors.pastel-blue', '#b3c3d4')
-          : themeGet('colors.paynes-gray', '#4f5767')};
-  }
-
   input:checked ~ span {
     border: ${themeGet('borders.1', '1px solid')}
       ${({ color }) => themeGet(`colors.${color}`, color)};
@@ -90,14 +98,10 @@ const Wrapper = styled(Box)`
   }
 
   ${checkboxPosition}
+  ${checkboxStyle}
 `
 
 const Label = styled.label`
-  color: ${({ disabled }) =>
-    disabled
-      ? themeGet('colors.pastel-blue', '#b3c3d4')
-      : themeGet('colors.gunmetal', '#243143')};
-
   font-size: ${themeGet('fontSizes.1', '1rem')};
   user-select: none;
   pointer-events: auto;
@@ -107,11 +111,14 @@ const Label = styled.label`
 
   ${compose(
     color,
-    cursor,
     typography
   )}
+  ${checkboxStyle}
 `
 
+const cursor = css`
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+`
 const Input = styled.input`
   position: absolute;
   opacity: 0;
@@ -123,23 +130,13 @@ const Input = styled.input`
 
 const Placeholder = styled.span`
   align-items: center;
-  background-color: ${({ disabled }) =>
-    disabled
-      ? themeGet('colors.ghost-white', '#f6f9fb')
-      : themeGet('colors.white', '#fff')};
-  border-radius: ${themeGet('radii.1', 1)}px;
-  border: ${themeGet('borders.1', '1px solid')}
-    ${themeGet('colors.pastel-blue', '#b3c3d4')};
-  box-shadow: ${themeGet('shadows.input-basic')};
   display: flex;
   justify-content: center;
   pointer-events: none;
 
-  ${compose(
-    color,
-    cursor
-  )}
-  ${size}
+  ${color}
+  ${checkboxSize}
+  ${checkboxStyle}
 
   :after {
     content: '';
@@ -161,13 +158,16 @@ Checkbox.propTypes = {
   checked: PropTypes.bool.isRequired,
   color: PropTypes.string,
   disabled: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   label: PropTypes.string,
   labelColor: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  valid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  variant: PropTypes.string
 }
 
 Checkbox.defaultProps = {
@@ -177,7 +177,8 @@ Checkbox.defaultProps = {
   checked: false,
   onChange: () =>
     console.error('* Checkbox component expects an onChange function'),
-  size: 16
+  size: 16,
+  variant: 'default'
 }
 
 Checkbox.displayName = 'Checkbox'

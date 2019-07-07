@@ -1,7 +1,7 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.6.7",
-  "author": "Ivory™",
+  "version": "0.7.0",
+  "author": "MihaiRo <mihai.rosca@thinslices.com>",
   "description": "Component library",
   "main": "build/index.js",
   "module": "build/index.js",
@@ -29,7 +29,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
+    "@babel/cli": "^7.5.0",
     "babel-plugin-styled-components": "^1.10.6",
     "react": "^16.8.6",
     "react-docgen-external-proptypes-handler": "^1.0.3",

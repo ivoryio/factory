@@ -1,62 +1,39 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
-import ReactDOM from 'react-dom'
 
 import { Flex } from '../Responsive'
-import { randomiser } from '../utils'
-const Modal = ({
+import { withPortal } from './withPortal'
+
+const Modal = ({ withPortal, ...props }) =>
+  withPortal ? <ModalWithPortal {...props} /> : <ModalBody {...props} />
+
+const ModalWithPortal = withPortal(props => <ModalBody {...props} />)
+
+const ModalBody = ({
   children,
   colors,
   id,
   onBackdropClick: handleBackdropClick,
+  position,
   visible,
   ...rest
 }) => {
-  const [modalRoot] = useState(document.createElement('div'))
-
-  useEffect(() => {
-    const existingRoot = document.getElementById('modal-root')
-    if (document.body.contains(existingRoot)) {
-      existingRoot
-        .appendChild(modalRoot)
-        .setAttribute('id', `modal-${randomiser}`)
-    } else {
-      const rootEl = document.createElement('div')
-      document.body.appendChild(rootEl).setAttribute('id', 'modal-root')
-      document
-        .getElementById('modal-root')
-        .appendChild(modalRoot)
-        .setAttribute('id', `modal-${id || randomiser}`)
-    }
-    return () => {
-      const rootEl = document.getElementById('modal-root')
-      if (rootEl.childNodes.length > 1) {
-        const targetChild = document.getElementById(`modal-${id || randomiser}`)
-        return document.getElementById('modal-root').removeChild(targetChild)
-      }
-      document.body.removeChild(rootEl)
-    }
-  }, [id, modalRoot])
-
   useEffect(() => {
     document.addEventListener('click', _handleBackdropClick)
     return () => document.removeEventListener('click', _handleBackdropClick)
 
     function _handleBackdropClick (ev) {
-      if (!handleBackdropClick) {
-        return ev.preventDefault()
-      }
+      if (!handleBackdropClick) return ev.preventDefault()
+
       const bodyEl = document.getElementById('modal-body')
-      const clickOutside = !bodyEl.contains(ev.target)
-      if (visible && clickOutside) {
-        handleBackdropClick()
-      }
+      const clickOutside = ev.target === bodyEl
+      if (visible && clickOutside) handleBackdropClick()
     }
   }, [handleBackdropClick, visible])
 
-  return ReactDOM.createPortal(
-    <Overlay id={id} colors={colors} visible={visible}>
+  return (
+    <Overlay id={id} colors={colors} position={position} visible={visible}>
       <Flex
         alignItems="center"
         id="modal-body"
@@ -66,8 +43,7 @@ const Modal = ({
         {...rest}>
         {children}
       </Flex>
-    </Overlay>,
-    modalRoot
+    </Overlay>
   )
 }
 
@@ -96,7 +72,7 @@ const Overlay = styled(Flex)`
   display: ${({ visible }) => (visible ? 'flex' : 'none')};
   height: 100%;
   left: 0;
-  position: fixed;
+  position: ${({ position }) => (position ? position : 'fixed')};
   top: 0;
   width: 100%;
   z-index: 99;
@@ -104,21 +80,34 @@ const Overlay = styled(Flex)`
   ${overlayAnimation}
 `
 
+ModalBody.propTypes = {
+  children: PropTypes.node,
+  colors: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onBackdropClick: PropTypes.func,
+  position: PropTypes.string,
+  visible: PropTypes.bool
+}
+
+ModalBody.defaultProps = {
+  colors: 'modal',
+  visible: false
+}
+
 Modal.propTypes = {
   children: PropTypes.node,
   colors: PropTypes.string,
-  effect: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onBackdropClick: PropTypes.func,
+  position: PropTypes.string,
+  withPortal: PropTypes.bool,
   visible: PropTypes.bool
 }
 
 Modal.defaultProps = {
-  colors: 'modal',
-  effect: 'fadeInDown',
-  visible: false
+  withPortal: false
 }
-Modal.displayName = 'Modal'
 
+Modal.displayName = 'Modal'
 /** @component */
 export default Modal

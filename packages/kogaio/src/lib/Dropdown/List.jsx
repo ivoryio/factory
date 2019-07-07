@@ -1,10 +1,16 @@
 import React, { Children, cloneElement, isValidElement, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { variant } from 'styled-system'
 import styled, { css } from 'styled-components'
 
 import { themeGet } from '../utils'
 
 import { Flex } from '../Responsive'
+
+export const dropdownStyle = variant({
+  scale: 'dropdowns',
+  prop: 'variant'
+})
 
 const List = ({
   children,
@@ -12,6 +18,8 @@ const List = ({
   isListOpen,
   listId,
   multiple,
+  renderListFooter,
+  renderListHeader,
   setListOpen,
   size,
   value,
@@ -38,13 +46,16 @@ const List = ({
   }
   return (
     <Container
-      as='ul'
-      className='dropdown-list'
+      as="ul"
+      className="dropdown-list"
       id={listId}
       isOpen={isListOpen}
       numOfElements={children.length}
       size={size}
       {...props}>
+      {typeof renderListHeader === 'function' && isListOpen
+        ? renderListHeader({ isListOpen, setListOpen })
+        : null}
       {Children.toArray(children).map(child =>
         isValidElement(child)
           ? cloneElement(child, {
@@ -54,6 +65,9 @@ const List = ({
             })
           : null
       )}
+      {typeof renderListFooter === 'function' && isListOpen
+        ? renderListFooter({ isListOpen, setListOpen })
+        : null}
     </Container>
   )
 }
@@ -98,6 +112,7 @@ const Container = styled(Flex)`
 
   ${calcSize}
   ${responsiveListStyle}
+  ${dropdownStyle}
 `
 
 List.propTypes = {
@@ -106,6 +121,8 @@ List.propTypes = {
   isListOpen: PropTypes.bool.isRequired,
   listId: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
+  renderListFooter: PropTypes.func,
+  renderListHeader: PropTypes.func,
   setListOpen: PropTypes.func,
   size: PropTypes.number,
   value: PropTypes.string

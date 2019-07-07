@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Touchable from '../Touchable'
 import { Flex, Space } from '../Responsive'
 import Typography from '../Typography'
-import { ConditionalWrap, isMobileDevice, themeGet } from '../utils'
+import { ConditionalWrap, isMobileDevice } from '../utils'
 
 const Option = ({
   children,
@@ -13,7 +13,6 @@ const Option = ({
   fontSize,
   isSelected,
   label,
-  selectedColor,
   selectOption,
   shouldShow,
   value,
@@ -22,17 +21,16 @@ const Option = ({
   if (!shouldShow) return null
 
   return (
-    <ListItem
-      as='li'
-      className='dropdown-item'
+    <DropdownItem
+      as="li"
+      className={`${isSelected ? `selected${' '}` : ''}dropdown-item`}
       isSelected={isSelected}
-      selectedColor={selectedColor}
       {...props}>
       <Space m={0} px={2}>
         <Touchable
           onMouseUp={!isMobileDevice ? selectOption(value) : null}
           onTouchEnd={isMobileDevice ? selectOption(value) : null}
-          textAlign='left'
+          textAlign="left"
           width={1}>
           <ConditionalWrap
             condition={
@@ -41,10 +39,11 @@ const Option = ({
             }
             wrap={() => (
               <Typography
+                className="dropdown-text"
                 color={color}
                 fontSize={fontSize}
                 truncate
-                variant='list'>
+                variant="list">
                 {label || children}
               </Typography>
             )}>
@@ -52,7 +51,7 @@ const Option = ({
           </ConditionalWrap>
         </Touchable>
       </Space>
-    </ListItem>
+    </DropdownItem>
   )
 }
 
@@ -62,18 +61,6 @@ export const DropdownItem = styled(Flex)`
   justify-content: space-between;
   text-align: left;
   width: 100%;
-`
-
-const ListItem = styled(DropdownItem)`
-  background-color: ${({ isSelected, selectedColor }) =>
-    isSelected && themeGet(`colors.${selectedColor}`, selectedColor)};
-
-  :hover {
-    background-color: ${themeGet('colors.white-smoke')};
-  }
-  :nth-of-type(n + 2) {
-    border-top: ${themeGet('borders.1')} ${themeGet('colors.light-gray')};
-  }
 `
 
 Option.propTypes = {
@@ -98,7 +85,6 @@ Option.propTypes = {
 
 Option.defaultProps = {
   isSelected: false,
-  selectedColor: 'ghost-white',
   shouldShow: false
 }
 
