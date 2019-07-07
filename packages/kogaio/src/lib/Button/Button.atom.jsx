@@ -118,6 +118,10 @@ const ButtonComponent = styled.button`
   text-transform: uppercase;
   width: 160px;
 
+  & > label {
+    pointer-events: none;
+  }
+
   :active {
     transform: scale(0.965);
   }
