@@ -128,7 +128,8 @@ export function themeFactory (customTheme) {
   const initialTheme = updateComponentVariantsWith(defaultTheme)
   if (!customTheme || isObjectEmpty(customTheme)) return initialTheme
 
-  const updatedTheme = mergeDeep(initialTheme, customTheme)
+  const newTheme = mergeDeep(initialTheme, customTheme)
+  const updatedTheme = updateComponentVariantsWith(newTheme)
   return updatedTheme
 
   function updateComponentVariantsWith (theme) {
