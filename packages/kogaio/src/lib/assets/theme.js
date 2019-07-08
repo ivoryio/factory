@@ -7,7 +7,7 @@ import {
   typographyFn,
   tooltipFn
 } from './variants'
-import { mergeDeep, hexToRgbA, isObjectEmpty } from './helpers'
+import { mergeDeep, hexToRgbA } from './helpers'
 
 export const defaultTheme = new (function () {
   this.borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
@@ -124,11 +124,8 @@ export const defaultTheme = new (function () {
   }
 })()
 
-export function themeFactory (customTheme) {
-  const initialTheme = updateComponentVariantsWith(defaultTheme)
-  if (!customTheme || isObjectEmpty(customTheme)) return initialTheme
-
-  const newTheme = mergeDeep(initialTheme, customTheme)
+export function themeFactory (customTheme = {}) {
+  const newTheme = mergeDeep(defaultTheme, customTheme)
   const updatedTheme = updateComponentVariantsWith(newTheme)
   return updatedTheme
 
@@ -146,7 +143,7 @@ export function themeFactory (customTheme) {
       {},
       theme,
       ...componentStyles.map(({ key, fn: componentFn }) => ({
-        [key]: componentFn(theme)
+        [key]: mergeDeep(componentFn(theme), theme[key])
       }))
     )
   }
