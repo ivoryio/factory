@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import propTypes from '@styled-system/prop-types'
 import { color, compose, typography, variant } from 'styled-system'
 
-import { themeGet } from '../utils'
+import { themed, themeGet } from '../utils'
 import { Box, Flex } from '../Responsive'
 
 const checkboxStyle = variant({
@@ -36,7 +36,7 @@ const Checkbox = ({
     return 'default'
   })()
   return (
-    <Flex alignItems='center' {...rest}>
+    <Flex alignItems="center" {...rest}>
       <Wrapper
         color={color}
         disabled={disabled}
@@ -48,7 +48,7 @@ const Checkbox = ({
           id={id}
           name={name}
           onChange={onChange}
-          type='checkbox'
+          type="checkbox"
           value={value}
         />
         <Placeholder
@@ -60,7 +60,7 @@ const Checkbox = ({
         />
       </Wrapper>
       <Label
-        className='checkbox-label'
+        className="checkbox-label"
         color={labelColor}
         disabled={disabled}
         htmlFor={id}
@@ -97,6 +97,7 @@ const Wrapper = styled(Box)`
     display: flex;
   }
 
+  ${themed('Checkbox.container')}
   ${checkboxPosition}
   ${checkboxStyle}
 `
@@ -113,6 +114,7 @@ const Label = styled.label`
     color,
     typography
   )}
+  ${themed('Checkbox.label')}
   ${checkboxStyle}
 `
 
@@ -134,6 +136,7 @@ const Placeholder = styled.span`
   justify-content: center;
   pointer-events: none;
 
+  ${themed('Checkbox')}
   ${color}
   ${checkboxSize}
   ${checkboxStyle}

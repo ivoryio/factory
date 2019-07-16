@@ -15,6 +15,7 @@ import {
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
+import { themed } from '../utils'
 import Typography from '../Typography'
 
 const Anchor = ({
@@ -53,6 +54,7 @@ const AnchorComponent = styled(Typography)`
     space,
     typography
   )}
+  ${themed('Anchor')}
 `
 
 Anchor.propTypes = {

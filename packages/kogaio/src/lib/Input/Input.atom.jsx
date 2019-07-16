@@ -13,7 +13,7 @@ import {
   variant
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
-import { themeGet } from '../utils'
+import { themed, themeGet } from '../utils'
 
 import { Sublabel } from './Sublabel'
 import Icon from '../Icon'
@@ -68,9 +68,9 @@ const Input = ({
   const resetInputType = () => setInputType(type)
 
   return (
-    <Flex flexDirection="column" hasLabel={label} width={1} {...rest}>
+    <InputContainer flexDirection="column" hasLabel={label} width={1} {...rest}>
       {label ? (
-        <Typography
+        <InputLabel
           as="label"
           className="input-label"
           color="gunmetal"
@@ -78,7 +78,7 @@ const Input = ({
           variant="inputLabel"
           width="fit-content">
           {label} {required && '*'}
-        </Typography>
+        </InputLabel>
       ) : null}
       <Row>
         <InputComponent
@@ -134,14 +134,23 @@ const Input = ({
       ) : (
         <Dummy hide={noBottomSpace} />
       )}
-    </Flex>
+    </InputContainer>
   )
 }
+
+const InputContainer = styled(Flex)`
+  ${themed('Input.container')}
+`
+
+const InputLabel = styled(Typography)`
+  ${themed('Input.label')}
+`
 
 const Row = styled(Flex)`
   align-items: center;
   position: relative;
   width: 100%;
+  ${themed('Input.wrapper')}
 `
 
 const addSpaceAroundInputArea = css`
@@ -173,6 +182,7 @@ const InputComponent = styled.input`
     }
   }
   
+  ${themed('Input')}
   ${compose(
     border,
     color,

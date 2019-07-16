@@ -9,7 +9,7 @@ import {
 } from './variants'
 import { mergeDeep, hexToRgbA } from './helpers'
 
-export const defaultTheme = new (function () {
+const defaultTheme = new (function () {
   this.borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
   this.breakpoints = {
     xs: '20em',

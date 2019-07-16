@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
+import { themed } from '../utils'
 import { Space } from '../Responsive'
 import Typography from '../Typography'
 
@@ -30,6 +31,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   height: 12px;
+  ${themed('Input.sublabel')}
 `
 
 Sublabel.propTypes = {

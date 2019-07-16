@@ -2,7 +2,13 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import { ConditionalWrap, isMobileDevice, themeGet, useBoolean } from '../utils'
+import {
+  ConditionalWrap,
+  isMobileDevice,
+  themed,
+  themeGet,
+  useBoolean
+} from '../utils'
 
 import List, { dropdownStyle } from './List'
 import Option, { DropdownItem } from './Option'
@@ -122,6 +128,7 @@ const SelectedItem = styled(DropdownItem)`
     color: ${themeGet('colors.manatee')};
   }
 
+  ${themed('Dropdown.selected')}
   ${dropdownStyle}
 `
 const rotate = css`
@@ -131,6 +138,7 @@ const rotate = css`
 `
 const DropdownChevron = styled(Icon)`
   ${rotate}
+  ${themed('Dropdown.chevron')}
 `
 
 Dropdown.propTypes = {

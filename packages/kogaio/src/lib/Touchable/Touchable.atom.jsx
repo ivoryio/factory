@@ -13,7 +13,7 @@ import {
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
-import { themeGet, useBoolean } from '../utils'
+import { themed, themeGet, useBoolean } from '../utils'
 
 const Touchable = ({
   activeOpacity,
@@ -121,6 +121,8 @@ const Wrapper = styled.button`
   :active {
     transform: scale(0.985);
   }
+
+  ${themed('Touchable')}
   ${compose(
     border,
     color,

@@ -13,7 +13,7 @@ import {
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
-import { themeGet, useBoolean } from '../utils'
+import { themed, themeGet, useBoolean } from '../utils'
 
 import Box from '../Responsive/Box'
 import { Icon, Typography, Touchable } from '..'
@@ -166,6 +166,7 @@ const Container = styled(Box)`
   }
 
   ${tooltipStyle}
+  ${themed('Tooltip.container')}
   ${compose(
     border,
     color,
@@ -187,6 +188,7 @@ const Body = styled.div`
   align-items: center;
   line-height: ${themeGet('lineHeights.tooltip', 1.6)};
   font-size: 1.25rem;
+  ${themed('Tooltip')}
 `
 
 Tooltip.propTypes = {

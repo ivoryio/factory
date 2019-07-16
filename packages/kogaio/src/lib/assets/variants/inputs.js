@@ -15,7 +15,7 @@ export default function ({ borders, colors, shadows, ...theme }) {
       'background-color': `${colors['ghost-white']}`,
       border: `${borders[1]} ${colors['ice-white']}`,
       'box-shadow': 'none',
-      color: colors['manatee'],
+      color: colors.manatee,
       cursor: 'not-allowed'
     },
     valid: {

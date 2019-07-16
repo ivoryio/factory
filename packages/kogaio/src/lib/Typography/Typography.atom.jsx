@@ -11,7 +11,7 @@ import {
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
-import { themeGet } from '../utils'
+import { themed, themeGet } from '../utils'
 
 const typographyStyle = variant({
   scale: 'typography',
@@ -33,6 +33,7 @@ const Typography = styled.div`
   letter-spacing: normal;
   ${handleTruncate}
 
+  ${themed('Typography')}
   ${compose(
     color,
     layout,

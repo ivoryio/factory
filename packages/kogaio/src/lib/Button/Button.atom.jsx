@@ -15,8 +15,8 @@ import {
   typography
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
-import { themeGet } from '../utils'
 
+import { themed, themeGet } from '../utils'
 import Icon from '../Icon'
 import { Space } from '../Responsive'
 import ActivityIndicator from '../ActivityIndicator'
@@ -73,6 +73,7 @@ const Button = ({
         CustomLoading || (
           <ActivityIndicator
             colors={spinnerColors}
+            className="button-loading"
             size={spinnerSize}
             variant="spinner"
           />
@@ -130,6 +131,7 @@ const ButtonComponent = styled.button`
     outline-color: transparent;
   }
 
+  ${themed('Button')}
   ${compose(
     border,
     shadow,
