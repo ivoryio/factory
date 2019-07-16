@@ -21,7 +21,7 @@ export const PasswordToggler = ({
     onTouchStart={toggle}
     onTouchEnd={viewOption.includes('peek') ? toggle : null}
     position="absolute"
-    right={8}
+    right={2}
     tabIndex={tabIndex}
     {...props}
   />

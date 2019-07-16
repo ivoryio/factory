@@ -105,7 +105,7 @@ const Input = ({
           <Icon
             className="input-icleft"
             fontSize={3}
-            left={8}
+            left={2}
             name={icLeft}
             pointerEvents="none"
             position="absolute"

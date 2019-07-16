@@ -68,13 +68,9 @@ const Dropdown = ({
   return (
     <Flex flexDirection="column" position="relative" {...rest}>
       {label ? (
-        <Typography
-          as="label"
-          htmlFor={id}
-          id="dropdown-label"
-          variant="inputLabel">
+        <Label as="label" htmlFor={id} id="dropdown-label" variant="inputLabel">
           {label} {required && '*'}
-        </Typography>
+        </Label>
       ) : null}
       <Touchable disabled={disabled} onClick={toggleDropdown}>
         <Space px={2}>
@@ -119,6 +115,10 @@ const Dropdown = ({
     </Flex>
   )
 }
+
+const Label = styled(Typography)`
+  ${themed('Dropdown.label')}
+`
 
 const SelectedItem = styled(DropdownItem)`
   background-color: ${themeGet('colors.white')};

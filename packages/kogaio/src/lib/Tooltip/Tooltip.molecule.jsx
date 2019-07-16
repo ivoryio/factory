@@ -54,8 +54,8 @@ const Tooltip = ({
           name={leftIcon}
           fontSize="1em"
           position="absolute"
-          top="8px"
-          left="8px"
+          top={2}
+          left={2}
         />
         <Typography
           className="tooltip-text"
@@ -68,8 +68,8 @@ const Tooltip = ({
         <Touchable
           effect="opacity"
           position="absolute"
-          top="8px"
-          right="8px"
+          top={2}
+          right={2}
           onClick={hideTooltip}>
           <Icon name="cancel" fontSize="1em" />
         </Touchable>
