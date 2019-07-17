@@ -52,6 +52,9 @@ const Dropdown = ({
     return 'default'
   })()
 
+  const selectedValue = (() =>
+    typeof value === 'object' ? value.label : value)()
+    
   const listProps = {
     handleSelect: onChange,
     isListOpen,
@@ -61,10 +64,10 @@ const Dropdown = ({
     renderListHeader,
     setListOpen,
     size,
-    value,
+    value: selectedValue,
     variant: dropdownVariant
   }
-
+  
   return (
     <Flex flexDirection="column" position="relative" {...rest}>
       {label ? (
@@ -82,10 +85,10 @@ const Dropdown = ({
             error={error}
             variant={dropdownVariant}>
             <Typography
-              className={`dropdown-${value ? 'text' : 'placeholder'}`}
+              className={`dropdown-${selectedValue ? 'text' : 'placeholder'}`}
               truncate
               variant="list">
-              {value || placeholder}
+              {selectedValue || placeholder}
             </Typography>
             <DropdownChevron
               color="independence"
@@ -156,7 +159,7 @@ Dropdown.propTypes = {
   required: PropTypes.bool,
   size: PropTypes.number,
   valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   variant: PropTypes.string
 }
 
