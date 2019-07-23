@@ -156,7 +156,8 @@ const Row = styled(Flex)`
 const addSpaceAroundInputArea = css`
   text-indent: ${({ hasIcLeft }) =>
     hasIcLeft ? themeGet('space.8', 32) : themeGet('space.2', 8)}px;
-  padding-right: ${themeGet('space.8', 32)}px;
+  padding-right: ${({ type }) =>
+    type === 'password' ? themeGet('space.8', 32) : 0}px;
 `
 const InputComponent = styled.input`
   ${addSpaceAroundInputArea}
@@ -224,7 +225,7 @@ Input.propTypes = {
    *
    * remove space by setting this to true */
   noBottomSpace: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   passwordView: PropTypes.oneOf(['peek', 'toggle']),
   placeholder: PropTypes.string,
   placeholderTextColor: PropTypes.string,

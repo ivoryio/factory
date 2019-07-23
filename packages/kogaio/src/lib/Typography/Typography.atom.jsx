@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   color,
+  colorStyle,
   compose,
   layout,
   space,
@@ -36,6 +37,7 @@ const Typography = styled.div`
   ${themed('Typography')}
   ${compose(
     color,
+    colorStyle,
     layout,
     space,
     textStyle,

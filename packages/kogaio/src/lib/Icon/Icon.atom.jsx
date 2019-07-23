@@ -23,8 +23,8 @@ const Icon = ({ className, name, pointerEvents, tabIndex, ...rest }) => (
 )
 
 const StyledIcon = styled.i`
-  user-select: none;
   pointer-events: ${({ pointerEvents }) => pointerEvents};
+  user-select: none;
   ${themed('Icon')}
   ${compose(
     color,

@@ -85,7 +85,6 @@ IconButton.propTypes = {
 
 IconButton.defaultProps = {
   alignItems: 'center',
-  color: 'white',
   display: 'flex',
   justifyContent: 'center',
   effect: 'opacity'
