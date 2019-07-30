@@ -39,8 +39,8 @@ const Anchor = ({
 )
 
 const AnchorComponent = styled(Typography)`
+  cursor: pointer;
   :hover {
-    transform: scale(1.02);
     font-weight: normal;
   }
   ${compose(
@@ -74,5 +74,4 @@ Anchor.propTypes = {
 }
 
 Anchor.displayName = 'Anchor'
-
 export default Anchor

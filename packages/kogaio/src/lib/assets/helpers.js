@@ -93,11 +93,3 @@ export function isObjectEmpty (arg) {
   }
   return !Object.keys(arg).length
 }
-
-export const mapProps = mapper => func => {
-  const next = props => func(mapper(props))
-  for (const key in func) {
-    next[key] = func[key]
-  }
-  return next
-}

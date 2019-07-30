@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.7.8",
+  "version": "0.7.9",
   "author": "MihaiRo <mihai.rosca@thinslices.com>",
   "description": "Component library",
   "main": "build/index.js",
@@ -35,7 +35,7 @@
     "react-docgen-external-proptypes-handler": "^1.0.3",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1",
-    "react-styleguidist": "^9.1.11",
+    "react-styleguidist": "^9.1.13",
     "styled-components": "^4.3.2"
   },
   "peerDependencies": {

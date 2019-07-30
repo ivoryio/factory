@@ -49,7 +49,7 @@ const Dropdown = ({
     if (disabled) return 'disabled'
     if (error) return 'error'
     if (valid) return 'valid'
-    return 'default'
+    return variant
   })()
 
   const selectedValue = (() =>

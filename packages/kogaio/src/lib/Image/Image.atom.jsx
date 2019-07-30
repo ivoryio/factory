@@ -22,7 +22,6 @@ Image.propTypes = {
   ...propTypes.position,
   ...propTypes.space,
   alt: PropTypes.string.isRequired,
-  dataTest: PropTypes.string,
   objectFit: PropTypes.oneOf([
     'fill',
     'contain',

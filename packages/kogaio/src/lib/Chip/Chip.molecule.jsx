@@ -119,7 +119,7 @@ ChipBase.defaultProps = {
   bg: 'brand',
   color: 'white',
   isRounded: false,
-  label: 'Hello'
+  label: 'Placeholder'
 }
 
 Chip.propTypes = {

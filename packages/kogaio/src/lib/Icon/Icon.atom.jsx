@@ -41,7 +41,6 @@ Icon.propTypes = {
   ...propTypes.position,
   ...propTypes.space,
   ...propTypes.typography,
-  dataTest: PropTypes.string,
   onClick: PropTypes.func,
   pointerEvents: PropTypes.string,
   src: PropTypes.string,

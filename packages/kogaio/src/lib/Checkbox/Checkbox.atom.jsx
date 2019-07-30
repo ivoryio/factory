@@ -33,7 +33,7 @@ const Checkbox = ({
     if (disabled) return 'disabled'
     if (error) return 'error'
     if (valid) return 'valid'
-    return 'default'
+    return variant
   })()
   return (
     <Flex alignItems="center" {...rest}>
