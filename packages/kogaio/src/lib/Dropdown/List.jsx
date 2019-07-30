@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { variant } from 'styled-system'
 import styled, { css } from 'styled-components'
 
-import { themeGet } from '../utils'
+import { themed, themeGet } from '../utils'
 
 import { Flex } from '../Responsive'
 
@@ -113,6 +113,7 @@ const Container = styled(Flex)`
   ${calcSize}
   ${responsiveListStyle}
   ${dropdownStyle}
+  ${themed('Dropdown.list')}
 `
 
 List.propTypes = {

@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
+import { themed } from '../utils'
 import { Flex } from '../Responsive'
 
 const TopBar = styled(Flex)`
   width: 100%;
+  ${themed('TopBar')}
 `
 
 TopBar.defaultProps = {

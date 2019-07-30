@@ -13,7 +13,7 @@ import {
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
-import { themeGet, useBoolean } from '../utils'
+import { themed, themeGet, useBoolean } from '../utils'
 
 import Box from '../Responsive/Box'
 import { Icon, Typography, Touchable } from '..'
@@ -54,8 +54,8 @@ const Tooltip = ({
           name={leftIcon}
           fontSize="1em"
           position="absolute"
-          top="8px"
-          left="8px"
+          top={2}
+          left={2}
         />
         <Typography
           className="tooltip-text"
@@ -68,8 +68,8 @@ const Tooltip = ({
         <Touchable
           effect="opacity"
           position="absolute"
-          top="8px"
-          right="8px"
+          top={2}
+          right={2}
           onClick={hideTooltip}>
           <Icon name="cancel" fontSize="1em" />
         </Touchable>
@@ -166,6 +166,7 @@ const Container = styled(Box)`
   }
 
   ${tooltipStyle}
+  ${themed('Tooltip.container')}
   ${compose(
     border,
     color,
@@ -187,6 +188,7 @@ const Body = styled.div`
   align-items: center;
   line-height: ${themeGet('lineHeights.tooltip', 1.6)};
   font-size: 1.25rem;
+  ${themed('Tooltip')}
 `
 
 Tooltip.propTypes = {

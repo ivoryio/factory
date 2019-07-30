@@ -15,6 +15,7 @@ import {
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
+import { themed } from '../utils'
 import Typography from '../Typography'
 
 const Anchor = ({
@@ -38,8 +39,8 @@ const Anchor = ({
 )
 
 const AnchorComponent = styled(Typography)`
+  cursor: pointer;
   :hover {
-    transform: scale(1.02);
     font-weight: normal;
   }
   ${compose(
@@ -53,6 +54,7 @@ const AnchorComponent = styled(Typography)`
     space,
     typography
   )}
+  ${themed('Anchor')}
 `
 
 Anchor.propTypes = {
@@ -72,5 +74,4 @@ Anchor.propTypes = {
 }
 
 Anchor.displayName = 'Anchor'
-
 export default Anchor

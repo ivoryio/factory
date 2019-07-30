@@ -4,8 +4,9 @@ import styled, { css } from 'styled-components'
 import { themeGet } from '../utils'
 import { hexToRgbA } from '../assets/helpers'
 
-const backgroundColour = (() => ({ colors: { background } }) =>
-  themeGet(`colors.${background}`, background))()
+const backgroundColour = ({ colors: { background } }) => css`
+  background-color: ${themeGet(`colors.${background}`, background)};
+`
 const primaryColour = (() => ({ colors: { primary } }) =>
   themeGet(`colors.${primary}`, primary))()
 const complementaryColour = (() => ({ colors: { background }, ...props }) => {
@@ -122,4 +123,6 @@ Spinner.defaultProps = {
   },
   size: '2rem'
 }
+
+Spinner.displayName = 'Spinner'
 export default Spinner

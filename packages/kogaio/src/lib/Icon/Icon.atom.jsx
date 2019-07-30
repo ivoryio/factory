@@ -10,6 +10,7 @@ import {
   typography
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
+import { themed } from '../utils'
 
 const Icon = ({ className, name, pointerEvents, tabIndex, ...rest }) => (
   <StyledIcon
@@ -22,8 +23,9 @@ const Icon = ({ className, name, pointerEvents, tabIndex, ...rest }) => (
 )
 
 const StyledIcon = styled.i`
-  user-select: none;
   pointer-events: ${({ pointerEvents }) => pointerEvents};
+  user-select: none;
+  ${themed('Icon')}
   ${compose(
     color,
     layout,
@@ -39,7 +41,6 @@ Icon.propTypes = {
   ...propTypes.position,
   ...propTypes.space,
   ...propTypes.typography,
-  dataTest: PropTypes.string,
   onClick: PropTypes.func,
   pointerEvents: PropTypes.string,
   src: PropTypes.string,

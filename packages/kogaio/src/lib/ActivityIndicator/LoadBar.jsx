@@ -56,4 +56,5 @@ LoadBar.defaultProps = {
   colors: ['info', 'alert', 'error']
 }
 
+LoadBar.displayName = 'LoadBar'
 export default LoadBar

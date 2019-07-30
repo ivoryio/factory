@@ -47,9 +47,9 @@ const Bar = styled(Box)`
     left: -200px;
     width: 200px;
     height: 100%;
+    animation: ${loading} 2s linear infinite;
     background-color: ${({ primary }) =>
       themeGet(`colors.${primary}`, primary)};
-    animation: ${loading} 2s linear infinite;
   }
 `
 
@@ -64,4 +64,5 @@ RunningBar.defaultProps = {
   }
 }
 
+RunningBar.displayName = 'RunningBar'
 export default RunningBar

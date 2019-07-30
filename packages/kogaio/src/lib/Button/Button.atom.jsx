@@ -15,16 +15,15 @@ import {
   typography
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
-import { themeGet } from '../utils'
 
 import Icon from '../Icon'
 import { Space } from '../Responsive'
+import { themed, themeGet } from '../utils'
 import ActivityIndicator from '../ActivityIndicator'
 
 const Button = ({
   children,
   CustomLoading,
-  dataTest,
   disabled,
   icon,
   id,
@@ -62,7 +61,6 @@ const Button = ({
   })()
   return (
     <ButtonComponent
-      data-test={dataTest}
       disabled={disabled}
       id={id}
       onClick={onClick}
@@ -73,13 +71,14 @@ const Button = ({
         CustomLoading || (
           <ActivityIndicator
             colors={spinnerColors}
+            className="button-loading"
             size={spinnerSize}
             variant="spinner"
           />
         )
       ) : (
         <>
-          {icon && <ButtonIcon icon={icon} variant={variant} />}
+          {icon ? <ButtonIcon icon={icon} variant={variant} /> : null}
           <Space px={3}>
             <label className="button-label" htmlFor={id}>
               {title || children}
@@ -130,6 +129,7 @@ const ButtonComponent = styled.button`
     outline-color: transparent;
   }
 
+  ${themed('Button')}
   ${compose(
     border,
     shadow,
@@ -157,7 +157,6 @@ Button.propTypes = {
   ...propTypes.typography,
   children: PropTypes.node,
   CustomLoading: PropTypes.element,
-  dataTest: PropTypes.string,
   disabled: PropTypes.bool,
   icon: PropTypes.shape({
     name: PropTypes.string,

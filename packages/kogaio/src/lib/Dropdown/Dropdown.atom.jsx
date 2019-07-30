@@ -2,7 +2,13 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import { ConditionalWrap, isMobileDevice, themeGet, useBoolean } from '../utils'
+import {
+  ConditionalWrap,
+  isMobileDevice,
+  themed,
+  themeGet,
+  useBoolean
+} from '../utils'
 
 import List, { dropdownStyle } from './List'
 import Option, { DropdownItem } from './Option'
@@ -43,9 +49,12 @@ const Dropdown = ({
     if (disabled) return 'disabled'
     if (error) return 'error'
     if (valid) return 'valid'
-    return 'default'
+    return variant
   })()
 
+  const selectedValue = (() =>
+    typeof value === 'object' ? value.label : value)()
+    
   const listProps = {
     handleSelect: onChange,
     isListOpen,
@@ -55,20 +64,16 @@ const Dropdown = ({
     renderListHeader,
     setListOpen,
     size,
-    value,
+    value: selectedValue,
     variant: dropdownVariant
   }
-
+  
   return (
     <Flex flexDirection="column" position="relative" {...rest}>
       {label ? (
-        <Typography
-          as="label"
-          htmlFor={id}
-          id="dropdown-label"
-          variant="inputLabel">
+        <Label as="label" htmlFor={id} id="dropdown-label" variant="inputLabel">
           {label} {required && '*'}
-        </Typography>
+        </Label>
       ) : null}
       <Touchable disabled={disabled} onClick={toggleDropdown}>
         <Space px={2}>
@@ -80,10 +85,10 @@ const Dropdown = ({
             error={error}
             variant={dropdownVariant}>
             <Typography
-              className={`dropdown-${value ? 'text' : 'placeholder'}`}
+              className={`dropdown-${selectedValue ? 'text' : 'placeholder'}`}
               truncate
               variant="list">
-              {value || placeholder}
+              {selectedValue || placeholder}
             </Typography>
             <DropdownChevron
               color="independence"
@@ -114,6 +119,10 @@ const Dropdown = ({
   )
 }
 
+const Label = styled(Typography)`
+  ${themed('Dropdown.label')}
+`
+
 const SelectedItem = styled(DropdownItem)`
   background-color: ${themeGet('colors.white')};
   z-index: 3;
@@ -122,6 +131,7 @@ const SelectedItem = styled(DropdownItem)`
     color: ${themeGet('colors.manatee')};
   }
 
+  ${themed('Dropdown.selected')}
   ${dropdownStyle}
 `
 const rotate = css`
@@ -131,6 +141,7 @@ const rotate = css`
 `
 const DropdownChevron = styled(Icon)`
   ${rotate}
+  ${themed('Dropdown.chevron')}
 `
 
 Dropdown.propTypes = {
@@ -148,7 +159,7 @@ Dropdown.propTypes = {
   required: PropTypes.bool,
   size: PropTypes.number,
   valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   variant: PropTypes.string
 }
 

@@ -15,13 +15,13 @@ export const PasswordToggler = ({
     color={error ? 'error' : 'light-gray'}
     effect="no-feedback"
     fontSize={3}
+    name={inputType === 'password' ? 'visibility_off' : 'visibility'}
     onMouseDown={toggle}
     onMouseUp={viewOption.includes('peek') ? toggle : null}
     onTouchStart={toggle}
     onTouchEnd={viewOption.includes('peek') ? toggle : null}
-    name={inputType === 'password' ? 'visibility_off' : 'visibility'}
     position="absolute"
-    right={8}
+    right={2}
     tabIndex={tabIndex}
     {...props}
   />

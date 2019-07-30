@@ -13,8 +13,11 @@ import {
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
 
+import { themed } from '../utils'
+
 const Box = styled.div`
   box-sizing: border-box;
+  ${themed('Box')}
   ${compose(
     background,
     border,

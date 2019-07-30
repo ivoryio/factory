@@ -13,7 +13,7 @@ import {
   variant
 } from 'styled-system'
 import propTypes from '@styled-system/prop-types'
-import { themeGet } from '../utils'
+import { themed, themeGet } from '../utils'
 
 import { Sublabel } from './Sublabel'
 import Icon from '../Icon'
@@ -68,9 +68,9 @@ const Input = ({
   const resetInputType = () => setInputType(type)
 
   return (
-    <Flex flexDirection="column" hasLabel={label} width={1} {...rest}>
+    <InputContainer flexDirection="column" hasLabel={label} width={1} {...rest}>
       {label ? (
-        <Typography
+        <InputLabel
           as="label"
           className="input-label"
           color="gunmetal"
@@ -78,7 +78,7 @@ const Input = ({
           variant="inputLabel"
           width="fit-content">
           {label} {required && '*'}
-        </Typography>
+        </InputLabel>
       ) : null}
       <Row>
         <InputComponent
@@ -105,7 +105,7 @@ const Input = ({
           <Icon
             className="input-icleft"
             fontSize={3}
-            left={8}
+            left={2}
             name={icLeft}
             pointerEvents="none"
             position="absolute"
@@ -134,20 +134,30 @@ const Input = ({
       ) : (
         <Dummy hide={noBottomSpace} />
       )}
-    </Flex>
+    </InputContainer>
   )
 }
+
+const InputContainer = styled(Flex)`
+  ${themed('Input.container')}
+`
+
+const InputLabel = styled(Typography)`
+  ${themed('Input.label')}
+`
 
 const Row = styled(Flex)`
   align-items: center;
   position: relative;
   width: 100%;
+  ${themed('Input.wrapper')}
 `
 
 const addSpaceAroundInputArea = css`
   text-indent: ${({ hasIcLeft }) =>
     hasIcLeft ? themeGet('space.8', 32) : themeGet('space.2', 8)}px;
-  padding-right: ${themeGet('space.8', 32)}px;
+  padding-right: ${({ type }) =>
+    type === 'password' ? themeGet('space.8', 32) : 0}px;
 `
 const InputComponent = styled.input`
   ${addSpaceAroundInputArea}
@@ -173,6 +183,7 @@ const InputComponent = styled.input`
     }
   }
   
+  ${themed('Input')}
   ${compose(
     border,
     color,
@@ -214,7 +225,7 @@ Input.propTypes = {
    *
    * remove space by setting this to true */
   noBottomSpace: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   passwordView: PropTypes.oneOf(['peek', 'toggle']),
   placeholder: PropTypes.string,
   placeholderTextColor: PropTypes.string,

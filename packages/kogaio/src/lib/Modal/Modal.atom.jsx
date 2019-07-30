@@ -24,11 +24,12 @@ const ModalBody = ({
     return () => document.removeEventListener('click', _handleBackdropClick)
 
     function _handleBackdropClick (ev) {
-      if (!handleBackdropClick) return ev.preventDefault()
-
       const bodyEl = document.getElementById('modal-body')
       const clickOutside = ev.target === bodyEl
-      if (visible && clickOutside) handleBackdropClick()
+      if (visible && clickOutside)
+        return handleBackdropClick
+          ? handleBackdropClick()
+          : console.warn('* Modal expects a handleBackdropClick function')
     }
   }, [handleBackdropClick, visible])
 

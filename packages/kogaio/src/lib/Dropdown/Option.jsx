@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Touchable from '../Touchable'
 import { Flex, Space } from '../Responsive'
 import Typography from '../Typography'
-import { ConditionalWrap, isMobileDevice } from '../utils'
+import { ConditionalWrap, isMobileDevice, themed } from '../utils'
 
 const Option = ({
   children,
@@ -61,6 +61,7 @@ export const DropdownItem = styled(Flex)`
   justify-content: space-between;
   text-align: left;
   width: 100%;
+  ${themed('Dropdown.listitem')}
 `
 
 Option.propTypes = {
