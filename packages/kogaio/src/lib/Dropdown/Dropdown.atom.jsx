@@ -28,6 +28,7 @@ const Dropdown = ({
   multiple,
   onChange,
   placeholder,
+  readOnly,
   renderListFooter,
   renderListHeader,
   required,
@@ -54,7 +55,7 @@ const Dropdown = ({
 
   const selectedValue = (() =>
     typeof value === 'object' ? value.label : value)()
-    
+
   const listProps = {
     handleSelect: onChange,
     isListOpen,
@@ -67,7 +68,7 @@ const Dropdown = ({
     value: selectedValue,
     variant: dropdownVariant
   }
-  
+
   return (
     <Flex flexDirection="column" position="relative" {...rest}>
       {label ? (
@@ -75,7 +76,7 @@ const Dropdown = ({
           {label} {required && '*'}
         </Label>
       ) : null}
-      <Touchable disabled={disabled} onClick={toggleDropdown}>
+      <Touchable disabled={disabled || readOnly} onClick={toggleDropdown}>
         <Space px={2}>
           <SelectedItem
             as="li"
@@ -90,13 +91,15 @@ const Dropdown = ({
               variant="list">
               {selectedValue || placeholder}
             </Typography>
-            <DropdownChevron
-              color="independence"
-              className="dropdown-text dropdown-chevron"
-              fontSize={4}
-              isOpen={isListOpen}
-              name="arrow_drop_down"
-            />
+            {readOnly ? null : (
+              <DropdownChevron
+                color="independence"
+                className="dropdown-text dropdown-chevron"
+                fontSize={4}
+                isOpen={isListOpen}
+                name="arrow_drop_down"
+              />
+            )}
           </SelectedItem>
         </Space>
       </Touchable>
@@ -123,6 +126,18 @@ const Label = styled(Typography)`
   ${themed('Dropdown.label')}
 `
 
+const readOnlyStyle = css`
+  background-color: transparent;
+
+  &.dropdown-selected {
+    background-color: transparent;
+    border: ${themeGet('borders.1')} transparent;
+
+    &:hover {
+      border: ${themeGet('borders.1')} transparent;
+    }
+  }
+`
 const SelectedItem = styled(DropdownItem)`
   background-color: ${themeGet('colors.white')};
   z-index: 3;
@@ -131,8 +146,8 @@ const SelectedItem = styled(DropdownItem)`
     color: ${themeGet('colors.manatee')};
   }
 
-  ${themed('Dropdown.selected')}
   ${dropdownStyle}
+  ${({ readOnly }) => (readOnly ? readOnlyStyle : null)}
 `
 const rotate = css`
   ${({ isOpen }) =>
@@ -154,6 +169,7 @@ Dropdown.propTypes = {
   multiple: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
   renderListFooter: PropTypes.func,
   renderListHeader: PropTypes.func,
   required: PropTypes.bool,
@@ -171,6 +187,7 @@ Dropdown.defaultProps = {
   multiple: false,
   onChange: () => console.warn('* Dropdown expects an onChange function'),
   placeholder: 'Select an option',
+  readOnly: false,
   required: false,
   size: 5,
   value: '',

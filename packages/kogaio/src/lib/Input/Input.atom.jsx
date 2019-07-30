@@ -41,6 +41,7 @@ const Input = ({
   passwordView,
   placeholder,
   placeholderTextColor,
+  readOnly,
   ref,
   required,
   type,
@@ -85,15 +86,16 @@ const Input = ({
           autoComplete={autoComplete}
           autoFocus={autoFocus}
           className="input"
-          disabled={disabled}
+          disabled={readOnly || disabled}
           error={error}
           hasLabel={label}
           hasIcLeft={icLeft}
           id={id}
           name={name}
           onChange={onChange}
-          placeholder={placeholder}
+          placeholder={readOnly ? '' : placeholder}
           placeholderTextColor={placeholderTextColor}
+          readOnly={readOnly}
           ref={inputRef}
           required={required}
           type={inputType}
@@ -137,6 +139,16 @@ const Input = ({
     </InputContainer>
   )
 }
+
+const readOnlyStyle = css`
+  background-color: transparent;
+  border: ${themeGet('borders.1')} transparent;
+  box-shadow: none;
+  &:focus,
+  &:hover {
+    border: ${themeGet('borders.1')} transparent;
+  }
+`
 
 const InputContainer = styled(Flex)`
   ${themed('Input.container')}
@@ -194,6 +206,7 @@ const InputComponent = styled.input`
     shadow,
     typography
   )}
+  ${({ readOnly }) => (readOnly ? readOnlyStyle : null)}
 `
 
 const Dummy = styled.div`
@@ -229,6 +242,7 @@ Input.propTypes = {
   passwordView: PropTypes.oneOf(['peek', 'toggle']),
   placeholder: PropTypes.string,
   placeholderTextColor: PropTypes.string,
+  readOnly: PropTypes.bool,
   required: PropTypes.bool,
   type: PropTypes.string.isRequired,
   valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -246,6 +260,7 @@ Input.defaultProps = {
   noBottomSpace: false,
   passwordView: 'peek',
   placeholder: 'Search',
+  readOnly: false,
   type: 'text',
   value: '',
   variant: 'default'
