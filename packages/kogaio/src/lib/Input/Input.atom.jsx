@@ -148,6 +148,7 @@ const readOnlyStyle = css`
   &:hover {
     border: ${themeGet('borders.1')} transparent;
   }
+  text-indent: 0;
 `
 
 const InputContainer = styled(Flex)`
