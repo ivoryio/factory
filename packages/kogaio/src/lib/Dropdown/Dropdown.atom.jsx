@@ -21,6 +21,7 @@ import { Flex, Space } from '../Responsive'
 const Dropdown = ({
   autoFocus,
   children,
+  containerStyle,
   disabled,
   error,
   id,
@@ -70,34 +71,44 @@ const Dropdown = ({
   }
 
   return (
-    <Flex flexDirection="column" position="relative" {...rest}>
+    <Flex
+      {...containerStyle}
+      flexDirection='column'
+      position='relative'
+      {...rest}>
       {label ? (
-        <Label as="label" htmlFor={id} id="dropdown-label" variant="inputLabel">
+        <Label
+          as='label'
+          display='block'
+          htmlFor={id}
+          id='dropdown-label'
+          variant='inputLabel'>
           {label} {required && '*'}
         </Label>
       ) : null}
       <Touchable disabled={disabled || readOnly} onClick={toggleDropdown}>
         <Space px={2}>
           <SelectedItem
-            as="li"
+            as='li'
             className={`dropdown-selected dropdown-${
               isListOpen ? 'active' : 'inactive'
             }`}
             error={error}
+            readOnly={readOnly}
             variant={dropdownVariant}>
             <Typography
               className={`dropdown-${selectedValue ? 'text' : 'placeholder'}`}
               truncate
-              variant="list">
+              variant='list'>
               {selectedValue || placeholder}
             </Typography>
             {readOnly ? null : (
               <DropdownChevron
-                color="independence"
-                className="dropdown-text dropdown-chevron"
+                color='independence'
+                className='dropdown-text dropdown-chevron'
                 fontSize={4}
                 isOpen={isListOpen}
-                name="arrow_drop_down"
+                name='arrow_drop_down'
               />
             )}
           </SelectedItem>
@@ -162,6 +173,7 @@ const DropdownChevron = styled(Icon)`
 Dropdown.propTypes = {
   autoFocus: PropTypes.bool,
   children: PropTypes.arrayOf(PropTypes.element),
+  containerStyle: PropTypes.object,
   disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,

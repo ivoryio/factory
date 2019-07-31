@@ -30,6 +30,7 @@ const Input = ({
   autoComplete,
   autoFocus,
   className,
+  containerStyle,
   disabled,
   error,
   icLeft,
@@ -69,7 +70,12 @@ const Input = ({
   const resetInputType = () => setInputType(type)
 
   return (
-    <InputContainer flexDirection="column" hasLabel={label} width={1} {...rest}>
+    <InputContainer
+      {...containerStyle}
+      flexDirection="column"
+      hasLabel={label}
+      width={1}
+      {...rest}>
       {label ? (
         <InputLabel
           as="label"
@@ -229,6 +235,7 @@ Input.propTypes = {
   autoComplete: PropTypes.string,
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
+  containerStyle: PropTypes.object,
   disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   icLeft: PropTypes.string,
