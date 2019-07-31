@@ -73,23 +73,23 @@ const Dropdown = ({
   return (
     <Flex
       {...containerStyle}
-      flexDirection='column'
-      position='relative'
+      flexDirection="column"
+      position="relative"
       {...rest}>
       {label ? (
         <Label
-          as='label'
-          display='block'
+          as="label"
+          display="block"
           htmlFor={id}
-          id='dropdown-label'
-          variant='inputLabel'>
+          id="dropdown-label"
+          variant="inputLabel">
           {label} {required && '*'}
         </Label>
       ) : null}
       <Touchable disabled={disabled || readOnly} onClick={toggleDropdown}>
-        <Space px={2}>
+        <Space pl={readOnly ? 0 : 2} pr={2}>
           <SelectedItem
-            as='li'
+            as="li"
             className={`dropdown-selected dropdown-${
               isListOpen ? 'active' : 'inactive'
             }`}
@@ -99,16 +99,16 @@ const Dropdown = ({
             <Typography
               className={`dropdown-${selectedValue ? 'text' : 'placeholder'}`}
               truncate
-              variant='list'>
+              variant="list">
               {selectedValue || placeholder}
             </Typography>
             {readOnly ? null : (
               <DropdownChevron
-                color='independence'
-                className='dropdown-text dropdown-chevron'
+                color="independence"
+                className="dropdown-text dropdown-chevron"
                 fontSize={4}
                 isOpen={isListOpen}
-                name='arrow_drop_down'
+                name="arrow_drop_down"
               />
             )}
           </SelectedItem>
