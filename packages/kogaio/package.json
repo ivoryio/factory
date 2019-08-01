@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.7.14",
+  "version": "0.7.15",
   "author": "MihaiRo <mihai.rosca@thinslices.com>",
   "description": "Component library",
   "main": "build/index.js",
@@ -44,8 +44,8 @@
     "styled-components": "^4.3.2"
   },
   "dependencies": {
-    "@styled-system/prop-types": "^5.0.16",
-    "styled-system": "^5.0.16"
+    "@styled-system/prop-types": "^5.0.18",
+    "styled-system": "^5.0.18"
   },
   "husky": {
     "hooks": {

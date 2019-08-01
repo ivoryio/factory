@@ -18,7 +18,7 @@ const Collapsible = ({
   fontSize,
   isExpanded,
   title,
-  trigger,
+  Trigger,
   triggerEffect,
   underlayColor,
   ...rest
@@ -31,7 +31,7 @@ const Collapsible = ({
         onClick={toggleContainer}
         underlayColor={underlayColor}
         width={1}>
-        {trigger || (
+        {Trigger || (
           <Flex alignItems="center" justifyContent="space-between" width={1}>
             <Typography color={color} fontSize={fontSize}>
               {title}
@@ -78,7 +78,7 @@ Collapsible.propTypes = {
   icon: PropTypes.object,
   isExpanded: PropTypes.bool,
   title: PropTypes.string,
-  trigger: PropTypes.node,
+  Trigger: PropTypes.node,
   triggerEffect: PropTypes.oneOf(effects),
   underlayColor: PropTypes.string
 }
