@@ -1,24 +1,25 @@
 #### Simple Menu List
+
 ```js
-import { Box, Flex } from '@ivoryio/kogaio/Responsive'
+import { Box, Flex, Space } from '@ivoryio/kogaio/Responsive'
 const MenuListExample = () => {
-const listItems = [
-  {
-    id: 'list-item1',
-    name: 'Menu list item 1'
-  },
-  {
-    id: 'list-item2',
-    name: 'Menu list item 2'
-  },
-  {
-    id: 'list-item3',
-    name: 'Menu list item 3'
-  }
-]
+  const listItems = [
+    {
+      id: 'list-item1',
+      name: 'Menu list item 1'
+    },
+    {
+      id: 'list-item2',
+      name: 'Menu list item 2'
+    },
+    {
+      id: 'list-item3',
+      name: 'Menu list item 3'
+    }
+  ]
   return (
-    <Flex>
-      <Box width={{ xs: 1, sm: 1/2, lg: 1/3 }}>
+    <Flex mx='auto' width={1 / 2}>
+      <Box width={{ xs: 1, sm: 1 / 2, lg: 1 / 3 }}>
         <MenuList
           alignment='left'
           arrowSize={10}
@@ -26,11 +27,18 @@ const listItems = [
           id='menulist-1'
           mt={2}
           fontSize='1rem'
-          onSelectItem={item => console.log(`Selected ${item}`)}
-          listItems={listItems}
-        />
+          onSelect={item => console.log(`Selected item`, item)}>
+          {listItems.map(item => (
+            <MenuList.Item
+              id={item.id}
+              label={item.name}
+              key={item.id}
+              value={item}
+            />
+          ))}
+        </MenuList>
       </Box>
-      <Box width={{ xs: 1, sm: 1/2, lg: 1/3}}>
+      <Box width={{ xs: 1, sm: 1 / 2, lg: 1 / 3 }}>
         <MenuList
           alignment='center'
           arrowSize={10}
@@ -39,11 +47,15 @@ const listItems = [
           id='menu-list-2'
           mt={2}
           fontSize='1rem'
-          onSelectItem={item => console.log(`Selected ${item}`)}
-          listItems={listItems}
-        />
+          onSelect={item => console.log(`Selected ${item}`)}>
+          {listItems.map(item => (
+            <MenuList.Item id={item.id} key={item.id} value={item.name}>
+              {item.name}
+            </MenuList.Item>
+          ))}
+        </MenuList>
       </Box>
-      <Box width={{ xs: 1, sm: 1/2, lg: 1/3}}>
+      <Box width={{ xs: 1, sm: 1 / 2, lg: 1 / 3 }}>
         <MenuList
           alignment='right'
           arrowSize={10}
@@ -52,12 +64,16 @@ const listItems = [
           id='menu-list-3'
           mt={2}
           fontSize='1rem'
-          onSelectItem={item => console.log(`Selected ${item}`)}
-          listItems={listItems}
-        />
+          onSelect={item => console.log(`Selected ${item}`)}>
+          {listItems.map(item => (
+            <MenuList.Item id={item.id} key={item.id} value={item.name}>
+              {item.name}
+            </MenuList.Item>
+          ))}
+        </MenuList>
       </Box>
     </Flex>
   )
 }
-  <MenuListExample />
+;<MenuListExample />
 ```

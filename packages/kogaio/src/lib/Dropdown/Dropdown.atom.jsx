@@ -21,6 +21,7 @@ import { Flex, Space } from '../Responsive'
 const Dropdown = ({
   autoFocus,
   children,
+  containerStyle,
   disabled,
   error,
   id,
@@ -28,6 +29,7 @@ const Dropdown = ({
   multiple,
   onChange,
   placeholder,
+  readOnly,
   renderListFooter,
   renderListHeader,
   required,
@@ -54,7 +56,7 @@ const Dropdown = ({
 
   const selectedValue = (() =>
     typeof value === 'object' ? value.label : value)()
-    
+
   const listProps = {
     handleSelect: onChange,
     isListOpen,
@@ -67,22 +69,32 @@ const Dropdown = ({
     value: selectedValue,
     variant: dropdownVariant
   }
-  
+
   return (
-    <Flex flexDirection="column" position="relative" {...rest}>
+    <Flex
+      {...containerStyle}
+      flexDirection="column"
+      position="relative"
+      {...rest}>
       {label ? (
-        <Label as="label" htmlFor={id} id="dropdown-label" variant="inputLabel">
-          {label} {required && '*'}
+        <Label
+          as="label"
+          display="block"
+          htmlFor={id}
+          id="dropdown-label"
+          variant="inputLabel">
+          {label} {required && !readOnly ? '*' : ''}
         </Label>
       ) : null}
-      <Touchable disabled={disabled} onClick={toggleDropdown}>
-        <Space px={2}>
+      <Touchable disabled={disabled || readOnly} onClick={toggleDropdown}>
+        <Space pl={readOnly ? 0 : 2} pr={2}>
           <SelectedItem
             as="li"
             className={`dropdown-selected dropdown-${
               isListOpen ? 'active' : 'inactive'
             }`}
             error={error}
+            readOnly={readOnly}
             variant={dropdownVariant}>
             <Typography
               className={`dropdown-${selectedValue ? 'text' : 'placeholder'}`}
@@ -90,13 +102,15 @@ const Dropdown = ({
               variant="list">
               {selectedValue || placeholder}
             </Typography>
-            <DropdownChevron
-              color="independence"
-              className="dropdown-text dropdown-chevron"
-              fontSize={4}
-              isOpen={isListOpen}
-              name="arrow_drop_down"
-            />
+            {readOnly ? null : (
+              <DropdownChevron
+                color="independence"
+                className="dropdown-text dropdown-chevron"
+                fontSize={4}
+                isOpen={isListOpen}
+                name="arrow_drop_down"
+              />
+            )}
           </SelectedItem>
         </Space>
       </Touchable>
@@ -123,6 +137,18 @@ const Label = styled(Typography)`
   ${themed('Dropdown.label')}
 `
 
+const readOnlyStyle = css`
+  background-color: transparent;
+
+  &.dropdown-selected {
+    background-color: transparent;
+    border: ${themeGet('borders.1')} transparent;
+
+    &:hover {
+      border: ${themeGet('borders.1')} transparent;
+    }
+  }
+`
 const SelectedItem = styled(DropdownItem)`
   background-color: ${themeGet('colors.white')};
   z-index: 3;
@@ -131,8 +157,8 @@ const SelectedItem = styled(DropdownItem)`
     color: ${themeGet('colors.manatee')};
   }
 
-  ${themed('Dropdown.selected')}
   ${dropdownStyle}
+  ${({ readOnly }) => (readOnly ? readOnlyStyle : null)}
 `
 const rotate = css`
   ${({ isOpen }) =>
@@ -147,6 +173,7 @@ const DropdownChevron = styled(Icon)`
 Dropdown.propTypes = {
   autoFocus: PropTypes.bool,
   children: PropTypes.arrayOf(PropTypes.element),
+  containerStyle: PropTypes.object,
   disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -154,6 +181,7 @@ Dropdown.propTypes = {
   multiple: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
   renderListFooter: PropTypes.func,
   renderListHeader: PropTypes.func,
   required: PropTypes.bool,
@@ -171,6 +199,7 @@ Dropdown.defaultProps = {
   multiple: false,
   onChange: () => console.warn('* Dropdown expects an onChange function'),
   placeholder: 'Select an option',
+  readOnly: false,
   required: false,
   size: 5,
   value: '',

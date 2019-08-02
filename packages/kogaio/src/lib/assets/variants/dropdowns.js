@@ -21,9 +21,6 @@ export default function ({ borders, colors, radii, shadows, ...theme }) {
       },
       ':nth-of-type(n + 2)': {
         'border-top': `${borders[1]} ${colors['light-gray']}`
-      },
-      '&.selected': {
-        'background-color': colors['ghost-white']
       }
     }
   }

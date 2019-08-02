@@ -109,13 +109,13 @@ const touchableWithEffect = ({
 const Wrapper = styled.button`
   background: transparent;
   border: none;
+  box-shadow: none;
   font-size: inherit;
   margin: 0;
   padding: 0;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  box-shadow: none;
 
-  &:focus {
+  :focus {
     outline: none;
   }
   :active {

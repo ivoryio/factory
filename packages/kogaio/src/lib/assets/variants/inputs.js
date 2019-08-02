@@ -4,12 +4,9 @@ export default function ({ borders, colors, shadows, ...theme }) {
       'background-color': colors.white,
       border: `${borders[1]} ${colors['pastel-blue']}`,
       'box-shadow': shadows['input-basic'],
-      '&:focus': {
+      '&:focus, &:hover': {
         border: `${borders[1]} ${colors['paynes-gray']}`
       },
-      '&:hover': {
-        border: `${borders[1]} ${colors['paynes-gray']}`
-      }
     },
     disabled: {
       'background-color': `${colors['ghost-white']}`,

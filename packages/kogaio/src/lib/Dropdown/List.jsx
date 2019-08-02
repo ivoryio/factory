@@ -26,8 +26,8 @@ const List = ({
   ...props
 }) => {
   useEffect(() => {
-    document.addEventListener('click', _handleBackdropClick)
-    return () => document.removeEventListener('click', _handleBackdropClick)
+    window.addEventListener('click', _handleBackdropClick)
+    return () => window.removeEventListener('click', _handleBackdropClick)
 
     function _handleBackdropClick (ev) {
       const dropdownEl = document.getElementById(listId)
