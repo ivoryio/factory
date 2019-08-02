@@ -83,7 +83,7 @@ const Dropdown = ({
           htmlFor={id}
           id="dropdown-label"
           variant="inputLabel">
-          {label} {required && '*'}
+          {label} {required && !readOnly ? '*' : ''}
         </Label>
       ) : null}
       <Touchable disabled={disabled || readOnly} onClick={toggleDropdown}>

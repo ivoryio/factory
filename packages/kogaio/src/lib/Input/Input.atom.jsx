@@ -84,7 +84,7 @@ const Input = ({
           htmlFor={id}
           variant="inputLabel"
           width="fit-content">
-          {label} {required && '*'}
+          {label} {required && !readOnly ? '*' : ''}
         </InputLabel>
       ) : null}
       <Row>
