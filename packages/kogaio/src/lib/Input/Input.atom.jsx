@@ -81,6 +81,7 @@ const Input = ({
           as="label"
           className="input-label"
           color="gunmetal"
+          display="block"
           htmlFor={id}
           variant="inputLabel"
           width="fit-content">
@@ -150,8 +151,8 @@ const readOnlyStyle = css`
   background-color: transparent;
   border: ${themeGet('borders.1')} transparent;
   box-shadow: none;
-  &:focus,
-  &:hover {
+  :focus,
+  :hover {
     border: ${themeGet('borders.1')} transparent;
   }
   text-indent: 0;

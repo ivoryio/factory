@@ -3,18 +3,20 @@ import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
 
 import { Flex } from '../Responsive'
+import { themed } from '../utils'
 import { withPortal } from './withPortal'
 
-const Modal = ({ withPortal, ...props }) =>
-  withPortal ? <ModalWithPortal {...props} /> : <ModalBody {...props} />
+const Modal = props => <ModalWithPortal {...props} />
 
 const ModalWithPortal = withPortal(props => <ModalBody {...props} />)
 
 const ModalBody = ({
+  bg,
   children,
   colors,
   id,
   onBackdropClick: handleBackdropClick,
+  overlayStyle,
   position,
   visible,
   ...rest
@@ -34,7 +36,13 @@ const ModalBody = ({
   }, [handleBackdropClick, visible])
 
   return (
-    <Overlay id={id} colors={colors} position={position} visible={visible}>
+    <Overlay
+      bg={bg}
+      id={id}
+      colors={colors}
+      position={position}
+      visible={visible}
+      {...overlayStyle}>
       <Flex
         alignItems="center"
         id="modal-body"
@@ -79,13 +87,27 @@ const Overlay = styled(Flex)`
   z-index: 99;
 
   ${overlayAnimation}
+  ${themed('Modal.overlay')}
 `
 
-ModalBody.propTypes = {
+Modal.propTypes = {
+  bg: PropTypes.string,
   children: PropTypes.node,
   colors: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onBackdropClick: PropTypes.func,
+  overlayStyle: PropTypes.object,
+  position: PropTypes.string,
+  visible: PropTypes.bool
+}
+
+ModalBody.propTypes = {
+  bg: PropTypes.string,
+  children: PropTypes.node,
+  colors: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onBackdropClick: PropTypes.func,
+  overlayStyle: PropTypes.object,
   position: PropTypes.string,
   visible: PropTypes.bool
 }
@@ -93,20 +115,6 @@ ModalBody.propTypes = {
 ModalBody.defaultProps = {
   colors: 'modal',
   visible: false
-}
-
-Modal.propTypes = {
-  children: PropTypes.node,
-  colors: PropTypes.string,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onBackdropClick: PropTypes.func,
-  position: PropTypes.string,
-  withPortal: PropTypes.bool,
-  visible: PropTypes.bool
-}
-
-Modal.defaultProps = {
-  withPortal: false
 }
 
 Modal.displayName = 'Modal'

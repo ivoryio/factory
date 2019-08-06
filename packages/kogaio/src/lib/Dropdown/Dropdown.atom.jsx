@@ -82,7 +82,8 @@ const Dropdown = ({
           display="block"
           htmlFor={id}
           id="dropdown-label"
-          variant="inputLabel">
+          variant="inputLabel"
+          width="fit-content">
           {label} {required && !readOnly ? '*' : ''}
         </Label>
       ) : null}
@@ -100,7 +101,7 @@ const Dropdown = ({
               className={`dropdown-${selectedValue ? 'text' : 'placeholder'}`}
               truncate
               variant="list">
-              {selectedValue || placeholder}
+              {selectedValue ? selectedValue : !readOnly ? placeholder : ''}
             </Typography>
             {readOnly ? null : (
               <DropdownChevron
@@ -140,11 +141,11 @@ const Label = styled(Typography)`
 const readOnlyStyle = css`
   background-color: transparent;
 
-  &.dropdown-selected {
+  .dropdown-selected {
     background-color: transparent;
     border: ${themeGet('borders.1')} transparent;
 
-    &:hover {
+    :hover {
       border: ${themeGet('borders.1')} transparent;
     }
   }
