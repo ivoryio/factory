@@ -140,7 +140,8 @@ const Label = styled(Typography)`
 
 const readOnlyStyle = css`
   background-color: transparent;
-
+  border: ${themeGet('borders.1')} transparent;
+  
   .dropdown-selected {
     background-color: transparent;
     border: ${themeGet('borders.1')} transparent;

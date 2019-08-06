@@ -7,6 +7,7 @@ export const withPortal = Component => ({ id, visible, ...props }) => {
 
   useEffect(() => {
     const existingRoot = document.getElementById('modal-root')
+
     if (document.body.contains(existingRoot))
       existingRoot
         .appendChild(modalRoot)
@@ -19,6 +20,7 @@ export const withPortal = Component => ({ id, visible, ...props }) => {
         .appendChild(modalRoot)
         .setAttribute('id', `modal-${id || randomiser}`)
     }
+
     return () => {
       const rootEl = document.getElementById('modal-root')
       if (rootEl.childNodes.length > 1) {

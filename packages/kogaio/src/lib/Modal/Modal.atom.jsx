@@ -6,7 +6,8 @@ import { Flex } from '../Responsive'
 import { themed } from '../utils'
 import { withPortal } from './withPortal'
 
-const Modal = props => <ModalWithPortal {...props} />
+const Modal = ({ withPortal, ...props }) =>
+  withPortal ? <ModalWithPortal {...props} /> : <ModalBody {...props} />
 
 const ModalWithPortal = withPortal(props => <ModalBody {...props} />)
 
@@ -98,6 +99,7 @@ Modal.propTypes = {
   onBackdropClick: PropTypes.func,
   overlayStyle: PropTypes.object,
   position: PropTypes.string,
+  withPortal: PropTypes.bool,
   visible: PropTypes.bool
 }
 
@@ -110,6 +112,10 @@ ModalBody.propTypes = {
   overlayStyle: PropTypes.object,
   position: PropTypes.string,
   visible: PropTypes.bool
+}
+
+Modal.defaultProps = {
+  withPortal: false
 }
 
 ModalBody.defaultProps = {
