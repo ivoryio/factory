@@ -2,15 +2,15 @@ export default function ({ borders, colors, radii, shadows, ...theme }) {
   const defaultStyle = {
     'background-color': colors.white,
     border: `${borders[1]} ${colors['azure-white']}`,
-    '&.dropdown-active': {
-      'border-color': colors.gunmetal
-    },
     '&.dropdown-selected': {
       'border-top-left-radius': `${radii[2]}px`,
       'border-top-right-radius': `${radii[2]}px`,
       ':hover': {
         border: `${borders[1]} ${colors.gunmetal}`
       }
+    },
+    '&.dropdown-active': {
+      'border-color': colors.gunmetal
     },
     '.dropdown-text': {
       color: colors['dark-gunmetal']
