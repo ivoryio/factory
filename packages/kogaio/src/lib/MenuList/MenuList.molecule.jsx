@@ -1,24 +1,13 @@
 import React, { Children, cloneElement, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import {
-  border,
-  compose,
-  color,
-  colorStyle,
-  flexbox,
-  layout,
-  position,
-  space
-} from 'styled-system'
-import propTypes from '@styled-system/prop-types'
 
 import { themeGet, useBoolean } from '../utils'
 
 import Icon from '../Icon'
 import Touchable from '../Touchable'
 import Typography from '../Typography'
-import { Box, Space } from '../Responsive'
+import { Flex, Space } from '../Responsive'
 
 const MenuList = ({
   alignment,
@@ -131,31 +120,18 @@ const arrowSize = ({ arrowSize }) => css`
   height: ${arrowSize}px;
 `
 
-const Container = styled(Box)`
+const Container = styled(Flex)`
   align-items: ${alignContent};
-  display: flex;
   flex-direction: column;
   justify-content: ${alignContent};
   position: relative;
-
-  ${compose(
-    flexbox,
-    border,
-    color,
-    colorStyle,
-    layout,
-    position,
-    space
-  )}
 `
 
-const ListWrapper = styled(Box)`
+const ListWrapper = styled(Flex)`
   border-radius: ${themeGet('radii.1', 1)}px;
-  display: flex;
   flex-direction: column;
   position: absolute;
   top: 100%;
-  z-index: 3;
 
   &:after {
     box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.35);
@@ -173,13 +149,6 @@ const ListWrapper = styled(Box)`
   & > :nth-child(n + 2) {
     border-top: ${themeGet('borders.1')} ${themeGet('colors.azure-white')};
   }
-
-  ${compose(
-    border,
-    color,
-    colorStyle,
-    space
-  )}
 `
 
 const ItemWrapper = styled(Touchable)`
@@ -194,14 +163,6 @@ const ItemWrapper = styled(Touchable)`
 `
 
 MenuList.propTypes = {
-  ...propTypes.border,
-  ...propTypes.compose,
-  ...propTypes.color,
-  ...propTypes.colorStyle,
-  ...propTypes.flexbox,
-  ...propTypes.layout,
-  ...propTypes.position,
-  ...propTypes.space,
   alignment: PropTypes.oneOf(['left', 'center', 'right']),
   children: PropTypes.node,
   containerStyle: PropTypes.object,
@@ -209,6 +170,7 @@ MenuList.propTypes = {
   icColor: PropTypes.string,
   icSize: PropTypes.number,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  listItems: PropTypes.array,
   onSelect: PropTypes.func.isRequired,
   Trigger: PropTypes.oneOfType([
     PropTypes.func,
@@ -221,12 +183,13 @@ ListItem.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   onSelect: PropTypes.func,
-  value: PropTypes.string
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 }
 MenuList.defaultProps = {
   alignment: 'center',
   icName: 'notification_important',
-  icSize: 24
+  icSize: 24,
+  zIndex: 3
 }
 MenuList.displayName = 'MenuList'
 MenuList.Item = ListItem

@@ -70,11 +70,6 @@ const Dropdown = ({
     variant: dropdownVariant
   }
 
-  const currentValue = (() => {
-    if (selectedValue) return selectedValue
-    return readOnly ? '' : placeholder
-  })()
-
   return (
     <Flex
       {...containerStyle}
@@ -106,7 +101,7 @@ const Dropdown = ({
               className={`dropdown-${selectedValue ? 'text' : 'placeholder'}`}
               truncate
               variant="list">
-              {currentValue}
+              {selectedValue || readOnly ? '' : placeholder}
             </Typography>
             {readOnly ? null : (
               <DropdownChevron
