@@ -23,9 +23,9 @@ export const withPortal = Component => ({ id, visible, ...props }) => {
 
     return () => {
       const rootEl = document.getElementById('modal-root')
-      if (rootEl.childNodes.length > 1) {
+      if (rootEl && rootEl.childNodes.length > 1) {
         const targetChild = document.getElementById(`modal-${id || randomiser}`)
-        if (targetChild.nodeType)
+        if (targetChild && targetChild.nodeType)
           return document.getElementById('modal-root').removeChild(targetChild)
       }
       return document.body.removeChild(rootEl)
