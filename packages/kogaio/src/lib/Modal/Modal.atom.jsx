@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
 
@@ -19,16 +19,17 @@ const ModalBody = ({
   onBackdropClick: handleBackdropClick,
   overlayStyle,
   position,
+  ref,
   visible,
   ...rest
 }) => {
+  const modalRef = useRef()
   useEffect(() => {
     window.addEventListener('click', _handleBackdropClick)
     return () => window.removeEventListener('click', _handleBackdropClick)
 
     function _handleBackdropClick (ev) {
-      const bodyEl = document.getElementById('modal-body')
-      const clickOutside = ev.target === bodyEl
+      const clickOutside = ev.target === modalRef.current
       if (visible && clickOutside)
         return handleBackdropClick
           ? handleBackdropClick()
@@ -49,6 +50,7 @@ const ModalBody = ({
         id="modal-body"
         justifyContent="center"
         height="100%"
+        ref={ref || modalRef}
         width={1}
         {...rest}>
         {children}
@@ -99,6 +101,7 @@ Modal.propTypes = {
   onBackdropClick: PropTypes.func,
   overlayStyle: PropTypes.object,
   position: PropTypes.string,
+  ref: PropTypes.object,
   withPortal: PropTypes.bool,
   visible: PropTypes.bool
 }
@@ -111,6 +114,7 @@ ModalBody.propTypes = {
   onBackdropClick: PropTypes.func,
   overlayStyle: PropTypes.object,
   position: PropTypes.string,
+  ref: PropTypes.object,
   visible: PropTypes.bool
 }
 

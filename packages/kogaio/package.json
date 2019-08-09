@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.7.24",
+  "version": "0.7.30",
   "author": "MihaiRo <mihai.rosca@thinslices.com>",
   "description": "Component library",
   "main": "build/index.js",
@@ -31,11 +31,11 @@
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "babel-plugin-styled-components": "^1.10.6",
-    "react": "^16.8.6",
+    "react": "^16.9.0",
     "react-docgen-external-proptypes-handler": "^1.0.3",
-    "react-dom": "^16.8.6",
+    "react-dom": "^16.9.0",
     "react-scripts": "^3.0.1",
-    "react-styleguidist": "^9.1.13",
+    "react-styleguidist": "^9.1.14",
     "styled-components": "^4.3.2"
   },
   "peerDependencies": {
@@ -44,8 +44,8 @@
     "styled-components": "^4.3.2"
   },
   "dependencies": {
-    "@styled-system/prop-types": "^5.0.18",
-    "styled-system": "^5.0.18"
+    "@styled-system/prop-types": "^5.0.21",
+    "styled-system": "^5.0.21"
   },
   "husky": {
     "hooks": {
