@@ -28,7 +28,6 @@ export const withPortal = Component => ({ id, visible, ...props }) => {
         if (targetChild && targetChild.nodeType)
           return document.getElementById('modal-root').removeChild(targetChild)
       }
-      return document.body.removeChild(rootEl)
     }
   }, [id, newModal])
 
