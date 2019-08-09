@@ -50,7 +50,13 @@ const IconButton = ({
     top={top}
     underlayColor={underlayColor}
     width={width}>
-    <Icon color={color} name={name} fontSize={fontSize} {...rest} />
+    <Icon
+      color={color}
+      name={name}
+      fontSize={fontSize}
+      pointerEvents="none"
+      {...rest}
+    />
   </Touchable>
 )
 

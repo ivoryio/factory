@@ -118,7 +118,7 @@ const TEXT_STYLES = {
   }
 }
 
-const defaultTheme = {
+export const kogaioTheme = {
   borders: BORDERS,
   breakpoints: BREAKPOINTS,
   colors: COLORS,
@@ -139,7 +139,7 @@ function generateSpaces (gridUnit = 4) {
 }
 
 export function themeFactory (customTheme = {}) {
-  const newTheme = mergeDeep(defaultTheme, customTheme)
+  const newTheme = mergeDeep(kogaioTheme, customTheme)
   const updatedTheme = updateComponentVariantsWith(newTheme)
   return updatedTheme
 

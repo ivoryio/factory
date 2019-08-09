@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
 
 import { Flex } from '../Responsive'
+import { themed } from '../utils'
 import { withPortal } from './withPortal'
 
 const Modal = ({ withPortal, ...props }) =>
@@ -11,21 +12,24 @@ const Modal = ({ withPortal, ...props }) =>
 const ModalWithPortal = withPortal(props => <ModalBody {...props} />)
 
 const ModalBody = ({
+  bg,
   children,
   colors,
   id,
   onBackdropClick: handleBackdropClick,
+  overlayStyle,
   position,
+  ref,
   visible,
   ...rest
 }) => {
+  const modalRef = useRef()
   useEffect(() => {
     window.addEventListener('click', _handleBackdropClick)
     return () => window.removeEventListener('click', _handleBackdropClick)
 
     function _handleBackdropClick (ev) {
-      const bodyEl = document.getElementById('modal-body')
-      const clickOutside = ev.target === bodyEl
+      const clickOutside = ev.target === modalRef.current
       if (visible && clickOutside)
         return handleBackdropClick
           ? handleBackdropClick()
@@ -34,12 +38,19 @@ const ModalBody = ({
   }, [handleBackdropClick, visible])
 
   return (
-    <Overlay id={id} colors={colors} position={position} visible={visible}>
+    <Overlay
+      bg={bg}
+      id={id}
+      colors={colors}
+      position={position}
+      visible={visible}
+      {...overlayStyle}>
       <Flex
         alignItems="center"
         id="modal-body"
         justifyContent="center"
         height="100%"
+        ref={ref || modalRef}
         width={1}
         {...rest}>
         {children}
@@ -79,34 +90,41 @@ const Overlay = styled(Flex)`
   z-index: 99;
 
   ${overlayAnimation}
+  ${themed('Modal.overlay')}
 `
 
-ModalBody.propTypes = {
+Modal.propTypes = {
+  bg: PropTypes.string,
   children: PropTypes.node,
   colors: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onBackdropClick: PropTypes.func,
+  overlayStyle: PropTypes.object,
   position: PropTypes.string,
+  ref: PropTypes.object,
+  withPortal: PropTypes.bool,
   visible: PropTypes.bool
 }
 
-ModalBody.defaultProps = {
-  colors: 'modal',
-  visible: false
-}
-
-Modal.propTypes = {
+ModalBody.propTypes = {
+  bg: PropTypes.string,
   children: PropTypes.node,
   colors: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onBackdropClick: PropTypes.func,
+  overlayStyle: PropTypes.object,
   position: PropTypes.string,
-  withPortal: PropTypes.bool,
+  ref: PropTypes.object,
   visible: PropTypes.bool
 }
 
 Modal.defaultProps = {
   withPortal: false
+}
+
+ModalBody.defaultProps = {
+  colors: 'modal',
+  visible: false
 }
 
 Modal.displayName = 'Modal'

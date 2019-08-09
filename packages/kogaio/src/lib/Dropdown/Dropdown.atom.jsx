@@ -70,6 +70,11 @@ const Dropdown = ({
     variant: dropdownVariant
   }
 
+  const currentValue = (() => {
+    if (selectedValue) return selectedValue
+    return readOnly ? '' : placeholder
+  })()
+
   return (
     <Flex
       {...containerStyle}
@@ -82,8 +87,9 @@ const Dropdown = ({
           display="block"
           htmlFor={id}
           id="dropdown-label"
-          variant="inputLabel">
-          {label} {required && !readOnly ? '*' : ''}
+          variant="inputLabel"
+          width="fit-content">
+          {label} {required ? '*' : ''}
         </Label>
       ) : null}
       <Touchable disabled={disabled || readOnly} onClick={toggleDropdown}>
@@ -100,7 +106,7 @@ const Dropdown = ({
               className={`dropdown-${selectedValue ? 'text' : 'placeholder'}`}
               truncate
               variant="list">
-              {selectedValue || placeholder}
+              {currentValue}
             </Typography>
             {readOnly ? null : (
               <DropdownChevron
@@ -139,14 +145,13 @@ const Label = styled(Typography)`
 
 const readOnlyStyle = css`
   background-color: transparent;
+  border: ${themeGet('borders.1')} transparent;
 
-  &.dropdown-selected {
+  &.dropdown-selected,
+  &.dropdown-selected:hover {
     background-color: transparent;
     border: ${themeGet('borders.1')} transparent;
-
-    &:hover {
-      border: ${themeGet('borders.1')} transparent;
-    }
+    cursor: initial;
   }
 `
 const SelectedItem = styled(DropdownItem)`

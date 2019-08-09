@@ -1,38 +1,28 @@
-import React, { Children, cloneElement, useEffect } from 'react'
+import React, { Children, cloneElement, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import {
-  border,
-  compose,
-  color,
-  colorStyle,
-  flexbox,
-  layout,
-  position,
-  space
-} from 'styled-system'
-import propTypes from '@styled-system/prop-types'
 
 import { themeGet, useBoolean } from '../utils'
 
 import Icon from '../Icon'
 import Touchable from '../Touchable'
 import Typography from '../Typography'
-import { Box, Space } from '../Responsive'
+import { Flex, Space } from '../Responsive'
 
 const MenuList = ({
   alignment,
   children,
+  disabled,
   containerStyle,
   Trigger,
-  icColor,
-  icName,
-  icSize,
+  icon,
   id,
   listItems,
   onSelect: selectItem,
+  ref,
   ...rest
 }) => {
+  const menulistRef = useRef()
   const [isMenuShown, showMenu, toggleMenu] = useBoolean(false)
 
   useEffect(() => {
@@ -40,9 +30,8 @@ const MenuList = ({
     return () => window.removeEventListener('click', _handleDocumentBodyClick)
 
     function _handleDocumentBodyClick (ev) {
-      const bodyEl = document.getElementById(id)
-      if (bodyEl) {
-        const isClickInside = bodyEl.contains(ev.target)
+      if (menulistRef.current) {
+        const isClickInside = menulistRef.current.contains(ev.target)
         if (!isClickInside) showMenu(false)
       }
     }
@@ -54,11 +43,18 @@ const MenuList = ({
   }
 
   return (
-    <Container {...containerStyle} alignment={alignment} id={id}>
+    <Container
+      {...containerStyle}
+      alignment={alignment}
+      ref={ref || menulistRef}>
       <Space px={2}>
-        <Touchable effect="opacity" onClick={toggleMenu}>
+        <Touchable disabled={disabled} effect="opacity" onClick={toggleMenu}>
           {Trigger || (
-            <Icon color={icColor} fontSize={`${icSize}px`} name={icName} />
+            <Icon
+              color={icon.color}
+              fontSize={`${icon.size}px`}
+              name={icon.name}
+            />
           )}
         </Touchable>
       </Space>
@@ -66,7 +62,7 @@ const MenuList = ({
         <ListWrapper
           alignment={alignment}
           colors="menu-list"
-          icSize={icSize}
+          icSize={icon.size}
           {...rest}>
           {Children.toArray(children).map(child =>
             cloneElement(child, {
@@ -79,9 +75,27 @@ const MenuList = ({
   )
 }
 
-const ListItem = ({ children, id, label, onSelect: selectItem, value }) => (
-  <ItemWrapper onClick={selectItem(value)}>
-    <Typography color="dark-gunmetal" p={4} variant="list">
+const ListItem = ({
+  children,
+  color,
+  fontFamily,
+  fontSize,
+  fontWeight,
+  id,
+  label,
+  onSelect: selectItem,
+  textVariant,
+  value,
+  ...props
+}) => (
+  <ItemWrapper onClick={selectItem(value)} {...props}>
+    <Typography
+      color={color}
+      fontFamily={fontFamily}
+      fontSize={fontSize}
+      fontWeight={fontWeight}
+      p={4}
+      variant={textVariant}>
       {children || label}
     </Typography>
   </ItemWrapper>
@@ -131,31 +145,18 @@ const arrowSize = ({ arrowSize }) => css`
   height: ${arrowSize}px;
 `
 
-const Container = styled(Box)`
+const Container = styled(Flex)`
   align-items: ${alignContent};
-  display: flex;
   flex-direction: column;
   justify-content: ${alignContent};
   position: relative;
-
-  ${compose(
-    flexbox,
-    border,
-    color,
-    colorStyle,
-    layout,
-    position,
-    space
-  )}
 `
 
-const ListWrapper = styled(Box)`
+const ListWrapper = styled(Flex)`
   border-radius: ${themeGet('radii.1', 1)}px;
-  display: flex;
   flex-direction: column;
   position: absolute;
   top: 100%;
-  z-index: 3;
 
   &:after {
     box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.35);
@@ -173,13 +174,6 @@ const ListWrapper = styled(Box)`
   & > :nth-child(n + 2) {
     border-top: ${themeGet('borders.1')} ${themeGet('colors.azure-white')};
   }
-
-  ${compose(
-    border,
-    color,
-    colorStyle,
-    space
-  )}
 `
 
 const ItemWrapper = styled(Touchable)`
@@ -194,22 +188,19 @@ const ItemWrapper = styled(Touchable)`
 `
 
 MenuList.propTypes = {
-  ...propTypes.border,
-  ...propTypes.compose,
-  ...propTypes.color,
-  ...propTypes.colorStyle,
-  ...propTypes.flexbox,
-  ...propTypes.layout,
-  ...propTypes.position,
-  ...propTypes.space,
   alignment: PropTypes.oneOf(['left', 'center', 'right']),
   children: PropTypes.node,
   containerStyle: PropTypes.object,
-  icName: PropTypes.string,
-  icColor: PropTypes.string,
-  icSize: PropTypes.number,
+  disabled: PropTypes.bool,
+  icon: PropTypes.shape({
+    color: PropTypes.string,
+    name: PropTypes.string,
+    size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  }),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  listItems: PropTypes.array,
   onSelect: PropTypes.func.isRequired,
+  ref: PropTypes.object,
   Trigger: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.object,
@@ -218,16 +209,32 @@ MenuList.propTypes = {
 }
 ListItem.propTypes = {
   children: PropTypes.node,
+  color: PropTypes.string,
+  fontFamily: PropTypes.string,
+  fontSize: PropTypes.string,
+  fontWeight: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
   onSelect: PropTypes.func,
-  value: PropTypes.string
+  textVariant: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 }
+
 MenuList.defaultProps = {
   alignment: 'center',
-  icName: 'notification_important',
-  icSize: 24
+  arrowSize: 8,
+  icon: {
+    name: 'notification_important',
+    color: 'gunmetal',
+    size: 24
+  },
+  zIndex: 3
 }
+ListItem.defaultProps = {
+  color: 'dark-gunmetal',
+  textVariant: 'list'
+}
+
 MenuList.displayName = 'MenuList'
 MenuList.Item = ListItem
 export default MenuList

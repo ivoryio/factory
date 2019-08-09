@@ -1,4 +1,4 @@
-import React, { useState, createRef } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import {
@@ -51,7 +51,7 @@ const Input = ({
   variant,
   ...rest
 }) => {
-  const inputRef = ref || createRef()
+  const inputRef = useRef()
   const [inputType, setInputType] = useState(type)
 
   const inputVariant = (() => {
@@ -81,10 +81,11 @@ const Input = ({
           as="label"
           className="input-label"
           color="gunmetal"
+          display="block"
           htmlFor={id}
           variant="inputLabel"
           width="fit-content">
-          {label} {required && !readOnly ? '*' : ''}
+          {label} {required ? '*' : ''}
         </InputLabel>
       ) : null}
       <Row>
@@ -102,7 +103,7 @@ const Input = ({
           placeholder={readOnly ? '' : placeholder}
           placeholderTextColor={placeholderTextColor}
           readOnly={readOnly}
-          ref={inputRef}
+          ref={ref || inputRef}
           required={required}
           type={inputType}
           value={value}
@@ -150,8 +151,8 @@ const readOnlyStyle = css`
   background-color: transparent;
   border: ${themeGet('borders.1')} transparent;
   box-shadow: none;
-  &:focus,
-  &:hover {
+  :focus,
+  :hover {
     border: ${themeGet('borders.1')} transparent;
   }
   text-indent: 0;

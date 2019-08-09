@@ -11,8 +11,6 @@ const Flex = styled(Box)`
   ${flexbox}
 `
 
-Flex.displayName = 'Flex'
-
 Flex.propTypes = {
   ...propTypes.flexbox
 }
