@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.7.33",
+  "version": "0.7.35",
   "author": "MihaiRo <mihai.rosca@thinslices.com>",
   "description": "Component library",
   "main": "build/index.js",
@@ -34,7 +34,7 @@
     "react": "^16.9.0",
     "react-docgen-external-proptypes-handler": "^1.0.3",
     "react-dom": "^16.9.0",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^3.1.1",
     "react-styleguidist": "^9.1.14",
     "styled-components": "^4.3.2"
   },
@@ -44,8 +44,8 @@
     "styled-components": "^4.3.2"
   },
   "dependencies": {
-    "@styled-system/prop-types": "^5.0.21",
-    "styled-system": "^5.0.21"
+    "@styled-system/prop-types": "^5.1.0",
+    "styled-system": "^5.1.0"
   },
   "husky": {
     "hooks": {

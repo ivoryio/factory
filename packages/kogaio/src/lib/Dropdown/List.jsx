@@ -14,6 +14,7 @@ export const dropdownStyle = variant({
 
 const List = ({
   children,
+  dummySpace,
   handleSelect,
   isListOpen,
   listId,
@@ -46,8 +47,9 @@ const List = ({
   }
   return (
     <Container
-      as="ul"
-      className="dropdown-list"
+      as='ul'
+      className='dropdown-list'
+      dummySpace={dummySpace}
       id={listId}
       isOpen={isListOpen}
       numOfElements={children.length}
@@ -74,19 +76,22 @@ const List = ({
 
 const calcSize = () => ({ isOpen, numOfElements, size }) => {
   const GUTTER = 4
-  const ITEM_HEIGHT = 36
+  const ITEM_HEIGHT = 40
   if (!isOpen) return `max-height: 0; visibility: hidden;`
   if (numOfElements <= size)
     return `max-height: ${size * ITEM_HEIGHT + GUTTER}px;`
   return `
-    max-height: ${size * ITEM_HEIGHT + GUTTER * 2}px;
+    max-height: ${size * ITEM_HEIGHT - GUTTER * 2}px;
     overflow-y: auto;
     scroll-behavior: smooth;
   `
 }
 
 const responsiveListStyle = ({ isMobile }) => css`
-  top: ${({ isMobile }) => (isMobile ? '50%' : '100%')};
+  top: calc(
+    ${({ dummySpace, isMobile }) =>
+      isMobile ? `50% - ${dummySpace}px` : `100% - ${dummySpace}px`}
+  );
   position: ${({ isMobile }) => (isMobile ? 'fixed' : 'absolute')};
   width: 100%;
   ${isMobile
@@ -118,6 +123,7 @@ const Container = styled(Flex)`
 
 List.propTypes = {
   children: PropTypes.node.isRequired,
+  dummySpace: PropTypes.number,
   handleSelect: PropTypes.func.isRequired,
   isListOpen: PropTypes.bool.isRequired,
   listId: PropTypes.string.isRequired,

@@ -10,14 +10,16 @@ import {
   useBoolean
 } from '../utils'
 
-import List, { dropdownStyle } from './List'
-import Option, { DropdownItem } from './Option'
 import Icon from '../Icon'
 import Modal from '../Modal'
 import Touchable from '../Touchable'
 import Typography from '../Typography'
 import { Flex, Space } from '../Responsive'
+import { Sublabel } from '../Input/Sublabel'
+import List, { dropdownStyle } from './List'
+import Option, { DropdownItem } from './Option'
 
+const DUMMY_SPACE = 20
 const Dropdown = ({
   autoFocus,
   children,
@@ -27,6 +29,7 @@ const Dropdown = ({
   id,
   label,
   multiple,
+  noBottomSpace,
   onChange,
   placeholder,
   readOnly,
@@ -78,24 +81,24 @@ const Dropdown = ({
   return (
     <Flex
       {...containerStyle}
-      flexDirection="column"
-      position="relative"
+      flexDirection='column'
+      position='relative'
       {...rest}>
       {label ? (
         <Label
-          as="label"
-          display="block"
+          as='label'
+          display='block'
           htmlFor={id}
-          id="dropdown-label"
-          variant="inputLabel"
-          width="fit-content">
+          id='dropdown-label'
+          variant='inputLabel'
+          width='fit-content'>
           {label} {required ? '*' : ''}
         </Label>
       ) : null}
       <Touchable disabled={disabled || readOnly} onClick={toggleDropdown}>
         <Space pl={readOnly ? 0 : 2} pr={2}>
           <SelectedItem
-            as="li"
+            as='li'
             className={`dropdown-selected dropdown-${
               isListOpen ? 'active' : 'inactive'
             }`}
@@ -105,34 +108,47 @@ const Dropdown = ({
             <Typography
               className={`dropdown-${selectedValue ? 'text' : 'placeholder'}`}
               truncate
-              variant="list">
+              variant='list'>
               {currentValue}
             </Typography>
             {readOnly ? null : (
               <DropdownChevron
-                color="independence"
-                className="dropdown-text dropdown-chevron"
+                color='independence'
+                className='dropdown-text dropdown-chevron'
                 fontSize={4}
                 isOpen={isListOpen}
-                name="arrow_drop_down"
+                name='arrow_drop_down'
               />
             )}
           </SelectedItem>
         </Space>
       </Touchable>
+      {[error, valid].some(item => typeof item === 'string') ? (
+        <Space my={1}>
+          <Sublabel
+            className='input-sublabel'
+            content={error || valid}
+            type={error ? 'error' : 'valid'}
+          />
+        </Space>
+      ) : (
+        <Dummy id='dropdown-dummy-space' hide={noBottomSpace} />
+      )}
       <ConditionalWrap
         condition={isMobileDevice}
         wrap={() => (
           <Modal visible={isListOpen}>
             <Space m={0} p={0}>
-              <List isMobile {...listProps}>
+              <List dummySpace={DUMMY_SPACE} isMobile {...listProps}>
                 {children}
               </List>
             </Space>
           </Modal>
         )}>
         <Space m={0} p={0}>
-          <List {...listProps}>{children}</List>
+          <List dummySpace={DUMMY_SPACE} {...listProps}>
+            {children}
+          </List>
         </Space>
       </ConditionalWrap>
     </Flex>
@@ -175,6 +191,13 @@ const DropdownChevron = styled(Icon)`
   ${themed('Dropdown.chevron')}
 `
 
+const Dummy = styled.div`
+  display: ${({ hide }) => (hide ? 'none' : 'block')};
+  height: ${DUMMY_SPACE}px;
+  opacity: 0;
+  visibility: hidden;
+`
+
 Dropdown.propTypes = {
   autoFocus: PropTypes.bool,
   children: PropTypes.arrayOf(PropTypes.element),
@@ -184,6 +207,7 @@ Dropdown.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   label: PropTypes.string,
   multiple: PropTypes.bool,
+  noBottomSpace: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,

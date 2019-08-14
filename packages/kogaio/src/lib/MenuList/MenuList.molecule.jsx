@@ -2,7 +2,7 @@ import React, { Children, cloneElement, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import { themeGet, useBoolean } from '../utils'
+import { themed, themeGet, useBoolean, ConditionalWrap } from '../utils'
 
 import Icon from '../Icon'
 import Touchable from '../Touchable'
@@ -20,6 +20,7 @@ const MenuList = ({
   listItems,
   onSelect: selectItem,
   ref,
+  textAlign,
   ...rest
 }) => {
   const menulistRef = useRef()
@@ -48,7 +49,10 @@ const MenuList = ({
       alignment={alignment}
       ref={ref || menulistRef}>
       <Space px={2}>
-        <Touchable disabled={disabled} effect="opacity" onClick={toggleMenu}>
+        <Touchable
+          disabled={disabled}
+          effect={disabled ? 'no-feedback' : 'opacity'}
+          onClick={toggleMenu}>
           {Trigger || (
             <Icon
               color={icon.color}
@@ -59,17 +63,21 @@ const MenuList = ({
         </Touchable>
       </Space>
       {isMenuShown ? (
-        <ListWrapper
-          alignment={alignment}
-          colors="menu-list"
-          icSize={icon.size}
-          {...rest}>
-          {Children.toArray(children).map(child =>
-            cloneElement(child, {
-              onSelect: _selectItem
-            })
-          )}
-        </ListWrapper>
+        <Space pl={0}>
+          <ListWrapper
+            as='ul'
+            alignment={alignment}
+            colors='menu-list'
+            icSize={icon.size}
+            {...rest}>
+            {Children.toArray(children).map(child =>
+              cloneElement(child, {
+                onSelect: _selectItem,
+                textAlign: alignment || textAlign
+              })
+            )}
+          </ListWrapper>
+        </Space>
       ) : null}
     </Container>
   )
@@ -78,32 +86,49 @@ const MenuList = ({
 const ListItem = ({
   children,
   color,
+  disabled,
   fontFamily,
   fontSize,
   fontWeight,
   id,
   label,
   onSelect: selectItem,
+  style,
+  textAlign,
   textVariant,
   value,
   ...props
 }) => (
-  <ItemWrapper onClick={selectItem(value)} {...props}>
-    <Typography
-      color={color}
-      fontFamily={fontFamily}
-      fontSize={fontSize}
-      fontWeight={fontWeight}
-      p={4}
-      variant={textVariant}>
-      {children || label}
-    </Typography>
+  <ItemWrapper
+    disabled={disabled}
+    onClick={selectItem(value)}
+    {...props}>
+    <ConditionalWrap
+      condition={
+        (children && ['string', 'number'].includes(typeof children)) || label
+      }
+      wrap={() => (
+        <Space px={2}>
+          <Typography
+            color={disabled ? 'pastel-blue' : color}
+            fontFamily={fontFamily}
+            fontSize={fontSize}
+            fontWeight={fontWeight}
+            textAlign={textAlign}
+            variant={textVariant}
+            width={1}
+            {...style}>
+            {children || label}
+          </Typography>
+        </Space>
+      )}>
+      {children}
+    </ConditionalWrap>
   </ItemWrapper>
 )
 
 const alignContent = css`
-  ${props => {
-    const { alignment } = props
+  ${({ alignment }) => {
     switch (alignment) {
       case 'left':
         return 'flex-start'
@@ -154,17 +179,19 @@ const Container = styled(Flex)`
 
 const ListWrapper = styled(Flex)`
   border-radius: ${themeGet('radii.1', 1)}px;
+  cursor: pointer;
   flex-direction: column;
+  list-style-type: none;
   position: absolute;
   top: 100%;
 
-  &:after {
-    box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.35);
+  :after {
+    box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.1);
     background-color: ${themeGet('colors.white')};
     content: '';
     display: block;
     position: absolute;
-    top: -${props => props.arrowSize / 2}px;
+    top: -${({ arrowSize }) => arrowSize / 2}px;
     -moz-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
     ${alignArrow}
@@ -174,21 +201,32 @@ const ListWrapper = styled(Flex)`
   & > :nth-child(n + 2) {
     border-top: ${themeGet('borders.1')} ${themeGet('colors.azure-white')};
   }
+
+  ${themed('MenuList')}
 `
 
 const ItemWrapper = styled(Touchable)`
+  align-items: center;
+  display: flex;
+  min-height: 40px;
   width: 100%;
+  text-align: ${({ alignment }) => alignment};
   white-space: nowrap;
+
   &:first-of-type {
     z-index: 1;
   }
+
   :hover {
-    background-color: ${themeGet('colors.white-smoke')};
+    background-color: ${({ disabled }) => !disabled && themeGet('colors.white-smoke')};
   }
+
+  ${themed('MenuList.Item')}
 `
 
+const validAlignment = ['left', 'center', 'right']
 MenuList.propTypes = {
-  alignment: PropTypes.oneOf(['left', 'center', 'right']),
+  alignment: PropTypes.oneOf(validAlignment),
   children: PropTypes.node,
   containerStyle: PropTypes.object,
   disabled: PropTypes.bool,
@@ -201,6 +239,7 @@ MenuList.propTypes = {
   listItems: PropTypes.array,
   onSelect: PropTypes.func.isRequired,
   ref: PropTypes.object,
+  textAlign: PropTypes.oneOf(validAlignment),
   Trigger: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.object,
@@ -210,12 +249,15 @@ MenuList.propTypes = {
 ListItem.propTypes = {
   children: PropTypes.node,
   color: PropTypes.string,
+  disabled: PropTypes.bool,
   fontFamily: PropTypes.string,
   fontSize: PropTypes.string,
   fontWeight: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
   onSelect: PropTypes.func,
+  style: PropTypes.object,
+  textAlign: PropTypes.oneOf(validAlignment),
   textVariant: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 }

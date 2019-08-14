@@ -10,17 +10,14 @@ import Typography from '../Typography'
 export const Sublabel = ({ className, content, type }) => (
   <Wrapper className={className}>
     <>
-      <Space pr={1}>
+      <Space mr={1}>
         <Icon
           color={type === 'error' ? 'error' : 'success'}
           fontSize={0}
           name={type === 'error' ? 'error_outline' : 'check_circle_outline'}
         />
       </Space>
-      <Typography
-        color={type === 'error' ? 'error' : 'success'}
-        fontSize={0}
-        width={1}>
+      <Typography color={type === 'error' ? 'error' : 'success'} fontSize={0}>
         {content}
       </Typography>
     </>
@@ -31,6 +28,8 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   height: 12px;
+  justify-content: flex-end;
+  width: 100%;
   ${themed('Input.sublabel')}
 `
 

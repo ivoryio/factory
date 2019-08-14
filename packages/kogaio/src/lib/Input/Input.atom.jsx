@@ -141,7 +141,7 @@ const Input = ({
           />
         </Space>
       ) : (
-        <Dummy hide={noBottomSpace} />
+        <Dummy id='input-dummy-space' hide={noBottomSpace} />
       )}
     </InputContainer>
   )
@@ -265,7 +265,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   autoFocus: false,
-  minHeight: 36,
+  minHeight: 40,
   noBottomSpace: false,
   passwordView: 'peek',
   placeholder: 'Search',

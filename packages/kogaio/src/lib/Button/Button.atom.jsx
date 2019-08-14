@@ -113,7 +113,7 @@ const ButtonComponent = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
-  min-height: 36px;
+  min-height: 40px;
   text-transform: uppercase;
   width: 160px;
 
