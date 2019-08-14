@@ -47,8 +47,8 @@ const MenuList = ({
     <Container
       {...containerStyle}
       alignment={alignment}
-      ref={ref || menulistRef}>
-      <Space px={2}>
+      ref={ref || menulistRef}
+      {...rest}>
         <Touchable
           disabled={disabled}
           effect={disabled ? 'no-feedback' : 'opacity'}
@@ -61,7 +61,6 @@ const MenuList = ({
             />
           )}
         </Touchable>
-      </Space>
       {isMenuShown ? (
         <Space pl={0}>
           <ListWrapper
