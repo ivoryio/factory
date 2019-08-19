@@ -47,7 +47,11 @@ const List = ({
     handleSelect(option)
     setListOpen(false)
   }
+<<<<<<< HEAD
 
+=======
+  console.log(props)
+>>>>>>> 713790d0d1b51e859646c4f7f41feba7240e32ac
   return (
     <Container
       as='ul'
