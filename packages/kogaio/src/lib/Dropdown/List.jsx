@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, isValidElement, useEffect } from 'react'
+import React, { Children, cloneElement, isValidElement, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { variant } from 'styled-system'
 import styled, { css } from 'styled-components'
@@ -14,30 +14,32 @@ export const dropdownStyle = variant({
 
 const List = ({
   children,
+  className,
   dummySpace,
   handleSelect,
   isListOpen,
-  listId,
   multiple,
   renderListFooter,
   renderListHeader,
   setListOpen,
   size,
   value,
+  variant,
   ...props
 }) => {
+  const listRef = useRef()
+
   useEffect(() => {
     window.addEventListener('click', _handleBackdropClick)
     return () => window.removeEventListener('click', _handleBackdropClick)
 
     function _handleBackdropClick (ev) {
-      const dropdownEl = document.getElementById(listId)
-      if (dropdownEl && isListOpen) {
-        const isClickOutside = !dropdownEl.contains(ev.target)
+      if (listRef && listRef.current && isListOpen) {
+        const isClickOutside = !listRef.current.contains(ev.target)
         if (isClickOutside) setListOpen(false)
       }
     }
-  }, [isListOpen, listId, multiple, setListOpen])
+  }, [isListOpen, listRef, multiple, setListOpen])
 
   const selectOption = option => () => {
     if (multiple) return handleSelect(option)
@@ -45,15 +47,17 @@ const List = ({
     handleSelect(option)
     setListOpen(false)
   }
+  console.log(props)
   return (
     <Container
       as='ul'
-      className='dropdown-list'
+      className={`${className} dropdown-list`}
       dummySpace={dummySpace}
-      id={listId}
       isOpen={isListOpen}
       numOfElements={children.length}
+      ref={listRef}
       size={size}
+      variant={variant}
       {...props}>
       {typeof renderListHeader === 'function' && isListOpen
         ? renderListHeader({ isListOpen, setListOpen })
@@ -126,7 +130,6 @@ List.propTypes = {
   dummySpace: PropTypes.number,
   handleSelect: PropTypes.func.isRequired,
   isListOpen: PropTypes.bool.isRequired,
-  listId: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
   renderListFooter: PropTypes.func,
   renderListHeader: PropTypes.func,

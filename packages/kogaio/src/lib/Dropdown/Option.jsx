@@ -61,7 +61,7 @@ export const DropdownItem = styled(Flex)`
   justify-content: space-between;
   text-align: left;
   width: 100%;
-  ${themed('Dropdown.listitem')}
+  ${themed('Dropdown.listItem')}
 `
 
 Option.propTypes = {
