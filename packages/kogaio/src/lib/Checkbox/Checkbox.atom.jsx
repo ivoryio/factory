@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import propTypes from '@styled-system/prop-types'
@@ -23,12 +23,14 @@ const Checkbox = ({
   labelColor,
   name,
   onChange,
+  ref,
   size,
   valid,
   value,
   variant,
   ...rest
 }) => {
+  const checkboxRef = useRef()
   const checkboxVariant = (() => {
     if (disabled) return 'disabled'
     if (error) return 'error'
@@ -48,6 +50,7 @@ const Checkbox = ({
           id={id}
           name={name}
           onChange={onChange}
+          ref={ref || checkboxRef}
           type="checkbox"
           value={value}
         />

@@ -63,7 +63,6 @@ const Dropdown = ({
   const listProps = {
     handleSelect: onChange,
     isListOpen,
-    listId: id,
     multiple,
     renderListFooter,
     renderListHeader,
@@ -87,9 +86,9 @@ const Dropdown = ({
       {label ? (
         <Label
           as='label'
+          className='dropdown-label'
           display='block'
           htmlFor={id}
-          id='dropdown-label'
           variant='inputLabel'
           width='fit-content'>
           {label} {required ? '*' : ''}
@@ -132,7 +131,7 @@ const Dropdown = ({
           />
         </Space>
       ) : (
-        <Dummy id='dropdown-dummy-space' hide={noBottomSpace} />
+        <Dummy className='dropdown-dummy-space' hide={noBottomSpace} />
       )}
       <ConditionalWrap
         condition={isMobileDevice}
@@ -224,7 +223,6 @@ Dropdown.defaultProps = {
   autoFocus: false,
   children: [],
   disabled: false,
-  id: 'iv-dropdown',
   multiple: false,
   onChange: () => console.warn('* Dropdown expects an onChange function'),
   placeholder: 'Select an option',

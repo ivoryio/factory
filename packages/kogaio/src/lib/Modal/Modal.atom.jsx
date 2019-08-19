@@ -24,6 +24,7 @@ const ModalBody = ({
   ...rest
 }) => {
   const modalRef = useRef()
+  
   useEffect(() => {
     window.addEventListener('click', _handleBackdropClick)
     return () => window.removeEventListener('click', _handleBackdropClick)
