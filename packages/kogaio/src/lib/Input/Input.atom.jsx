@@ -63,7 +63,8 @@ const Input = ({
 
   const togglePassword = ev => {
     ev.preventDefault()
-    if (document.activeElement !== inputRef.current) inputRef.current.focus()
+    const elRef = ref || inputRef
+    if (document.activeElement !== elRef.current) elRef.current.focus()
     if (inputType.includes('password')) return setInputType('text')
     return resetInputType()
   }
@@ -72,19 +73,19 @@ const Input = ({
   return (
     <InputContainer
       {...containerStyle}
-      flexDirection="column"
+      flexDirection='column'
       hasLabel={label}
       width={1}
       {...rest}>
       {label ? (
         <InputLabel
-          as="label"
-          className="input-label"
-          color="gunmetal"
-          display="block"
+          as='label'
+          className='input-label'
+          color='gunmetal'
+          display='block'
           htmlFor={id}
-          variant="inputLabel"
-          width="fit-content">
+          variant='inputLabel'
+          width='fit-content'>
           {label} {required ? '*' : ''}
         </InputLabel>
       ) : null}
@@ -92,7 +93,7 @@ const Input = ({
         <InputComponent
           autoComplete={autoComplete}
           autoFocus={autoFocus}
-          className="input"
+          className='input'
           disabled={readOnly || disabled}
           error={error}
           hasLabel={label}
@@ -112,22 +113,22 @@ const Input = ({
         />
         {icLeft ? (
           <Icon
-            className="input-icleft"
+            className='input-icleft'
             fontSize={3}
             left={2}
             name={icLeft}
-            pointerEvents="none"
-            position="absolute"
-            tabIndex="-1"
+            pointerEvents='none'
+            position='absolute'
+            tabIndex='-1'
           />
         ) : null}
         {type === 'password' && value ? (
           <PasswordToggler
             error={error}
             inputType={inputType}
-            onDragAttempt={resetInputType}
+            onDrag={resetInputType}
             toggle={togglePassword}
-            tabIndex="-1"
+            tabIndex='-1'
             viewOption={passwordView}
           />
         ) : null}
@@ -135,7 +136,7 @@ const Input = ({
       {[error, valid].some(item => typeof item === 'string') ? (
         <Space my={1}>
           <Sublabel
-            className="input-sublabel"
+            className='input-sublabel'
             content={error || valid}
             type={error ? 'error' : 'valid'}
           />

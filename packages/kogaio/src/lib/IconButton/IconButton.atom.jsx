@@ -17,7 +17,7 @@ const IconButton = ({
   fontSize,
   left,
   onClick,
-  onDragAttempt,
+  onDrag,
   onMouseDown,
   onMouseUp,
   onTouchStart,
@@ -39,7 +39,7 @@ const IconButton = ({
     justifyContent={justifyContent}
     left={left}
     onClick={onClick}
-    onDragAttempt={onDragAttempt}
+    onDrag={onDrag}
     onMouseDown={onMouseDown}
     onMouseUp={onMouseUp}
     onTouchStart={onTouchStart}
@@ -72,7 +72,7 @@ IconButton.propTypes = {
   left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   name: PropTypes.string,
   onClick: PropTypes.func,
-  onDragAttempt: PropTypes.func,
+  onDrag: PropTypes.func,
   onMouseDown: PropTypes.func,
   onMouseUp: PropTypes.func,
   onTouchStart: PropTypes.func,

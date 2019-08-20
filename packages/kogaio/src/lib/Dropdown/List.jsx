@@ -127,6 +127,7 @@ const Container = styled(Flex)`
 
 List.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   dummySpace: PropTypes.number,
   handleSelect: PropTypes.func.isRequired,
   isListOpen: PropTypes.bool.isRequired,
@@ -135,7 +136,8 @@ List.propTypes = {
   renderListHeader: PropTypes.func,
   setListOpen: PropTypes.func,
   size: PropTypes.number,
-  value: PropTypes.string
+  value: PropTypes.string,
+  variant: PropTypes.string
 }
 
 export default List

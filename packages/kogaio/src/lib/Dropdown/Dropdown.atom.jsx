@@ -203,7 +203,7 @@ Dropdown.propTypes = {
   containerStyle: PropTypes.object,
   disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   label: PropTypes.string,
   multiple: PropTypes.bool,
   noBottomSpace: PropTypes.bool,

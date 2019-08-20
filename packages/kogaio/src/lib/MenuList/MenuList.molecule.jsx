@@ -31,12 +31,13 @@ const MenuList = ({
     return () => window.removeEventListener('click', _handleDocumentBodyClick)
 
     function _handleDocumentBodyClick (ev) {
-      if (menulistRef.current) {
-        const isClickInside = menulistRef.current.contains(ev.target)
+      const elRef = ref || menulistRef
+      if (elRef.current) {
+        const isClickInside = elRef.current.contains(ev.target)
         if (!isClickInside) showMenu(false)
       }
     }
-  }, [id, showMenu])
+  }, [id, ref, showMenu])
 
   const _selectItem = item => () => {
     selectItem(item)

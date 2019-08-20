@@ -25,7 +25,7 @@ const Touchable = ({
   onMouseUp,
   onTouchStart,
   onTouchEnd,
-  onDragAttempt: handleDragAttempt,
+  onDrag: handleDrag,
   tabIndex,
   underlayColor,
   type,
@@ -42,8 +42,8 @@ const Touchable = ({
     typeof onMouseUp === 'function' && onMouseUp(ev)
   }
   const _handleMouseLeave = () => {
-    if (isBeingPressed && typeof handleDragAttempt === 'function') {
-      return handleDragAttempt()
+    if (isBeingPressed && typeof handleDrag === 'function') {
+      return handleDrag()
     }
   }
   return (
@@ -151,7 +151,7 @@ Touchable.propTypes = {
   disabled: PropTypes.bool,
   effect: PropTypes.oneOf(effects).isRequired,
   onClick: PropTypes.func,
-  onDragAttempt: PropTypes.func,
+  onDrag: PropTypes.func,
   onMouseDown: PropTypes.func,
   onMouseUp: PropTypes.func,
   onTouchStart: PropTypes.func,

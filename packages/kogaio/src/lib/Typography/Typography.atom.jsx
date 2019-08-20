@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import {
   color,
   colorStyle,
@@ -19,12 +19,12 @@ const typographyStyle = variant({
   prop: 'variant'
 })
 
-const handleTruncate = () => ({ truncate }) =>
-  truncate &&
-  `
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
+const handleTruncate = ({ truncate }) => css`
+  ${truncate &&
+    `white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    `}
 `
 const Typography = styled.div`
   color: ${themeGet('colors.dark-gunmetal', '#1b202f')};

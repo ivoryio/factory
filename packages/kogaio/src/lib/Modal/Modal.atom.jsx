@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
 
 import { Flex } from '../Responsive'
-import { themed } from '../utils'
+import { themed, themeGet } from '../utils'
 import { withPortal } from './withPortal'
 
 const Modal = ({ withPortal, ...props }) =>
@@ -12,7 +12,7 @@ const Modal = ({ withPortal, ...props }) =>
 const ModalWithPortal = withPortal(props => <ModalBody {...props} />)
 
 const ModalBody = ({
-  bg,
+  backdropColor,
   children,
   colors,
   id,
@@ -30,19 +30,20 @@ const ModalBody = ({
     return () => window.removeEventListener('click', _handleBackdropClick)
 
     function _handleBackdropClick (ev) {
-      const clickOutside = ev.target === modalRef.current
+      const elRef = ref || modalRef
+      const clickOutside = ev.target === elRef.current
       if (visible && clickOutside)
         return handleBackdropClick
           ? handleBackdropClick()
           : console.warn('* Modal expects a handleBackdropClick function')
     }
-  }, [handleBackdropClick, visible])
+  }, [handleBackdropClick, ref, visible])
 
   return (
     <Overlay
-      bg={bg}
-      id={id}
+      backdropColor={backdropColor}
       colors={colors}
+      id={id}
       position={position}
       visible={visible}
       {...overlayStyle}>
@@ -82,6 +83,7 @@ const overlayAnimation = ({ visible }) => css`
     ${visible ? 'ease-in' : 'ease-out'};
 `
 const Overlay = styled(Flex)`
+  background-color: ${({ backdropColor }) => themeGet(`colors.${backdropColor}`, backdropColor)};
   display: ${({ visible }) => (visible ? 'flex' : 'none')};
   height: 100%;
   left: 0;
@@ -108,6 +110,7 @@ Modal.propTypes = {
 }
 
 ModalBody.propTypes = {
+  backdropColor: PropTypes.string,
   bg: PropTypes.string,
   children: PropTypes.node,
   colors: PropTypes.string,
@@ -124,7 +127,7 @@ Modal.defaultProps = {
 }
 
 ModalBody.defaultProps = {
-  colors: 'modal',
+  backdropColor: 'modal-backdrop',
   visible: false
 }
 
