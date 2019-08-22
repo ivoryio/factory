@@ -173,7 +173,7 @@ const readOnlyStyle = css`
   :hover {
     border: ${themeGet('borders.1')} transparent;
   }
-  text-indent: 0;
+  padding-left: 0;
 `
 
 const InputContainer = styled(Flex)`
@@ -212,9 +212,8 @@ const InputComponent = styled.input`
     }
 
   :focus {
-    ~ .input-right > button > i, ,
-    ~ .input-custom-icon,
-    ~ .input-right > .input-custom-icon {
+    ~ .input-right  i,
+    ~ .input-custom-icon {
       color: ${themeGet('colors.gunmetal')};
     }
   }

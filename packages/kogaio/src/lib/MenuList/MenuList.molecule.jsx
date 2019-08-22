@@ -50,34 +50,32 @@ const MenuList = ({
       alignment={alignment}
       ref={ref || menulistRef}
       {...rest}>
-        <Touchable
-          disabled={disabled}
-          effect={disabled ? 'no-feedback' : 'opacity'}
-          onClick={toggleMenu}>
-          {Trigger || (
-            <Icon
-              color={icon.color}
-              fontSize={`${icon.size}px`}
-              name={icon.name}
-            />
-          )}
-        </Touchable>
+      <Touchable
+        disabled={disabled}
+        effect={disabled ? 'no-feedback' : 'opacity'}
+        onClick={toggleMenu}>
+        {Trigger || (
+          <Icon
+            color={icon.color}
+            fontSize={`${icon.size}px`}
+            name={icon.name}
+          />
+        )}
+      </Touchable>
       {isMenuShown ? (
-        <Space pl={0}>
-          <ListWrapper
-            as='ul'
-            alignment={alignment}
-            colors='menu-list'
-            icSize={icon.size}
-            {...rest}>
-            {Children.toArray(children).map(child =>
-              cloneElement(child, {
-                onSelect: _selectItem,
-                textAlign: alignment || textAlign
-              })
-            )}
-          </ListWrapper>
-        </Space>
+        <ListWrapper
+          as='ul'
+          alignment={alignment}
+          colors='menu-list'
+          icSize={icon.size}
+          {...rest}>
+          {Children.toArray(children).map(child =>
+            cloneElement(child, {
+              onSelect: _selectItem,
+              textAlign: alignment || textAlign
+            })
+          )}
+        </ListWrapper>
       ) : null}
     </Container>
   )
@@ -99,10 +97,7 @@ const ListItem = ({
   value,
   ...props
 }) => (
-  <ItemWrapper
-    disabled={disabled}
-    onClick={selectItem(value)}
-    {...props}>
+  <ItemWrapper disabled={disabled} onClick={selectItem(value)} {...props}>
     <ConditionalWrap
       condition={
         (children && ['string', 'number'].includes(typeof children)) || label
@@ -138,7 +133,7 @@ const alignArrow = css`
       if (alignments.includes(alignment)) {
         switch (alignment) {
           case 'left':
-            return `left: calc(${icSize}px /2);`
+            return `left: calc(${icSize}px / 2);`
           case 'center':
             return `align-self: center;`
           default:
@@ -195,6 +190,8 @@ const ListWrapper = styled(Flex)`
   cursor: pointer;
   flex-direction: column;
   list-style-type: none;
+  margin-bottom: 0;
+  padding-left: 0;
   position: absolute;
   top: 100%;
   ${alignList}
@@ -232,7 +229,8 @@ const ItemWrapper = styled(Touchable)`
   }
 
   :hover {
-    background-color: ${({ disabled }) => !disabled && themeGet('colors.white-smoke')};
+    background-color: ${({ disabled }) =>
+      !disabled && themeGet('colors.white-smoke')};
   }
 
   ${themed('MenuList.Item')}
@@ -260,6 +258,7 @@ MenuList.propTypes = {
     PropTypes.element
   ])
 }
+
 ListItem.propTypes = {
   children: PropTypes.node,
   color: PropTypes.string,
@@ -286,6 +285,7 @@ MenuList.defaultProps = {
   },
   zIndex: 3
 }
+
 ListItem.defaultProps = {
   color: 'dark-gunmetal',
   textVariant: 'list'
