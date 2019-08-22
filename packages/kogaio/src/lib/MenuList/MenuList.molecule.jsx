@@ -11,16 +11,16 @@ import { Flex, Space } from '../Responsive'
 
 const MenuList = ({
   alignment,
+  arrowSize,
   children,
   disabled,
-  containerStyle,
-  Trigger,
   icon,
   id,
-  listItems,
+  listStyle,
   onSelect: selectItem,
   ref,
   textAlign,
+  Trigger,
   ...rest
 }) => {
   const menulistRef = useRef()
@@ -45,15 +45,13 @@ const MenuList = ({
   }
 
   return (
-    <Container
-      {...containerStyle}
-      alignment={alignment}
-      ref={ref || menulistRef}
-      {...rest}>
+    <Container alignment={alignment} ref={ref || menulistRef} {...rest}>
       <Touchable
         disabled={disabled}
         effect={disabled ? 'no-feedback' : 'opacity'}
-        onClick={toggleMenu}>
+        onClick={toggleMenu}
+        textAlign={alignment}
+        width='fit-content'>
         {Trigger || (
           <Icon
             color={icon.color}
@@ -66,9 +64,10 @@ const MenuList = ({
         <ListWrapper
           as='ul'
           alignment={alignment}
+          arrowSize={arrowSize}
           colors='menu-list'
           icSize={icon.size}
-          {...rest}>
+          {...listStyle}>
           {Children.toArray(children).map(child =>
             cloneElement(child, {
               onSelect: _selectItem,
@@ -122,27 +121,27 @@ const ListItem = ({
   </ItemWrapper>
 )
 
+const validAlignment = ['left', 'center', 'right']
+
 const alignArrow = css`
   ${props => {
     const alignment = _alignArrow()
     return `${alignment}`
 
     function _alignArrow () {
-      const alignments = ['left', 'center', 'right']
       const { alignment, icSize } = props
-      if (alignments.includes(alignment)) {
-        switch (alignment) {
-          case 'left':
-            return `left: calc(${icSize}px / 2);`
-          case 'center':
-            return `align-self: center;`
-          default:
-            return `right: calc(${icSize + 2}px / 2);`
-        }
+      if (!validAlignment.includes(alignment))
+        return console.error(
+          `* Invalid prop ${alignment} passed for alignment. Expected one of values ${validAlignment}`
+        )
+      switch (alignment) {
+        case 'left':
+          return `left: calc(${icSize}px / 2);`
+        case 'center':
+          return `align-self: center;`
+        default:
+          return `right: calc(${icSize + 2}px / 2);`
       }
-      console.error(
-        `* Invalid prop ${alignment} passed for alignment. Expected one of values ${alignments}`
-      )
     }
   }}
 `
@@ -168,7 +167,7 @@ const alignList = css`
       case 'right':
         return 'right: 0;'
       default:
-        return 'right: 50%; transform: translateX(-50%);'
+        break
     }
   }}
 `
@@ -190,6 +189,7 @@ const ListWrapper = styled(Flex)`
   cursor: pointer;
   flex-direction: column;
   list-style-type: none;
+  margin-top: ${themeGet('space.2')}px;
   margin-bottom: 0;
   padding-left: 0;
   position: absolute;
@@ -236,11 +236,10 @@ const ItemWrapper = styled(Touchable)`
   ${themed('MenuList.Item')}
 `
 
-const validAlignment = ['left', 'center', 'right']
 MenuList.propTypes = {
   alignment: PropTypes.oneOf(validAlignment),
+  arrowSize: PropTypes.number,
   children: PropTypes.node,
-  containerStyle: PropTypes.object,
   disabled: PropTypes.bool,
   icon: PropTypes.shape({
     color: PropTypes.string,
@@ -248,7 +247,7 @@ MenuList.propTypes = {
     size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   }),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  listItems: PropTypes.array,
+  listStyle: PropTypes.object,
   onSelect: PropTypes.func.isRequired,
   ref: PropTypes.object,
   textAlign: PropTypes.oneOf(validAlignment),
@@ -291,6 +290,6 @@ ListItem.defaultProps = {
   textVariant: 'list'
 }
 
-MenuList.displayName = 'MenuList'
 MenuList.Item = ListItem
+MenuList.displayName = 'MenuList'
 export default MenuList
