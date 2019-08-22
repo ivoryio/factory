@@ -127,19 +127,6 @@ const ListItem = ({
   </ItemWrapper>
 )
 
-const alignContent = css`
-  ${({ alignment }) => {
-    switch (alignment) {
-      case 'left':
-        return 'flex-start'
-      case 'right':
-        return 'flex-end'
-      default:
-        return 'center'
-    }
-  }}
-`
-
 const alignArrow = css`
   ${props => {
     const alignment = _alignArrow()
@@ -165,6 +152,32 @@ const alignArrow = css`
   }}
 `
 
+const alignContent = css`
+  ${({ alignment }) => {
+    switch (alignment) {
+      case 'left':
+        return 'flex-start'
+      case 'right':
+        return 'flex-end'
+      default:
+        return 'center'
+    }
+  }}
+`
+
+const alignList = css`
+  ${({ alignment }) => {
+    switch (alignment) {
+      case 'left':
+        return 'left: 0;'
+      case 'right':
+        return 'right: 0;'
+      default:
+        return 'right: 50%; transform: translateX(-50%);'
+    }
+  }}
+`
+
 const arrowSize = ({ arrowSize }) => css`
   width: ${arrowSize}px;
   height: ${arrowSize}px;
@@ -184,6 +197,7 @@ const ListWrapper = styled(Flex)`
   list-style-type: none;
   position: absolute;
   top: 100%;
+  ${alignList}
 
   :after {
     box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.1);
