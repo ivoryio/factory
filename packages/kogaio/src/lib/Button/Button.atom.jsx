@@ -114,8 +114,9 @@ const ButtonComponent = styled.button`
   display: flex;
   justify-content: center;
   min-height: 40px;
+  min-width: 160px;
   text-transform: uppercase;
-  width: 160px;
+  width: fit-content;
 
   & > label {
     pointer-events: none;
