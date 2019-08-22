@@ -3,8 +3,7 @@ export default function ({ borders, colors, radii, shadows, ...theme }) {
     'background-color': colors.white,
     border: `${borders[1]} ${colors['azure-white']}`,
     '&.dropdown-selected': {
-      'border-top-left-radius': `${radii[2]}px`,
-      'border-top-right-radius': `${radii[2]}px`,
+      'border-radius': `${radii[2]}px`,
       ':hover': {
         border: `${borders[1]} ${colors.gunmetal}`
       }
@@ -21,6 +20,9 @@ export default function ({ borders, colors, radii, shadows, ...theme }) {
       },
       ':nth-of-type(n + 2)': {
         'border-top': `${borders[1]} ${colors['light-gray']}`
+      },
+      '&.selected': {
+        'background-color': colors['ghost-white']
       }
     }
   }

@@ -6,15 +6,16 @@ const MenuListExample = () => {
   const listItems = [
     {
       id: 'list-item1',
-      name: 'Menu list item 1'
+      name: 'Create item',
+      disabled: true
     },
     {
       id: 'list-item2',
-      name: 'Menu list item 2'
+      name: 'Update'
     },
     {
       id: 'list-item3',
-      name: 'Menu list item 3'
+      name: 'Delete history'
     }
   ]
   return (
@@ -30,6 +31,7 @@ const MenuListExample = () => {
           onSelect={item => console.log(`Selected item`, item)}>
           {listItems.map(item => (
             <MenuList.Item
+              disabled={item.disabled}
               id={item.id}
               label={item.name}
               key={item.id}

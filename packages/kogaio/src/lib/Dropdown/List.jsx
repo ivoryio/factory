@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, isValidElement, useEffect } from 'react'
+import React, { Children, cloneElement, isValidElement, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { variant } from 'styled-system'
 import styled, { css } from 'styled-components'
@@ -14,29 +14,32 @@ export const dropdownStyle = variant({
 
 const List = ({
   children,
+  className,
+  dummySpace,
   handleSelect,
   isListOpen,
-  listId,
   multiple,
   renderListFooter,
   renderListHeader,
   setListOpen,
   size,
   value,
+  variant,
   ...props
 }) => {
+  const listRef = useRef()
+
   useEffect(() => {
     window.addEventListener('click', _handleBackdropClick)
     return () => window.removeEventListener('click', _handleBackdropClick)
 
     function _handleBackdropClick (ev) {
-      const dropdownEl = document.getElementById(listId)
-      if (dropdownEl && isListOpen) {
-        const isClickOutside = !dropdownEl.contains(ev.target)
+      if (listRef && listRef.current && isListOpen) {
+        const isClickOutside = !listRef.current.contains(ev.target)
         if (isClickOutside) setListOpen(false)
       }
     }
-  }, [isListOpen, listId, multiple, setListOpen])
+  }, [isListOpen, listRef, multiple, setListOpen])
 
   const selectOption = option => () => {
     if (multiple) return handleSelect(option)
@@ -44,14 +47,17 @@ const List = ({
     handleSelect(option)
     setListOpen(false)
   }
+
   return (
     <Container
-      as="ul"
-      className="dropdown-list"
-      id={listId}
+      as='ul'
+      className={`${className} dropdown-list`}
+      dummySpace={dummySpace}
       isOpen={isListOpen}
       numOfElements={children.length}
+      ref={listRef}
       size={size}
+      variant={variant}
       {...props}>
       {typeof renderListHeader === 'function' && isListOpen
         ? renderListHeader({ isListOpen, setListOpen })
@@ -74,19 +80,22 @@ const List = ({
 
 const calcSize = () => ({ isOpen, numOfElements, size }) => {
   const GUTTER = 4
-  const ITEM_HEIGHT = 36
+  const ITEM_HEIGHT = 40
   if (!isOpen) return `max-height: 0; visibility: hidden;`
   if (numOfElements <= size)
     return `max-height: ${size * ITEM_HEIGHT + GUTTER}px;`
   return `
-    max-height: ${size * ITEM_HEIGHT + GUTTER * 2}px;
+    max-height: ${size * ITEM_HEIGHT - GUTTER * 2}px;
     overflow-y: auto;
     scroll-behavior: smooth;
   `
 }
 
 const responsiveListStyle = ({ isMobile }) => css`
-  top: ${({ isMobile }) => (isMobile ? '50%' : '100%')};
+  top: calc(
+    ${({ dummySpace, isMobile }) =>
+      isMobile ? `50% - ${dummySpace}px` : `100% - ${dummySpace}px`}
+  );
   position: ${({ isMobile }) => (isMobile ? 'fixed' : 'absolute')};
   width: 100%;
   ${isMobile
@@ -118,15 +127,17 @@ const Container = styled(Flex)`
 
 List.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  dummySpace: PropTypes.number,
   handleSelect: PropTypes.func.isRequired,
   isListOpen: PropTypes.bool.isRequired,
-  listId: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
   renderListFooter: PropTypes.func,
   renderListHeader: PropTypes.func,
   setListOpen: PropTypes.func,
   size: PropTypes.number,
-  value: PropTypes.string
+  value: PropTypes.string,
+  variant: PropTypes.string
 }
 
 export default List

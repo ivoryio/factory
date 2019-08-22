@@ -6,7 +6,7 @@ import { border, compose, layout, position, space } from 'styled-system'
 import { themed } from '../utils'
 
 const Image = styled.img`
-  object-fit: ${props => props.objectFit};
+  object-fit: ${({ objectFit }) => objectFit};
   ${themed('Image')}
   ${compose(
     border,

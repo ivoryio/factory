@@ -1,5 +1,45 @@
 {
+  "eslint.alwaysShowStatus": false,
   "eslint.enable": true,
+  "eslint.options": {
+    "experimentalDecorators": true
+  },
   "eslint.packageManager": "yarn",
-  "javascript.validate.enable": false
+  "editor.autoClosingQuotes": "always",
+  "editor.codeLens": true,
+  "editor.colorDecorators": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.cursorBlinking": "smooth",
+  "editor.matchBrackets": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.showUnused": true,
+  "editor.tabCompletion": "onlySnippets",
+  "git.allowForcePush": false,
+  "git.fetchOnPull": true,
+  "git.showProgress": true,
+  "javascript.autoClosingTags": true,
+  "javascript.format.enable": true,
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.preferences.renameShorthandProperties": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "javascript.suggest.enabled": true,
+  "javascript.suggest.names": true,
+  "javascript.suggest.paths": true,
+  "javascript.validate.enable": true,
+  "prettier.arrowParens": "avoid",
+  "prettier.bracketSpacing": true,
+  "prettier.eslintIntegration": false,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.proseWrap": "always",
+  "prettier.quoteProps": "as-needed",
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.trailingComma": "none"
 }

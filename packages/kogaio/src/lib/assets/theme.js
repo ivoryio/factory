@@ -17,7 +17,9 @@ const BREAKPOINTS = {
   lg: '80em',
   xlg: '120em'
 }
-const COLORS = {
+
+const PRIMARY_COLORS = {
+  black: '#000000',
   brand: '#66bb6a',
   'brand-hover': '#4caf50',
   'brand-disabled': '#dfe9f2',
@@ -26,9 +28,19 @@ const COLORS = {
   error: '#ff7043',
   'error-hover': '#ff5722',
   alert: '#fbc02d',
+  gunmetal: '#243143',
   info: '#64b5f6',
   success: '#66bb6a',
   white: '#ffffff',
+}
+
+const DERIVED_COLORS = {
+  'modal-backdrop': hexToRgbA(PRIMARY_COLORS.gunmetal, 0.25)
+}
+
+const COLORS = {
+  ...PRIMARY_COLORS,
+  ...DERIVED_COLORS,
   'pale-white': '#fafcfd',
   'ghost-white': '#f6f9fb',
   'white-smoke': '#f2f6f9',
@@ -39,10 +51,9 @@ const COLORS = {
   manatee: '#979ca6',
   'paynes-gray': '#636f7c',
   independence: '#4f5767',
-  gunmetal: '#243143',
   'dark-gunmetal': '#1b202f',
-  black: '#000000'
 }
+
 const SHADOWS = {
   'button-shadow': `0 1px 0 0 ${hexToRgbA(COLORS.black, 0.05)}`,
   'input-basic': `0 1px 0 0 ${hexToRgbA(COLORS['dark-gunmetal'], 0.05)}`,
@@ -50,13 +61,11 @@ const SHADOWS = {
   'card-highlight': `2px 0 10px 0 ${hexToRgbA(COLORS.black, 0.15)}`,
   'menu-list': `0 1px 4px 0 ${hexToRgbA(COLORS['dark-gunmetal'], 0.35)}`
 }
+
 const COLOR_STYLES = {
   'menu-list': {
-    boxShadow: SHADOWS['menu-list'],
-    backgroundColor: COLORS.white
-  },
-  modal: {
-    'background-color': `${hexToRgbA(COLORS.gunmetal, 0.25)}`
+    'box-shadow': SHADOWS['menu-list'],
+    'background-color': COLORS.white
   },
   'button-outline-alt': {
     color: COLORS.gunmetal,
@@ -71,11 +80,9 @@ const COLOR_STYLES = {
     '&:hover': {
       border: `${BORDERS[1]} ${COLORS.alert}`
     }
-  },
-  overlay: {
-    'background-color': hexToRgbA(COLORS.gunmetal, 0.6)
   }
 }
+
 const FONTS = {
   primary:
     'Rubik, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu, Cantarell, sans-serif',
@@ -100,6 +107,17 @@ const LINE_HEIGHTS = {
   input: 2,
   list: 2.5
 }
+
+const TEXT_STYLES = {
+  caps: {
+    'text-transform': 'uppercase',
+    'letter-spacing': '0.2px'
+  },
+  underline: {
+    'text-decoration': 'underline'
+  }
+}
+
 const RADII = {
   none: 0,
   '1': 1,
@@ -111,12 +129,7 @@ const RADII = {
   round: '50%'
 }
 
-const TEXT_STYLES = {
-  caps: {
-    textTransform: 'uppercase',
-    letterSpacing: '0.2px'
-  }
-}
+
 
 export const kogaioTheme = {
   borders: BORDERS,

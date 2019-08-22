@@ -34,6 +34,7 @@ const Input = ({
   disabled,
   error,
   icLeft,
+  icRight,
   id,
   label,
   name,
@@ -63,7 +64,8 @@ const Input = ({
 
   const togglePassword = ev => {
     ev.preventDefault()
-    if (document.activeElement !== inputRef.current) inputRef.current.focus()
+    const elRef = ref || inputRef
+    if (document.activeElement !== elRef.current) elRef.current.focus()
     if (inputType.includes('password')) return setInputType('text')
     return resetInputType()
   }
@@ -72,19 +74,19 @@ const Input = ({
   return (
     <InputContainer
       {...containerStyle}
-      flexDirection="column"
+      flexDirection='column'
       hasLabel={label}
       width={1}
       {...rest}>
       {label ? (
         <InputLabel
-          as="label"
-          className="input-label"
-          color="gunmetal"
-          display="block"
+          as='label'
+          className='input-label'
+          color='gunmetal'
+          display='block'
           htmlFor={id}
-          variant="inputLabel"
-          width="fit-content">
+          variant='inputLabel'
+          width='fit-content'>
           {label} {required ? '*' : ''}
         </InputLabel>
       ) : null}
@@ -92,11 +94,12 @@ const Input = ({
         <InputComponent
           autoComplete={autoComplete}
           autoFocus={autoFocus}
-          className="input"
+          className='input'
           disabled={readOnly || disabled}
           error={error}
           hasLabel={label}
           hasIcLeft={icLeft}
+          hasIcRight={icRight}
           id={id}
           name={name}
           onChange={onChange}
@@ -112,36 +115,51 @@ const Input = ({
         />
         {icLeft ? (
           <Icon
-            className="input-icleft"
+            className='input-custom-icon'
+            color='pastel-blue'
             fontSize={3}
             left={2}
             name={icLeft}
-            pointerEvents="none"
-            position="absolute"
-            tabIndex="-1"
+            pointerEvents='none'
+            position='absolute'
+            tabIndex='-1'
           />
         ) : null}
-        {type === 'password' && value ? (
-          <PasswordToggler
-            error={error}
-            inputType={inputType}
-            onDragAttempt={resetInputType}
-            toggle={togglePassword}
-            tabIndex="-1"
-            viewOption={passwordView}
-          />
-        ) : null}
+        <Flex className='input-right' position='absolute' right={2}>
+          {icRight ? (
+            <Space mr={1}>
+              <Icon
+                className='input-custom-icon'
+                color='pastel-blue'
+                fontSize={3}
+                name={icRight}
+                pointerEvents='none'
+                tabIndex='-1'
+              />
+            </Space>
+          ) : null}
+          {type === 'password' && value ? (
+            <PasswordToggler
+              error={error}
+              inputType={inputType}
+              onDrag={resetInputType}
+              toggle={togglePassword}
+              tabIndex='-1'
+              viewOption={passwordView}
+            />
+          ) : null}
+        </Flex>
       </Row>
       {[error, valid].some(item => typeof item === 'string') ? (
         <Space my={1}>
           <Sublabel
-            className="input-sublabel"
+            className='input-sublabel'
             content={error || valid}
             type={error ? 'error' : 'valid'}
           />
         </Space>
       ) : (
-        <Dummy hide={noBottomSpace} />
+        <Dummy id='input-dummy-space' hide={noBottomSpace} />
       )}
     </InputContainer>
   )
@@ -155,7 +173,7 @@ const readOnlyStyle = css`
   :hover {
     border: ${themeGet('borders.1')} transparent;
   }
-  text-indent: 0;
+  padding-left: 0;
 `
 
 const InputContainer = styled(Flex)`
@@ -174,10 +192,10 @@ const Row = styled(Flex)`
 `
 
 const addSpaceAroundInputArea = css`
-  text-indent: ${({ hasIcLeft }) =>
+  padding-left: ${({ hasIcLeft }) =>
     hasIcLeft ? themeGet('space.8', 32) : themeGet('space.2', 8)}px;
-  padding-right: ${({ type }) =>
-    type === 'password' ? themeGet('space.8', 32) : 0}px;
+  padding-right: ${({ hasIcRight, type }) =>
+    hasIcRight || type === 'password' ? themeGet('space.8', 32) : 0}px;
 `
 const InputComponent = styled.input`
   ${addSpaceAroundInputArea}
@@ -193,12 +211,9 @@ const InputComponent = styled.input`
       color: ${themeGet('colors.pastel-blue')};
     }
 
-    ~.input-icleft {
-      color: ${themeGet('colors.pastel-blue')};
-    }
-
   :focus {
-    ~ button > i, ~ .input-icleft {
+    ~ .input-right  i,
+    ~ .input-custom-icon {
       color: ${themeGet('colors.gunmetal')};
     }
   }
@@ -265,7 +280,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   autoFocus: false,
-  minHeight: 36,
+  minHeight: 40,
   noBottomSpace: false,
   passwordView: 'peek',
   placeholder: 'Search',

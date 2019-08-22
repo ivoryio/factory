@@ -57,11 +57,11 @@ const Option = ({
 
 export const DropdownItem = styled(Flex)`
   align-items: center;
-  height: 36px;
+  height: 40px;
   justify-content: space-between;
   text-align: left;
   width: 100%;
-  ${themed('Dropdown.listitem')}
+  ${themed('Dropdown.listItem')}
 `
 
 Option.propTypes = {

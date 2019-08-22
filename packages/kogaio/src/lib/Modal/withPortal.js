@@ -18,7 +18,7 @@ export const withPortal = Component => ({ id, visible, ...props }) => {
       document
         .getElementById('modal-root')
         .appendChild(newModal)
-        .setAttribute('id', `modal=${id || randomiser}`)
+        .setAttribute('id', `modal-${id || randomiser}`)
     }
 
     return () => {

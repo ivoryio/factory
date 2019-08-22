@@ -6,7 +6,7 @@ import { hexToRgbA } from '../assets/helpers'
 
 const backgroundColour = (() => ({ colors: { background } }) =>
   themeGet(`colors.${background}`, background))()
-  
+
 const primaryColour = (() => ({ colors: { primary } }) =>
   themeGet(`colors.${primary}`, primary))()
 const complementaryColour = (() => ({ colors: { background }, ...props }) => {
@@ -119,7 +119,7 @@ Spinner.propTypes = {
 Spinner.defaultProps = {
   colors: {
     background: 'white',
-    primary: 'gunmetal'
+    primary: 'brand'
   },
   size: '2rem'
 }
