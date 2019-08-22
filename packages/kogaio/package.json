@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.7.40",
+  "version": "0.7.50",
   "author": "MihaiRo <mihai.rosca@thinslices.com>",
   "description": "Component library",
   "main": "build/index.js",
@@ -54,8 +54,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint --fix",
-      "git add ."
+      "eslint --fix"
     ]
   },
   "config": {

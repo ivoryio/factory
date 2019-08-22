@@ -34,6 +34,7 @@ const Input = ({
   disabled,
   error,
   icLeft,
+  icRight,
   id,
   label,
   name,
@@ -98,6 +99,7 @@ const Input = ({
           error={error}
           hasLabel={label}
           hasIcLeft={icLeft}
+          hasIcRight={icRight}
           id={id}
           name={name}
           onChange={onChange}
@@ -113,7 +115,8 @@ const Input = ({
         />
         {icLeft ? (
           <Icon
-            className='input-icleft'
+            className='input-custom-icon'
+            color='pastel-blue'
             fontSize={3}
             left={2}
             name={icLeft}
@@ -122,16 +125,30 @@ const Input = ({
             tabIndex='-1'
           />
         ) : null}
-        {type === 'password' && value ? (
-          <PasswordToggler
-            error={error}
-            inputType={inputType}
-            onDrag={resetInputType}
-            toggle={togglePassword}
-            tabIndex='-1'
-            viewOption={passwordView}
-          />
-        ) : null}
+        <Flex className='input-right' position='absolute' right={2}>
+          {icRight ? (
+            <Space mr={1}>
+              <Icon
+                className='input-custom-icon'
+                color='pastel-blue'
+                fontSize={3}
+                name={icRight}
+                pointerEvents='none'
+                tabIndex='-1'
+              />
+            </Space>
+          ) : null}
+          {type === 'password' && value ? (
+            <PasswordToggler
+              error={error}
+              inputType={inputType}
+              onDrag={resetInputType}
+              toggle={togglePassword}
+              tabIndex='-1'
+              viewOption={passwordView}
+            />
+          ) : null}
+        </Flex>
       </Row>
       {[error, valid].some(item => typeof item === 'string') ? (
         <Space my={1}>
@@ -175,10 +192,10 @@ const Row = styled(Flex)`
 `
 
 const addSpaceAroundInputArea = css`
-  text-indent: ${({ hasIcLeft }) =>
+  padding-left: ${({ hasIcLeft }) =>
     hasIcLeft ? themeGet('space.8', 32) : themeGet('space.2', 8)}px;
-  padding-right: ${({ type }) =>
-    type === 'password' ? themeGet('space.8', 32) : 0}px;
+  padding-right: ${({ hasIcRight, type }) =>
+    hasIcRight || type === 'password' ? themeGet('space.8', 32) : 0}px;
 `
 const InputComponent = styled.input`
   ${addSpaceAroundInputArea}
@@ -194,12 +211,10 @@ const InputComponent = styled.input`
       color: ${themeGet('colors.pastel-blue')};
     }
 
-    ~.input-icleft {
-      color: ${themeGet('colors.pastel-blue')};
-    }
-
   :focus {
-    ~ button > i, ~ .input-icleft {
+    ~ .input-right > button > i, ,
+    ~ .input-custom-icon,
+    ~ .input-right > .input-custom-icon {
       color: ${themeGet('colors.gunmetal')};
     }
   }
