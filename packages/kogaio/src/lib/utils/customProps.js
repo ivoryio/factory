@@ -1,9 +1,9 @@
-import { style } from 'styled-system'
+import { system } from 'styled-system'
 
-export const visibility = style({
-  prop: 'visibility'
+export const visibility = system({
+  visibility: true
 })
 
-export const transform = style({
-  prop: 'transform'
+export const transform = system({
+  transform: true
 })
