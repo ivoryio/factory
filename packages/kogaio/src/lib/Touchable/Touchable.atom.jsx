@@ -19,6 +19,7 @@ const Touchable = ({
   activeOpacity,
   as,
   children,
+  disabled,
   effect,
   onClick,
   onMouseDown,
@@ -46,11 +47,13 @@ const Touchable = ({
       return handleDrag()
     }
   }
+  const touchableEffect = (() => (disabled ? 'no-feedback' : effect))()
   return (
     <Wrapper
       activeOpacity={activeOpacity}
       as={as}
-      effect={effect}
+      disabled={disabled}
+      effect={touchableEffect}
       onClick={onClick}
       onMouseDown={onClick ? null : _handleMouseDown}
       onMouseUp={onClick ? null : _handleMouseUp}
