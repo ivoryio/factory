@@ -25,14 +25,16 @@ const Collapsible = ({
 }) => {
   const [isOpen, _, toggleContainer] = useBoolean(isExpanded) // eslint-disable-line no-unused-vars
   return (
-    <Box bg="transparent" {...rest}>
+    <Box bg='transparent' {...rest}>
       <Touchable
         effect={triggerEffect}
         onClick={toggleContainer}
         underlayColor={underlayColor}
         width={1}>
-        {Trigger || (
-          <Flex alignItems="center" justifyContent="space-between" width={1}>
+        {Trigger ? (
+          Trigger({ isOpen, toggleContainer })
+        ) : (
+          <Flex alignItems='center' justifyContent='space-between' width={1}>
             <Typography color={color} fontSize={fontSize}>
               {title}
             </Typography>
@@ -78,7 +80,7 @@ Collapsible.propTypes = {
   icon: PropTypes.object,
   isExpanded: PropTypes.bool,
   title: PropTypes.string,
-  Trigger: PropTypes.node,
+  Trigger: PropTypes.func,
   triggerEffect: PropTypes.oneOf(effects),
   underlayColor: PropTypes.string
 }
