@@ -182,7 +182,7 @@ const SelectedItem = styled(DropdownItem)`
 `
 const rotate = css`
   ${({ isOpen }) =>
-    `transition: transform 0.25s ease;
+    `transition: transform 330ms ease;
       transform: rotate(${!isOpen ? '0deg' : '180deg'})`}
 `
 const DropdownChevron = styled(Icon)`

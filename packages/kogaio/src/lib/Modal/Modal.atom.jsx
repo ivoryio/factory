@@ -79,7 +79,7 @@ const fadeOut = keyframes`
 `
 
 const overlayAnimation = ({ visible }) => css`
-  animation: ${visible ? fadeIn : fadeOut} 0.3s
+  animation: ${visible ? fadeIn : fadeOut} 330ms
     ${visible ? 'ease-in' : 'ease-out'};
 `
 const Overlay = styled(Flex)`

@@ -76,7 +76,7 @@ const arrowStyle = css`
     const size = _calcArrowSize()
     return `${direction}; ${alignment}; ${size};`
 
-    function _positionArrow() {
+    function _positionArrow () {
       const { direction, size = 8 } = props.arrow
       const position = -(size / 2 + 1)
       switch (direction) {
@@ -91,7 +91,7 @@ const arrowStyle = css`
       }
     }
 
-    function _alignArrow() {
+    function _alignArrow () {
       const verticalAlignment = ['top', 'center', 'bottom']
       const horizontalAlignment = ['left', 'center', 'right']
       const { direction = 'top', alignment = 'center', size } = props.arrow
@@ -116,7 +116,7 @@ const arrowStyle = css`
         return `${alignment}: 16px;`
       }
     }
-    function _calcArrowSize() {
+    function _calcArrowSize () {
       const { size } = props.arrow
       if (size) {
         return `width: ${size}px; height: ${size}px;`
@@ -137,7 +137,7 @@ const animatedOpacity = keyframes`
 
 const Container = styled(Flex)`
   align-items: center;
-  animation: ${animatedOpacity} 0.33s ease-in-out;
+  animation: ${animatedOpacity} 330ms ease-in-out;
   border-radius: ${themeGet('radii.2', 2)}px;
   flex-direction: column;
   font-size: ${themeGet('fontSizes.3')};
