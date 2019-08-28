@@ -9,6 +9,7 @@ const IconButton = ({
   alignItems,
   bottom,
   color,
+  disabled,
   display,
   justifyContent,
   effect,
@@ -22,6 +23,7 @@ const IconButton = ({
   onMouseUp,
   onTouchStart,
   onTouchEnd,
+  pointerEvents,
   position,
   right,
   tabIndex,
@@ -33,6 +35,7 @@ const IconButton = ({
   <Touchable
     alignItems={alignItems}
     bottom={bottom}
+    disabled={disabled}
     display={display}
     effect={effect}
     height={height}
@@ -54,7 +57,7 @@ const IconButton = ({
       color={color}
       name={name}
       fontSize={fontSize}
-      pointerEvents="none"
+      pointerEvents={pointerEvents}
       {...rest}
     />
   </Touchable>
@@ -64,6 +67,7 @@ IconButton.propTypes = {
   alignItems: PropTypes.string,
   bottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   color: PropTypes.string,
+  disabled: PropTypes.bool,
   display: PropTypes.string,
   effect: PropTypes.oneOf(effects),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -77,6 +81,7 @@ IconButton.propTypes = {
   onMouseUp: PropTypes.func,
   onTouchStart: PropTypes.func,
   onTouchEnd: PropTypes.func,
+  pointerEvents: PropTypes.string,
   position: PropTypes.string,
   right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   tabIndex: PropTypes.string,
@@ -93,7 +98,8 @@ IconButton.defaultProps = {
   alignItems: 'center',
   display: 'flex',
   justifyContent: 'center',
-  effect: 'opacity'
+  effect: 'opacity',
+  pointerEvents: 'none'
 }
 IconButton.displayName = 'IconButton'
 

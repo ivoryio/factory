@@ -15,68 +15,58 @@ import propTypes from '@styled-system/prop-types'
 
 import { themed, themeGet, useBoolean } from '../utils'
 
-import Box from '../Responsive/Box'
-import { Icon, Typography, Touchable } from '..'
+import { Flex, Space } from '../Responsive'
+import { IconButton, Typography } from '..'
+
+const tooltipStyle = variant({
+  scale: 'tooltips',
+  prop: 'variant'
+})
 
 const Tooltip = ({
   arrow,
   children,
+  dismissable,
   fontSize,
   icLeft,
-  isShown,
   variant,
+  visible,
   ...rest
 }) => {
   // #region initialisation
   const [showTooltip, setTooltipShown] = useBoolean(false)
   useEffect(() => {
-    setTooltipShown(isShown)
-  }, [isShown, setTooltipShown])
-  // #endregion
-  // #region functions
-  const leftIcon = (() => {
-    switch (variant) {
-      case 'success':
-        return 'assignment_turned_in'
-      case 'error':
-        return 'assignment_late'
-      default:
-        return 'assignment'
-    }
-  })()
+    setTooltipShown(visible)
+  }, [setTooltipShown, visible])
   const hideTooltip = () => setTooltipShown(false)
   // #endregion
-  // #region render
   return showTooltip ? (
-    <Container arrow={arrow} className="iv-tooltip" variant={variant} {...rest}>
-      <Body>
-        <Icon
-          name={leftIcon}
-          fontSize="1em"
-          position="absolute"
-          top={2}
-          left={2}
-        />
+    <Container
+      arrow={arrow}
+      className='tooltip-container'
+      variant={variant}
+      {...rest}>
+      <Space p={4}>
         <Typography
-          className="tooltip-text"
-          px={8}
-          py={2}
+          className='tooltip-text'
           fontSize={fontSize}
-          variant="paragraph">
+          variant='paragraph'>
           {children}
         </Typography>
-        <Touchable
-          effect="opacity"
-          position="absolute"
-          top={2}
+      </Space>
+      {dismissable && (
+        <IconButton
+          effect='opacity'
+          name='cancel'
+          fontSize={2}
+          onClick={hideTooltip}
+          position='absolute'
           right={2}
-          onClick={hideTooltip}>
-          <Icon name="cancel" fontSize="1em" />
-        </Touchable>
-      </Body>
+          top={2}
+        />
+      )}
     </Container>
   ) : null
-  // #endregion
 }
 
 const arrowStyle = css`
@@ -144,16 +134,16 @@ const animatedOpacity = keyframes`
     opacity: 1;
   }
 `
-const tooltipStyle = variant({
-  key: 'tooltips'
-})
 
-const Container = styled(Box)`
+const Container = styled(Flex)`
+  align-items: center;
+  animation: ${animatedOpacity} 330ms ease-in-out;
   border-radius: ${themeGet('radii.2', 2)}px;
-  box-shadow: ${themeGet('shadows.input-basic')};
-  padding: ${themeGet('space.1')}px;
+  flex-direction: column;
+  font-size: ${themeGet('fontSizes.3')};
+  justify-content: center;
+  line-height: ${themeGet('lineHeights.tooltip', 1.6)};
   position: relative;
-  animation: ${animatedOpacity} 0.2s ease-in-out;
 
   &:after {
     content: '';
@@ -163,10 +153,11 @@ const Container = styled(Box)`
 
     -moz-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
+    ${themed('Tooltip.arrow')}
   }
 
   ${tooltipStyle}
-  ${themed('Tooltip.container')}
+  ${themed('Tooltip')}
   ${compose(
     border,
     color,
@@ -176,19 +167,6 @@ const Container = styled(Box)`
     variant,
     shadow
   )}
-`
-
-const Body = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  line-height: ${themeGet('lineHeights.tooltip', 1.6)};
-  font-size: 1.25rem;
-  ${themed('Tooltip')}
 `
 
 Tooltip.propTypes = {
@@ -210,14 +188,15 @@ Tooltip.propTypes = {
     PropTypes.array,
     PropTypes.element
   ]),
+  dismissable: PropTypes.bool,
   fontSize: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.object
   ]),
   icLeft: PropTypes.string,
-  isShown: PropTypes.bool.isRequired,
-  variant: PropTypes.string
+  variant: PropTypes.string,
+  visible: PropTypes.bool.isRequired
 }
 Tooltip.defaultProps = {
   arrow: {
@@ -225,9 +204,8 @@ Tooltip.defaultProps = {
     alignment: 'left',
     size: 8
   },
-  fontSize: '12px',
-  icLeft: 'assignment',
-  variant: 'error'
+  fontSize: 1,
+  variant: 'default'
 }
 Tooltip.displayName = 'Tooltip'
 

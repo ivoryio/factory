@@ -14,20 +14,24 @@ import {
 import propTypes from '@styled-system/prop-types'
 
 import { themed } from '../utils'
+import { pointerEvents, visibility } from '../utils/customProps'
 
 const Box = styled.div`
   box-sizing: border-box;
   ${themed('Box')}
+
   ${compose(
     background,
     border,
     color,
     colorStyle,
     layout,
+    pointerEvents,
     position,
     shadow,
     space,
-    typography
+    typography,
+    visibility
   )}
 `
 

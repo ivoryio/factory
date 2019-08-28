@@ -125,7 +125,11 @@ const Input = ({
             tabIndex='-1'
           />
         ) : null}
-        <Flex className='input-right' position='absolute' right={2}>
+        <Flex
+          className='input-right'
+          pointerEvents='none'
+          position='absolute'
+          right={2}>
           {icRight ? (
             <Space mr={1}>
               <Icon
@@ -133,8 +137,6 @@ const Input = ({
                 color='pastel-blue'
                 fontSize={3}
                 name={icRight}
-                pointerEvents='none'
-                tabIndex='-1'
               />
             </Space>
           ) : null}
@@ -143,8 +145,9 @@ const Input = ({
               error={error}
               inputType={inputType}
               onDrag={resetInputType}
-              toggle={togglePassword}
+              pointerEvents='auto'
               tabIndex='-1'
+              toggle={togglePassword}
               viewOption={passwordView}
             />
           ) : null}

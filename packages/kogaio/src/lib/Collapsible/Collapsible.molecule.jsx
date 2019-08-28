@@ -8,7 +8,7 @@ import { effects } from '../Touchable/Touchable.atom'
 import Icon from '../Icon'
 import Touchable from '../Touchable'
 import Typography from '../Typography'
-import { Box, Flex } from '../Responsive'
+import { Box, Flex, Space } from '../Responsive'
 
 const Collapsible = ({
   animationDuration,
@@ -30,18 +30,22 @@ const Collapsible = ({
         effect={triggerEffect}
         onClick={toggleContainer}
         underlayColor={underlayColor}
-        width={1}>
-        {Trigger || (
+        width="fit-content">
+        {Trigger ? (
+          Trigger({ isOpen, toggleContainer })
+        ) : (
           <Flex alignItems="center" justifyContent="space-between" width={1}>
             <Typography color={color} fontSize={fontSize}>
               {title}
             </Typography>
-            <ToggleIcon
-              color={icon.color || color}
-              fontSize={fontSize || icon.size}
-              name={icon.name || 'arrow_drop_down_circle'}
-              isOpen={isOpen}
-            />
+            <Space ml={3}>
+              <ToggleIcon
+                color={icon.color || color}
+                fontSize={fontSize || icon.size}
+                name={icon.name || 'arrow_drop_down_circle'}
+                isOpen={isOpen}
+              />
+            </Space>
           </Flex>
         )}
       </Touchable>
@@ -54,9 +58,9 @@ const Collapsible = ({
 
 const rotate = css`
   ${({ isOpen }) =>
-    `transition: transform 0.25s ease; transform: rotate(${
-      !isOpen ? '0deg' : '180deg'
-    })`}
+    ` transform: rotate(${!isOpen ? '0deg' : '180deg'});
+      transition: transform 330ms ease; 
+    `}
 `
 const ToggleIcon = styled(Icon)`
   ${rotate}
@@ -64,9 +68,9 @@ const ToggleIcon = styled(Icon)`
 
 const Content = styled(Box)`
   max-height: ${({ isOpen }) => (!isOpen ? 0 : `${window.innerHeight}px`)};
-  transition: max-height ${({ duration }) => duration}s
-    ${({ isOpen }) => (!isOpen ? 'cubic-bezier(0, 1, 0, 1)' : 'ease-in-out')};
   overflow: hidden;
+  transition: max-height ${({ duration }) => duration}ms
+    ${({ isOpen }) => (isOpen ? 'ease-in' : 'cubic-bezier(0, .6, .6, 1)')};
 `
 
 Collapsible.propTypes = {
@@ -78,13 +82,13 @@ Collapsible.propTypes = {
   icon: PropTypes.object,
   isExpanded: PropTypes.bool,
   title: PropTypes.string,
-  Trigger: PropTypes.node,
+  Trigger: PropTypes.func,
   triggerEffect: PropTypes.oneOf(effects),
   underlayColor: PropTypes.string
 }
 
 Collapsible.defaultProps = {
-  animationDuration: 0.25,
+  animationDuration: 330,
   color: 'pastel-blue',
   icon: {
     name: 'arrow_drop_down_circle',
