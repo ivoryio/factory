@@ -2,7 +2,8 @@ import React, { Children, cloneElement, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import { themed, themeGet, useBoolean, ConditionalWrap } from '../utils'
+import { useBoolean } from '../utils/hooks'
+import { themed, themeGet } from '../utils'
 
 import Icon from '../Icon'
 import Touchable from '../Touchable'
@@ -30,7 +31,7 @@ const MenuList = ({
     window.addEventListener('click', _handleDocumentBodyClick)
     return () => window.removeEventListener('click', _handleDocumentBodyClick)
 
-    function _handleDocumentBodyClick (ev) {
+    function _handleDocumentBodyClick(ev) {
       const elRef = ref || menulistRef
       if (elRef.current) {
         const isClickInside = elRef.current.contains(ev.target)
@@ -70,8 +71,8 @@ const MenuList = ({
           {...listStyle}>
           {Children.toArray(children).map(child =>
             cloneElement(child, {
-              onSelect: _selectItem,
-              textAlign: alignment || textAlign
+              alignment,
+              onSelect: _selectItem
             })
           )}
         </ListWrapper>
@@ -81,12 +82,14 @@ const MenuList = ({
 }
 
 const ListItem = ({
+  alignment,
   children,
   color,
   disabled,
   fontFamily,
   fontSize,
   fontWeight,
+  icon,
   id,
   label,
   onSelect: selectItem,
@@ -96,29 +99,36 @@ const ListItem = ({
   value,
   ...props
 }) => (
-  <ItemWrapper disabled={disabled} onClick={selectItem(value)} {...props}>
-    <ConditionalWrap
-      condition={
-        (children && ['string', 'number'].includes(typeof children)) || label
-      }
-      wrap={() => (
-        <Space px={2}>
-          <Typography
-            color={disabled ? 'pastel-blue' : color}
-            fontFamily={fontFamily}
-            fontSize={fontSize}
-            fontWeight={fontWeight}
-            textAlign={textAlign}
-            variant={textVariant}
-            width={1}
-            {...style}>
-            {children || label}
-          </Typography>
+  <Space px={2}>
+    <ItemWrapper
+      disabled={disabled}
+      onClick={selectItem(value)}
+      minHeight='40px'
+      width={1}
+      {...props}>
+      {icon && (
+        <Space mr={2}>
+          <Icon
+            color={icon.color || (disabled ? 'pastel-blue' : 'dark-gunmetal')}
+            fontSize={icon.size || 2}
+            name={icon.name}
+          />
         </Space>
-      )}>
-      {children}
-    </ConditionalWrap>
-  </ItemWrapper>
+      )}
+      <Typography
+        as='li'
+        color={color || (disabled ? 'pastel-blue' : 'dark-gunmetal')}
+        fontFamily={fontFamily}
+        fontSize={fontSize}
+        fontWeight={fontWeight}
+        textAlign={textAlign || alignment}
+        variant={textVariant}
+        width={1}
+        {...style}>
+        {children || label}
+      </Typography>
+    </ItemWrapper>
+  </Space>
 )
 
 const validAlignment = ['left', 'center', 'right']
@@ -128,11 +138,11 @@ const alignArrow = css`
     const alignment = _alignArrow()
     return `${alignment}`
 
-    function _alignArrow () {
+    function _alignArrow() {
       const { alignment, icSize } = props
       if (!validAlignment.includes(alignment))
         return console.error(
-          `* Invalid prop ${alignment} passed for alignment. Expected one of values ${validAlignment}`
+          `* Invalid prop ${alignment} passed for alignment. Expected one of ${validAlignment}`
         )
       switch (alignment) {
         case 'left':
@@ -219,8 +229,6 @@ const ListWrapper = styled(Flex)`
 const ItemWrapper = styled(Touchable)`
   align-items: center;
   display: flex;
-  min-height: 40px;
-  width: 100%;
   text-align: ${({ alignment }) => alignment};
   white-space: nowrap;
 
@@ -259,6 +267,7 @@ MenuList.propTypes = {
 }
 
 ListItem.propTypes = {
+  alignment: PropTypes.oneOf(validAlignment),
   children: PropTypes.node,
   color: PropTypes.string,
   disabled: PropTypes.bool,
@@ -286,7 +295,6 @@ MenuList.defaultProps = {
 }
 
 ListItem.defaultProps = {
-  color: 'dark-gunmetal',
   textVariant: 'list'
 }
 

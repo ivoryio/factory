@@ -37,12 +37,14 @@ const Checkbox = ({
     if (valid) return 'valid'
     return variant
   })()
+
   return (
     <Flex alignItems="center" {...rest}>
       <Wrapper
         color={color}
         disabled={disabled}
         checkboxPosition={checkboxPosition}
+        hasLabel={label && label.length > 0}
         variant={checkboxVariant}>
         <Input
           checked={checked}
@@ -62,14 +64,16 @@ const Checkbox = ({
           variant={checkboxVariant}
         />
       </Wrapper>
-      <Label
-        className="checkbox-label"
-        color={labelColor}
-        disabled={disabled}
-        htmlFor={id}
-        variant={checkboxVariant}>
-        {label}
-      </Label>
+      {label && (
+        <Label
+          className="checkbox-label"
+          color={labelColor}
+          disabled={disabled}
+          htmlFor={id}
+          variant={checkboxVariant}>
+          {label}
+        </Label>
+      )}
     </Flex>
   )
 }
@@ -78,12 +82,12 @@ const checkboxSize = ({ size }) => css`
   width: ${typeof size === 'number' ? `${size}px` : size};
   height: ${typeof size === 'number' ? `${size}px` : size};
 `
-const checkboxPosition = ({ checkboxPosition, ...props }) => css`
+const checkboxPosition = ({ checkboxPosition, hasLabel, ...props }) => css`
   order: ${checkboxPosition === 'right' ? 1 : 0};
-  margin-left: ${checkboxPosition === 'right'
+  margin-left: ${hasLabel && checkboxPosition === 'right'
     ? `${themeGet('space.2', 8)(props)}px`
     : null};
-  margin-right: ${checkboxPosition === 'left'
+  margin-right: ${hasLabel && checkboxPosition === 'left'
     ? `${themeGet('space.2', 8)(props)}px`
     : null};
 `
