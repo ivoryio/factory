@@ -31,7 +31,7 @@ const MenuList = ({
     window.addEventListener('click', _handleDocumentBodyClick)
     return () => window.removeEventListener('click', _handleDocumentBodyClick)
 
-    function _handleDocumentBodyClick(ev) {
+    function _handleDocumentBodyClick (ev) {
       const elRef = ref || menulistRef
       if (elRef.current) {
         const isClickInside = elRef.current.contains(ev.target)
@@ -138,7 +138,7 @@ const alignArrow = css`
     const alignment = _alignArrow()
     return `${alignment}`
 
-    function _alignArrow() {
+    function _alignArrow () {
       const { alignment, icSize } = props
       if (!validAlignment.includes(alignment))
         return console.error(
@@ -276,6 +276,11 @@ ListItem.propTypes = {
   fontWeight: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
+  icon: PropTypes.shape({
+    color: PropTypes.string,
+    name: PropTypes.string,
+    size: PropTypes.string
+  }),
   onSelect: PropTypes.func,
   style: PropTypes.object,
   textAlign: PropTypes.oneOf(validAlignment),

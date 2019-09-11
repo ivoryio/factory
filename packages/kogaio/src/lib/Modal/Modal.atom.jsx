@@ -12,6 +12,7 @@ const Modal = ({ withPortal, ...props }) =>
 const ModalWithPortal = withPortal(props => <ModalBody {...props} />)
 
 const ModalBody = ({
+  animated,
   backdropColor,
   children,
   colors,
@@ -24,7 +25,7 @@ const ModalBody = ({
   ...rest
 }) => {
   const modalRef = useRef()
-  
+
   useEffect(() => {
     window.addEventListener('click', _handleBackdropClick)
     return () => window.removeEventListener('click', _handleBackdropClick)
@@ -39,8 +40,9 @@ const ModalBody = ({
     }
   }, [handleBackdropClick, ref, visible])
 
-  return (
+  return visible ? (
     <Overlay
+      animated={animated}
       backdropColor={backdropColor}
       colors={colors}
       id={id}
@@ -49,7 +51,7 @@ const ModalBody = ({
       {...overlayStyle}>
       <Flex
         alignItems="center"
-        id="modal-body"
+        className="modal-body"
         justifyContent="center"
         height="100%"
         ref={ref || modalRef}
@@ -58,7 +60,7 @@ const ModalBody = ({
         {children}
       </Flex>
     </Overlay>
-  )
+  ) : null
 }
 
 const fadeIn = keyframes`
@@ -69,34 +71,27 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `
-const fadeOut = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-`
 
-const overlayAnimation = ({ visible }) => css`
-  animation: ${visible ? fadeIn : fadeOut} 330ms
-    ${visible ? 'ease-in' : 'ease-out'};
+const overlayAnimation = css`
+  animation: ${fadeIn} 330ms ease-in-out;
 `
 const Overlay = styled(Flex)`
-  background-color: ${({ backdropColor }) => themeGet(`colors.${backdropColor}`, backdropColor)};
-  display: ${({ visible }) => (visible ? 'flex' : 'none')};
+  background-color: ${({ backdropColor }) =>
+    themeGet(`colors.${backdropColor}`, backdropColor)};
+  display: flex;
   height: 100%;
   left: 0;
   position: ${({ position }) => (position ? position : 'fixed')};
   top: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 2019;
 
-  ${overlayAnimation}
+  ${({ animated }) => (animated ? overlayAnimation : null)}
   ${themed('Modal.overlay')}
 `
 
 Modal.propTypes = {
+  animated: PropTypes.bool,
   bg: PropTypes.string,
   children: PropTypes.node,
   colors: PropTypes.string,
@@ -110,6 +105,7 @@ Modal.propTypes = {
 }
 
 ModalBody.propTypes = {
+  animated: PropTypes.bool,
   backdropColor: PropTypes.string,
   bg: PropTypes.string,
   children: PropTypes.node,
@@ -127,6 +123,7 @@ Modal.defaultProps = {
 }
 
 ModalBody.defaultProps = {
+  animated: false,
   backdropColor: 'modal-backdrop',
   visible: false
 }
