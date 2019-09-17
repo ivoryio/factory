@@ -32,6 +32,7 @@ const Spinner = styled.div`
   ${spinnerSize}
   border-radius: 50%;
   background: ${primaryColour};
+  /* stylelint-disable */
   background: -moz-linear-gradient(
     left,
     ${primaryColour} 10%,
@@ -57,11 +58,12 @@ const Spinner = styled.div`
     ${primaryColour} 10%,
     ${complementaryColour} 42%
   );
+  /* stylelint-enable */
   position: relative;
   -webkit-animation: spin 1.4s infinite linear;
-  animation: spin 1.4s infinite linear;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
+  animation: spin 1.4s infinite linear;
   transform: translateZ(0);
   &:before {
     width: 50%;

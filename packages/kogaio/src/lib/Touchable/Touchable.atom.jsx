@@ -106,7 +106,7 @@ const touchableWithEffect = ({
             transform: scale(1);
           }`
     }
-  }}}
+  }}
 `
 
 const Wrapper = styled.button`

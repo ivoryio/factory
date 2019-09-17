@@ -204,7 +204,9 @@ const ListWrapper = styled(Flex)`
   padding-left: 0;
   position: absolute;
   top: 100%;
+  /* stylelint-disable */
   ${alignList}
+  /* stylelint-enable */
 
   :after {
     box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.1);
@@ -213,8 +215,7 @@ const ListWrapper = styled(Flex)`
     display: block;
     position: absolute;
     top: -${({ arrowSize }) => arrowSize / 2}px;
-    -moz-transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
     ${alignArrow}
     ${arrowSize}
   }

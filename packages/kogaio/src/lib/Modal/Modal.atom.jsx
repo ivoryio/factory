@@ -45,15 +45,20 @@ const ModalBody = ({
       animated={animated}
       backdropColor={backdropColor}
       colors={colors}
+      height='100%'
+      left={0}
       id={id}
       position={position}
+      top={0}
       visible={visible}
+      width={1}
+      zIndex={2019}
       {...overlayStyle}>
       <Flex
-        alignItems="center"
-        className="modal-body"
-        justifyContent="center"
-        height="100%"
+        alignItems='center'
+        className='modal-body'
+        justifyContent='center'
+        height='100%'
         ref={ref || modalRef}
         width={1}
         {...rest}>
@@ -79,12 +84,7 @@ const Overlay = styled(Flex)`
   background-color: ${({ backdropColor }) =>
     themeGet(`colors.${backdropColor}`, backdropColor)};
   display: flex;
-  height: 100%;
-  left: 0;
   position: ${({ position }) => (position ? position : 'fixed')};
-  top: 0;
-  width: 100%;
-  z-index: 2019;
 
   ${({ animated }) => (animated ? overlayAnimation : null)}
   ${themed('Modal.overlay')}

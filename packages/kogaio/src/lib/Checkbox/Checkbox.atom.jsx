@@ -39,7 +39,7 @@ const Checkbox = ({
   })()
 
   return (
-    <Flex alignItems="center" {...rest}>
+    <Flex alignItems='center' {...rest}>
       <Wrapper
         color={color}
         disabled={disabled}
@@ -53,7 +53,7 @@ const Checkbox = ({
           name={name}
           onChange={onChange}
           ref={ref || checkboxRef}
-          type="checkbox"
+          type='checkbox'
           value={value}
         />
         <Placeholder
@@ -66,7 +66,7 @@ const Checkbox = ({
       </Wrapper>
       {label && (
         <Label
-          className="checkbox-label"
+          className='checkbox-label'
           color={labelColor}
           disabled={disabled}
           htmlFor={id}
@@ -106,16 +106,15 @@ const Wrapper = styled(Box)`
 
   ${themed('Checkbox.container')}
   ${checkboxPosition}
+  /* stylelint-disable */
   ${checkboxStyle}
+  /* stylelint-enable */
 `
 
 const Label = styled.label`
   font-size: ${themeGet('fontSizes.1', '1rem')};
   user-select: none;
   pointer-events: auto;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
 
   ${compose(
     color,
@@ -144,9 +143,11 @@ const Placeholder = styled.span`
   pointer-events: none;
 
   ${themed('Checkbox')}
+  /* stylelint-disable */
   ${color}
   ${checkboxSize}
   ${checkboxStyle}
+  /* stylelint-enable */
 
   :after {
     content: '';
@@ -155,8 +156,6 @@ const Placeholder = styled.span`
     height: 50%;
     border: solid ${({ color }) => themeGet(`colors.${color}`, color)};
     border-width: 0 2px 2px 0;
-    -webkit-transform: translate(10%, -10%) rotate(45deg);
-    -ms-transform: translate(10%, -10%) rotate(45deg);
     transform: translate(10%, -10%) rotate(45deg);
   }
 `
