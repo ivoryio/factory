@@ -27,6 +27,7 @@ const IconButton = ({
   position,
   right,
   tabIndex,
+  title,
   top,
   underlayColor,
   width,
@@ -50,6 +51,7 @@ const IconButton = ({
     position={position}
     right={right}
     tabIndex={tabIndex}
+    title={title}
     top={top}
     underlayColor={underlayColor}
     width={width}>
@@ -85,6 +87,7 @@ IconButton.propTypes = {
   position: PropTypes.string,
   right: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   tabIndex: PropTypes.string,
+  title: PropTypes.string,
   top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   underlayColor: PropTypes.string,
   width: PropTypes.oneOfType([

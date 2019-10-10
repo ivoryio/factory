@@ -169,7 +169,7 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  label: PropTypes.string,
+  label: PropTypes.any,
   labelColor: PropTypes.string,
   name: PropTypes.string,
   onChange: PropTypes.func.isRequired,

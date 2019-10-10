@@ -18,12 +18,12 @@
     "url": "git+https://github.com/ivoryio/factory/tree/master/packages/mercury"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@ivoryio/kogaio": "^0.7.33",
-    "react": "^16.9.0",
+    "@babel/cli": "^7.6.3",
+    "@ivoryio/kogaio": "^0.7.60",
+    "react": "^16.10.2",
     "react-docgen-external-proptypes-handler": "^1.0.3",
-    "react-dom": "^16.9.0",
-    "react-scripts": "^3.1.0",
+    "react-dom": "^16.10.2",
+    "react-scripts": "^3.2.0",
     "react-styleguidist": "^9.1.14"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.7.60",
+  "version": "0.7.61",
   "author": "MihaiRo <mihai.rosca@thinslices.com>",
   "description": "Component library",
   "main": "build/index.js",
@@ -29,18 +29,18 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.0",
+    "@babel/cli": "^7.6.3",
     "babel-plugin-styled-components": "^1.10.6",
-    "react": "^16.9.0",
+    "react": "^16.10.2",
     "react-docgen-external-proptypes-handler": "^1.0.3",
-    "react-dom": "^16.9.0",
-    "react-scripts": "^3.1.1",
+    "react-dom": "^16.10.2",
+    "react-scripts": "^3.2.0",
     "react-styleguidist": "^9.1.16",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.4.0"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "styled-components": "^4.3.2"
   },
   "dependencies": {
