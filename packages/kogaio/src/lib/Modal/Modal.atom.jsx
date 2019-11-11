@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
 
 import { Flex } from '../Responsive'
-import { themed, themeGet } from '../utils'
+
 import { withPortal } from './withPortal'
+import { themed, themeGet } from '../utils'
 
 const Modal = ({ withPortal, ...props }) =>
   withPortal ? <ModalWithPortal {...props} /> : <ModalBody {...props} />
@@ -18,13 +19,22 @@ const ModalBody = ({
   colors,
   id,
   onBackdropClick: handleBackdropClick,
+  noScroll,
   overlayStyle,
   position,
   ref,
   visible,
+  zIndex,
   ...rest
 }) => {
   const modalRef = useRef()
+
+  useEffect(() => {
+    if (visible && noScroll) document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [noScroll, visible])
 
   useEffect(() => {
     window.addEventListener('click', _handleBackdropClick)
@@ -52,7 +62,7 @@ const ModalBody = ({
       top={0}
       visible={visible}
       width={1}
-      zIndex={2019}
+      zIndex={zIndex}
       {...overlayStyle}>
       <Flex
         alignItems='center'
@@ -111,11 +121,13 @@ ModalBody.propTypes = {
   children: PropTypes.node,
   colors: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  noScroll: PropTypes.bool,
   onBackdropClick: PropTypes.func,
   overlayStyle: PropTypes.object,
   position: PropTypes.string,
   ref: PropTypes.object,
-  visible: PropTypes.bool
+  visible: PropTypes.bool,
+  zIndex: PropTypes.number
 }
 
 Modal.defaultProps = {
@@ -125,7 +137,8 @@ Modal.defaultProps = {
 ModalBody.defaultProps = {
   animated: false,
   backdropColor: 'modal-backdrop',
-  visible: false
+  visible: false,
+  zIndex: 2019
 }
 
 Modal.displayName = 'Modal'
