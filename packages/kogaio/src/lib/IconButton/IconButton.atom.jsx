@@ -7,6 +7,7 @@ import { effects } from '../Touchable/Touchable.atom'
 
 const IconButton = ({
   alignItems,
+  as,
   bottom,
   color,
   disabled,
@@ -35,6 +36,7 @@ const IconButton = ({
 }) => (
   <Touchable
     alignItems={alignItems}
+    as={as}
     bottom={bottom}
     disabled={disabled}
     display={display}
@@ -54,7 +56,8 @@ const IconButton = ({
     title={title}
     top={top}
     underlayColor={underlayColor}
-    width={width}>
+    width={width}
+  >
     <Icon
       color={color}
       name={name}
@@ -67,6 +70,7 @@ const IconButton = ({
 
 IconButton.propTypes = {
   alignItems: PropTypes.string,
+  as: PropTypes.string,
   bottom: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   color: PropTypes.string,
   disabled: PropTypes.bool,
