@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.7.58",
+  "version": "0.7.64",
   "author": "MihaiRo <mihai.rosca@thinslices.com>",
   "description": "Component library",
   "main": "build/index.js",
@@ -29,23 +29,23 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.0",
+    "@babel/cli": "^7.7.0",
     "babel-plugin-styled-components": "^1.10.6",
-    "react": "^16.9.0",
-    "react-docgen-external-proptypes-handler": "^1.0.3",
-    "react-dom": "^16.9.0",
-    "react-scripts": "^3.1.1",
-    "react-styleguidist": "^9.1.16",
-    "styled-components": "^4.3.2"
+    "react": "^16.12.0",
+    "react-docgen-external-proptypes-handler": "^2.0.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "^3.2.0",
+    "react-styleguidist": "^10.2.1",
+    "styled-components": "^4.4.1"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "styled-components": "^4.3.2"
   },
   "dependencies": {
-    "@styled-system/prop-types": "^5.1.1",
-    "styled-system": "^5.1.1"
+    "@styled-system/prop-types": "^5.1.2",
+    "styled-system": "^5.1.2"
   },
   "husky": {
     "hooks": {

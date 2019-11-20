@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, useEffect, useRef } from 'react'
+import React, { Children, cloneElement, useCallback, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
@@ -22,6 +22,7 @@ const MenuList = ({
   ref,
   textAlign,
   Trigger,
+  zIndex,
   ...rest
 }) => {
   const menulistRef = useRef()
@@ -31,7 +32,7 @@ const MenuList = ({
     window.addEventListener('click', _handleDocumentBodyClick)
     return () => window.removeEventListener('click', _handleDocumentBodyClick)
 
-    function _handleDocumentBodyClick(ev) {
+    function _handleDocumentBodyClick (ev) {
       const elRef = ref || menulistRef
       if (elRef.current) {
         const isClickInside = elRef.current.contains(ev.target)
@@ -40,13 +41,20 @@ const MenuList = ({
     }
   }, [id, ref, showMenu])
 
-  const _selectItem = item => () => {
-    selectItem(item)
-    showMenu(false)
-  }
+  const _selectItem = useCallback(
+    item => () => {
+      selectItem(item)
+      showMenu(false)
+    },
+    [selectItem, showMenu]
+  ) 
 
   return (
-    <Container alignment={alignment} ref={ref || menulistRef} {...rest}>
+    <Container
+      alignment={alignment}
+      ref={ref || menulistRef}
+      zIndex={zIndex}
+      {...rest}>
       <Touchable
         disabled={disabled}
         effect={disabled ? 'no-feedback' : 'opacity'}
@@ -97,6 +105,7 @@ const ListItem = ({
   textAlign,
   textVariant,
   value,
+  zIndex,
   ...props
 }) => (
   <Space px={2}>
@@ -105,6 +114,7 @@ const ListItem = ({
       onClick={selectItem(value)}
       minHeight='40px'
       width={1}
+      zIndex={zIndex}
       {...props}>
       {icon && (
         <Space mr={2}>
@@ -138,7 +148,7 @@ const alignArrow = css`
     const alignment = _alignArrow()
     return `${alignment}`
 
-    function _alignArrow() {
+    function _alignArrow () {
       const { alignment, icSize } = props
       if (!validAlignment.includes(alignment))
         return console.error(
@@ -204,7 +214,9 @@ const ListWrapper = styled(Flex)`
   padding-left: 0;
   position: absolute;
   top: 100%;
+  /* stylelint-disable */
   ${alignList}
+  /* stylelint-enable */
 
   :after {
     box-shadow: 1px -1px 1px 0 rgba(22, 29, 37, 0.1);
@@ -213,8 +225,7 @@ const ListWrapper = styled(Flex)`
     display: block;
     position: absolute;
     top: -${({ arrowSize }) => arrowSize / 2}px;
-    -moz-transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
     ${alignArrow}
     ${arrowSize}
   }
@@ -231,10 +242,6 @@ const ItemWrapper = styled(Touchable)`
   display: flex;
   text-align: ${({ alignment }) => alignment};
   white-space: nowrap;
-
-  &:first-of-type {
-    z-index: 1;
-  }
 
   :hover {
     background-color: ${({ disabled }) =>
@@ -263,7 +270,8 @@ MenuList.propTypes = {
     PropTypes.func,
     PropTypes.object,
     PropTypes.element
-  ])
+  ]),
+  zIndex: PropTypes.number
 }
 
 ListItem.propTypes = {
@@ -276,11 +284,17 @@ ListItem.propTypes = {
   fontWeight: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
+  icon: PropTypes.shape({
+    color: PropTypes.string,
+    name: PropTypes.string,
+    size: PropTypes.string
+  }),
   onSelect: PropTypes.func,
   style: PropTypes.object,
   textAlign: PropTypes.oneOf(validAlignment),
   textVariant: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  zIndex: PropTypes.number
 }
 
 MenuList.defaultProps = {
@@ -291,7 +305,7 @@ MenuList.defaultProps = {
     color: 'gunmetal',
     size: 24
   },
-  zIndex: 3
+  zIndex: 2
 }
 
 ListItem.defaultProps = {

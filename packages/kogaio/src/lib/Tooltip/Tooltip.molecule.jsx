@@ -151,8 +151,7 @@ const Container = styled(Flex)`
     position: absolute;
     ${arrowStyle}
 
-    -moz-transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
     ${themed('Tooltip.arrow')}
   }
 
