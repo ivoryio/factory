@@ -30,7 +30,8 @@ Image.propTypes = {
 
 Image.defaultProps = {
   alt: 'image placeholder',
-  src: 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg'
+  src:
+    'https://icon-library.net/images/no-image-available-icon/no-image-available-icon-6.jpg'
 }
 Image.displayName = 'Image'
 

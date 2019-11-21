@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import styled, { css, keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import {
   border,
   color,
@@ -69,62 +69,58 @@ const Tooltip = ({
   ) : null
 }
 
-const arrowStyle = css`
-  ${props => {
-    const direction = _positionArrow()
-    const alignment = _alignArrow()
-    const size = _calcArrowSize()
-    return `${direction}; ${alignment}; ${size};`
+const _positionArrow = ({ arrow: { direction, size = 8 } }) => {
+  const position = -(size / 2 + 1)
+  switch (direction) {
+    case 'right':
+      return `right: ${position}px; border-right: 1px solid; border-bottom: 1px solid;`
+    case 'bottom':
+      return `bottom: ${position}px; border-bottom: 1px solid; border-left: 1px solid;`
+    case 'left':
+      return `left: ${position}px; border-left: 1px solid; border-top: 1px solid;`
+    default:
+      return `top: ${position}px; border-top: 1px solid; border-right: 1px solid;`
+  }
+}
 
-    function _positionArrow () {
-      const { direction, size = 8 } = props.arrow
-      const position = -(size / 2 + 1)
-      switch (direction) {
-        case 'right':
-          return `right: ${position}px; border-right: 1px solid; border-bottom: 1px solid;`
-        case 'bottom':
-          return `bottom: ${position}px; border-bottom: 1px solid; border-left: 1px solid;`
-        case 'left':
-          return `left: ${position}px; border-left: 1px solid; border-top: 1px solid;`
-        default:
-          return `top: ${position}px; border-top: 1px solid; border-right: 1px solid;`
-      }
+const _alignArrow = ({
+  arrow: { direction = 'top', alignment = 'center', size }
+}) => {
+  const verticalAlignment = ['top', 'center', 'bottom']
+  const horizontalAlignment = ['left', 'center', 'right']
+  if (['left', 'right'].includes(direction)) {
+    if (!verticalAlignment.includes(alignment)) {
+      console.error(
+        `* Invalid '${alignment}' alignment prop passed to ${direction} direction. Expected one of ${verticalAlignment}`
+      )
+      return `top: calc(50% - ${size / 2}px);`
     }
+    if (alignment.includes('center')) return 'top: calc(50%  - 6px);'
+    return `${alignment}: 16px;`
+  }
+  if (['top', 'bottom'].includes(direction)) {
+    if (!horizontalAlignment.includes(alignment)) {
+      console.error(
+        `* Invalid '${alignment}' alignment prop passed to ${direction} direction. Expected one of ${horizontalAlignment} `
+      )
+      return `left: calc(50% - ${size / 2}px);`
+    }
+    if (alignment.includes('center')) return 'left: calc(50% - 6px);'
+    return `${alignment}: 16px;`
+  }
+}
 
-    function _alignArrow () {
-      const verticalAlignment = ['top', 'center', 'bottom']
-      const horizontalAlignment = ['left', 'center', 'right']
-      const { direction = 'top', alignment = 'center', size } = props.arrow
-      if (['left', 'right'].includes(direction)) {
-        if (!verticalAlignment.includes(alignment)) {
-          console.error(
-            `* Invalid '${alignment}' alignment prop passed to ${direction} direction. Expected one of ${verticalAlignment}`
-          )
-          return `top: calc(50% - ${size / 2}px);`
-        }
-        if (alignment.includes('center')) return 'top: calc(50%  - 6px);'
-        return `${alignment}: 16px;`
-      }
-      if (['top', 'bottom'].includes(direction)) {
-        if (!horizontalAlignment.includes(alignment)) {
-          console.error(
-            `* Invalid '${alignment}' alignment prop passed to ${direction} direction. Expected one of ${horizontalAlignment} `
-          )
-          return `left: calc(50% - ${size / 2}px);`
-        }
-        if (alignment.includes('center')) return 'left: calc(50% - 6px);'
-        return `${alignment}: 16px;`
-      }
-    }
-    function _calcArrowSize () {
-      const { size } = props.arrow
-      if (size) {
-        return `width: ${size}px; height: ${size}px;`
-      }
-      return 'width: 8px; height: 8px;'
-    }
-  }}
-`
+const _calcArrowSize = ({ arrow: { size } }) => {
+  if (size) return `width: ${size}px; height: ${size}px;`
+  return 'width: 8px; height: 8px;'
+}
+
+const arrowStyle = props => {
+  const direction = _positionArrow(props)
+  const alignment = _alignArrow(props)
+  const size = _calcArrowSize(props)
+  return `${direction}; ${alignment}; ${size};`
+}
 
 const animatedOpacity = keyframes`
   from {

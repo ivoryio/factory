@@ -194,12 +194,15 @@ const Row = styled(Flex)`
   ${themed('Input.wrapper')}
 `
 
-const addSpaceAroundInputArea = css`
-  padding-left: ${({ hasIcLeft }) =>
-    hasIcLeft ? themeGet('space.8', 32) : themeGet('space.2', 8)}px;
-  padding-right: ${({ hasIcRight, type }) =>
-    hasIcRight || type === 'password' ? themeGet('space.8', 32) : 0}px;
+const addSpaceAroundInputArea = ({ hasIcLeft, hasIcRight, type }) => css`
+  padding-left: ${hasIcLeft
+    ? themeGet('space.8', 32)
+    : themeGet('space.2', 8)}px;
+  padding-right: ${hasIcRight || type === 'password'
+    ? themeGet('space.8', 32)
+    : 0}px;
 `
+
 const InputComponent = styled.input`
   ${addSpaceAroundInputArea}
   border-radius: ${themeGet('radii.1', 1)}px;

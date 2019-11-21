@@ -1,13 +1,49 @@
 ```js
-import Typography from '@ivoryio/kogaio/Typography';
-<Collapsible bg='transparent' color='gunmetal' title='Collapsible' width={1 / 2}>
+import Typography from '@ivoryio/kogaio/Typography'
+import MenuList from '@ivoryio/kogaio/MenuList'
+;<Collapsible
+  bg='transparent'
+  color='gunmetal'
+  title='Collapsible'
+  width={1 / 2}>
   <Typography as='p' variant='h6'>
-    This is the collapsible content.
-    It can be any element or React component you like.
+    This is the collapsible content. It can be any element or React component
+    you like.
   </Typography>
-   <Typography as='p' variant='h6'>
-    You could also add a Collapsible container inside of a Collapsible!
-    Give it a try.
+  <MenuList
+    alignment='center'
+    arrowSize={12}
+    icon={{ color: 'manatee', name: 'settings', size: 24 }}
+    id='menu-list-2'
+    position='absolute'
+    listStyle={{
+      zIndex: 1
+    }}
+    fontSize='1rem'
+    onSelect={item => console.log(`Selected ${item}`)}>
+    {[
+      {
+        id: 'list-item1',
+        name: 'Create item',
+        disabled: true
+      },
+      {
+        id: 'list-item2',
+        name: 'Update'
+      },
+      {
+        id: 'list-item3',
+        name: 'Delete history'
+      }
+    ].map(item => (
+      <MenuList.Item id={item.id} key={item.id} value={item.name}>
+        {item.name}
+      </MenuList.Item>
+    ))}
+  </MenuList>
+  <Typography as='p' variant='h6'>
+    You could also add a Collapsible container inside of a Collapsible! Give it
+    a try.
   </Typography>
 </Collapsible>
 ```
