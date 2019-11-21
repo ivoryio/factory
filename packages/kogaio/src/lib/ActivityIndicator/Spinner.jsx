@@ -9,22 +9,28 @@ const backgroundColour = (() => ({ colors: { background } }) =>
 
 const primaryColour = (() => ({ colors: { primary } }) =>
   themeGet(`colors.${primary}`, primary))()
+
 const complementaryColour = (() => ({ colors: { background }, ...props }) => {
   const hex = themeGet(`colors.${background}`, background)(props)
   return hex.charAt(0) === '#' ? hexToRgbA(hex, 0) : hex
 })()
 
-const spinnerSize = css`
-  ${({ size }) => {
-    const validSize = ['number', 'string']
-    if (!validSize.includes(typeof size))
-      return console.error(
-        `* Unexpected type of value ${size} passed to ActivityIndicator. Expected one of ${validSize}`
-      )
-    if (typeof size === 'number') return `width: ${size}px; height: ${size}px;`
-    return `width: ${size}; height: ${size};`
-  }}
-`
+const spinnerSize = ({ size }) => {
+  const validSize = ['number', 'string']
+  if (!validSize.includes(typeof size))
+    return console.error(
+      `* Unexpected type of value ${size} passed to ActivityIndicator. Expected one of ${validSize}`
+    )
+  if (typeof size === 'number')
+    return css`
+      width: ${size}px;
+      height: ${size}px;
+    `
+  return css`
+    width: ${size};
+    height: ${size};
+  `
+}
 
 const Spinner = styled.div`
   font-size: 10px;

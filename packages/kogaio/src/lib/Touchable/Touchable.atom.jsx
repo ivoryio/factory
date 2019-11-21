@@ -74,40 +74,40 @@ const touchableWithEffect = ({
   activeOpacity,
   underlayColor,
   ...rest
-}) => css`
-  ${() => {
-    switch (effect) {
-      case 'opacity':
-        return `
-          :hover,
-          :active {
-            opacity: ${activeOpacity};
-          }
-          `
-      case 'highlight':
-        return `
-          :hover {
-            background-color: ${themeGet(
-              `colors.${underlayColor}`,
-              underlayColor
-            )(rest)};
-            color: ${themeGet('colors.white')(rest)}
-          }
-          :active {
-            color: ${themeGet('colors.pale-white')(rest)};
-            background-color: ${themeGet(
-              `colors.${underlayColor}`,
-              underlayColor
-            )(rest)};
-          }
-          `
-      default:
-        return `:active {
-            transform: scale(1);
-          }`
-    }
-  }}
-`
+}) => {
+  switch (effect) {
+    case 'opacity':
+      return css`
+        :hover,
+        :active {
+          opacity: ${activeOpacity};
+        }
+      `
+    case 'highlight':
+      return css`
+        :hover {
+          background-color: ${themeGet(
+            `colors.${underlayColor}`,
+            underlayColor
+          )};
+          color: ${themeGet('colors.white')};
+        }
+        :active {
+          color: ${themeGet('colors.pale-white')};
+          background-color: ${themeGet(
+            `colors.${underlayColor}`,
+            underlayColor
+          )};
+        }
+      `
+    default:
+      return css`
+        :active {
+          transform: scale(1);
+        }
+      `
+  }
+}
 
 const Wrapper = styled.button`
   background: transparent;

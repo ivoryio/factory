@@ -55,7 +55,11 @@ const MenuList = ({
   )
 
   return (
-    <Container alignment={alignment} ref={ref || menulistRef} {...rest}>
+    <Container
+      alignment={alignment}
+      position='relative'
+      ref={ref || menulistRef}
+      {...rest}>
       <Touchable
         disabled={disabled}
         effect={disabled ? 'no-feedback' : 'opacity'}
@@ -142,54 +146,48 @@ const ListItem = ({
 
 const validAlignment = ['left', 'center', 'right']
 
-const alignArrow = css`
-  ${props => {
-    const alignment = _alignArrow()
-    return `${alignment}`
+const alignArrow = ({ alignment, icSize }) => {
+  if (!validAlignment.includes(alignment))
+    return console.error(
+      `* Invalid prop ${alignment} passed for alignment. Expected one of ${validAlignment}`
+    )
+  switch (alignment) {
+    case 'left':
+      return css`
+        left: calc(${icSize}px / 2);
+      `
+    case 'center':
+      return css`
+        align-self: center;
+      `
+    default:
+      return css`
+        right: calc(${icSize + 2}px / 2);
+      `
+  }
+}
 
-    function _alignArrow () {
-      const { alignment, icSize } = props
-      if (!validAlignment.includes(alignment))
-        return console.error(
-          `* Invalid prop ${alignment} passed for alignment. Expected one of ${validAlignment}`
-        )
-      switch (alignment) {
-        case 'left':
-          return `left: calc(${icSize}px / 2);`
-        case 'center':
-          return `align-self: center;`
-        default:
-          return `right: calc(${icSize + 2}px / 2);`
-      }
-    }
-  }}
-`
+const alignContent = ({ alignment }) => {
+  switch (alignment) {
+    case 'left':
+      return 'flex-start'
+    case 'right':
+      return 'flex-end'
+    default:
+      return 'center'
+  }
+}
 
-const alignContent = css`
-  ${({ alignment }) => {
-    switch (alignment) {
-      case 'left':
-        return 'flex-start'
-      case 'right':
-        return 'flex-end'
-      default:
-        return 'center'
-    }
-  }}
-`
-
-const alignList = css`
-  ${({ alignment }) => {
-    switch (alignment) {
-      case 'left':
-        return 'left: 0;'
-      case 'right':
-        return 'right: 0;'
-      default:
-        break
-    }
-  }}
-`
+const alignList = ({ alignment }) => {
+  switch (alignment) {
+    case 'left':
+      return 'left: 0;'
+    case 'right':
+      return 'right: 0;'
+    default:
+      break
+  }
+}
 
 const arrowSize = ({ arrowSize }) => css`
   width: ${arrowSize}px;
@@ -200,7 +198,6 @@ const Container = styled(Flex)`
   align-items: ${alignContent};
   flex-direction: column;
   justify-content: ${alignContent};
-  position: relative;
 `
 
 const ListWrapper = styled(Flex)`

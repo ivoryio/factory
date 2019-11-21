@@ -49,28 +49,48 @@ const Collapsible = ({
           </Flex>
         )}
       </Touchable>
-      <Content duration={animationDuration} isOpen={isOpen}>
-        {children}
-      </Content>
+      <Box
+        className='collapsible-content-wrapper'
+        height='fit-content'
+        position='relative'
+        visibility={isOpen ? 'visible' : 'hidden'}
+        width='fit-content'>
+        <Content duration={animationDuration} isOpen={isOpen}>
+          {children}
+        </Content>
+      </Box>
     </Box>
   )
 }
 
-const rotate = css`
-  ${({ isOpen }) =>
-    ` transform: rotate(${!isOpen ? '0deg' : '180deg'});
-      transition: transform 330ms ease; 
-    `}
+const rotate = ({ isOpen }) => css`
+  transform: rotate(${!isOpen ? '0deg' : '180deg'});
+  transition: transform 330ms ease;
 `
 const ToggleIcon = styled(Icon)`
   ${rotate}
 `
 
+const contentStyle = ({ duration, isOpen }) =>
+  !isOpen
+    ? css`
+        max-height: 0;
+        transition: max-height ${duration}ms cubic-bezier(0, 0.6, 0.6, 1);
+      `
+    : css`
+        max-height: ${window.innerHeight}px;
+        transition: max-height ${duration}ms ease-in;
+      `
+
 const Content = styled(Box)`
-  max-height: ${({ isOpen }) => (!isOpen ? 0 : `${window.innerHeight}px`)};
   overflow: hidden;
-  transition: max-height ${({ duration }) => duration}ms
-    ${({ isOpen }) => (isOpen ? 'ease-in' : 'cubic-bezier(0, .6, .6, 1)')};
+  position: static;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  ${contentStyle}
 `
 
 Collapsible.propTypes = {

@@ -19,13 +19,14 @@ const typographyStyle = variant({
   prop: 'variant'
 })
 
-const handleTruncate = ({ truncate }) => css`
-  ${truncate &&
-    `white-space: nowrap;
+const handleTruncate = ({ truncate }) =>
+  truncate &&
+  css`
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    `}
-`
+  `
+
 const Typography = styled.div`
   color: ${themeGet('colors.dark-gunmetal', '#1b202f')};
   font-family: ${themeGet('fonts.primary')};
