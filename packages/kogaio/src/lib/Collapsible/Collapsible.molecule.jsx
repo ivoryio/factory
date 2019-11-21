@@ -68,7 +68,7 @@ const ToggleIcon = styled(Icon)`
 
 const Content = styled(Box)`
   max-height: ${({ isOpen }) => (!isOpen ? 0 : `${window.innerHeight}px`)};
-  overflow-x: hidden;
+  overflow: hidden;
   transition: max-height ${({ duration }) => duration}ms
     ${({ isOpen }) => (isOpen ? 'ease-in' : 'cubic-bezier(0, .6, .6, 1)')};
 `
