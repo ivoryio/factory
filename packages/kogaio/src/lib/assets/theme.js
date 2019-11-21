@@ -31,7 +31,7 @@ const PRIMARY_COLORS = {
   gunmetal: '#243143',
   info: '#64b5f6',
   success: '#66bb6a',
-  white: '#ffffff',
+  white: '#ffffff'
 }
 
 const DERIVED_COLORS = {
@@ -51,7 +51,7 @@ const COLORS = {
   manatee: '#979ca6',
   'paynes-gray': '#636f7c',
   independence: '#4f5767',
-  'dark-gunmetal': '#1b202f',
+  'dark-gunmetal': '#1b202f'
 }
 
 const SHADOWS = {
@@ -128,8 +128,6 @@ const RADII = {
   '16': 16,
   round: '50%'
 }
-
-
 
 export const kogaioTheme = {
   borders: BORDERS,

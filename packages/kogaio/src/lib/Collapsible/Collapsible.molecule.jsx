@@ -25,16 +25,16 @@ const Collapsible = ({
 }) => {
   const [isOpen, _, toggleContainer] = useBoolean(isExpanded) // eslint-disable-line no-unused-vars
   return (
-    <Box bg="transparent" {...rest}>
+    <Box bg='transparent' {...rest}>
       <Touchable
         effect={triggerEffect}
         onClick={toggleContainer}
         underlayColor={underlayColor}
-        width="fit-content">
+        width='fit-content'>
         {Trigger ? (
           Trigger({ isOpen, toggleContainer })
         ) : (
-          <Flex alignItems="center" justifyContent="space-between" width={1}>
+          <Flex alignItems='center' justifyContent='space-between' width={1}>
             <Typography color={color} fontSize={fontSize}>
               {title}
             </Typography>

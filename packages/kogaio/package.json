@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.7.64",
+  "version": "0.7.65",
   "author": "MihaiRo <mihai.rosca@thinslices.com>",
   "description": "Component library",
   "main": "build/index.js",

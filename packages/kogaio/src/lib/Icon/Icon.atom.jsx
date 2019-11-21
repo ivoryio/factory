@@ -26,13 +26,7 @@ const StyledIcon = styled.i`
   pointer-events: ${({ pointerEvents }) => pointerEvents};
   user-select: none;
   ${themed('Icon')}
-  ${compose(
-    color,
-    layout,
-    position,
-    space,
-    typography
-  )}
+  ${compose(color, layout, position, space, typography)}
 `
 
 Icon.propTypes = {

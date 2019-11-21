@@ -157,15 +157,7 @@ const Container = styled(Flex)`
 
   ${tooltipStyle}
   ${themed('Tooltip')}
-  ${compose(
-    border,
-    color,
-    layout,
-    position,
-    space,
-    variant,
-    shadow
-  )}
+  ${compose(border, color, layout, position, space, variant, shadow)}
 `
 
 Tooltip.propTypes = {

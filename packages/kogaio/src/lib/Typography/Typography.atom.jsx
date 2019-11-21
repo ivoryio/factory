@@ -35,15 +35,7 @@ const Typography = styled.div`
   ${handleTruncate}
 
   ${themed('Typography')}
-  ${compose(
-    color,
-    colorStyle,
-    layout,
-    space,
-    textStyle,
-    typography,
-    variant
-  )}
+  ${compose(color, colorStyle, layout, space, textStyle, typography, variant)}
   ${typographyStyle}
 `
 

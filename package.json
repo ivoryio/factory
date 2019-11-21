@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "clean": "lerna clean"
+    "clean": "lerna clean",
+    "format": "prettier-eslint --write \"packages/**/*.{js,jsx}\""
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
@@ -24,7 +25,9 @@
     "eslint-plugin-react": "^7.16.0",
     "husky": "^3.1.0",
     "lerna": "^3.18.5",
-    "lint-staged": "^9.4.3"
+    "lint-staged": "^9.4.3",
+    "prettier-eslint": "9.0.0",
+    "prettier-eslint-cli": "^5.0.0"
   },
   "config": {
     "commitizen": {

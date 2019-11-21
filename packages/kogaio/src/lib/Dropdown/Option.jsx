@@ -22,7 +22,7 @@ const Option = ({
 
   return (
     <DropdownItem
-      as="li"
+      as='li'
       className={`${isSelected ? `selected${' '}` : ''}dropdown-item`}
       isSelected={isSelected}
       {...props}>
@@ -30,7 +30,7 @@ const Option = ({
         <Touchable
           onMouseUp={!isMobileDevice ? selectOption(value) : null}
           onTouchEnd={isMobileDevice ? selectOption(value) : null}
-          textAlign="left"
+          textAlign='left'
           width={1}>
           <ConditionalWrap
             condition={
@@ -39,11 +39,11 @@ const Option = ({
             }
             wrap={() => (
               <Typography
-                className="dropdown-text"
+                className='dropdown-text'
                 color={color}
                 fontSize={fontSize}
                 truncate
-                variant="list">
+                variant='list'>
                 {label || children}
               </Typography>
             )}>

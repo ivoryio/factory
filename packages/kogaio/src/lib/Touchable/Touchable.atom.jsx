@@ -126,15 +126,7 @@ const Wrapper = styled.button`
   }
 
   ${themed('Touchable')}
-  ${compose(
-    border,
-    color,
-    flexbox,
-    layout,
-    position,
-    space,
-    typography
-  )}
+  ${compose(border, color, flexbox, layout, position, space, typography)}
   ${touchableWithEffect}
 `
 
