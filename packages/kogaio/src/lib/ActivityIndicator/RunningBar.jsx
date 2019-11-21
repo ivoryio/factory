@@ -8,9 +8,9 @@ import Box from '../Responsive/Box'
 const RunningBar = ({ colors: { background, primary }, ...props }) => (
   <Bar
     bg={background}
-    height="4px"
-    overflow="hidden"
-    position="relative"
+    height='4px'
+    overflow='hidden'
+    position='relative'
     primary={primary}
     width={1}
     {...props}

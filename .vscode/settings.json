@@ -30,16 +30,5 @@
   "javascript.suggest.enabled": true,
   "javascript.suggest.names": true,
   "javascript.suggest.paths": true,
-  "javascript.validate.enable": true,
-  "prettier.arrowParens": "avoid",
-  "prettier.bracketSpacing": true,
-  "prettier.eslintIntegration": false,
-  "prettier.jsxBracketSameLine": true,
-  "prettier.jsxSingleQuote": true,
-  "prettier.proseWrap": "always",
-  "prettier.quoteProps": "as-needed",
-  "prettier.semi": false,
-  "prettier.singleQuote": true,
-  "prettier.tabWidth": 2,
-  "prettier.trailingComma": "none"
+  "javascript.validate.enable": true
 }

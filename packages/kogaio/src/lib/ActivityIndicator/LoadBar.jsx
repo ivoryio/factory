@@ -4,7 +4,7 @@ import styled, { css, keyframes } from 'styled-components'
 import Box from '../Responsive/Box'
 
 const LoadBar = ({ colors, ...props }) => (
-  <Box bg="pastel-blue" height="4px" position="relative" width={1} {...props}>
+  <Box bg='pastel-blue' height='4px' position='relative' width={1} {...props}>
     {colors.map(color => (
       <Bar bg={color} colourList={colors} key={color} />
     ))}

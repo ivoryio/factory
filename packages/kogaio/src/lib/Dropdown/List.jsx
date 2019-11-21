@@ -1,4 +1,10 @@
-import React, { Children, cloneElement, isValidElement, useEffect, useRef } from 'react'
+import React, {
+  Children,
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useRef
+} from 'react'
 import PropTypes from 'prop-types'
 import { variant } from 'styled-system'
 import styled, { css } from 'styled-components'

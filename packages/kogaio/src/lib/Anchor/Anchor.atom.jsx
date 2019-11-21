@@ -28,11 +28,11 @@ const Anchor = ({
   ...rest
 }) => (
   <AnchorComponent
-    as="a"
+    as='a'
     href={href}
     target={target}
     rel={rel}
-    variant="link"
+    variant='link'
     {...rest}>
     {children}
   </AnchorComponent>

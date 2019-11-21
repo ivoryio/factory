@@ -138,7 +138,10 @@ const Dropdown = ({
         wrap={() => (
           <Modal visible={isListOpen}>
             <Space m={0} p={0}>
-              <List dummySpace={noBottomSpace ? 0 : DUMMY_SPACE} isMobile {...listProps}>
+              <List
+                dummySpace={noBottomSpace ? 0 : DUMMY_SPACE}
+                isMobile
+                {...listProps}>
                 {children}
               </List>
             </Space>

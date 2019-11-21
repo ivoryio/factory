@@ -1,4 +1,10 @@
-import React, { Children, cloneElement, useCallback, useEffect, useRef } from 'react'
+import React, {
+  Children,
+  cloneElement,
+  useCallback,
+  useEffect,
+  useRef
+} from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
@@ -22,7 +28,6 @@ const MenuList = ({
   ref,
   textAlign,
   Trigger,
-  zIndex,
   ...rest
 }) => {
   const menulistRef = useRef()
@@ -47,14 +52,10 @@ const MenuList = ({
       showMenu(false)
     },
     [selectItem, showMenu]
-  ) 
+  )
 
   return (
-    <Container
-      alignment={alignment}
-      ref={ref || menulistRef}
-      zIndex={zIndex}
-      {...rest}>
+    <Container alignment={alignment} ref={ref || menulistRef} {...rest}>
       <Touchable
         disabled={disabled}
         effect={disabled ? 'no-feedback' : 'opacity'}
@@ -105,7 +106,6 @@ const ListItem = ({
   textAlign,
   textVariant,
   value,
-  zIndex,
   ...props
 }) => (
   <Space px={2}>
@@ -114,7 +114,6 @@ const ListItem = ({
       onClick={selectItem(value)}
       minHeight='40px'
       width={1}
-      zIndex={zIndex}
       {...props}>
       {icon && (
         <Space mr={2}>
@@ -270,8 +269,7 @@ MenuList.propTypes = {
     PropTypes.func,
     PropTypes.object,
     PropTypes.element
-  ]),
-  zIndex: PropTypes.number
+  ])
 }
 
 ListItem.propTypes = {
@@ -293,8 +291,7 @@ ListItem.propTypes = {
   style: PropTypes.object,
   textAlign: PropTypes.oneOf(validAlignment),
   textVariant: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  zIndex: PropTypes.number
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 }
 
 MenuList.defaultProps = {
@@ -304,8 +301,7 @@ MenuList.defaultProps = {
     name: 'notification_important',
     color: 'gunmetal',
     size: 24
-  },
-  zIndex: 2
+  }
 }
 
 ListItem.defaultProps = {

@@ -6,7 +6,7 @@ export default function ({ borders, colors, shadows, ...theme }) {
       'box-shadow': shadows['input-basic'],
       '&:focus, &:hover': {
         border: `${borders[1]} ${colors['paynes-gray']}`
-      },
+      }
     },
     disabled: {
       'background-color': `${colors['ghost-white']}`,

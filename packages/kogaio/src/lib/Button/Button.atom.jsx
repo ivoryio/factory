@@ -71,16 +71,16 @@ const Button = ({
         CustomLoading || (
           <ActivityIndicator
             colors={spinnerColors}
-            className="button-loading"
+            className='button-loading'
             size={spinnerSize}
-            variant="spinner"
+            variant='spinner'
           />
         )
       ) : (
         <>
           {icon ? <ButtonIcon icon={icon} variant={variant} /> : null}
           <Space px={3}>
-            <label className="button-label" htmlFor={id}>
+            <label className='button-label' htmlFor={id}>
               {title || children}
             </label>
           </Space>

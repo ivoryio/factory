@@ -1,9 +1,9 @@
 class TransitionEvent {
-  constructor (event) {
+  constructor(event) {
     this.event = new Event(event)
   }
 
-  dispatch () {
+  dispatch() {
     window.dispatchEvent(this.event)
   }
 }

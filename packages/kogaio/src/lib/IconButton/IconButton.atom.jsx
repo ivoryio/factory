@@ -56,8 +56,7 @@ const IconButton = ({
     title={title}
     top={top}
     underlayColor={underlayColor}
-    width={width}
-  >
+    width={width}>
     <Icon
       color={color}
       name={name}

@@ -116,10 +116,7 @@ const Label = styled.label`
   user-select: none;
   pointer-events: auto;
 
-  ${compose(
-    color,
-    typography
-  )}
+  ${compose(color, typography)}
   ${themed('Checkbox.label')}
   ${checkboxStyle}
 `

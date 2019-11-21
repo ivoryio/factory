@@ -20,7 +20,7 @@ const iconButtons = [
 ]
 const logo = {
   alt: 'Company Logo',
-  src: 'https://www.ivory.io/static/logo-1ba65a72f395ca84702664a4bb7aa315.png'
+  src: 'https://ivory.io/assets/ivory-logo.svg'
 }
 ;<Space px={2}>
   <TopBar
@@ -32,7 +32,7 @@ const logo = {
       <Image
         src={logo.src}
         alt={logo.alt || 'Logo placeholder'}
-        width={96}
+        width={60}
         height='auto'
         objectFit='contain'
       />
@@ -43,7 +43,7 @@ const logo = {
         return (
           <Space key={id} p={2}>
             <IconButton
-              color='pastel-blue'
+              color='white'
               fontSize={3}
               name={iconName}
               onClick={() => console.log(`${id} clicked!`)}
