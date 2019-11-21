@@ -54,7 +54,7 @@ const Collapsible = ({
         height='fit-content'
         position='relative'
         visibility={isOpen ? 'visible' : 'hidden'}
-        width='fit-content'>
+        width={1}>
         <Content duration={animationDuration} isOpen={isOpen}>
           {children}
         </Content>
