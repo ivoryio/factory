@@ -13,8 +13,8 @@ export const withPortal = Component => ({ id, visible, ...props }) => {
         .appendChild(newModal)
         .setAttribute('id', `modal-${id || randomiser}`)
     else {
-      const rootEl = document.createElement('div')
-      document.body.appendChild(rootEl).setAttribute('id', 'modal-root')
+      const newRoot = document.createElement('div')
+      document.body.appendChild(newRoot).setAttribute('id', 'modal-root')
       document
         .getElementById('modal-root')
         .appendChild(newModal)
@@ -23,10 +23,15 @@ export const withPortal = Component => ({ id, visible, ...props }) => {
 
     return () => {
       const rootEl = document.getElementById('modal-root')
-      if (rootEl && rootEl.childNodes.length > 1) {
-        const targetChild = document.getElementById(`modal-${id || randomiser}`)
-        if (targetChild && targetChild.nodeType)
-          return document.getElementById('modal-root').removeChild(targetChild)
+      if (rootEl) {
+        if (rootEl.childNodes.length > 0) {
+          const targetChild = document.getElementById(
+            `modal-${id || randomiser}`
+          )
+          if (targetChild && targetChild.nodeType)
+            rootEl.removeChild(targetChild)
+          if (!rootEl.childNodes.length) rootEl.remove()
+        }
       }
     }
   }, [id, newModal])

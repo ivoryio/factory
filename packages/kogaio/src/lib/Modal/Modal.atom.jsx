@@ -7,8 +7,15 @@ import { Flex } from '../Responsive'
 import { withPortal } from './withPortal'
 import { themed, themeGet } from '../utils'
 
-const Modal = ({ withPortal, ...props }) =>
-  withPortal ? <ModalWithPortal {...props} /> : <ModalBody {...props} />
+const Modal = ({ visible, withPortal, ...props }) => {
+  if (!visible) return null
+  else
+    return withPortal ? (
+      <ModalWithPortal {...props} />
+    ) : (
+      <ModalBody {...props} />
+    )
+}
 
 const ModalWithPortal = withPortal(props => <ModalBody {...props} />)
 
@@ -30,13 +37,6 @@ const ModalBody = ({
   const modalRef = useRef()
 
   useEffect(() => {
-    if (visible && noScroll) document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = 'auto'
-    }
-  }, [noScroll, visible])
-
-  useEffect(() => {
     window.addEventListener('click', _handleBackdropClick)
     return () => window.removeEventListener('click', _handleBackdropClick)
 
@@ -50,7 +50,7 @@ const ModalBody = ({
     }
   }, [handleBackdropClick, ref, visible])
 
-  return visible ? (
+  return (
     <Overlay
       animated={animated}
       backdropColor={backdropColor}
@@ -75,7 +75,7 @@ const ModalBody = ({
         {children}
       </Flex>
     </Overlay>
-  ) : null
+  )
 }
 
 const fadeIn = keyframes`
