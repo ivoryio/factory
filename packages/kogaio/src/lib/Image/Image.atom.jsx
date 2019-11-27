@@ -29,9 +29,7 @@ Image.propTypes = {
 }
 
 Image.defaultProps = {
-  alt: 'image placeholder',
-  src:
-    'https://icon-library.net/images/no-image-available-icon/no-image-available-icon-6.jpg'
+  alt: 'image placeholder'
 }
 Image.displayName = 'Image'
 

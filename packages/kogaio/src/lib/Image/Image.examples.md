@@ -1,14 +1,3 @@
-#### Placeholder
-
-```js
-import { Box } from '@ivoryio/kogaio/Responsive'
-;<Box alignItems='center'>
-  <Image size={120} />
-</Box>
-```
-
-#### Custom Images
-
 ```js
 import styled from 'styled-components'
 import { Flex, Space } from '@ivoryio/kogaio/Responsive'
@@ -26,11 +15,11 @@ const ImageExamples = () => {
       alignItems='center'
       flexDirection={{ xs: 'column-reverse', lg: 'row' }}
       width={1}>
-      {images.map(img => (
+      {images.map((img, ix) => (
         <Space key={img.id} ml={{ lg: 4 }} mt={{ xs: 2, lg: 0 }}>
           <Image
             alt={img.id}
-            borderRadius='round'
+            borderRadius={ix % 2 !== 0 ? 'round' : 2}
             size={img.size}
             src={img.src}
           />

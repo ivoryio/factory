@@ -100,7 +100,7 @@ const ListItem = ({
   fontSize,
   fontWeight,
   icon,
-  Icon,
+  Icon: CustomIcon,
   id,
   label,
   onClick: selectItem,
@@ -117,13 +117,19 @@ const ListItem = ({
   }, [id, label, selectItem, showMenu, value])
 
   const _renderIcon = useCallback(() => {
-    if (Icon) {
+    if (!CustomIcon && !icon) return null
+    else if (CustomIcon && icon)
+      return console.error(
+        '* Please pass a custom Icon component or an icon object containing documented properties'
+      )
+
+    if (CustomIcon) {
       const { color: customColor, fontSize: customFontSize } = Icon.props
       return cloneElement(Icon, {
         color: customColor || (disabled ? 'pastel-blue' : 'dark-gunmetal'),
         fontSize: customFontSize || 2
       })
-    } else if (icon)
+    } else if (typeof icon === 'object' && Object.keys(icon).length > 0)
       return (
         <Icon
           color={icon.color || (disabled ? 'pastel-blue' : 'dark-gunmetal')}
@@ -131,7 +137,7 @@ const ListItem = ({
           name={icon.name}
         />
       )
-  }, [Icon, disabled, icon])
+  }, [CustomIcon, icon, disabled])
 
   return (
     <Space px={2}>
@@ -317,7 +323,8 @@ MenuList.defaultProps = {
     name: 'notification_important',
     color: 'gunmetal',
     size: 24
-  }
+  },
+  isInitialOpen: false
 }
 
 ListItem.defaultProps = {

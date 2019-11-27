@@ -43,8 +43,8 @@ const MenuListExample = () => {
               {listItems.map(item => (
                 <MenuList.Item
                   disabled={item.disabled}
-                  Icon={item.Icon}
                   id={item.id}
+                  icon={item.icon}
                   label={item.name}
                   key={item.id}
                   onClick={item.onClick}
