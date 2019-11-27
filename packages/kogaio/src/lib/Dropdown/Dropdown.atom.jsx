@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
@@ -48,17 +48,22 @@ const Dropdown = ({
     if (autoFocus) setListOpen(true)
   }, [autoFocus, setListOpen])
 
-  const toggleDropdown = ev => (disabled ? ev.preventDefault() : toggle())
+  const toggleDropdown = useCallback(
+    ev => (disabled ? ev.preventDefault() : toggle()),
+    [disabled, toggle]
+  )
 
-  const dropdownVariant = (() => {
+  const dropdownVariant = useMemo(() => {
     if (disabled) return 'disabled'
     if (error) return 'error'
     if (valid) return 'valid'
     return variant
-  })()
+  }, [disabled, error, valid, variant])
 
-  const selectedValue = (() =>
-    typeof value === 'object' ? value.label : value)()
+  const selectedValue = useMemo(
+    () => (typeof value === 'object' ? value.label : value),
+    [value]
+  )
 
   const listProps = {
     handleSelect: onChange,
@@ -72,10 +77,10 @@ const Dropdown = ({
     variant: dropdownVariant
   }
 
-  const currentValue = (() => {
+  const currentValue = useMemo(() => {
     if (selectedValue) return selectedValue
     return readOnly ? '' : placeholder
-  })()
+  }, [placeholder, readOnly, selectedValue])
 
   return (
     <Flex

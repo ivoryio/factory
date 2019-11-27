@@ -16,14 +16,15 @@ const Collapsible = ({
   color,
   icon,
   fontSize,
-  isExpanded,
+  initialExpanded,
   title,
   Trigger,
   triggerEffect,
   underlayColor,
   ...rest
 }) => {
-  const [isOpen, _, toggleContainer] = useBoolean(isExpanded) // eslint-disable-line no-unused-vars
+  const [isOpen, _, toggleContainer] = useBoolean(initialExpanded) // eslint-disable-line no-unused-vars
+
   return (
     <Box bg='transparent' {...rest}>
       <Touchable
@@ -100,7 +101,7 @@ Collapsible.propTypes = {
   /** icon: { name: String, color: String, size: oneOf(String, Number) }*/
   fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   icon: PropTypes.object,
-  isExpanded: PropTypes.bool,
+  initialExpanded: PropTypes.bool,
   title: PropTypes.string,
   Trigger: PropTypes.func,
   triggerEffect: PropTypes.oneOf(effects),
@@ -114,7 +115,7 @@ Collapsible.defaultProps = {
     name: 'arrow_drop_down_circle',
     size: 4
   },
-  isExpanded: false,
+  initialExpanded: false,
   title: 'Collapsible',
   triggerEffect: 'opacity'
 }

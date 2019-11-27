@@ -43,9 +43,7 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   className: '',
-  fontSize: '1em',
-  name: 'image',
-  color: 'gunmetal'
+  name: 'image'
 }
 Icon.displayName = 'Icon'
 

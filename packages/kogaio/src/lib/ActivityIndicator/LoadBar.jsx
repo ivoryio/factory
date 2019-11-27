@@ -28,7 +28,7 @@ const loading = keyframes`
   }
 `
 
-const loopColours = () => ({ colourList }) =>
+const loopColours = ({ colourList }) =>
   colourList.map(
     (color, ix) => css`
       &:nth-child(n + ${ix + 1}) {
@@ -36,6 +36,7 @@ const loopColours = () => ({ colourList }) =>
       }
     `
   )
+
 const Bar = styled(Box)`
   content: '';
   display: inline;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import {
@@ -35,7 +35,7 @@ const Button = ({
   variant,
   ...rest
 }) => {
-  const spinnerColors = (() => {
+  const spinnerColors = useMemo(() => {
     switch (variant) {
       case 'outline':
         return {
@@ -58,7 +58,8 @@ const Button = ({
           primary: disabled ? 'pastel-blue' : 'white'
         }
     }
-  })()
+  }, [disabled, variant])
+
   return (
     <ButtonComponent
       disabled={disabled}
@@ -91,8 +92,10 @@ const Button = ({
 }
 
 const ButtonIcon = ({ icon: { color, name, size }, variant }) => {
-  const fallbackColor = (() =>
-    variant.includes('outline') ? 'brand' : 'white')()
+  const fallbackColor = useMemo(
+    () => (variant.includes('outline') ? 'brand' : 'white'),
+    [variant]
+  )
   return (
     <Icon name={name} fontSize={size || 16} color={color || fallbackColor} />
   )

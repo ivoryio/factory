@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { forwardRef, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
 
@@ -19,64 +19,68 @@ const Modal = ({ visible, withPortal, ...props }) => {
 
 const ModalWithPortal = withPortal(props => <ModalBody {...props} />)
 
-const ModalBody = ({
-  animated,
-  backdropColor,
-  children,
-  colors,
-  id,
-  onBackdropClick: handleBackdropClick,
-  noScroll,
-  overlayStyle,
-  position,
-  ref,
-  visible,
-  zIndex,
-  ...rest
-}) => {
-  const modalRef = useRef()
+const ModalBody = forwardRef(
+  (
+    {
+      animated,
+      backdropColor,
+      children,
+      colors,
+      id,
+      onBackdropClick: handleBackdropClick,
+      noScroll,
+      overlayStyle,
+      position,
+      visible,
+      zIndex,
+      ...rest
+    },
+    ref
+  ) => {
+    const modalRef = useRef()
 
-  useEffect(() => {
-    window.addEventListener('click', _handleBackdropClick)
-    return () => window.removeEventListener('click', _handleBackdropClick)
+    useEffect(() => {
+      window.addEventListener('click', _handleBackdropClick)
+      return () => window.removeEventListener('click', _handleBackdropClick)
 
-    function _handleBackdropClick (ev) {
-      const elRef = ref || modalRef
-      const clickOutside = ev.target === elRef.current
-      if (visible && clickOutside)
-        return handleBackdropClick
-          ? handleBackdropClick()
-          : console.warn('* Modal expects a handleBackdropClick function')
-    }
-  }, [handleBackdropClick, ref, visible])
+      function _handleBackdropClick (ev) {
+        const elRef = ref || modalRef
+        const clickOutside = ev.target === elRef.current
+        if (visible && clickOutside)
+          return handleBackdropClick
+            ? handleBackdropClick()
+            : console.warn('* Modal expects a handleBackdropClick function')
+      }
+    }, [handleBackdropClick, ref, visible])
 
-  return (
-    <Overlay
-      animated={animated}
-      backdropColor={backdropColor}
-      colors={colors}
-      height='100%'
-      left={0}
-      id={id}
-      position={position}
-      top={0}
-      visible={visible}
-      width={1}
-      zIndex={zIndex}
-      {...overlayStyle}>
-      <Flex
-        alignItems='center'
-        className='modal-body'
-        justifyContent='center'
+    return (
+      <Overlay
+        animated={animated}
+        backdropColor={backdropColor}
+        colors={colors}
         height='100%'
-        ref={ref || modalRef}
+        left={0}
+        id={id}
+        position={position}
+        top={0}
+        visible={visible}
         width={1}
-        {...rest}>
-        {children}
-      </Flex>
-    </Overlay>
-  )
-}
+        zIndex={zIndex}
+        {...overlayStyle}>
+        <Flex
+          alignItems='center'
+          className='modal-body'
+          justifyContent='center'
+          height='100%'
+          ref={ref || modalRef}
+          width={1}
+          {...rest}>
+          {children}
+        </Flex>
+      </Overlay>
+    )
+  }
+)
 
 const fadeIn = keyframes`
   from {
@@ -142,5 +146,6 @@ ModalBody.defaultProps = {
 }
 
 Modal.displayName = 'Modal'
+ModalBody.displayName = 'ModalBody'
 /** @component */
 export default Modal

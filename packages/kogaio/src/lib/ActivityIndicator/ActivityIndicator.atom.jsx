@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import { LoadBar, RunningBar, Spinner } from '.'
 
 const ActivityIndicator = ({ variant, ...props }) => {
-  const Component = (() => {
+  const Component = useMemo(() => {
     switch (variant) {
       case 'loadbar':
         return LoadBar
@@ -13,7 +13,7 @@ const ActivityIndicator = ({ variant, ...props }) => {
       default:
         return Spinner
     }
-  })()
+  }, [variant])
   return <Component {...props} />
 }
 

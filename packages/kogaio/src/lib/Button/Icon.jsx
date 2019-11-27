@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 
 import Icon from '../Icon'
 import { Space } from '../Responsive'
 
 const ButtonIcon = ({ icon: { color, name, size }, variant }) => {
-  const fallbackColor = (() =>
-    variant.includes('outline') ? 'brand' : 'white')()
+  const fallbackColor = useMemo(
+    () => (variant.includes('outline') ? 'brand' : 'white'),
+    [variant]
+  )
   return (
     <Space ml={-1} mr={1}>
       <Icon name={name} fontSize={size || 5} color={color || fallbackColor} />

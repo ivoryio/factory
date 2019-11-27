@@ -1,4 +1,4 @@
-import React, { cloneElement } from 'react'
+import React, { cloneElement, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -11,7 +11,9 @@ import Typography from '../Typography'
 import { Flex, Space } from '../Responsive'
 
 const Chip = ({ onClick, touchEffect, ...props }) => {
-  const isClickable = onClick && typeof onClick === 'function'
+  const isClickable = useMemo(() => onClick && typeof onClick === 'function', [
+    onClick
+  ])
   return (
     <ConditionalWrap
       condition={isClickable}
@@ -100,7 +102,10 @@ const Center = ({
 )
 
 const Right = ({ color, DismissIcon, fontSize, onDismiss, ...props }) => {
-  const externalProps = DismissIcon && { ...DismissIcon.props }
+  const externalProps = useMemo(
+    () => DismissIcon && { ...DismissIcon.props },
+    [DismissIcon]
+  )
   const StyledDismiss = cloneElement(DismissIcon, {
     ...externalProps,
     color

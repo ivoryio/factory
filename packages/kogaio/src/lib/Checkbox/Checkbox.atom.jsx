@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { forwardRef, useMemo, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import propTypes from '@styled-system/prop-types'
@@ -12,71 +12,75 @@ const checkboxStyle = variant({
   prop: 'variant'
 })
 
-const Checkbox = ({
-  checkboxPosition,
-  checked,
-  color,
-  disabled,
-  error,
-  id,
-  label,
-  labelColor,
-  name,
-  onChange,
-  ref,
-  size,
-  valid,
-  value,
-  variant,
-  ...rest
-}) => {
-  const checkboxRef = useRef()
-  const checkboxVariant = (() => {
-    if (disabled) return 'disabled'
-    if (error) return 'error'
-    if (valid) return 'valid'
-    return variant
-  })()
+const Checkbox = forwardRef(
+  (
+    {
+      checkboxPosition,
+      checked,
+      color,
+      disabled,
+      error,
+      id,
+      label,
+      labelColor,
+      name,
+      onChange,
+      size,
+      valid,
+      value,
+      variant,
+      ...rest
+    },
+    ref
+  ) => {
+    const checkboxRef = useRef()
+    const checkboxVariant = useMemo(() => {
+      if (disabled) return 'disabled'
+      if (error) return 'error'
+      if (valid) return 'valid'
+      return variant
+    }, [disabled, error, valid, variant])
 
-  return (
-    <Flex alignItems='center' {...rest}>
-      <Wrapper
-        color={color}
-        disabled={disabled}
-        checkboxPosition={checkboxPosition}
-        hasLabel={label && label.length > 0}
-        variant={checkboxVariant}>
-        <Input
-          checked={checked}
-          disabled={disabled}
-          id={id}
-          name={name}
-          onChange={onChange}
-          ref={ref || checkboxRef}
-          type='checkbox'
-          value={value}
-        />
-        <Placeholder
-          className={`checkbox ${checked ? 'checked' : ''}`}
+    return (
+      <Flex alignItems='center' {...rest}>
+        <Wrapper
           color={color}
           disabled={disabled}
-          size={size}
-          variant={checkboxVariant}
-        />
-      </Wrapper>
-      {label && (
-        <Label
-          className='checkbox-label'
-          color={labelColor}
-          disabled={disabled}
-          htmlFor={id}
+          checkboxPosition={checkboxPosition}
+          hasLabel={label && label.length > 0}
           variant={checkboxVariant}>
-          {label}
-        </Label>
-      )}
-    </Flex>
-  )
-}
+          <Input
+            checked={checked}
+            disabled={disabled}
+            id={id}
+            name={name}
+            onChange={onChange}
+            ref={ref || checkboxRef}
+            type='checkbox'
+            value={value}
+          />
+          <Placeholder
+            className={`checkbox ${checked ? 'checked' : ''}`}
+            color={color}
+            disabled={disabled}
+            size={size}
+            variant={checkboxVariant}
+          />
+        </Wrapper>
+        {label && (
+          <Label
+            className='checkbox-label'
+            color={labelColor}
+            disabled={disabled}
+            htmlFor={id}
+            variant={checkboxVariant}>
+            {label}
+          </Label>
+        )}
+      </Flex>
+    )
+  }
+)
 
 const checkboxSize = ({ size }) => css`
   width: ${typeof size === 'number' ? `${size}px` : size};

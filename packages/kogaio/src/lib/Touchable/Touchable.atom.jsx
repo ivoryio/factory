@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import {
@@ -34,20 +34,33 @@ const Touchable = ({
 }) => {
   const [isBeingPressed, setIsBeingPressed] = useBoolean(false)
 
-  const _handleMouseDown = ev => {
-    setIsBeingPressed(true)
-    typeof onMouseDown === 'function' && onMouseDown(ev)
-  }
-  const _handleMouseUp = ev => {
-    setIsBeingPressed(false)
-    typeof onMouseUp === 'function' && onMouseUp(ev)
-  }
-  const _handleMouseLeave = () => {
+  const _handleMouseDown = useCallback(
+    ev => {
+      setIsBeingPressed(true)
+      typeof onMouseDown === 'function' && onMouseDown(ev)
+    },
+    [onMouseDown, setIsBeingPressed]
+  )
+
+  const _handleMouseUp = useCallback(
+    ev => {
+      setIsBeingPressed(false)
+      typeof onMouseUp === 'function' && onMouseUp(ev)
+    },
+    [onMouseUp, setIsBeingPressed]
+  )
+
+  const _handleMouseLeave = useCallback(() => {
     if (isBeingPressed && typeof handleDrag === 'function') {
       return handleDrag()
     }
-  }
-  const touchableEffect = (() => (disabled ? 'no-feedback' : effect))()
+  }, [handleDrag, isBeingPressed])
+
+  const touchableEffect = useMemo(() => (disabled ? 'no-feedback' : effect), [
+    disabled,
+    effect
+  ])
+
   return (
     <Wrapper
       activeOpacity={activeOpacity}
@@ -69,12 +82,7 @@ const Touchable = ({
   )
 }
 
-const touchableWithEffect = ({
-  effect,
-  activeOpacity,
-  underlayColor,
-  ...rest
-}) => {
+const touchableWithEffect = ({ effect, activeOpacity, underlayColor }) => {
   switch (effect) {
     case 'opacity':
       return css`

@@ -2,6 +2,7 @@ import React, {
   Children,
   cloneElement,
   isValidElement,
+  useCallback,
   useEffect,
   useRef
 } from 'react'
@@ -47,12 +48,15 @@ const List = ({
     }
   }, [isListOpen, listRef, multiple, setListOpen])
 
-  const selectOption = option => () => {
-    if (multiple) return handleSelect(option)
+  const selectOption = useCallback(
+    option => () => {
+      if (multiple) return handleSelect(option)
 
-    handleSelect(option)
-    setListOpen(false)
-  }
+      handleSelect(option)
+      setListOpen(false)
+    },
+    [handleSelect, multiple, setListOpen]
+  )
 
   return (
     <Container
@@ -84,13 +88,19 @@ const List = ({
   )
 }
 
-const calcSize = () => ({ isOpen, numOfElements, size }) => {
+const calcSize = ({ isOpen, numOfElements, size }) => {
   const GUTTER = 4
   const ITEM_HEIGHT = 40
-  if (!isOpen) return `max-height: 0; visibility: hidden;`
+  if (!isOpen)
+    return css`
+      max-height: 0;
+      visibility: hidden;
+    `
   if (numOfElements <= size)
-    return `max-height: ${size * ITEM_HEIGHT + GUTTER}px;`
-  return `
+    return css`
+      max-height: ${size * ITEM_HEIGHT + GUTTER}px;
+    `
+  return css`
     max-height: ${size * ITEM_HEIGHT - GUTTER * 2}px;
     overflow-y: auto;
     scroll-behavior: smooth;
@@ -105,11 +115,11 @@ const responsiveListStyle = ({ isMobile }) => css`
   position: ${({ isMobile }) => (isMobile ? 'fixed' : 'absolute')};
   width: 100%;
   ${isMobile
-    ? `
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-  `
+    ? css`
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+      `
     : null};
 `
 

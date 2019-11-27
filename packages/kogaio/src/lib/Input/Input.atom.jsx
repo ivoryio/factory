@@ -1,4 +1,10 @@
-import React, { useState, useRef } from 'react'
+import React, {
+  forwardRef,
+  useCallback,
+  useMemo,
+  useRef,
+  useState
+} from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import {
@@ -26,147 +32,155 @@ const inputStyle = variant({
   prop: 'variant'
 })
 
-const Input = ({
-  autoComplete,
-  autoFocus,
-  className,
-  containerStyle,
-  disabled,
-  error,
-  icLeft,
-  icRight,
-  id,
-  label,
-  name,
-  noBottomSpace,
-  onChange,
-  passwordView,
-  placeholder,
-  placeholderTextColor,
-  readOnly,
-  ref,
-  required,
-  type,
-  valid,
-  value,
-  variant,
-  ...rest
-}) => {
-  const inputRef = useRef()
-  const [inputType, setInputType] = useState(type)
+const Input = forwardRef(
+  (
+    {
+      autoComplete,
+      autoFocus,
+      className,
+      containerStyle,
+      disabled,
+      error,
+      icLeft,
+      icRight,
+      id,
+      label,
+      name,
+      noBottomSpace,
+      onChange,
+      passwordView,
+      placeholder,
+      placeholderTextColor,
+      readOnly,
+      required,
+      type,
+      valid,
+      value,
+      variant,
+      ...rest
+    },
+    ref
+  ) => {
+    const inputRef = useRef()
+    const [inputType, setInputType] = useState(type)
 
-  const inputVariant = (() => {
-    if (disabled) return 'disabled'
-    else if (error) return 'error'
-    else if (valid) return 'valid'
-    return variant
-  })()
+    const inputVariant = useMemo(() => {
+      if (disabled) return 'disabled'
+      else if (error) return 'error'
+      else if (valid) return 'valid'
+      return variant
+    }, [disabled, error, valid, variant])
 
-  const togglePassword = ev => {
-    ev.preventDefault()
-    const elRef = ref || inputRef
-    if (document.activeElement !== elRef.current) elRef.current.focus()
-    if (inputType.includes('password')) return setInputType('text')
-    return resetInputType()
-  }
-  const resetInputType = () => setInputType(type)
+    const resetInputType = useCallback(() => setInputType(type), [type])
 
-  return (
-    <InputContainer
-      {...containerStyle}
-      flexDirection='column'
-      hasLabel={label}
-      width={1}
-      {...rest}>
-      {label ? (
-        <InputLabel
-          as='label'
-          className='input-label'
-          color='gunmetal'
-          display='block'
-          htmlFor={id}
-          variant='inputLabel'
-          width='fit-content'>
-          {label} {required ? '*' : ''}
-        </InputLabel>
-      ) : null}
-      <Row>
-        <InputComponent
-          autoComplete={autoComplete}
-          autoFocus={autoFocus}
-          className='input'
-          disabled={readOnly || disabled}
-          error={error}
-          hasLabel={label}
-          hasIcLeft={icLeft}
-          hasIcRight={icRight}
-          id={id}
-          name={name}
-          onChange={onChange}
-          placeholder={readOnly ? '' : placeholder}
-          placeholderTextColor={placeholderTextColor}
-          readOnly={readOnly}
-          ref={ref || inputRef}
-          required={required}
-          type={inputType}
-          value={value}
-          variant={inputVariant}
-          {...rest}
-        />
-        {icLeft ? (
-          <Icon
-            className='input-custom-icon'
-            color='pastel-blue'
-            fontSize={3}
-            left={2}
-            name={icLeft}
-            pointerEvents='none'
-            position='absolute'
-            tabIndex='-1'
-          />
+    const togglePassword = useCallback(
+      ev => {
+        ev.preventDefault()
+        const elRef = ref || inputRef
+        if (document.activeElement !== elRef.current) elRef.current.focus()
+        if (inputType.includes('password')) return setInputType('text')
+        return resetInputType()
+      },
+      [inputType, ref, resetInputType]
+    )
+
+    return (
+      <InputContainer
+        {...containerStyle}
+        flexDirection='column'
+        hasLabel={label}
+        width={1}
+        {...rest}>
+        {label ? (
+          <InputLabel
+            as='label'
+            className='input-label'
+            color='gunmetal'
+            display='block'
+            htmlFor={id}
+            variant='inputLabel'
+            width='fit-content'>
+            {label} {required ? '*' : ''}
+          </InputLabel>
         ) : null}
-        <Flex
-          className='input-right'
-          pointerEvents='none'
-          position='absolute'
-          right={2}>
-          {icRight ? (
-            <Space mr={1}>
-              <Icon
-                className='input-custom-icon'
-                color='pastel-blue'
-                fontSize={3}
-                name={icRight}
-              />
-            </Space>
-          ) : null}
-          {type === 'password' && value ? (
-            <PasswordToggler
-              error={error}
-              inputType={inputType}
-              onDrag={resetInputType}
-              pointerEvents='auto'
+        <Row>
+          <InputComponent
+            autoComplete={autoComplete}
+            autoFocus={autoFocus}
+            className='input'
+            disabled={readOnly || disabled}
+            error={error}
+            hasLabel={label}
+            hasIcLeft={icLeft}
+            hasIcRight={icRight}
+            id={id}
+            name={name}
+            onChange={onChange}
+            placeholder={readOnly ? '' : placeholder}
+            placeholderTextColor={placeholderTextColor}
+            readOnly={readOnly}
+            ref={ref || inputRef}
+            required={required}
+            type={inputType}
+            value={value}
+            variant={inputVariant}
+            {...rest}
+          />
+          {icLeft ? (
+            <Icon
+              className='input-custom-icon'
+              color='pastel-blue'
+              fontSize={3}
+              left={2}
+              name={icLeft}
+              pointerEvents='none'
+              position='absolute'
               tabIndex='-1'
-              toggle={togglePassword}
-              viewOption={passwordView}
             />
           ) : null}
-        </Flex>
-      </Row>
-      {[error, valid].some(item => typeof item === 'string') ? (
-        <Space my={1}>
-          <Sublabel
-            className='input-sublabel'
-            content={error || valid}
-            type={error ? 'error' : 'valid'}
-          />
-        </Space>
-      ) : (
-        <Dummy id='input-dummy-space' hide={noBottomSpace} />
-      )}
-    </InputContainer>
-  )
-}
+          <Flex
+            className='input-right'
+            pointerEvents='none'
+            position='absolute'
+            right={2}>
+            {icRight ? (
+              <Space mr={1}>
+                <Icon
+                  className='input-custom-icon'
+                  color='pastel-blue'
+                  fontSize={3}
+                  name={icRight}
+                />
+              </Space>
+            ) : null}
+            {type === 'password' && value ? (
+              <PasswordToggler
+                error={error}
+                inputType={inputType}
+                onDrag={resetInputType}
+                pointerEvents='auto'
+                tabIndex='-1'
+                toggle={togglePassword}
+                viewOption={passwordView}
+              />
+            ) : null}
+          </Flex>
+        </Row>
+        {[error, valid].some(item => typeof item === 'string') ? (
+          <Space my={1}>
+            <Sublabel
+              className='input-sublabel'
+              content={error || valid}
+              type={error ? 'error' : 'valid'}
+            />
+          </Space>
+        ) : (
+          <Dummy id='input-dummy-space' hide={noBottomSpace} />
+        )}
+      </InputContainer>
+    )
+  }
+)
 
 const readOnlyStyle = css`
   background-color: transparent;

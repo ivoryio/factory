@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 import {
@@ -38,7 +38,9 @@ const Tooltip = ({
   useEffect(() => {
     setTooltipShown(visible)
   }, [setTooltipShown, visible])
-  const hideTooltip = () => setTooltipShown(false)
+  const hideTooltip = useCallback(() => setTooltipShown(false), [
+    setTooltipShown
+  ])
   // #endregion
   return showTooltip ? (
     <Container
