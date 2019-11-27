@@ -124,8 +124,8 @@ const ListItem = ({
       )
 
     if (CustomIcon) {
-      const { color: customColor, fontSize: customFontSize } = Icon.props
-      return cloneElement(Icon, {
+      const { color: customColor, fontSize: customFontSize } = CustomIcon.props
+      return cloneElement(CustomIcon, {
         color: customColor || (disabled ? 'pastel-blue' : 'dark-gunmetal'),
         fontSize: customFontSize || 2
       })
