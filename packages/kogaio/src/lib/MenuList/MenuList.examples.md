@@ -2,25 +2,29 @@
 
 ```js
 import { Box, Flex, Space } from '@ivoryio/kogaio/Responsive'
+import Icon from '@ivoryio/kogaio/Icon'
 const MenuListExample = () => {
   const listItems = [
     {
       id: 'list-item1',
       name: 'Create item',
-      disabled: true
+      disabled: true,
+      onClick: item => console.log('Create item clicked', item)
     },
     {
       id: 'list-item2',
-      name: 'Update'
+      name: 'Update',
+      onClick: item => console.log('Update clicked', item)
     },
     {
       id: 'list-item3',
-      name: 'Delete history'
+      name: 'Delete history',
+      onClick: item => console.log('Delete history clicked', item)
     }
   ]
   return (
     <Space mx='auto'>
-      <Flex flexDirection='column' width={1 / 2}>
+      <Flex width={1 / 2}>
         <Box width={{ xs: 1, sm: 1 / 2, lg: 1 / 3 }}>
           <Space mt={2}>
             <MenuList
@@ -35,14 +39,15 @@ const MenuListExample = () => {
                 size: 24
               }}
               id='menulist-1'
-              fontSize='1rem'
-              onSelect={item => console.log(`Selected item`, item)}>
+              fontSize='1rem'>
               {listItems.map(item => (
                 <MenuList.Item
                   disabled={item.disabled}
+                  Icon={item.Icon}
                   id={item.id}
                   label={item.name}
                   key={item.id}
+                  onClick={item.onClick}
                   value={item}
                 />
               ))}
@@ -59,10 +64,12 @@ const MenuListExample = () => {
               listStyle={{
                 zIndex: 1
               }}
-              fontSize='1rem'
-              onSelect={item => console.log(`Selected ${item}`)}>
+              fontSize='1rem'>
               {listItems.map(item => (
-                <MenuList.Item id={item.id} key={item.id} value={item.name}>
+                <MenuList.Item
+                  id={item.id}
+                  key={item.id}
+                  onClick={item.onClick}>
                   {item.name}
                 </MenuList.Item>
               ))}
@@ -79,10 +86,12 @@ const MenuListExample = () => {
               }}
               icon={{ color: 'dark-gunmetal', name: 'more_horiz', size: 24 }}
               id='menu-list-3'
-              fontSize='1rem'
-              onSelect={item => console.log(`Selected ${item}`)}>
+              fontSize='1rem'>
               {listItems.map(item => (
-                <MenuList.Item id={item.id} key={item.id} value={item.name}>
+                <MenuList.Item
+                  id={item.id}
+                  key={item.id}
+                  onClick={item.onClick}>
                   {item.name}
                 </MenuList.Item>
               ))}

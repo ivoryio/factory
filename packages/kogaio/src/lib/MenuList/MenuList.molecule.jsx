@@ -1,6 +1,7 @@
 import React, {
   Children,
   cloneElement,
+  forwardRef,
   useCallback,
   useEffect,
   useRef
@@ -16,83 +17,79 @@ import Touchable from '../Touchable'
 import Typography from '../Typography'
 import { Flex, Space } from '../Responsive'
 
-const MenuList = ({
-  alignment,
-  arrowSize,
-  children,
-  disabled,
-  icon,
-  id,
-  listStyle,
-  onSelect: selectItem,
-  ref,
-  textAlign,
-  Trigger,
-  ...rest
-}) => {
-  const menulistRef = useRef()
-  const [isMenuShown, showMenu, toggleMenu] = useBoolean(false)
-
-  useEffect(() => {
-    window.addEventListener('click', _handleDocumentBodyClick)
-    return () => window.removeEventListener('click', _handleDocumentBodyClick)
-
-    function _handleDocumentBodyClick (ev) {
-      const elRef = ref || menulistRef
-      if (elRef.current) {
-        const isClickInside = elRef.current.contains(ev.target)
-        if (!isClickInside) showMenu(false)
-      }
-    }
-  }, [id, ref, showMenu])
-
-  const _selectItem = useCallback(
-    item => () => {
-      selectItem(item)
-      showMenu(false)
+const MenuList = forwardRef(
+  (
+    {
+      alignment,
+      arrowSize,
+      children,
+      disabled,
+      icon,
+      id,
+      isInitialOpen,
+      listStyle,
+      textAlign,
+      Trigger,
+      ...rest
     },
-    [selectItem, showMenu]
-  )
+    ref
+  ) => {
+    const menulistRef = useRef()
+    const [isMenuShown, showMenu, toggleMenu] = useBoolean(isInitialOpen)
 
-  return (
-    <Container
-      alignment={alignment}
-      position='relative'
-      ref={ref || menulistRef}
-      {...rest}>
-      <Touchable
-        disabled={disabled}
-        effect={disabled ? 'no-feedback' : 'opacity'}
-        onClick={toggleMenu}
-        textAlign={alignment}
-        width='fit-content'>
-        {Trigger || (
-          <Icon
-            color={icon.color}
-            fontSize={`${icon.size}px`}
-            name={icon.name}
-          />
-        )}
-      </Touchable>
-      {isMenuShown ? (
-        <ListWrapper
-          as='ul'
-          alignment={alignment}
-          arrowSize={arrowSize}
-          colors='menu-list'
-          icSize={icon.size}
-          {...listStyle}>
-          {Children.toArray(children).map(child =>
-            cloneElement(child, {
-              alignment,
-              onSelect: _selectItem
-            })
+    useEffect(() => {
+      window.addEventListener('click', _handleDocumentBodyClick)
+      return () => window.removeEventListener('click', _handleDocumentBodyClick)
+
+      function _handleDocumentBodyClick (ev) {
+        const elRef = ref || menulistRef
+        if (elRef.current) {
+          const isClickInside = elRef.current.contains(ev.target)
+          if (!isClickInside) showMenu(false)
+        }
+      }
+    }, [id, ref, showMenu])
+
+    return (
+      <Container
+        alignment={alignment}
+        position='relative'
+        ref={ref || menulistRef}
+        {...rest}>
+        <Touchable
+          disabled={disabled}
+          effect={disabled ? 'no-feedback' : 'opacity'}
+          onClick={toggleMenu}
+          textAlign={alignment}
+          width='fit-content'>
+          {Trigger || (
+            <Icon
+              color={icon.color}
+              fontSize={`${icon.size}px`}
+              name={icon.name}
+            />
           )}
-        </ListWrapper>
-      ) : null}
-    </Container>
-  )
-}
+        </Touchable>
+        {isMenuShown ? (
+          <ListWrapper
+            as='ul'
+            alignment={alignment}
+            arrowSize={arrowSize}
+            colors='menu-list'
+            icSize={icon.size}
+            {...listStyle}>
+            {Children.toArray(children).map(child =>
+              cloneElement(child, {
+                alignment,
+                showMenu
+              })
+            )}
+          </ListWrapper>
+        ) : null}
+      </Container>
+    )
+  }
+)
 
 const ListItem = ({
   alignment,
@@ -103,46 +100,66 @@ const ListItem = ({
   fontSize,
   fontWeight,
   icon,
+  Icon,
   id,
   label,
-  onSelect: selectItem,
+  onClick: selectItem,
+  showMenu,
   style,
   textAlign,
   textVariant,
   value,
   ...props
-}) => (
-  <Space px={2}>
-    <ItemWrapper
-      disabled={disabled}
-      onClick={selectItem(value)}
-      minHeight='40px'
-      width={1}
-      {...props}>
-      {icon && (
-        <Space mr={2}>
-          <Icon
-            color={icon.color || (disabled ? 'pastel-blue' : 'dark-gunmetal')}
-            fontSize={icon.size || 2}
-            name={icon.name}
-          />
-        </Space>
-      )}
-      <Typography
-        as='li'
-        color={color || (disabled ? 'pastel-blue' : 'dark-gunmetal')}
-        fontFamily={fontFamily}
-        fontSize={fontSize}
-        fontWeight={fontWeight}
-        textAlign={textAlign || alignment}
-        variant={textVariant}
+}) => {
+  const _selectItem = useCallback(() => {
+    selectItem({ id, label, value })
+    showMenu(false)
+  }, [id, label, selectItem, showMenu, value])
+
+  const _renderIcon = useCallback(() => {
+    if (Icon) {
+      const { color: customColor, fontSize: customFontSize } = Icon.props
+      return cloneElement(Icon, {
+        color: customColor || (disabled ? 'pastel-blue' : 'dark-gunmetal'),
+        fontSize: customFontSize || 2
+      })
+    } else if (icon)
+      return (
+        <Icon
+          color={icon.color || (disabled ? 'pastel-blue' : 'dark-gunmetal')}
+          fontSize={icon.size || 2}
+          name={icon.name}
+        />
+      )
+  }, [Icon, disabled, icon])
+
+  return (
+    <Space px={2}>
+      <ItemWrapper
+        disabled={disabled}
+        onClick={_selectItem}
+        minHeight='40px'
         width={1}
-        {...style}>
-        {children || label}
-      </Typography>
-    </ItemWrapper>
-  </Space>
-)
+        {...props}>
+        {_renderIcon()}
+        <Space ml={icon || Icon ? 2 : 0}>
+          <Typography
+            as='li'
+            color={color || (disabled ? 'pastel-blue' : 'dark-gunmetal')}
+            fontFamily={fontFamily}
+            fontSize={fontSize}
+            fontWeight={fontWeight}
+            textAlign={textAlign || alignment}
+            variant={textVariant}
+            width={1}
+            {...style}>
+            {children || label}
+          </Typography>
+        </Space>
+      </ItemWrapper>
+    </Space>
+  )
+}
 
 const validAlignment = ['left', 'center', 'right']
 
@@ -258,8 +275,8 @@ MenuList.propTypes = {
     size: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   }),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  isInitialOpen: PropTypes.bool,
   listStyle: PropTypes.object,
-  onSelect: PropTypes.func.isRequired,
   ref: PropTypes.object,
   textAlign: PropTypes.oneOf(validAlignment),
   Trigger: PropTypes.oneOfType([
@@ -284,7 +301,9 @@ ListItem.propTypes = {
     name: PropTypes.string,
     size: PropTypes.string
   }),
-  onSelect: PropTypes.func,
+  Icon: PropTypes.node,
+  onClick: PropTypes.func,
+  showMenu: PropTypes.func,
   style: PropTypes.object,
   textAlign: PropTypes.oneOf(validAlignment),
   textVariant: PropTypes.string,
