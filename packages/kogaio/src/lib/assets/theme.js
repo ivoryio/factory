@@ -149,7 +149,7 @@ function generateSpaces (gridUnit = 4) {
   return Array.from({ length: 100 }, (v, ix) => ix * gridUnit)
 }
 
-export function themeFactory (customTheme = {}) {
+export function buildTheme (customTheme = {}) {
   const newTheme = mergeDeep(kogaioTheme, customTheme)
   const updatedTheme = updateComponentVariantsWith(newTheme)
   return updatedTheme

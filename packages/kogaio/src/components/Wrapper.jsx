@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider } from 'styled-components'
 import Box from '../lib/Responsive/Box'
-import { themeFactory } from '../lib/assets/theme'
+import { buildTheme } from '../lib/assets/theme'
 
 const Wrapper = ({ children }) => (
-  <ThemeProvider theme={themeFactory({})}>
+  <ThemeProvider theme={buildTheme({})}>
     <Container>{children}</Container>
   </ThemeProvider>
 )

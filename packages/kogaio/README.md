@@ -48,12 +48,12 @@ yarn add styled-components @ivoryio/kogaio
 
 #### **Step 1**
 
-> Extend your web application with Kogaio's _themeFactory_ [^1]
+> Extend your web application with Kogaio's _buildTheme_ [^1]
 
 ```JSX
     import React from 'react'
     import { ThemeProvider } from 'styled-components'
-    import { themeFactory } from '@ivoryio/kogaio'
+    import { buildTheme } from '@ivoryio/kogaio'
     import App from 'path/to/App'
 
     const myCustomTheme = {
@@ -73,7 +73,7 @@ yarn add styled-components @ivoryio/kogaio
     }
 
     const MyApp = ({ children }) => (
-      <ThemeProvider theme={themeFactory(myCustomTheme)}>
+      <ThemeProvider theme={buildTheme(myCustomTheme)}>
         <App>{children}</App>
       </ThemeProvider>
     )
@@ -81,9 +81,9 @@ yarn add styled-components @ivoryio/kogaio
 
 **NOTE**
 
-> Kogaio's fallback theme kicks in when no parameters are passed to `themeFactory()`.
+> Kogaio's fallback theme kicks in when no parameters are passed to `buildTheme()`.
 
-[^1] _<span style="font-size: 14px;">`themeFactory` merges your custom theme with Kogaio's built-in theme.</span>_
+[^1] _<span style="font-size: 14px;">`buildTheme` merges your custom theme with Kogaio's built-in theme.</span>_
 
 #### **Step 2**
 
