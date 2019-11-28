@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import {
+  border,
   color,
   compose,
   layout,
@@ -26,10 +27,11 @@ const StyledIcon = styled.i`
   pointer-events: ${({ pointerEvents }) => pointerEvents};
   user-select: none;
   ${themed('Icon')}
-  ${compose(color, layout, position, space, typography)}
+  ${compose(border, color, layout, position, space, typography)}
 `
 
 Icon.propTypes = {
+  ...propTypes.border,
   ...propTypes.color,
   ...propTypes.layout,
   ...propTypes.position,
