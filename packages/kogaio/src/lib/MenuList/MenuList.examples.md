@@ -2,7 +2,6 @@
 
 ```js
 import { Box, Flex, Space } from '@ivoryio/kogaio/Responsive'
-import Icon from '@ivoryio/kogaio/Icon'
 const MenuListExample = () => {
   const listItems = [
     {
