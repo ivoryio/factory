@@ -18,7 +18,7 @@
     "url": "git+https://github.com/ivoryio/factory/tree/master/packages/mercury"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.0",
+    "@babel/cli": "^7.7.4",
     "@ivoryio/kogaio": "^0.7.69",
     "react": "^16.11.0",
     "react-docgen-external-proptypes-handler": "^2.0.0",

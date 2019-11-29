@@ -11,9 +11,9 @@ const Modal = ({ visible, withPortal, ...props }) => {
   if (!visible) return null
   else
     return withPortal ? (
-      <ModalWithPortal {...props} />
+      <ModalWithPortal visible={visible} {...props} />
     ) : (
-      <ModalBody {...props} />
+      <ModalBody visible={visible} {...props} />
     )
 }
 
@@ -28,7 +28,6 @@ const ModalBody = forwardRef(
       colors,
       id,
       onBackdropClick: handleBackdropClick,
-      noScroll,
       overlayStyle,
       position,
       visible,
@@ -46,6 +45,7 @@ const ModalBody = forwardRef(
       function _handleBackdropClick (ev) {
         const elRef = ref || modalRef
         const clickOutside = ev.target === elRef.current
+
         if (visible && clickOutside)
           return handleBackdropClick
             ? handleBackdropClick()
@@ -91,16 +91,19 @@ const fadeIn = keyframes`
   }
 `
 
-const overlayAnimation = css`
-  animation: ${fadeIn} 330ms ease-in-out;
-`
+const overlayAnimation = ({ animated }) =>
+  animated &&
+  css`
+    animation: ${fadeIn} 330ms ease-in-out;
+  `
+
 const Overlay = styled(Flex)`
   background-color: ${({ backdropColor }) =>
     themeGet(`colors.${backdropColor}`, backdropColor)};
   display: flex;
-  position: ${({ position }) => (position ? position : 'fixed')};
+  position: ${({ position }) => position};
 
-  ${({ animated }) => (animated ? overlayAnimation : null)}
+  ${overlayAnimation}
   ${themed('Modal.overlay')}
 `
 
@@ -125,7 +128,6 @@ ModalBody.propTypes = {
   children: PropTypes.node,
   colors: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  noScroll: PropTypes.bool,
   onBackdropClick: PropTypes.func,
   overlayStyle: PropTypes.object,
   position: PropTypes.string,
@@ -141,6 +143,7 @@ Modal.defaultProps = {
 ModalBody.defaultProps = {
   animated: false,
   backdropColor: 'modal-backdrop',
+  position: 'fixed',
   visible: false,
   zIndex: 2019
 }

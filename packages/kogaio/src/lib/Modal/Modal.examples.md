@@ -11,7 +11,13 @@ const ModalExample = () => {
   return (
     <>
       <Button title='Show modal' onClick={toggleModal} variant='outline' />
-      <Modal onBackdropClick={hideModal} id='example1' visible={isModalShown} withPortal>
+      <Modal
+        animated
+        onBackdropClick={hideModal}
+        id='example1'
+        noScroll
+        visible={isModalShown}
+        withPortal>
         <Space px={4} py={6}>
           <Box bg='white' textAlign='center'>
             <Typography variant='h4'>
