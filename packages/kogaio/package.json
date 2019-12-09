@@ -1,6 +1,6 @@
 {
   "name": "@ivoryio/kogaio",
-  "version": "0.7.86",
+  "version": "0.7.87",
   "author": "MihaiRo <mihai.rosca@thinslices.com>",
   "description": "Component library",
   "main": "build/index.js",
@@ -23,7 +23,7 @@
     "build:lib": "NODE_ENV=production && rm -rf build && npx babel src/lib --out-dir build --ignore \"**/*.test.js,**/*.examples.md\" && cp package.json README.md build",
     "publish:lib": "yarn build:lib && cd build && yarn publish --access public",
     "build:styleg": "rm -rf build && npx styleguidist build --config src/config/styleguide.config.js",
-    "publish:styleg": "yarn build:styleg && aws s3 sync ./build s3://kogaio.ivory.io --profile ivory",
+    "publish:styleg": "yarn build:styleg && aws s3 sync ./build s3://kogaio.ivory.io",
     "lint": "eslint '**/*.{js,jsx}'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
