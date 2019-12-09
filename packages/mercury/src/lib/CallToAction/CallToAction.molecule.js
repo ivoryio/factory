@@ -66,9 +66,7 @@ const Container = styled(Flex)`
   justify-content: center;
   width: 100%;
   z-index: 0;
-  ${addBackgroundImage}
-
-  ::after {
+  ${addBackgroundImage} ::after {
     content: '';
     height: 100%;
     left: 0;

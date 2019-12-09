@@ -102,10 +102,9 @@ const Center = ({
 )
 
 const Right = ({ color, DismissIcon, fontSize, onDismiss, ...props }) => {
-  const externalProps = useMemo(
-    () => DismissIcon && { ...DismissIcon.props },
-    [DismissIcon]
-  )
+  const externalProps = useMemo(() => DismissIcon && { ...DismissIcon.props }, [
+    DismissIcon
+  ])
   const StyledDismiss = cloneElement(DismissIcon, {
     ...externalProps,
     color

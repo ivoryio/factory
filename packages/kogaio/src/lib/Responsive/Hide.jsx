@@ -25,9 +25,9 @@ const hidden = key => ({ theme: { breakpoints }, rule, ...props }) => {
     : { display: 'none' }
   return props[key]
     ? {
-      [bps[key]]: {
-        ...hideRule
-      }
+        [bps[key]]: {
+          ...hideRule
+        }
     }
     : null
 }

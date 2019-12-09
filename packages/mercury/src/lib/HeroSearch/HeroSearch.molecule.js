@@ -34,8 +34,7 @@ const HeroSearch = ({
       justifyContent='center'
       position='relative'
       width={1}
-      {...props}
-    >
+      {...props}>
       <Container backgroundImage={backgroundImage} theme={theme}>
         <Space px={8}>
           <Box width={1}>
@@ -44,8 +43,7 @@ const HeroSearch = ({
               fontSize={{ xs: '1.625em', md: '2em' }}
               fontWeight={0}
               textAlign='center'
-              variant='h2'
-            >
+              variant='h2'>
               {title}
             </Typography>
           </Box>
@@ -57,8 +55,7 @@ const HeroSearch = ({
                 color='white'
                 fontWeight={0}
                 textAlign='center'
-                variant='h3'
-              >
+                variant='h3'>
                 {subtitle}
               </Typography>
             </Box>
@@ -66,8 +63,7 @@ const HeroSearch = ({
               <Flex
                 flexWrap='wrap'
                 width={{ xs: 1, md: 1, lg: 3 / 4 }}
-                maxWidth='760px'
-              >
+                maxWidth='760px'>
                 <Space px={1}>
                   <Box width={{ xs: 1, md: 2 / 3 }}>
                     <Input

@@ -8,7 +8,8 @@ export function mergeDeep (target, ...sources) {
   const source = sources.shift()
 
   if (isObject(target) && isObject(source)) {
-    for (let key in source) { // eslint-disable-line no-unused-vars
+    for (let key in source) {
+      // eslint-disable-line no-unused-vars
       if (isObject(source[key])) {
         if (!target[key]) Object.assign(target, { [key]: {} })
         mergeDeep(target[key], source[key])
