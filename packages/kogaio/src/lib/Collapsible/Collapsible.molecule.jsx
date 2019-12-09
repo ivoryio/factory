@@ -17,6 +17,7 @@ const Collapsible = ({
   icon,
   fontSize,
   initialExpanded,
+  maxHeight,
   title,
   Trigger,
   triggerEffect,
@@ -56,7 +57,10 @@ const Collapsible = ({
         position='relative'
         visibility={isOpen ? 'visible' : 'hidden'}
         width={1}>
-        <Content duration={animationDuration} isOpen={isOpen}>
+        <Content
+          duration={animationDuration}
+          isOpen={isOpen}
+          maxHeight={maxHeight}>
           {children}
         </Content>
       </Box>
@@ -72,14 +76,14 @@ const ToggleIcon = styled(Icon)`
   ${rotate}
 `
 
-const contentStyle = ({ duration, isOpen }) =>
+const contentStyle = ({ duration, isOpen, maxHeight }) =>
   !isOpen
     ? css`
         max-height: 0;
         transition: max-height ${duration}ms cubic-bezier(0, 0.6, 0.6, 1);
       `
     : css`
-        max-height: ${window.innerHeight}px;
+        max-height: ${maxHeight};
         transition: max-height ${duration}ms ease-in;
       `
 
@@ -102,6 +106,11 @@ Collapsible.propTypes = {
   fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   icon: PropTypes.object,
   initialExpanded: PropTypes.bool,
+  maxHeight: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string
+  ]),
   title: PropTypes.string,
   Trigger: PropTypes.func,
   triggerEffect: PropTypes.oneOf(effects),
@@ -116,6 +125,7 @@ Collapsible.defaultProps = {
     size: 4
   },
   initialExpanded: false,
+  maxHeight: `${window.innerHeight}px`,
   title: 'Collapsible',
   triggerEffect: 'opacity'
 }
