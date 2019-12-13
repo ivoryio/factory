@@ -8,7 +8,7 @@ const Hide = ({ children, rule, ...rest }) => (
   </HiddenOnScreen>
 )
 
-const getMediaQueries = ({ xs, sm, md, lg, xlg }) => ({
+const getMediaQueries = ({ sm, md, lg, xlg }) => ({
   xs: `@media only screen and (max-width: ${maxWidth(sm)})`,
   sm: `@media only screen and (min-width: ${sm}) and (max-width: ${maxWidth(md)})`,
   md: `@media only screen and (min-width: ${md}) and (max-width: ${maxWidth(lg)})`,

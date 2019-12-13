@@ -18,10 +18,6 @@
     "type": "git",
     "url": "https://github.com/ivoryio/factory.git"
   },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
-  },
   "devDependencies": {
     "@babel/cli": "^7.7.5",
     "@ivoryio/kogaio": "^0.7.88",
