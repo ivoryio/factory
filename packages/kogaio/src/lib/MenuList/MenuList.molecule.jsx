@@ -233,7 +233,7 @@ const ListWrapper = styled(Flex)`
   position: absolute;
   top: 100%;
   /* stylelint-disable */
-  ${alignList}
+  ${alignList};
   /* stylelint-enable */
 
   :after {
@@ -244,15 +244,15 @@ const ListWrapper = styled(Flex)`
     position: absolute;
     top: -${({ arrowSize }) => arrowSize / 2}px;
     transform: rotate(-45deg);
-    ${alignArrow}
-    ${arrowSize}
+    ${alignArrow};
+    ${arrowSize};
   }
 
   & > :nth-child(n + 2) {
     border-top: ${themeGet('borders.1')} ${themeGet('colors.azure-white')};
   }
 
-  ${themed('MenuList')}
+  ${themed('MenuList')};
 `
 
 const ItemWrapper = styled(Touchable)`
@@ -266,7 +266,7 @@ const ItemWrapper = styled(Touchable)`
       !disabled && themeGet('colors.white-smoke')};
   }
 
-  ${themed('MenuList.Item')}
+  ${themed('MenuList.Item')};
 `
 
 MenuList.propTypes = {

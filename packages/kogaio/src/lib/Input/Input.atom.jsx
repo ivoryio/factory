@@ -182,30 +182,32 @@ const Input = forwardRef(
   }
 )
 
-const readOnlyStyle = css`
-  background-color: transparent;
-  border: ${themeGet('borders.1')} transparent;
-  box-shadow: none;
-  :focus,
-  :hover {
+const readOnlyStyle = ({ readOnly }) =>
+  readOnly &&
+  css`
+    background-color: transparent;
     border: ${themeGet('borders.1')} transparent;
-  }
-  padding-left: 0;
-`
+    box-shadow: none;
+    :focus,
+    :hover {
+      border: ${themeGet('borders.1')} transparent;
+    }
+    padding-left: 0;
+  `
 
 const InputContainer = styled(Flex)`
-  ${themed('Input.container')}
+  ${themed('Input.container')};
 `
 
 const InputLabel = styled(Typography)`
-  ${themed('Input.label')}
+  ${themed('Input.label')};
 `
 
 const Row = styled(Flex)`
   align-items: center;
   position: relative;
   width: 100%;
-  ${themed('Input.wrapper')}
+  ${themed('Input.wrapper')};
 `
 
 const addSpaceAroundInputArea = ({ hasIcLeft, hasIcRight, type }) => css`
@@ -218,7 +220,7 @@ const addSpaceAroundInputArea = ({ hasIcLeft, hasIcRight, type }) => css`
 `
 
 const InputComponent = styled.input`
-  ${addSpaceAroundInputArea}
+  ${addSpaceAroundInputArea};
   border-radius: ${themeGet('radii.1', 1)}px;
   box-sizing: border-box;
   color: ${themeGet('colors.gunmetal', '#243143')};
@@ -226,19 +228,19 @@ const InputComponent = styled.input`
   font-size: ${themeGet('fontSizes.1', '0.875rem')};
   outline: none;
   width: 100%;
-  
+
   ::placeholder {
-      color: ${themeGet('colors.pastel-blue')};
-    }
+    color: ${themeGet('colors.pastel-blue')};
+  }
 
   :focus {
-    ~ .input-right  i,
+    ~ .input-right i,
     ~ .input-custom-icon {
       color: ${themeGet('colors.gunmetal')};
     }
   }
-  
-  ${themed('Input')}
+
+  ${themed('Input')};
   ${compose(
     border,
     color,
@@ -248,8 +250,8 @@ const InputComponent = styled.input`
     position,
     shadow,
     typography
-  )}
-  ${({ readOnly }) => (readOnly ? readOnlyStyle : null)}
+  )};
+  ${readOnlyStyle};
 `
 
 const Dummy = styled.div`

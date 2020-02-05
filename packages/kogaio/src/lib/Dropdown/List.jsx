@@ -135,10 +135,10 @@ const Container = styled(Flex)`
   list-style-type: none;
   z-index: 2;
 
-  ${calcSize}
-  ${responsiveListStyle}
-  ${dropdownStyle}
-  ${themed('Dropdown.list')}
+  ${calcSize};
+  ${responsiveListStyle};
+  ${dropdownStyle};
+  ${themed('Dropdown.list')};
 `
 
 List.propTypes = {

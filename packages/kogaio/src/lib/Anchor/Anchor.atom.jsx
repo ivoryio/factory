@@ -53,8 +53,8 @@ const AnchorComponent = styled(Typography)`
     shadow,
     space,
     typography
-  )}
-  ${themed('Anchor')}
+  )};
+  ${themed('Anchor')};
 `
 
 Anchor.propTypes = {

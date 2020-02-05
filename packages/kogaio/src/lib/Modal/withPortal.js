@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { randomiser } from '../utils'
 
-export const withPortal = Component => ({ id, visible, ...props }) => {
-  const [newModal] = useState(document.createElement('div'))
+export const withPortal = Component => ({
+  container,
+  id,
+  visible,
+  ...props
+}) => {
+  const [newModal] = useState(container || document.createElement('div'))
 
   useEffect(() => {
     const existingRoot = document.getElementById('modal-root')

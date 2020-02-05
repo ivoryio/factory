@@ -23,7 +23,7 @@ import { Box, Flex, Space } from '@ivoryio/kogaio/Responsive'
   <Flex justifyContent='center' width={1}>
     <Space mt={2} mx={2}>
       <Chip
-        Avatar={<Image src='http://i.imgur.com/CPHV1Uw.jpg' />}
+        Avatar={<Image src='https://www.w3schools.com/howto/img_avatar2.png' />}
         label='Dismissable chip'
         onDismiss={() => alert('You pressed dismiss!')}
         color='white'
@@ -35,7 +35,7 @@ import { Box, Flex, Space } from '@ivoryio/kogaio/Responsive'
         color='white'
       />
       <Chip
-        Avatar={<Image src='http://i.imgur.com/CPHV1Uw.jpg' />}
+        Avatar={<Image src='https://www.w3schools.com/howto/img_avatar2.png' />}
         label='Rounded chip'
         onClick={() => alert('You pushed the chip!')}
         onDismiss={() => alert('You pressed dismiss!')}

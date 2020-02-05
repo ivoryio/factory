@@ -108,10 +108,10 @@ const Wrapper = styled(Box)`
     display: flex;
   }
 
-  ${themed('Checkbox.container')}
-  ${checkboxPosition}
+  ${themed('Checkbox.container')};
+  ${checkboxPosition};
   /* stylelint-disable */
-  ${checkboxStyle}
+  ${checkboxStyle};
   /* stylelint-enable */
 `
 
@@ -120,9 +120,9 @@ const Label = styled.label`
   user-select: none;
   pointer-events: auto;
 
-  ${compose(color, typography)}
-  ${themed('Checkbox.label')}
-  ${checkboxStyle}
+  ${compose(color, typography)};
+  ${themed('Checkbox.label')};
+  ${checkboxStyle};
 `
 
 const cursor = css`
@@ -134,7 +134,7 @@ const Input = styled.input`
   margin: 0;
   width: 100%;
   height: 100%;
-  ${cursor}
+  ${cursor};
 `
 
 const Placeholder = styled.span`
@@ -143,11 +143,11 @@ const Placeholder = styled.span`
   justify-content: center;
   pointer-events: none;
 
-  ${themed('Checkbox')}
+  ${themed('Checkbox')};
   /* stylelint-disable */
-  ${color}
-  ${checkboxSize}
-  ${checkboxStyle}
+  ${color};
+  ${checkboxSize};
+  ${checkboxStyle};
   /* stylelint-enable */
 
   :after {
