@@ -19,13 +19,13 @@
     "url": "https://github.com/ivoryio/factory.git"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.5",
+    "@babel/cli": "^7.8.4",
     "@ivoryio/kogaio": "^0.7.88",
     "react": "^16.11.0",
     "react-docgen-external-proptypes-handler": "^2.0.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "^3.3.0",
-    "react-styleguidist": "^10.3.2"
+    "react-scripts": "^3.3.1",
+    "react-styleguidist": "^10.6.1"
   },
   "peerDependencies": {
     "@ivoryio/kogaio": "^0.6.7",
