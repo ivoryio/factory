@@ -20,12 +20,20 @@ const typographyStyle = variant({
 })
 
 const handleTruncate = ({ truncate }) =>
-  truncate &&
-  css`
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  `
+  typeof truncate === 'boolean'
+    ? css`
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      `
+    : css`
+        overflow: hidden;
+        /* stylelint-disable */
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: ${Number(truncate)};
+        /* stylelint-enable */
+      `
 
 const Typography = styled.div`
   color: ${themeGet('colors.dark-gunmetal', '#1b202f')};
@@ -33,11 +41,11 @@ const Typography = styled.div`
   font-style: normal;
   font-stretch: normal;
   letter-spacing: normal;
-  ${handleTruncate}
+  ${handleTruncate};
 
-  ${themed('Typography')}
-  ${compose(color, colorStyle, layout, space, textStyle, typography, variant)}
-  ${typographyStyle}
+  ${themed('Typography')};
+  ${compose(color, colorStyle, layout, space, textStyle, typography, variant)};
+  ${typographyStyle};
 `
 
 Typography.propTypes = {
