@@ -133,9 +133,9 @@ const Wrapper = styled.button`
     transform: scale(0.985);
   }
 
-  ${themed('Touchable')}
-  ${compose(border, color, flexbox, layout, position, space, typography)}
-  ${touchableWithEffect}
+  ${themed('Touchable')};
+  ${compose(border, color, flexbox, layout, position, space, typography)};
+  ${touchableWithEffect};
 `
 
 export const effects = ['opacity', 'highlight', 'no-feedback']

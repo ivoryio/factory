@@ -103,8 +103,8 @@ const Overlay = styled(Flex)`
   display: flex;
   position: ${({ position }) => position};
 
-  ${overlayAnimation}
-  ${themed('Modal.overlay')}
+  ${overlayAnimation};
+  ${themed('Modal.overlay')};
 `
 
 Modal.propTypes = {

@@ -46,7 +46,7 @@ const Bar = styled(Box)`
   text-align: center;
   width: 0;
 
-  ${loopColours}
+  ${loopColours};
 `
 
 LoadBar.propTypes = {

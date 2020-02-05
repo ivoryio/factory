@@ -35,7 +35,7 @@ const spinnerSize = ({ size }) => {
 const Spinner = styled.div`
   font-size: 10px;
   text-indent: -9999em;
-  ${spinnerSize}
+  ${spinnerSize};
   border-radius: 50%;
   background: ${primaryColour};
   /* stylelint-disable */

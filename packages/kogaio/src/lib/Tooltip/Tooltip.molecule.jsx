@@ -147,15 +147,15 @@ const Container = styled(Flex)`
     content: '';
     display: block;
     position: absolute;
-    ${arrowStyle}
+    ${arrowStyle};
 
     transform: rotate(-45deg);
-    ${themed('Tooltip.arrow')}
+    ${themed('Tooltip.arrow')};
   }
 
-  ${tooltipStyle}
-  ${themed('Tooltip')}
-  ${compose(border, color, layout, position, space, variant, shadow)}
+  ${tooltipStyle};
+  ${themed('Tooltip')};
+  ${compose(border, color, layout, position, space, variant, shadow)};
 `
 
 Tooltip.propTypes = {
