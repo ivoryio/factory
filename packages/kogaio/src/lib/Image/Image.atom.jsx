@@ -7,8 +7,8 @@ import { themed } from '../utils'
 
 const Image = styled.img`
   object-fit: ${({ objectFit }) => objectFit};
-  ${themed('Image')}
-  ${compose(border, layout, position, space)}
+  ${themed('Image')};
+  ${compose(border, layout, position, space)};
 `
 
 Image.propTypes = {

@@ -26,8 +26,8 @@ const Icon = ({ className, name, pointerEvents, tabIndex, ...rest }) => (
 const StyledIcon = styled.i`
   pointer-events: ${({ pointerEvents }) => pointerEvents};
   user-select: none;
-  ${themed('Icon')}
-  ${compose(border, color, layout, position, space, typography)}
+  ${themed('Icon')};
+  ${compose(border, color, layout, position, space, typography)};
 `
 
 Icon.propTypes = {

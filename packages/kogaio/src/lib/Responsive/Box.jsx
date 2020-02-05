@@ -18,7 +18,7 @@ import { pointerEvents, visibility } from '../utils/customProps'
 
 const Box = styled.div`
   box-sizing: border-box;
-  ${themed('Box')}
+  ${themed('Box')};
 
   ${compose(
     background,
@@ -32,7 +32,7 @@ const Box = styled.div`
     space,
     typography,
     visibility
-  )}
+  )};
 `
 
 Box.propTypes = {

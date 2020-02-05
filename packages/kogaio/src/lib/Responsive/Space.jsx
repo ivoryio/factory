@@ -21,7 +21,7 @@ const StyledChildren = ({ children, className, ...rest }) => {
 }
 
 const Space = styled(StyledChildren)`
-  ${space}
+  ${space};
 `
 StyledChildren.propTypes = {
   ...space.propTypes,

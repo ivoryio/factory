@@ -163,20 +163,22 @@ const Dropdown = ({
 }
 
 const Label = styled(Typography)`
-  ${themed('Dropdown.label')}
+  ${themed('Dropdown.label')};
 `
 
-const readOnlyStyle = css`
-  background-color: transparent;
-  border: ${themeGet('borders.1')} transparent;
-
-  &.dropdown-selected,
-  &.dropdown-selected:hover {
+const readOnlyStyle = ({ readOnly }) =>
+  readOnly &&
+  css`
     background-color: transparent;
     border: ${themeGet('borders.1')} transparent;
-    cursor: initial;
-  }
-`
+
+    &.dropdown-selected,
+    &.dropdown-selected:hover {
+      background-color: transparent;
+      border: ${themeGet('borders.1')} transparent;
+      cursor: initial;
+    }
+  `
 const SelectedItem = styled(DropdownItem)`
   background-color: ${themeGet('colors.white')};
   z-index: 3;
@@ -185,17 +187,16 @@ const SelectedItem = styled(DropdownItem)`
     color: ${themeGet('colors.manatee')};
   }
 
-  ${dropdownStyle}
-  ${({ readOnly }) => (readOnly ? readOnlyStyle : null)}
+  ${dropdownStyle};
+  ${readOnlyStyle};
 `
-const rotate = css`
-  ${({ isOpen }) =>
-    `transition: transform 330ms ease;
-      transform: rotate(${!isOpen ? '0deg' : '180deg'})`}
+const rotate = ({ isOpen }) => css`
+  transition: transform 330ms ease;
+  transform: rotate(${!isOpen ? '0deg' : '180deg'});
 `
 const DropdownChevron = styled(Icon)`
-  ${rotate}
-  ${themed('Dropdown.chevron')}
+  ${rotate};
+  ${themed('Dropdown.chevron')};
 `
 
 const Dummy = styled.div`

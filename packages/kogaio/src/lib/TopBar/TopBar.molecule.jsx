@@ -5,7 +5,7 @@ import { Flex } from '../Responsive'
 
 const TopBar = styled(Flex)`
   width: 100%;
-  ${themed('TopBar')}
+  ${themed('TopBar')};
 `
 
 TopBar.defaultProps = {

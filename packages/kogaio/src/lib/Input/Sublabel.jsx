@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   height: 12px;
   justify-content: flex-end;
   width: 100%;
-  ${themed('Input.sublabel')}
+  ${themed('Input.sublabel')};
 `
 
 Sublabel.propTypes = {

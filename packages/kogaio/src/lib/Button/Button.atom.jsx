@@ -108,7 +108,7 @@ const defaultFontStyle = css`
   line-height: ${themeGet('lineHeights.button', 2)};
 `
 const ButtonComponent = styled.button`
-  ${defaultFontStyle}
+  ${defaultFontStyle};
   align-items: center;
   border: none;
   border-radius: ${themeGet('radii.1')}px;
@@ -133,7 +133,7 @@ const ButtonComponent = styled.button`
     outline-color: transparent;
   }
 
-  ${themed('Button')}
+  ${themed('Button')};
   ${compose(
     border,
     shadow,
@@ -145,7 +145,7 @@ const ButtonComponent = styled.button`
     position,
     space,
     typography
-  )}
+  )};
 `
 
 Button.propTypes = {
