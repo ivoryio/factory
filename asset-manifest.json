@@ -1,0 +1,15 @@
+{
+  "files": {
+    "build/0.26f61c14.js": "/build/0.26f61c14.js",
+    "main.js": "/build/main.24454706.js",
+    "runtime-main.js": "/build/bundle.105de5e2.js",
+    "favicon.ico": "/favicon.ico",
+    "index.html": "/index.html",
+    "manifest.json": "/manifest.json"
+  },
+  "entrypoints": [
+    "build/bundle.105de5e2.js",
+    "build/0.26f61c14.js",
+    "build/main.24454706.js"
+  ]
+}
