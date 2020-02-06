@@ -9,7 +9,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://kogaio.ivory.io/",
+  "homepage": "https://ivoryio.github.io/factory/",
   "repository": {
     "type": "git",
     "url": "https://github.com/ivoryio/factory.git"
@@ -23,7 +23,7 @@
     "build:lib": "NODE_ENV=production && rm -rf build && npx babel src/lib --out-dir build --ignore \"**/*.test.js,**/*.examples.md\" && cp package.json README.md build",
     "publish:lib": "yarn build:lib && cd build && yarn publish --access public",
     "build:styleg": "rm -rf build && npx styleguidist build --config src/config/styleguide.config.js",
-    "publish:styleg": "yarn build:styleg && aws s3 sync ./build s3://kogaio.ivory.io",
+    "publish:styleg": "yarn build:styleg && gh-pages -d ./build",
     "lint": "eslint '**/*.{js,jsx}'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -31,6 +31,7 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "babel-plugin-styled-components": "^1.10.7",
+    "gh-pages": "^2.2.0",
     "react": "^16.12.0",
     "react-docgen-external-proptypes-handler": "^2.0.0",
     "react-dom": "^16.12.0",

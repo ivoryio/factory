@@ -9,7 +9,7 @@ designed and tailored to fit the needs of
 Its primary concern is to expose for usage a set of primitive UI components,
 as well as to offer an opinionated solution for building and styling responsive web applications.
 
-[1]: https://ivoryio.github.io/factory/#introduction 'Kogaio'
+[1]: https://ivoryio.github.io/factory 'Kogaio'
 [2]: https://www.ivory.io/ 'Ivory.io'
 
 ## Documentation
