@@ -1,9 +1,8 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { effects } from '../Touchable/Touchable.atom'
-
 import Icon from '../Icon'
 import Touchable from '../Touchable'
 import Typography from '../Typography'
@@ -23,30 +22,14 @@ const Collapsible = ({
   underlayColor,
   ...rest
 }) => {
-  const [{ isOpen, maxHeight }, setIsOpen] = useState({
-    isOpen: initialExpanded,
-    maxHeight: 0
-  })
   const collapsibleRef = useRef()
-
-  useLayoutEffect(() => {
-    if (collapsibleRef.current && initialExpanded)
-      setIsOpen(prevState => ({
-        ...prevState,
-        maxHeight: collapsibleRef.current.scrollHeight
-      }))
-  }, [initialExpanded])
+  const [isOpen, setIsOpen] = useState(initialExpanded)
+  const maxHeight = useCollapsibleHeight(collapsibleRef, {
+    initialExpanded
+  })
 
   const toggleContainer = () => {
-    setIsOpen(({ isOpen: prevOpen }) => {
-      const content = collapsibleRef.current
-      content.classList.toggle('active')
-
-      return {
-        isOpen: !prevOpen,
-        maxHeight: prevOpen ? 0 : content.scrollHeight
-      }
-    })
+    setIsOpen(prevOpen => !prevOpen)
   }
 
   return (
@@ -92,6 +75,37 @@ const Collapsible = ({
       </Box>
     </Box>
   )
+}
+
+const useCollapsibleHeight = (collapsibleRef, { initialExpanded }) => {
+  const [height, setHeight] = useState(0)
+
+  useEffect(() => {
+    if (collapsibleRef.current && initialExpanded) {
+      setHeight(() => collapsibleRef.current.scrollHeight)
+    }
+  }, [collapsibleRef, initialExpanded])
+
+  const observerConfig = useRef({
+    attributes: true,
+    characterData: true,
+    childlist: true,
+    subtree: true
+  })
+  const observer = useRef(
+    new MutationObserver(mutations => {
+      setHeight(() => mutations[0].target.scrollHeight)
+    })
+  )
+  useEffect(() => {
+    const heightObserver = observer.current
+    heightObserver.observe(collapsibleRef.current, observerConfig.current)
+    return () => {
+      heightObserver.disconnect()
+    }
+  }, [collapsibleRef, observer])
+
+  return height
 }
 
 const rotate = ({ isOpen }) => css`
@@ -140,8 +154,8 @@ Collapsible.propTypes = {
   animationDuration: PropTypes.number,
   children: PropTypes.node.isRequired,
   color: PropTypes.string,
-  /** icon: { name: String, color: String, size: oneOf(String, Number) }*/
   fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** icon: { name: String, color: String, size: oneOf(String, Number) }*/
   icon: PropTypes.object,
   initialExpanded: PropTypes.bool,
   title: PropTypes.string,
