@@ -108,6 +108,7 @@ const Dropdown = ({
             }`}
             error={error}
             readOnly={readOnly}
+            role='selected-option'
             variant={dropdownVariant}>
             <Typography
               className={`dropdown-${selectedValue ? 'text' : 'placeholder'}`}

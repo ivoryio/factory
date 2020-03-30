@@ -66,6 +66,7 @@ const List = ({
       isOpen={isListOpen}
       numOfElements={children.length}
       ref={listRef}
+      role='dropdown-list'
       size={size}
       variant={variant}
       {...props}>
