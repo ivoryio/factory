@@ -7,11 +7,6 @@ import { color, compose, typography, variant } from 'styled-system'
 import { themed, themeGet } from '../utils'
 import { Box, Flex } from '../Responsive'
 
-const checkboxStyle = variant({
-  scale: 'checkboxes',
-  prop: 'variant'
-})
-
 const Checkbox = forwardRef(
   (
     {
@@ -81,6 +76,11 @@ const Checkbox = forwardRef(
     )
   }
 )
+
+const checkboxStyle = variant({
+  scale: 'checkboxes',
+  prop: 'variant'
+})
 
 const checkboxSize = ({ size }) => css`
   width: ${typeof size === 'number' ? `${size}px` : size};
@@ -161,10 +161,11 @@ const Placeholder = styled.span`
   }
 `
 
+const checkboxPositions = ['left', 'right']
 Checkbox.propTypes = {
   ...propTypes.color,
   ...propTypes.typography,
-  checkboxPosition: PropTypes.oneOf(['left', 'right']),
+  checkboxPosition: PropTypes.oneOf(checkboxPositions),
   checked: PropTypes.bool.isRequired,
   color: PropTypes.string,
   disabled: PropTypes.bool,
