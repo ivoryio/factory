@@ -52,7 +52,6 @@ const Bar = styled(Box)`
 LoadBar.propTypes = {
   colors: PropTypes.arrayOf(PropTypes.string)
 }
-
 LoadBar.defaultProps = {
   colors: ['info', 'alert', 'error']
 }

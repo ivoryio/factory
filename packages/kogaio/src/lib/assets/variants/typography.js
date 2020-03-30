@@ -3,8 +3,7 @@ export default function ({
   fonts,
   fontSizes,
   fontWeights,
-  lineHeights,
-  ...theme
+  lineHeights
 }) {
   return {
     h1: {

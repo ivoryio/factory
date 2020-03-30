@@ -41,22 +41,21 @@ const loading = keyframes`
 
 const Bar = styled(Box)`
   :before {
-    display: block;
-    position: absolute;
-    content: '';
-    left: -200px;
-    width: 200px;
-    height: 100%;
     animation: ${loading} 2s linear infinite;
     background-color: ${({ primary }) =>
       themeGet(`colors.${primary}`, primary)};
+    content: '';
+    display: block;
+    height: 100%;
+    left: -200px;
+    position: absolute;
+    width: 200px;
   }
 `
 
 RunningBar.propTypes = {
   colors: PropTypes.object.isRequired
 }
-
 RunningBar.defaultProps = {
   colors: {
     background: 'pale-white',

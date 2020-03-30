@@ -1,4 +1,4 @@
-export default function ({ borders, colors, radii, shadows, ...theme }) {
+export default function ({ borders, colors, radii, shadows }) {
   const defaultStyle = {
     cursor: 'pointer',
     ':hover input ~ span': {
