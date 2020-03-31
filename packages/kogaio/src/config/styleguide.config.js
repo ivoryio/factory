@@ -38,7 +38,7 @@ module.exports = {
   styleguideDir: `${root}/build`,
   skipComponentsWithoutExample: true,
   getExampleFilename (componentPath) {
-    return componentPath.replace(/(\.[a-zA-Z]+)?(.jsx|.js)$/, '.examples.md')
+    return componentPath.replace(/(\.[a-zA-Z]+)?(.jsx|.js)$/, '.examples.mdx')
   },
   getComponentPathLine (componentPath) {
     const name = path.basename(componentPath, '.js')
@@ -102,19 +102,19 @@ module.exports = {
   sections: [
     {
       name: 'Introduction',
-      content: `${root}/docs/introduction.md`
+      content: `${root}/docs/introduction.mdx`
     },
     {
       name: 'Documentation',
-      content: `${root}/docs/documentation.md`,
+      content: `${root}/docs/documentation.mdx`,
       sections: [
         {
           name: 'Installation',
-          content: `${root}/docs/installation.md`
+          content: `${root}/docs/installation.mdx`
         },
         {
           name: 'Configuration',
-          content: `${root}/docs/configuration.md`
+          content: `${root}/docs/configuration.mdx`
         }
       ]
     },
@@ -146,7 +146,7 @@ module.exports = {
       sections: [
         {
           name: 'Theme Schema',
-          content: `${root}/docs/theme.md`
+          content: `${root}/docs/theme.mdx`
         }
       ]
     }
