@@ -39,15 +39,19 @@ const ModalBody = forwardRef(
     const modalRef = useRef()
 
     useEffect(() => {
-      window.addEventListener('click', _handleBackdropClick)
-      return () => window.removeEventListener('click', _handleBackdropClick)
+      const elRef = ref || modalRef
+      window.addEventListener('click', _handleBackdropClick, { passive: true })
+      return () => {
+        window.removeEventListener('click', _handleBackdropClick, {
+          passive: true
+        })
+      }
 
       function _handleBackdropClick (ev) {
-        const elRef = ref || modalRef
-        const clickOutside = ev.target === elRef.current
+        const clickedOutside = ev.target.isSameNode(elRef.current)
 
-        if (visible && clickOutside)
-          return handleBackdropClick
+        if (visible && clickedOutside)
+          return typeof handleBackdropClick === 'function'
             ? handleBackdropClick()
             : console.warn('* Modal expects a handleBackdropClick function')
       }
