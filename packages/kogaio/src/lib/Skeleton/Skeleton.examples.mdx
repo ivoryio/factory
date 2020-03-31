@@ -1,0 +1,23 @@
+```jsx
+import { Flex, Space } from '@ivoryio/kogaio'
+
+const SkeletonExamples = () => {
+  return (
+    <Flex justifyContent='space-around' width={1}>
+      <Space mx={2} mt={1}>
+        <Skeleton height='16px' width={1 / 4} />
+        <Skeleton
+          count={5}
+          Wrapper={items => (
+            <Flex flexDirection='column' width={1 / 4}>
+              {items}
+            </Flex>
+          )}
+        />
+        <Skeleton height={100} round width={100} />
+      </Space>
+    </Flex>
+  )
+}
+;<SkeletonExamples />
+```
