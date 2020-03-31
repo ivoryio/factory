@@ -2,9 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import { effects } from '../Touchable/Touchable.atom'
 import Icon from '../Icon'
-import Touchable from '../Touchable'
+import Touchable, { effects } from '../Touchable'
 import Typography from '../Typography'
 import { Box, Flex, Space } from '../Responsive'
 

@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Icon from '../Icon'
-import Touchable from '../Touchable'
-import { effects } from '../Touchable/Touchable.atom'
+import Touchable, { effects } from '../Touchable'
 
 const IconButton = ({
   alignItems,

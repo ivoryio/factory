@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { ConditionalWrap } from '../utils'
-import { effects } from '../Touchable/Touchable.atom'
 
 import Icon from '../Icon'
-import Touchable from '../Touchable'
+import Touchable, { effects } from '../Touchable'
 import Typography from '../Typography'
 import { Flex, Space } from '../Responsive'
 
