@@ -176,4 +176,5 @@ Collapsible.defaultProps = {
   triggerEffect: 'opacity'
 }
 
+Collapsible.displayName = 'Collapsible'
 export default Collapsible
