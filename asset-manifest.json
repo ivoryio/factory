@@ -1,15 +1,15 @@
 {
   "files": {
-    "build/0.26f61c14.js": "/build/0.26f61c14.js",
-    "main.js": "/build/main.3d5ac08b.js",
-    "runtime-main.js": "/build/bundle.105de5e2.js",
-    "favicon.ico": "/favicon.ico",
-    "index.html": "/index.html",
-    "manifest.json": "/manifest.json"
+    "build/0.02995e1f.js": "/factory/build/0.02995e1f.js",
+    "main.js": "/factory/build/main.d63551f5.js",
+    "runtime-main.js": "/factory/build/bundle.105de5e2.js",
+    "favicon.ico": "/factory/favicon.ico",
+    "index.html": "/factory/index.html",
+    "manifest.json": "/factory/manifest.json"
   },
   "entrypoints": [
     "build/bundle.105de5e2.js",
-    "build/0.26f61c14.js",
-    "build/main.3d5ac08b.js"
+    "build/0.02995e1f.js",
+    "build/main.d63551f5.js"
   ]
 }
