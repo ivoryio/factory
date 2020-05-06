@@ -1,4 +1,4 @@
-export default function ({ colors, shadows, ...theme }) {
+export default function ({ colors, shadows }) {
   return {
     white: {
       'box-shadow': shadows['card-simple'],

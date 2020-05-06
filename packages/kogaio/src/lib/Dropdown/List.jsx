@@ -37,9 +37,12 @@ const List = ({
   const listRef = useRef()
 
   useEffect(() => {
-    window.addEventListener('click', _handleBackdropClick)
-    return () => window.removeEventListener('click', _handleBackdropClick)
-
+    window.addEventListener('click', _handleBackdropClick, { passive: true })
+    return () => {
+      window.removeEventListener('click', _handleBackdropClick, {
+        passive: true
+      })
+    }
     function _handleBackdropClick (ev) {
       if (listRef && listRef.current && isListOpen) {
         const isClickOutside = !listRef.current.contains(ev.target)
@@ -66,6 +69,7 @@ const List = ({
       isOpen={isListOpen}
       numOfElements={children.length}
       ref={listRef}
+      role='dropdown-list'
       size={size}
       variant={variant}
       {...props}>
@@ -153,7 +157,10 @@ List.propTypes = {
   setListOpen: PropTypes.func,
   size: PropTypes.number,
   value: PropTypes.string,
-  variant: PropTypes.string
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string)
+  ])
 }
 
 export default List

@@ -1,4 +1,4 @@
-export default function ({ borders, colors, shadows, ...theme }) {
+export default function ({ borders, colors, shadows }) {
   return {
     default: {
       'background-color': colors.white,

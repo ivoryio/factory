@@ -25,6 +25,7 @@ const Option = ({
       as='li'
       className={`${isSelected ? `selected${' '}` : ''}dropdown-item`}
       isSelected={isSelected}
+      role='dropdown-option'
       {...props}>
       <Space m={0} px={2}>
         <Touchable

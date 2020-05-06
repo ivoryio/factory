@@ -171,7 +171,10 @@ Button.propTypes = {
   spinnerSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   title: PropTypes.string,
   type: PropTypes.string,
-  variant: PropTypes.string
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string)
+  ])
 }
 
 Button.defaultProps = {
@@ -184,7 +187,10 @@ Button.defaultProps = {
 
 ButtonIcon.propTypes = {
   icon: PropTypes.object,
-  variant: PropTypes.string
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string)
+  ])
 }
 
 Button.displayName = 'Button'

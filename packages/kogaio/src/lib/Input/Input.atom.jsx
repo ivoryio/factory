@@ -297,7 +297,10 @@ Input.propTypes = {
     PropTypes.number,
     PropTypes.object
   ]),
-  variant: PropTypes.string
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string)
+  ])
 }
 
 Input.defaultProps = {

@@ -38,8 +38,14 @@ const MenuList = forwardRef(
     const [isMenuShown, showMenu, toggleMenu] = useBoolean(isInitialOpen)
 
     useEffect(() => {
-      window.addEventListener('click', _handleDocumentBodyClick)
-      return () => window.removeEventListener('click', _handleDocumentBodyClick)
+      window.addEventListener('click', _handleDocumentBodyClick, {
+        passive: true
+      })
+      return () => {
+        window.removeEventListener('click', _handleDocumentBodyClick, {
+          passive: true
+        })
+      }
 
       function _handleDocumentBodyClick (ev) {
         const elRef = ref || menulistRef

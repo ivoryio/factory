@@ -19,8 +19,9 @@ const typographyStyle = variant({
   prop: 'variant'
 })
 
-const handleTruncate = ({ truncate }) =>
-  typeof truncate === 'boolean'
+const handleTruncate = ({ truncate }) => {
+  if (truncate == null) return null
+  return typeof truncate === 'boolean'
     ? css`
         overflow: hidden;
         text-overflow: ellipsis;
@@ -31,9 +32,10 @@ const handleTruncate = ({ truncate }) =>
         /* stylelint-disable */
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: ${Number(truncate)};
+        -webkit-line-clamp: ${parseInt(truncate, 10)};
         /* stylelint-enable */
       `
+}
 
 const Typography = styled.div`
   color: ${themeGet('colors.dark-gunmetal', '#1b202f')};
@@ -59,7 +61,10 @@ Typography.propTypes = {
   children: PropTypes.node,
   fontFamily: PropTypes.string,
   truncate: PropTypes.bool,
-  variant: PropTypes.string
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string)
+  ])
 }
 
 Typography.defaultProps = {

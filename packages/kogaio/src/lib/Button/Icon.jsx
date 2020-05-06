@@ -18,7 +18,10 @@ const ButtonIcon = ({ icon: { color, name, size }, variant }) => {
 
 ButtonIcon.propTypes = {
   icon: PropTypes.object,
-  variant: PropTypes.string
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string)
+  ])
 }
 
 export default ButtonIcon

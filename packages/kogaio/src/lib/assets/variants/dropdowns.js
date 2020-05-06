@@ -1,4 +1,4 @@
-export default function ({ borders, colors, radii, shadows, ...theme }) {
+export default function ({ borders, colors, radii, shadows }) {
   const defaultStyle = {
     'background-color': colors.white,
     border: `${borders[1]} ${colors['azure-white']}`,

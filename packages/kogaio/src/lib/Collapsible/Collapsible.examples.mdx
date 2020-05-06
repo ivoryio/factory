@@ -1,0 +1,29 @@
+```jsx
+import { useState } from 'react'
+import Button from '@ivoryio/kogaio/Button'
+import MenuList from '@ivoryio/kogaio/MenuList'
+import Typography from '@ivoryio/kogaio/Typography'
+
+const initialText =
+  'This is the collapsible content. It can be any element or React component you like.'
+
+const CollapsibleExample = () => {
+  const [text, setText] = useState(initialText)
+  return (
+    <Collapsible
+      bg='transparent'
+      color='gunmetal'
+      title='Collapsible'
+      width={1 / 2}>
+      <Typography as='p' variant='h6'>
+        {text}
+      </Typography>
+      <Button
+        onClick={() => setText(prev => prev.concat(text))}
+        title='Add more text'
+      />
+    </Collapsible>
+  )
+}
+;<CollapsibleExample />
+```

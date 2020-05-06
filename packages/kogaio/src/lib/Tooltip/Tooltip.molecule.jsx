@@ -184,7 +184,10 @@ Tooltip.propTypes = {
     PropTypes.object
   ]),
   icLeft: PropTypes.string,
-  variant: PropTypes.string,
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string)
+  ]),
   visible: PropTypes.bool.isRequired
 }
 Tooltip.defaultProps = {

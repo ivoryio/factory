@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { randomiser } from '../utils'
 
@@ -8,21 +8,21 @@ export const withPortal = Component => ({
   visible,
   ...props
 }) => {
-  const [newModal] = useState(container || document.createElement('div'))
+  const newModal = useRef(container || document.createElement('div'))
 
   useEffect(() => {
     const existingRoot = document.getElementById('modal-root')
 
     if (document.body.contains(existingRoot))
       existingRoot
-        .appendChild(newModal)
+        .appendChild(newModal.current)
         .setAttribute('id', `modal-${id || randomiser}`)
     else {
       const newRoot = document.createElement('div')
       document.body.appendChild(newRoot).setAttribute('id', 'modal-root')
       document
         .getElementById('modal-root')
-        .appendChild(newModal)
+        .appendChild(newModal.current)
         .setAttribute('id', `modal-${id || randomiser}`)
     }
 
@@ -43,6 +43,6 @@ export const withPortal = Component => ({
 
   return createPortal(
     <Component id={id} visible={visible} {...props} />,
-    newModal
+    newModal.current
   )
 }

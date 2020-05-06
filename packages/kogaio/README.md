@@ -50,7 +50,7 @@ yarn add styled-components @ivoryio/kogaio
 
 > Extend your web application with Kogaio's _buildTheme_ [^1]
 
-```JSX
+```jsx static
     import React from 'react'
     import { ThemeProvider } from 'styled-components'
     import { buildTheme } from '@ivoryio/kogaio'
@@ -89,7 +89,7 @@ yarn add styled-components @ivoryio/kogaio
 
 > Plug and play!
 
-```JSX
+```jsx static
    import React from 'react'
     import { Button, Card, Flex, Space, Typography } from '@ivoryio/kogaio'
 
@@ -125,7 +125,7 @@ For a painless experience with **Kogaio**, we do not encourage overwriting the e
 
 Seek the comments below for recommendations.
 
-```JSX
+```jsx static
   borders = [0, '1px solid', '2px solid', '3px solid', '4px solid']
   breakpoints = {
     xs: '20em',
