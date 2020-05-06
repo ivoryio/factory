@@ -157,7 +157,10 @@ List.propTypes = {
   setListOpen: PropTypes.func,
   size: PropTypes.number,
   value: PropTypes.string,
-  variant: PropTypes.string
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string)
+  ])
 }
 
 export default List

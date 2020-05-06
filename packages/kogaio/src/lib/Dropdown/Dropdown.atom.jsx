@@ -226,7 +226,10 @@ Dropdown.propTypes = {
   size: PropTypes.number,
   valid: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
-  variant: PropTypes.string
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string)
+  ])
 }
 
 Dropdown.defaultProps = {

@@ -178,7 +178,10 @@ Checkbox.propTypes = {
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   valid: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  variant: PropTypes.string
+  variant: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string)
+  ])
 }
 
 Checkbox.defaultProps = {
